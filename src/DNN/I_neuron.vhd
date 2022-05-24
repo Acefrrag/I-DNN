@@ -50,8 +50,14 @@ port(
     mul_sel: in std_logic;
     sum_reg_rst: in std_logic;
     update_out: in std_logic;
-    weighted_sum: out sfixed (input_int_width+neuron_int_width-1 downto -input_frac_width-neuron_frac_width);
-    data_out: out sfixed (input_int_width-1 downto -input_frac_width));
+    data_out: out sfixed (input_int_width-1 downto -input_frac_width);
+    --Augumented pins
+    n_power_reset: in std_logic;
+    w_rec: in std_logic;
+    o_rec: in std_logic;
+    data_out_rec: in sfixed (input_int_width-1 downto -input_frac_width);
+    weighted_sum_save: out std_logic_vector(input_int_width+neuron_int_width+input_frac_width+neuron_frac_width-1 downto 0);
+    weighted_sum_rec: in sfixed (input_int_width+neuron_int_width-1 downto -input_frac_width-neuron_frac_width));
 end entity I_neuron;
 
 
@@ -141,18 +147,28 @@ port map(
 );
 
 
-sum_reg: process (clk)
+sum_reg: process (clk,n_power_reset)
 begin
-    if sum_reg_rst = '1' then
+    if n_power_reset = '0' then
         sum_reg_out <= (others => '0');
     else
-        if rising_edge(clk) then
-            sum_reg_out <= mul_out;
-        end if;
+            if sum_reg_rst = '1' then
+                sum_reg_out <= (others => '0');
+            else
+                if rising_edge(clk) then
+                     if w_rec = '1' then
+                           sum_reg_out <= weighted_sum_rec;
+                     else
+                        sum_reg_out <= mul_out;
+                    end if;
+                end if;
+            end if;
     end if;
 end process sum_reg;
 
-weighted_sum <= sum_reg_out; -- Additional Line of code to enable initermittency
+weighted_sum_save <= to_slv(sum_reg_out); -- Additional Line of code to enable initermittency
+
+
 
 mul_temp: process(all)
 begin
@@ -173,10 +189,19 @@ begin
     end if;
 end process out_ReLU_reg;
 
-out_reg: process(update_out) is
+out_reg: process(update_out,n_power_reset,clk) is
 begin
-    if rising_edge(update_out) then
-        out_reg_val <= out_ReLU_d;
+    if n_power_reset = '0' then
+        out_reg_val <= (others => '0');
+    else
+        if rising_edge(clk) then
+            if o_rec = '1' then
+                out_reg_val <= data_out_rec;
+            end if;
+        end if;
+        if rising_edge(update_out) then
+            out_reg_val <= out_ReLU_d;
+        end if;
     end if;
 end process out_reg;
 

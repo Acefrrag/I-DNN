@@ -1,0 +1,25 @@
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 63630931c3274f1193fa45ad0cc3506d --incr --debug typical --relax --mt 2 -L xil_defaultlib -L ieee_proposed -L secureip --snapshot I_neuron_tb_behav xil_defaultlib.I_neuron_tb -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.math_real
+Compiling package ieee.numeric_std
+Compiling package ieee_proposed.fixed_pkg
+Compiling package ieee.std_logic_textio
+Compiling package xil_defaultlib.i_dnn_package
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture unary_or of entity xil_defaultlib.unary_OR [\unary_OR(n=17)\]
+Compiling architecture behavioral of entity xil_defaultlib.ReLU [\ReLU(data_width=32)\]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.i_neuron_tb
+Built simulation snapshot I_neuron_tb_behav

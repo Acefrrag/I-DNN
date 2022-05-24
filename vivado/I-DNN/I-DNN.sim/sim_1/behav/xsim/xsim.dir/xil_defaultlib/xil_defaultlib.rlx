@@ -1,0 +1,10 @@
+0.7
+2020.2
+Nov 18 2020
+09:47:47
+C:/Users/Win10Admin/GithubRepositories/I-DNN/src/DNN/I_DNN_package.vhd,1652609708,vhdl2008,C:/Users/Win10Admin/GithubRepositories/I-DNN/test/I_neuron_tb.vhd,,,i_dnn_package,,,,,,,,
+C:/Users/Win10Admin/GithubRepositories/I-DNN/src/DNN/I_neuron.vhd,1652629173,vhdl2008,,,,i_neuron,,,,,,,,
+C:/Users/Win10Admin/GithubRepositories/I-DNN/src/DNN/weight_memory.vhd,1651847557,vhdl2008,,,,weight_memory,,,,,,,,
+C:/Users/Win10Admin/GithubRepositories/I-DNN/test/I_neuron_tb.vhd,1652630264,vhdl2008,,,,i_neuron_tb,,,,,,,,
+C:/Users/Win10Admin/GithubRepositories/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/imports/DNN/ReLU.vhd,1651847594,vhdl2008,,,,relu,,,,,,,,
+C:/Users/Win10Admin/GithubRepositories/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/imports/DNN/unary_or.vhd,1648395819,vhdl2008,,,,unary_or,,,,,,,,

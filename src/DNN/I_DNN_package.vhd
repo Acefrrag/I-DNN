@@ -12,13 +12,14 @@ package I_DNN_package is
     --TestBench for neuron entities and its subentities
     constant neuron_rom_depth : natural := 30;--Number of weights for the neuron to be tested (which corresponds to the the number of input connected to the neuron)
     constant neuron_rom_width : natural := 32;--Bits for fixed-point representation.
-	constant neuron_rom_file : string := "../scripts/weights_and_bias/w_b/w_2_10.mif";
+	constant neuron_rom_file : string := "../../../../../../scripts/weights_and_bias/w_b/w_2_10.mif";
+	constant neuron_bias_file : string := "../../../../../../scripts/weights_and_bias/w_b/b_2_10.mif";
 	--Fixed Point Representation
 	constant input_depth: natural := neuron_rom_depth;--Input sequence widths
 	constant input_width: natural := 32;
 	constant input_int_width: natural := 16;
 	constant input_frac_width: natural := input_width-input_int_width;
-	constant dataset_path: string := "../scripts/datasets/testData/input_neuron2.mif";
+	constant dataset_path: string := "../../../../../../scripts/datasets/testData/input_neuron2.mif";
 	--Weights widths
 	constant neuron_width_sfixed: natural := neuron_rom_width; --Bit number for fixed point representation.
 	constant neuron_int_width: natural := 16;--number of Bits to represent the integer part (including the sign)
@@ -39,7 +40,7 @@ package I_DNN_package is
     constant log2_layer_outputs: layer_neurons_type := (natural(ceil(log2(real(30)))), natural(ceil(log2(real(20)))), natural(ceil(log2(real(10)))));
     constant data_int_width: natural := 16;
     constant data_frac_width: natural := 16;
-    constant validation_dataset_path: string := "../scripts/datasets/testData/test_data.txt";
+    constant validation_dataset_path: string := "../../../../../../scripts/datasets/testData/test_data.txt";
     constant bias_int_width: natural := 1;            
     
     
@@ -55,9 +56,9 @@ package I_DNN_package is
     
 
     
-end package DNN_package;
+end package I_DNN_package;
 
-package body DNN_package is
+package body I_DNN_package is
     
     --Package Body Section
     function isum(l_n: layer_neurons_type) return natural is
@@ -92,4 +93,4 @@ package body DNN_package is
         return vector(high(VectorBits, index) downto low(VectorBits, index));
     end function;
 
-end package body DNN_package;
+end package body I_DNN_package;

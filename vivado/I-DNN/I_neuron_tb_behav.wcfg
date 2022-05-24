@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="I_neuron_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="I_neuron_tb" />
+            <top_module name="i_dnn_package" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="37500fs"></ZoomStartTime>
+      <ZoomEndTime time="84501fs"></ZoomEndTime>
+      <Cursor1Time time="360000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="304"></NameColumnWidth>
+      <ValueColumnWidth column_width="114"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="17" />
+   <wvobject fp_name="/I_neuron_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/mul_sel" type="logic">
+      <obj_property name="ElementShortName">mul_sel</obj_property>
+      <obj_property name="ObjectShortName">mul_sel</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/sum_reg_rst" type="logic">
+      <obj_property name="ElementShortName">sum_reg_rst</obj_property>
+      <obj_property name="ObjectShortName">sum_reg_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/update_out" type="logic">
+      <obj_property name="ElementShortName">update_out</obj_property>
+      <obj_property name="ObjectShortName">update_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/w_rec" type="logic">
+      <obj_property name="ElementShortName">w_rec</obj_property>
+      <obj_property name="ObjectShortName">w_rec</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/o_rec" type="logic">
+      <obj_property name="ElementShortName">o_rec</obj_property>
+      <obj_property name="ObjectShortName">o_rec</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/n_power_rst" type="logic">
+      <obj_property name="ElementShortName">n_power_rst</obj_property>
+      <obj_property name="ObjectShortName">n_power_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/data_in" type="array">
+      <obj_property name="ElementShortName">data_in[15:-16]</obj_property>
+      <obj_property name="ObjectShortName">data_in[15:-16]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">16</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/data_out" type="array">
+      <obj_property name="ElementShortName">data_out[15:-16]</obj_property>
+      <obj_property name="ObjectShortName">data_out[15:-16]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">16</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/data_out_rec" type="array">
+      <obj_property name="ElementShortName">data_out_rec[15:-16]</obj_property>
+      <obj_property name="ObjectShortName">data_out_rec[15:-16]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/addr" type="array">
+      <obj_property name="ElementShortName">addr[0:4]</obj_property>
+      <obj_property name="ObjectShortName">addr[0:4]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/weighted_sum_save" type="array">
+      <obj_property name="ElementShortName">weighted_sum_save[31:-32]</obj_property>
+      <obj_property name="ObjectShortName">weighted_sum_save[31:-32]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">32</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/weighted_sum_rec" type="array">
+      <obj_property name="ElementShortName">weighted_sum_rec[31:-32]</obj_property>
+      <obj_property name="ObjectShortName">weighted_sum_rec[31:-32]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">32</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/weighted_sum_backup" type="array">
+      <obj_property name="ElementShortName">weighted_sum_backup[31:-32]</obj_property>
+      <obj_property name="ObjectShortName">weighted_sum_backup[31:-32]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">32</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/neuron_output_backup" type="array">
+      <obj_property name="ElementShortName">neuron_output_backup[15:-16]</obj_property>
+      <obj_property name="ObjectShortName">neuron_output_backup[15:-16]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">16</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/I_neuron_comp/weight_out" type="array">
+      <obj_property name="ElementShortName">weight_out[15:-16]</obj_property>
+      <obj_property name="ObjectShortName">weight_out[15:-16]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">16</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_neuron_tb/I_neuron_comp/weight_prod" type="array">
+      <obj_property name="ElementShortName">weight_prod[31:-32]</obj_property>
+      <obj_property name="ObjectShortName">weight_prod[31:-32]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">32</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+</wave_config>

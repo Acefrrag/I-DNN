@@ -45,6 +45,7 @@ entity I_layer_tb is
 
 end I_layer_tb;
 
+
 architecture Behavioral of I_layer_tb is
 component I_layer is
 generic(
@@ -84,7 +85,7 @@ constant num_inputs: natural := 30;
 constant num_outputs: natural := 30;
 --TestBench Signals
 --Volatile Architecture Signals
-signal clk: std_logic;
+signal clk: std_logic:= '0';
 signal data_in: sfixed(input_int_width-1 downto -input_frac_width);
 signal data_out_sel: std_logic_vector(0 to natural(ceil(log2(real(num_outputs))))-1);
 signal start: std_logic;--to increment the counter while the output of the output is begin computed
@@ -147,7 +148,11 @@ port map
     save_state => save_state
 );
 
+testbench: process is
 
+begin
+wait;
+end process testbench;
 
 
 end Behavioral;

@@ -53,6 +53,7 @@ port(
     data_out: out sfixed (input_int_width-1 downto -input_frac_width);
     --Augumented pins
     n_power_reset: in std_logic;
+    n_en: in std_logic; --Pin to enable the register (Active on low) - en=1: All reegisters are disabled. When saving or retriving data this is set high
     w_rec: in std_logic;
     o_rec: in std_logic;
     data_out_rec: in sfixed (input_int_width-1 downto -input_frac_width);
@@ -160,6 +161,13 @@ begin
                            sum_reg_out <= weighted_sum_rec;
                      else
                         sum_reg_out <= mul_out;
+                        --The problem is evident here because at
+                        --the next clock cycle we won't be able to
+                        --retrieve data. Instead, I should be
+                        --disconnecting the mul_out from the input to
+                        --this register since w_rec will be set to 0
+                        --after data for that particular neuron is
+                        --retrieved. This will 
                     end if;
                 end if;
             end if;

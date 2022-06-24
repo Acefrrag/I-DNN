@@ -18,6 +18,14 @@
 -- 
 ----------------------------------------------------------------------------------
 
+library work;
+use work.I_DNN_package.all;
+--Augumented Packages
+--use work.COMMON_PACKAGE.all;
+--use work.NVME_FRAMEWORK_PACKAGE.all;
+
+library ieee_proposed;
+use ieee_proposed.fixed_pkg.all;
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -34,6 +42,8 @@ use IEEE.MATH_REAL.ALL;
 --use UNISIM.VComponents.all;
 
 package TEST_ARCHITECTURE_PACKAGE is
+    
+    
     -- States of a general finate state machine for fsm_nv_reg
     type fsm_nv_reg_state_t is(
         shutdown_s,
@@ -60,7 +70,7 @@ package TEST_ARCHITECTURE_PACKAGE is
     data_save_init_cmpl,
     data_save);
 
-    type data_rec_type_t is(
+    type data_backup_type_t is(
     nothing,
     state,
     outputt);

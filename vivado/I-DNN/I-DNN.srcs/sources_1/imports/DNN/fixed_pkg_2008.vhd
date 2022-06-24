@@ -937,11 +937,11 @@ package fixed_pkg is
     size_res : ufixed)                  -- for size only
     return ufixed;
 
-  function to_sfixed (
+function to_sfixed (
     arg                  : STD_LOGIC_VECTOR;  -- shifted vector
     constant left_index  : INTEGER;
     constant right_index : INTEGER)
-    return sfixed;
+return sfixed;
 
   function to_sfixed (
     arg      : STD_LOGIC_VECTOR;        -- shifted vector

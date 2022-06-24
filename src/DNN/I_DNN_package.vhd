@@ -13,7 +13,7 @@ package I_DNN_package is
     constant neuron_rom_depth : natural := 30;--Number of weights for the neuron to be tested (which corresponds to the the number of input connected to the neuron)
     constant neuron_rom_width : natural := 32;--Bits for fixed-point representation.
 	constant neuron_rom_file : string := "../../../../../../scripts/weights_and_bias/w_b/w_2_10.mif";
-	constant neuron_bias_file : string := "../../../../../../scripts/weights_and_bias/w_b/b_2_10.mif";
+	constant neuron_bias_file : string := "../../../../../../../scripts/weights_and_bias/w_b/b_2_10.mif";
 	--Fixed Point Representation
 	constant input_depth: natural := neuron_rom_depth;--Input sequence widths
 	constant input_width: natural := 32;

@@ -57,6 +57,7 @@ port(
     w_rec: in std_logic;
     o_rec: in std_logic;
     data_out_rec: in sfixed (input_int_width-1 downto -input_frac_width);
+    sum_reg_en: in std_logic; --To disable the cumulative register while recovering data and saving data
     weighted_sum_save: out std_logic_vector(input_int_width+neuron_int_width+input_frac_width+neuron_frac_width-1 downto 0);
     weighted_sum_rec: in sfixed (input_int_width+neuron_int_width-1 downto -input_frac_width-neuron_frac_width));
 end entity I_neuron;
@@ -160,14 +161,18 @@ begin
                      if w_rec = '1' then
                            sum_reg_out <= weighted_sum_rec;
                      else
-                        sum_reg_out <= mul_out;
+                        if sum_reg_en = '1' then
+                            sum_reg_out <= mul_out;
                         --The problem is evident here because at
                         --the next clock cycle we won't be able to
                         --retrieve data. Instead, I should be
                         --disconnecting the mul_out from the input to
                         --this register since w_rec will be set to 0
                         --after data for that particular neuron is
-                        --retrieved. This will 
+                        --retrieved. This will
+                        else
+                            --do nothing. Data is not updated
+                        end if;
                     end if;
                 end if;
             end if;

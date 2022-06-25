@@ -79,7 +79,7 @@ port(                                                                           
     current_layer: out std_logic);                                                      --current_layer     :       0: This is not the currently active layer. Output won't be saved. 1: This is the current active layer. State of the layer will be saved.
 end I_layer;
 
-
+--Make a change
 architecture Behavioral of I_layer is
 
 -----------TYPE DECLARATION-----------

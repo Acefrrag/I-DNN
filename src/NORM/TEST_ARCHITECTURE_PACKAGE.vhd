@@ -83,7 +83,7 @@ package TEST_ARCHITECTURE_PACKAGE is
     );
 
     constant V_REG_WIDTH: INTEGER := 65536;     -- Numver of words of the volatile register for the volatile architecture
-    constant RST_EMU_THRESH: INTEGER := 280;   -- Voltage threshold at which the intemittency emulator will trigger reset_emulator
+    constant RST_EMU_THRESH: INTEGER := 135;   -- Voltage threshold at which the intemittency emulator will trigger reset_emulator
                                                 --> This value must be in the range of ones contained in trace_ROM
 
 end package;

@@ -17,6 +17,14 @@ vhdl2008 xil_defaultlib  \
 "../../../../../../src/DNN/DATA_SAVE_PROCESS.vhd" \
 "../../../../../../src/DNN/VAR_CNTR_PROCESS.vhd" \
 "../../../../../../src/DNN/I_layer.vhd" \
+"../../../../../../src/NORM/fsm_nv_reg_db.vhd" \
+"../../../../../../src/NORM/nv_reg_emu.vhd" \
+"../../../../../../src/NORM/trace_ROM.vhd" \
+"../../../../../../src/NORM/nv_reg.vhd" \
+"../../../../I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd" \
+"../../../../../../src/NORM/intermittency_emulator.vhd" \
+"../../../../../../src/NORM/scaler.vhd" \
+"../../../../../../src/NORM/counter.vhd" \
 "../../../../../../test/I_FSM_layer_tb.vhd" \
 "../../../../../../test/I_neuron_tb.vhd" \
 "../../../../../../test/DATA_REC_PROCESS_tb.vhd" \

@@ -43,85 +43,68 @@ port(
     --OUTPUTS
     sum_reg_rst: out std_logic;                                     --sum_reg_rst       :This bit resets the weighted sum register
     mul_sel: out std_logic;                                         --mul_sel           :This signal decides weather to add up the product w_i*x_i or the bias b
-    out_v: out std_logic;                                           --out_v             :This signal aknowledge the output is valid
+    out_v: out std_logic;                                           --out_v             :This signal aknowledges the output is valid
     update_out: out std_logic;                                      --update_out        :This update the output of the neuron, since it is necessary to  
-    addr_in_gen_rst: out std_logic;                                 --addr_in_gen_rst   :
+    addr_in_gen_rst: out std_logic;                                 --addr_in_gen_rst   :This bit 
     --ADDED PORTS
     --INPUTS
+    out_inv: in std_logic;                                          --out_inv                   :Used to reset the validity bit of the layer. '0':Hold the state, '1':Reset 'U':Set valididity bit to '1'
     n_power_rst: in std_logic;                                      --n_power_rst
     data_rec_busy: in std_logic;                                    --data_rec_busy
-    fsm_nv_reg_state: in fsm_nv_reg_state_t;                        --fsm_nv_reg_state
-    fsm_state_rec: in std_logic_vector(0 to nv_reg_width-1);        --fsm_state_rec             :To recover the state of the fsm
+    fsm_nv_reg_state: in fsm_nv_reg_state_t;                        --fsm_nv_reg_state          :State of fsm of the nv_reg state
     data_rec_recovered_offset: in integer range 0 to num_outputs+1; --data_rec_recovered_offset :This contains the address 
     data_rec_type: in data_backup_type_t;                           --data_rec_type             :This value must be held from the outer module during the whole recovery/save process
     data_save_type: in data_backup_type_t;                          --data_save_type            :
     --Output pins
-    s_r: out std_logic_vector (0 to 2*num_outputs+1);               --s_r               :activation pins for recovery of the state
     o_r: out std_logic_vector (0 to num_outputs+1);                 --o_r               :activation pins for recovery of the outputs (last 2 are unused)
     addra: out integer range 0 to num_outputs+2;                    --addra             :
-    fsm_state_save: out std_logic_vector(nv_reg_width-1 downto 0);      --fsm_state_save    :To save the state of the fsm of the layer, it is also used to determine the type of save 
+    fsm_state_save: out std_logic_vector(nv_reg_width-1 downto 0);  --fsm_state_save    :To save the state of the fsm of the layer, it is also used to determine the type of save 
     fsm_pr_state: out fsm_layer_state_t;                            --fsm_pr_state      :It contains the present state of the fsm.
-    sum_reg_en: out std_logic                                       --sum_reg_en        :This is used to enable the cumulative sum register
+    reg_en: out std_logic                                           --reg_en        :This is used to enable/disable the register
     );
 end I_FSM_layer;
 
 architecture Behavioral of I_FSM_layer is
 --Declarative Part
-signal pr_state, nx_state, state_backup_rec, state_backup_save: fsm_layer_state_t := idle;
+signal nx_state, state_backup_rec, state_backup_save: fsm_layer_state_t := idle;
+signal pr_state: fsm_layer_state_t:=power_off;
 signal out_val: std_logic := '0';
 constant number: integer range 0 to 5:=1;
 
 
 begin
-    fsm_pr_state <=pr_state;
+    fsm_pr_state <= pr_state;
     
-    state_backup_eval: process(fsm_state_rec, pr_state) is
-    begin
-        --Logic for recovery. State_backup_rec is used to recover the
-        --fsm state
-        if unsigned(fsm_state_rec) = 0 then
-            state_backup_rec <= idle;
-        elsif unsigned(fsm_state_rec) = 1 then
-            state_backup_rec <= w_sum;
-        elsif unsigned(fsm_state_rec) = 2 then
-            state_backup_rec <= b_sum;
-        elsif unsigned(fsm_state_rec) = 3 then
-            state_backup_rec <= act_log;
-        elsif unsigned(fsm_state_rec) = 4 then
-            state_backup_rec <= finished;
-        else
-            --When we enter the recovery process the fsm evaluate the
-            --state to start the computation.           
-            state_backup_rec <= state_backup_rec;
-        end if;
-        --Logic for saving. state_backup_save is evaluated in order to
-        --determine what to write into the nv_reg
-        --fsm_state_save <= (others => '0');
-        if pr_state = idle then
-            fsm_state_save <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
-            state_backup_save <= pr_state;
-        elsif pr_state = w_sum then
-            fsm_state_save <= std_logic_vector(to_unsigned(1,fsm_state_save'length));
-            state_backup_save <= pr_state;
-        elsif pr_state = b_sum then
-            fsm_state_save <= std_logic_vector(to_unsigned(2,fsm_state_save'length));
-            state_backup_save <= pr_state;
-        elsif pr_state = act_log then
-            fsm_state_save <= std_logic_vector(to_unsigned(3,fsm_state_save'length));
-            state_backup_save <= pr_state;
-        elsif pr_state = finished then
-            fsm_state_save <= std_logic_vector(to_unsigned(4,fsm_state_save'length));
-            state_backup_save <= pr_state;
-        else
-            --1)When we start the data save process,
-            --state_backup_save will be containing
-            --the last state of the layer before
-            --starting saving.
-            --2)In the same way after we enter the save process
-            --The fsm remembers what to write inside the nv_reg.
-            fsm_state_save <= fsm_state_save;
-            state_backup_save <= state_backup_save;
-        end if;
+state_backup_eval: process(pr_state) is
+begin     
+    --Logic for saving. state_backup_save is evaluated in order to
+    --determine what to write into the nv_reg
+    --fsm_state_save <= (others => '0');
+    if pr_state = idle then
+        fsm_state_save <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
+        state_backup_save <= pr_state;
+    elsif pr_state = w_sum then
+        fsm_state_save <= std_logic_vector(to_unsigned(1,fsm_state_save'length));
+        state_backup_save <= pr_state;
+    elsif pr_state = b_sum then
+        fsm_state_save <= std_logic_vector(to_unsigned(2,fsm_state_save'length));
+        state_backup_save <= pr_state;
+    elsif pr_state = act_log then
+        fsm_state_save <= std_logic_vector(to_unsigned(3,fsm_state_save'length));
+        state_backup_save <= pr_state;
+    elsif pr_state = finished then
+        fsm_state_save <= std_logic_vector(to_unsigned(4,fsm_state_save'length));
+        state_backup_save <= pr_state;
+    else
+        --1)When we start the data save process,
+        --state_backup_save will be containing
+        --the last state of the layer before
+        --starting saving.
+        --2)In this way after we finish the save process
+        --the fsm remembers what to write inside the nv_reg.
+        fsm_state_save <= fsm_state_save;
+        state_backup_save <= state_backup_save;
+    end if;
 end process;
 
     out_v <= out_val;
@@ -143,24 +126,39 @@ end process;
     --addr_in_gen_en: To enable the address generator.
     begin
     --################ V_REG DEFAULTS
-    s_r <= (others => '0');
     o_r <= (others => '0'); 
     addra <= 0;
+    mul_sel <= '0';
+    --The default value of out_val depends on out_inv
+    if out_inv = '1' then
+        out_val <= '0';
+    elsif out_inv = '0' then
+        out_val <= out_val;
+        elsif out_inv = 'U' then 
+            out_val <= '1';
+    end if;
+    sum_reg_rst <= '0';
+    update_out<='0';
+    addr_in_gen_rst <='0';
+    reg_en <= '0';
 	--###############################
     case pr_state is
         when power_off =>
+        --default values
+            sum_reg_rst <= '1';
+            addr_in_gen_rst <= '1';
         when init =>
             mul_sel <= '0';
-            out_val <= '0';
             sum_reg_rst <= '1';
             update_out <= '0';
-            addr_in_gen_rst <= '0';
+            addr_in_gen_rst <= '1';
+            reg_en <= '0';
         when recovery =>
             mul_sel <= '0';
-            out_val <= '0';
             sum_reg_rst <= '0';
             update_out <= '0';
-            addr_in_gen_rst <= '0';
+            addr_in_gen_rst <= '1';
+            reg_en <= '0';
             --Augumented FSM Outputs
             if fsm_nv_reg_state = recovery_s then
                 if data_rec_busy = '1' then
@@ -173,11 +171,9 @@ end process;
                     case data_rec_type is
                     when nothing =>
                         o_r <= (others => '0');
-                        s_r <= (others => '0');
                     when state =>
-                        s_r(addra-1) <= '1';--addra 0 to 2*num_outputs+1. This represents an issue because the state_recovery(s_r) signal is intended to be for num_outputs neurons                 
                     when outputt =>
-                        o_r(addra-1) <= '1';--addr 0 to num_outputs+1
+                    o_r(addra-1) <= '1';--addr 0 to num_outputs+1
                     end case;
                     --LAYER OUTPUT RECOVERY)
                     --If we are recovering the output the input address range from 0 to num_outputs-1
@@ -188,39 +184,49 @@ end process;
             end if;
         when idle =>
             mul_sel <= '0';
-            out_val <= '0';
             sum_reg_rst <= '1';
             update_out <= '0';
-            addr_in_gen_rst <= '1';         
+            addr_in_gen_rst <= '1';
+            reg_en <= '1';         
         when w_sum =>
             mul_sel <= '0';
-            out_val <= '0';
             sum_reg_rst <= '0';
             update_out <= '0';
             addr_in_gen_rst <= '0';
+            reg_en <= '1';
         when b_sum =>
             mul_sel <= '1';
-            out_val <= '0';
             sum_reg_rst <= '0';
             update_out <= '0';      
-            addr_in_gen_rst <= '1';  
+            addr_in_gen_rst <= '1';
+            reg_en <= '1';  
         when act_log =>
             mul_sel <= '0';
-            out_val <= '0';
             sum_reg_rst <= '0';
             update_out <= '0';
             addr_in_gen_rst <= '1';
+            reg_en <= '1';
         when finished =>
             mul_sel <= '0';
             out_val <= '1';
             sum_reg_rst <= '0';
             update_out <= '1';
             addr_in_gen_rst <= '1';
+            reg_en <= '1';
         when data_save_init =>
             --default values
+            reg_en <= '0';
+            sum_reg_rst <= '0';
+            addr_in_gen_rst <= '0';
         when data_save_init_cmpl =>
             --default values
+            reg_en <= '0';
+            sum_reg_rst <= '0';
+            addr_in_gen_rst <= '0';
         when data_save =>
+            reg_en <= '0';
+            sum_reg_rst <= '0';
+            addr_in_gen_rst <= '0';
             --default values
     end case;
     end process output;

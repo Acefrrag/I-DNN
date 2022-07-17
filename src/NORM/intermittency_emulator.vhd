@@ -127,13 +127,12 @@ begin
             TC      => TC_counter,
             value   => ROM_addr
         );
-
+    
     comparator_generator : for i in INTERMITTENCY_NUM_THRESHOLDS -1  downto 0 generate
         output_comparator(i) <= '0' when ROM_data_out > threshold_value(i) else '1';
     end generate;
     
     reset_emulator <= output_comparator(select_threshold);
-    
     threshold_compared <= output_comparator;
     
     clk_sync : process(sys_clk) begin

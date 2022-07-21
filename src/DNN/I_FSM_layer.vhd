@@ -173,7 +173,7 @@ end process;
                         o_r <= (others => '0');
                     when state =>
                     when outputt =>
-                    o_r(addra-1) <= '1';--addr 0 to num_outputs+1
+                    o_r(addra) <= '1';--addr 0 to num_outputs+1
                     end case;
                     --LAYER OUTPUT RECOVERY)
                     --If we are recovering the output the input address range from 0 to num_outputs-1

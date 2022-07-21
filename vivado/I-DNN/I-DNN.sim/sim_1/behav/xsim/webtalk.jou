@@ -2,8 +2,8 @@
 # Webtalk v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Sun Jul 17 10:41:08 2022
-# Process ID: 7040
+# Start of session at: Tue Jul 19 19:43:53 2022
+# Process ID: 1436
 # Current directory: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim
 # Command line: wbtcv.exe -mode batch -source C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/xsim.dir/I_layer_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/webtalk.log

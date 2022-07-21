@@ -267,8 +267,8 @@ nv_reg_comp: nv_reg
     )
     Port map( 
         clk             => clk,
-        resetN          => resetN_emulator,
-        power_resetN 	=> n_power_reset,
+        resetN          => '1',
+        power_resetN 	=> resetN_emulator,
         -------------chage from here-------------- 
         busy            => nv_reg_busy,
         busy_sig        => nv_reg_busy_sig,
@@ -288,7 +288,7 @@ end process;
 
 start_gen: process is
 begin
-    wait for 670 ns;
+    wait for 880 ns;
     start <= '0';
     wait;
 end process;

@@ -22,15 +22,16 @@
 --X)Save the neurons' weighted sum in 2 clock cycles. Done by adding num_outputs pins and leaving NC half of te total pins
 --X)Augument gen_addr pins. Add pins to write the desired value into the register to resume computation
 
+--Observations:
+--1) The amount of time to save data in the nv_reg is higher than what it takes to compute the layer output. In general it is not convenient to save the output of the layer whenver there is a hazard, but to enable only a certain amount of layer to save their state.
+---------------------------------------------------------------------------
 library ieee_proposed;
 use ieee_proposed.fixed_pkg.all;
-
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
-
 
 library work;
 use work.I_DNN_package.all;
@@ -39,14 +40,14 @@ use work.COMMON_PACKAGE.all;
 use work.NVME_FRAMEWORK_PACKAGE.all;
 use work.TEST_ARCHITECTURE_PACKAGE.all;
 
-
 entity I_layer is
 generic(                                                                                --GENERIC:
     constant num_inputs: natural := 30;
     constant num_outputs: natural := 30;
     constant layer_no: natural := 1;                                                    --layer_no          :     Layer number (identifier)
     constant act_type: string := "ReLU";                                                --act_type          :     Choose between "ReLU","Sig"
-    constant act_fun_size: natural := 10                                                --act_fun_size      :     If the user chooses an analytical activation function the number of sample have to be chosen
+    constant act_fun_size: natural := 10;                                               --act_fun_size      :     If the user chooses an analytical activation function the number of sample have to be chosen
+    constant en_backup: std_logic := '1'                                                --en_backup         :     '1': This layer is enabled to save its output '0': This layer is disabled from saving its output                                               
 );
 port(                                                                                   --------PORTS-------
                                                                                         -----ORIGINARY PINS--
@@ -84,7 +85,6 @@ architecture Behavioral of I_layer is
 -----------TYPE DECLARATION-----------
 type data_out_type is array(0 to num_outputs-1) of sfixed(neuron_int_width-1 downto -neuron_frac_width);                            --data_out_type             :
 type data_backup_output_type is array(0 to num_outputs) of std_logic_vector(nv_reg_width-1 downto 0);                               --data_backup_output_type   :This array groups the signals of the layer output. It's just the neurons' output(num_output signals). No of signals: num_outputs (the last
-
 ------------SIGNAL DECLARATION--------
 --gen_addr
 signal addr: std_logic_vector(0 to natural(ceil(log2(real(num_inputs))))-1) :=(others => '0');      --addr          : gen_addr output. Used to fetch previous layer data
@@ -104,9 +104,7 @@ signal data_out_vect: data_out_type;                                            
 -----------VOLATILE REGISTERS SIGNALS------------
 --This signals are used to group the input and output to the volatile elements of the architecture. FSM_layer state, addr_gen content, neurons' output and weighted sum.
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RECOVERY SIGNALS
-                                                                                                     --addra = 0, data_rec_type is begin fetched. This will determine how recovery will be carried out.
-                                                                                                        --addra = 1..num_outputs neurons' registers are being fetched
-                                                                                                        --addra = end-1..end addr_gen and fsm_state are begin fetched
+                                                                                                       --addra = end-1..end addr_gen and fsm_state are begin fetched
 --signal s_r: integer range 0 to num_outputs+1;                                         --activation pins to recover the state(FSM state, addr_gen content and w_sum). It is used to trigger the overwriting 
 --signal o_r: integer range 0 to num_outputs+1;                                         --activation pins to recover the outputs (neurons' outputs. Last 2 are unused). It is used to trigger the overwriting
 --CONTROL SIGNALS
@@ -116,7 +114,7 @@ signal addr_rec: std_logic;                                                     
 signal fsm_state_rec: std_logic_vector(0 to nv_reg_width-1);                            --fsm_state_rec         :FSM State. To recover the FSM state
 
 --DATA SIGNALS
-signal data_backup_vect_output_rec: data_backup_output_type;                            --data_backup_vect_output_rec:
+signal data_backup_vect_output_rec: data_backup_output_type := (others => (others => '0'));                            --data_backup_vect_output_rec:
 --ADDR SIGNALS
 signal addra: integer range 0 to num_outputs+2;                                         --addra                 :address to write into the volatile register when recovering data 
 
@@ -126,7 +124,6 @@ signal n_en: std_logic;                                                         
 signal addrb: integer range 0 to num_outputs;--num_outputs elements for saving the output and one for saving the                                          --addrb                 :address to read from the volatile registers when saving data
 signal data_backup_vect_output_save: data_backup_output_type;                           --data_backup_vect_output_save:
 constant bits_addrb: natural := natural(ceil(log2(real(num_outputs+2))));               --Address width to access data_backup_vect_state_save and data_backup_vect_output_save
-
 
 signal doutb: std_logic_vector(nv_reg_width-1 downto 0);                    --Look at code. Must be replaced
 signal dina     : std_logic_vector(31 DOWNTO 0);                            --Look at code Must be replaced.
@@ -181,6 +178,7 @@ signal data_save_v_reg_offset : INTEGER RANGE 0 TO V_REG_WIDTH -1;				        --
 signal data_save_type: data_backup_type_t := nothing;                                   --data_save_type                    :it contains the type of save to be performed
 
 signal mul_sel_backup       : integer range 1 to 3:= 1;
+signal mul_sel_backup_rec   : integer range 1 to 3:= 1;
 signal fsm_pr_state         : fsm_layer_state_t;
 
 
@@ -355,21 +353,24 @@ I_neurons: for i in 0 to num_outputs-1 generate
         n_power_reset => n_power_reset,
         n_en => not(reg_en),
         o_rec => o_rec_vect(i),
-        data_out_rec => to_sfixed(data_backup_vect_output_rec(i)(input_int_width+input_frac_width-1 downto 0) ,input_int_width-1, -input_frac_width) --use data convertion
+        data_out_rec => to_sfixed(data_backup_vect_output_rec(i+1)(input_int_width+input_frac_width-1 downto 0) ,input_int_width-1, -input_frac_width) --use data convertion
         );
 end generate;
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ROUTE_OUTPUT_SIG: process(data_out_vect) is
 begin
-for i in 0 to num_outputs-1 loop
-    data_backup_vect_output_save(i) <= to_slv(data_out_vect(i));
+for i in 1 to num_outputs loop
+    data_backup_vect_output_save(i) <= to_slv(data_out_vect(i-1));
 end loop;
-data_backup_vect_output_save(num_outputs) <= std_logic_vector(to_unsigned(mul_sel_backup, 32));
+data_backup_vect_output_save(0) <= std_logic_vector(to_unsigned(mul_sel_backup, 32));
 end process ROUTE_OUTPUT_SIG;
 
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%COMBINATORIAL LOGIC%%%%%%%%%%%%%%%%%%%%%%%%%%%
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TASK STATUS LOGIC%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-task_status <= data_rec_busy OR data_save_busy; 
+task_status <= task_status_internal;                     
+task_status_internal <= data_rec_busy OR data_save_busy;    --combined signal: tells if some process is ongoing 
+                                                                --> (used to regulate v_reg access to avoid collisions)
+
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 --%%%%%%%%%%%%%%%%%%%%%DATA BACKUP WIRING%%%%%%%%%%%%%%%%%%%%%
 --%%%%REC%%%%%
@@ -412,10 +413,32 @@ begin
         end if;
 end process gen_addr;
 
---To determine the layer type on recovery we need to look at the first element recovered from the nv_reg
-LAYER_TYPE_ONREC: process is
-begin
 
+--To determine the layer type on recovery we need to look at the first element recovered from the nv_reg
+LAYER_TYPE_ONREC: process(clk) is
+begin
+    if data_rec_busy = '1' then
+        if nv_reg_we = '0' then
+            if addra = 0 then -- we are recovering 
+                if to_integer(unsigned(nv_reg_dout)) = 2 then
+                    data_rec_offset <= num_outputs;
+                    data_rec_type <= outputt;
+                else
+                    if to_integer(unsigned(nv_reg_dout)) = 1 then
+                        data_rec_offset <= 1;
+                        data_rec_type <= nothing;
+                    else
+                        data_rec_offset <= data_rec_offset;
+                        data_rec_type <= data_rec_type;
+                    end if;
+                end if;
+            else
+               mul_sel_backup_rec <= mul_sel_backup_rec;
+            end if;
+        end if;
+    else
+         data_rec_type <= nothing;
+    end if;
 end process LAYER_TYPE_ONREC;
 
 LAYER_TYPE_ONSAVE: process(fsm_state_save, out_v) is
@@ -429,12 +452,10 @@ begin
         --other states and the output is necessary to the next layer
         data_save_type <= outputt;
         mul_sel_backup <= 2;
-        data_rec_offset <= num_outputs;
      else
         --w_sum, b_sum, act_log
         data_save_type <= nothing;
         mul_sel_backup <= 1;
-        data_rec_offset <= 0;
         --Also, we need to set the number of elements to retrieve from the nv_reg
         --In case it's nothing we only need to write to the first element of the nv_reg
    
@@ -504,26 +525,6 @@ begin
    end if;
 end process DATA_REC_V_REG_SIG_CNTRL;
 
-DATA_REC_RECOVERY_SIGNALS_CNTRL: process(data_rec_busy) is
---This process determines weather to recover output, state or nothing
-begin
-if data_rec_busy = '1' then
-    if unsigned(addr) = 0 then
-        if unsigned(data_rec_recovered_data) = 0 then
-            data_rec_type <= nothing;
-        elsif unsigned(data_rec_recovered_data) = 1 then
-            data_rec_type <= state;
-        elsif unsigned(data_rec_recovered_data) = 2 then
-            data_rec_type <= outputt;
-        end if;
-    else
-        data_rec_type<= data_rec_type;
-    end if;
-else --When we're not recovering data data_rec_type is nothing
-    data_rec_type <= nothing;
-end if;
-end process DATA_REC_RECOVERY_SIGNALS_CNTRL;
-
 --------------------------------------------------DATA_SAVE process-------------------------------------------------------------------
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%DATA_SAVE COMBINATIONAL LOGIC%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 data_save_var_cntr_ce <= data_save_busy;
@@ -553,12 +554,12 @@ begin
     end if;
 end process DATA_SAVE;
 
-DATA_SAVE_V_REG_SIG_CNTRL: process (clk,data_save_busy) is
+DATA_SAVE_V_REG_SIG_CNTRL: process (clk,var_cntr_value,data_save_busy) is
 begin
     if data_save_busy ='0' then
         addrb <= 0;
     elsif rising_edge(clk) then
-       if nv_reg_busy = '0' then    -- when nv_reg turns busy the content of addrb must be available, given this premise, 
+       if nv_reg_busy = '0' then    --> when nv_reg turns busy the content of addrb must be available, given this premise, 
                                     --> change the value when it is captured as no more busy 
             if (var_cntr_value <= data_save_v_reg_offset) then
                 addrb <= var_cntr_value;
@@ -574,7 +575,7 @@ end process DATA_SAVE_V_REG_SIG_CNTRL;
 doutb <= data_backup_vect_output_save(addrb) when mul_sel_backup = 2 else
                     std_logic_vector(to_unsigned(mul_sel_backup,nv_reg_width));
         
-DATA_SAVE_NV_REG_SIG: process (clk,data_save_busy) is
+DATA_SAVE_NV_REG_SIG: process (clk,var_cntr_value,data_save_busy) is
 begin
     if data_save_busy ='0' then
         data_save_nv_reg_din <= doutb;
@@ -592,9 +593,8 @@ end process DATA_SAVE_NV_REG_SIG;
 
 DATA_SAVE_OFFSET: process(data_save_type) is
 begin
-
 case data_save_type is
-    when state =>--we never fall in this case for save output
+    when state =>--we never end in this case for save output
     data_save_v_reg_offset <= 2*num_outputs+2;
     when outputt =>
     data_save_v_reg_offset <= num_outputs;

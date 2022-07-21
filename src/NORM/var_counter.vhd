@@ -52,7 +52,7 @@ end var_counter;
 architecture Behavioral of var_counter is
     signal counter : INTEGER RANGE 0 TO MAX;
 begin
-     -----------------------------------------------------------------------
+    -----------------------------------------------------------------------
     --                          Constraints                              --
     -----------------------------------------------------------------------
     value <= counter;

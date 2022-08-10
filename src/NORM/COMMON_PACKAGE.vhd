@@ -45,14 +45,15 @@ package COMMON_PACKAGE is
     constant INTERMITTENCY_PRESCALER            : integer := 8;     -- The prescaler value used by the intermittency emulator to fetch values
                                                                     ---> from the voltage trace ROM. This prescaler works on top of the master clk.
 
-    constant nv_reg_addr_width_bit              : INTEGER := integer(ceil(log2(real(NV_REG_WIDTH))));   -- This value is autocomputed and is used inside the code for faster writing
+    constant nv_reg_addr_width_bit              : INTEGER := integer(ceil(log2(real(NV_REG_depth))));   -- This value is autocomputed and is used inside the code for faster writing
     constant v_reg_addr_width_bit               : INTEGER := integer(ceil(log2(real(V_REG_WIDTH))));    -- This value is autocomputed and is used inside the code for faster writing
 
-    constant MASTER_CLK_SPEED_HZ                : INTEGER := 100000000; -- Master clk speed in HZ. This constant is used primarily for testbenches.
+    constant MASTER_CLK_SPEED_HZ                : INTEGER := 25000000; --25Mhz => 40ns--50MHz=50*10^6=1/(50*10^6) = 1/5*(10^7) = 1/5--100Mhz = 100*10^6 1/100 * 10^-6 = 0.01us = 10 ns 20 ns => 2*10^-8 = 0.02*10^(-6) 2/(100*10^6) 20=1/(0.5)*10^1 20*10^-9 = 1/0.5*(10^-8) = 1/(5*10^-1)*10(-8) = 1/(5*10^(7))=>  Master clk speed in HZ. This constant is used primarily for testbenches.
                                                                         -- !!!!!!!!! If the sytem master clk changes, change this value to the same number !!!!!!!!
+                                                                         -- This is the period of the var_counter clock. Which is always twice as slow as the master clock.
     constant MASTER_CLK_PERIOD_NS               : INTEGER := (1e9/MASTER_CLK_SPEED_HZ); -- Master clk period, this value is autocomputed.
     
-    constant FRAM_MAX_DELAY_NS                  : INTEGER := MASTER_CLK_PERIOD_NS *4;   -- This value defines the delay of all non volatile registers with respect to the master clk.
+    constant FRAM_MAX_DELAY_NS                  : INTEGER := MASTER_CLK_PERIOD_NS*2;   -- This value defines the delay of all non volatile registers with respect to the master clk.
                                                                                         -- !!!!! By changing this value the behaviour of non volatile registers changes too !!!!!
 
     pure function get_busy_counter_end_value(

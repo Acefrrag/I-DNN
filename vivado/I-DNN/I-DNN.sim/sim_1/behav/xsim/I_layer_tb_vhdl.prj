@@ -13,18 +13,25 @@ vhdl2008 xil_defaultlib  \
 "../../../../I-DNN.srcs/sources_1/imports/DNN/ReLU.vhd" \
 "../../../../I-DNN.srcs/sources_1/imports/DNN/unary_or.vhd" \
 "../../../../../../src/DNN/weight_memory.vhd" \
-"../../../../../../src/DNN/DATA_REC_PROCESS.vhd" \
-"../../../../../../src/DNN/DATA_SAVE_PROCESS.vhd" \
-"../../../../../../src/DNN/VAR_CNTR_PROCESS.vhd" \
 "../../../../../../src/DNN/I_layer.vhd" \
+"../../../../../../src/NORM/fsm_nv_reg_db.vhd" \
+"../../../../../../src/NORM/nv_reg_emu.vhd" \
+"../../../../../../src/NORM/trace_ROM.vhd" \
+"../../../../../../src/NORM/nv_reg.vhd" \
+"../../../../I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd" \
+"../../../../../../src/NORM/intermittency_emulator.vhd" \
+"../../../../../../src/NORM/scaler.vhd" \
+"../../../../../../src/NORM/counter.vhd" \
+"../../../../../../src/DNN/I_DNN.vhd" \
+"../../../../../../../../I-DNN/I-DNN/src/test_sfixed.vhd" \
 "../../../../../../test/I_FSM_layer_tb.vhd" \
 "../../../../../../test/I_neuron_tb.vhd" \
-"../../../../../../test/DATA_REC_PROCESS_tb.vhd" \
-"../../../../../../test/DATA_SAVE_PROCESS_tb.vhd" \
 "../../../../../../test/VAR_CNTR_PROCESS_tb.vhd" \
 "../../../../../../src/DNN/routing_w_sum_sig.vhd" \
 "../../../../../../test/routing_w_sum_sig_tb.vhd" \
 "../../../../../../src/DNN/I_layer_tb.vhd" \
+"../../../../../../test/I_DNN_tb.vhd" \
+"../../../../../../test/test_sfixed_tb.vhd" \
 
 # Do not sort compile order
 nosort

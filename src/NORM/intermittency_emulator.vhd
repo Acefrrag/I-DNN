@@ -25,11 +25,6 @@ use IEEE.STD_LOGIC_1164.ALL;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 use work.COMMON_PACKAGE.all;
 use work.NVME_FRAMEWORK_PACKAGE.all;
 
@@ -127,13 +122,12 @@ begin
             TC      => TC_counter,
             value   => ROM_addr
         );
-
+    
     comparator_generator : for i in INTERMITTENCY_NUM_THRESHOLDS -1  downto 0 generate
         output_comparator(i) <= '0' when ROM_data_out > threshold_value(i) else '1';
     end generate;
     
     reset_emulator <= output_comparator(select_threshold);
-    
     threshold_compared <= output_comparator;
     
     clk_sync : process(sys_clk) begin

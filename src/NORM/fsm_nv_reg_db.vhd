@@ -47,8 +47,8 @@ end fsm_nv_reg_db;
 
 architecture Behavioral of fsm_nv_reg_db is
     
-    signal present_state, future_state : fsm_nv_reg_state_t;
-    constant max_slack: INTEGER := 10;
+signal present_state, future_state : fsm_nv_reg_state_t;
+constant max_slack: INTEGER := 0;--The operation slack disable the hazard as long as the volatile architecture didn't carry a certain amount of operations 
 begin
     
     FSM_NV_REG_DB_SEQ: process (clk,resetN) is 

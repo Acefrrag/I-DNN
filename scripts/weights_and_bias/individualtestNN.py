@@ -26,13 +26,21 @@ print("The output of the first layer is \n" + str(out_first_layer) + "\n")
 out_second_layer = network2.relu(np.dot(net.weights[1],out_first_layer)+net.biases[1])
 print("The output of the second layer is \n" + str(out_second_layer) + "\n")
 #TESTING SUM_REG_OUT @ every step NEURON 5 Layer 1
-sum_reg_out = np.zeros((785))
+out_third_layer = network2.relu(np.dot(net.weights[2], out_second_layer)+net.biases[2])
+print("The output of the third layer is \n" + str(out_third_layer) + "\n")
+sum_reg_out_50 = np.zeros((784))
 k = 0
-w_prod = (net.weights[0][5][k]*test_data[i][0][k])[0]
-sum_reg_out[k] = w_prod
+w_prod_50 = (net.weights[0][5][k]*test_data[i][0][k])[0]
+sum_reg_out_50[k] = w_prod_50
 for k in range(1,783):
-    w_prod = (net.weights[0][5][k]*test_data[i][0][k])[0]
-    sum_reg_out[k] = w_prod+sum_reg_out[k-1]
+    w_prod_50 = (net.weights[0][5][k]*test_data[i][0][k])[0]
+    sum_reg_out_50[k] = w_prod_50+sum_reg_out_50[k-1]
     #print(neuron_5_out)
-sum_reg_out[k] = sum_reg_out[k]+net.biases[0][4]
-    
+#TESTING SUM_REG_OUT @every step NEURON 0 layer 2
+sum_reg_out_01 = np.zeros(30)
+k = 0
+w_prod_01 = (net.weights[1][0][k]*out_first_layer[k])[0]
+sum_reg_out_01[k] = w_prod_01
+for k in range (1,30):
+    w_prod_01 = (net.weights[1][0][k]*out_first_layer[k])[0]
+    sum_reg_out_01[k] = w_prod_01 + sum_reg_out_01[k-1]

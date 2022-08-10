@@ -23,7 +23,6 @@ vhdl2008 xil_defaultlib  \
 "../../../../../../src/NORM/scaler.vhd" \
 "../../../../../../src/NORM/counter.vhd" \
 "../../../../../../src/DNN/I_DNN.vhd" \
-"../../../../../../../../I-DNN/I-DNN/src/test_sfixed.vhd" \
 "../../../../../../test/I_FSM_layer_tb.vhd" \
 "../../../../../../test/I_neuron_tb.vhd" \
 "../../../../../../test/VAR_CNTR_PROCESS_tb.vhd" \

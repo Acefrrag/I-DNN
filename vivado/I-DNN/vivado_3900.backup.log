@@ -2,24 +2,29 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Wed Aug 10 16:48:05 2022
-# Process ID: 17244
+# Start of session at: Wed Aug 10 14:11:45 2022
+# Process ID: 3900
 # Current directory: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15956 C:\Users\Win10Admin\GithubRepositories\I-DNN\I-DNN\vivado\I-DNN\I-DNN.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7780 C:\Users\Win10Admin\GithubRepositories\I-DNN\I-DNN\vivado\I-DNN\I-DNN.xpr
 # Log file: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/vivado.log
 # Journal file: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.xpr
-WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.gen/sources_1'.
+INFO: [Project 1-313] Project file moved from 'C:/Users/Win10Admin/GithubRepositories/I-DNN - state/I-DNN/vivado/I-DNN' since last save.
+WARNING: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.gen/sources_1', nor could it be found using path 'C:/Users/Win10Admin/GithubRepositories/I-DNN - state/I-DNN/vivado/I-DNN/I-DNN.gen/sources_1'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/test_sfixed.vhd'.
 Scanning sources...
 Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'.
-open_project: Time (s): cpu = 00:00:17 ; elapsed = 00:00:08 . Memory (MB): peak = 1015.082 ; gain = 0.00exit
-INFO: [Common 17-206] Exiting Vivado at Wed Aug 10 17:11:52 2022...
-unching behavioral simulation in 'C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim'
+open_project: Time (s): cpu = 00:00:16 ; elapsed = 00:00:07 . Memory (MB): peak = 1015.547 ; gain = 0.000
+export_ip_user_files -of_objects  [get_files C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/test_sfixed.vhd] -no_script -reset -force -quiet
+remove_files  C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/test_sfixed.vhd
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim'
 INFO: [SIM-utils-51] Simulation object is 'sim_1'
 INFO: [SIM-utils-54] Inspecting design source files for 'I_layer_tb' in fileset 'sim_1'...
 INFO: [USF-XSim-97] Finding global include files...
@@ -83,8 +88,8 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/
 INFO: [VRFC 10-3107] analyzing entity 'I_DNN_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/test_sfixed_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'test_sfixed_tb'
-run_program: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 1015.082 ; gain = 0.000
-INFO: [USF-XSim-69] 'compile' step finished in '6' seconds
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 1015.547 ; gain = 0.000
+INFO: [USF-XSim-69] 'compile' step finished in '5' seconds
 INFO: [USF-XSim-3] XSim::Elaborate design
 INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim'
 "xelab -wto 63630931c3274f1193fa45ad0cc3506d --debug typical --relax --mt 2 -L xil_defaultlib -L ieee_proposed -L secureip --snapshot I_layer_tb_behav xil_defaultlib.I_layer_tb -log elaborate.log"
@@ -193,11 +198,11 @@ Built simulation snapshot I_layer_tb_behav
     ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 
 source C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/xsim.dir/I_layer_tb_behav/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-186] 'C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/xsim.dir/I_layer_tb_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Wed Aug 10 16:50:51 2022. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/2020.2/doc/webtalk_introduction.html.
-webtalk_transmit: Time (s): cpu = 00:00:00 ; elapsed = 00:00:10 . Memory (MB): peak = 116.477 ; gain = 23.652
-INFO: [Common 17-206] Exiting Webtalk at Wed Aug 10 16:50:51 2022...
-run_program: Time (s): cpu = 00:00:05 ; elapsed = 00:00:33 . Memory (MB): peak = 1015.082 ; gain = 0.000
-INFO: [USF-XSim-69] 'elaborate' step finished in '32' seconds
+INFO: [Common 17-186] 'C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/xsim.dir/I_layer_tb_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Wed Aug 10 16:34:42 2022. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/2020.2/doc/webtalk_introduction.html.
+webtalk_transmit: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 116.383 ; gain = 23.387
+INFO: [Common 17-206] Exiting Webtalk at Wed Aug 10 16:34:42 2022...
+run_program: Time (s): cpu = 00:00:02 ; elapsed = 00:00:24 . Memory (MB): peak = 1015.547 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '25' seconds
 INFO: [USF-XSim-4] XSim::Simulate design
 INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim'
 INFO: [USF-XSim-98] *** Running xsim
@@ -222,12 +227,88 @@ source I_layer_tb.tcl
 # log_wave -r /
 WARNING: [Simtcl 6-197] One or more HDL objects could not be logged because of object type or size limitations.  To see details please rerun the command with -verbose (-v).
 # run 40160ns
-xsim: Time (s): cpu = 00:00:23 ; elapsed = 00:00:49 . Memory (MB): peak = 1015.082 ; gain = 0.000
+xsim: Time (s): cpu = 00:00:12 ; elapsed = 00:00:42 . Memory (MB): peak = 1015.547 ; gain = 0.000
 INFO: [USF-XSim-96] XSim completed. Design snapshot 'I_layer_tb_behav' loaded.
 INFO: [USF-XSim-97] XSim simulation ran for 40160ns
-launch_simulation: Time (s): cpu = 00:00:32 ; elapsed = 00:01:29 . Memory (MB): peak = 1015.082 ; gain = 0.000
+launch_simulation: Time (s): cpu = 00:00:16 ; elapsed = 00:01:13 . Memory (MB): peak = 1015.547 ; gain = 0.000
+create_wave_config; add_wave /; set_property needs_save false [current_wave_config]
+open_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN - state/I-DNN/vivado/I-DNN/I_DNN_tb_behav.wcfg}
+WARNING: Simulation object /DNN_tb/input_reg was not found in the design.
+WARNING: Simulation object /DNN_tb/data_in was not found in the design.
+WARNING: Simulation object /DNN_tb/start was not found in the design.
+WARNING: Simulation object /DNN_tb/clk was not found in the design.
+WARNING: Simulation object /DNN_tb/data_out was not found in the design.
+WARNING: Simulation object /DNN_tb/addr_in was not found in the design.
+WARNING: Simulation object /DNN_tb/clk was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/data_in was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/data_out_sel was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/data_out_vect was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/data_out was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/data_in_sel was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/data_v was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/addr_TC was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/fsm_layer_comp/pr_state was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/\neurons(5)\/neuron_i/weight_memory_comp/ROM was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/\neurons(5)\/neuron_i/bias was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/\neurons(5)\/neuron_i/sum_reg_out was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer1/\neurons(5)\/neuron_i/weight_out was not found in the design.
+WARNING: Simulation object /DNN_tb/clk was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/data_in was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/data_out_sel was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/addr_TC was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/data_in_sel was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/data_out_vect was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/fsm_layer_comp/pr_state was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/data_v was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[0] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[1] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[2] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[3] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[4] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[5] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[6] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[7] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[8] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[9] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[10] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[11] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[12] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[13] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[14] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[15] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[16] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[17] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[18] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[19] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[20] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[21] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[22] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[23] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[24] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[25] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[26] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[27] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[28] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_memory_comp/ROM[29] was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/data_in was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/data_out was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/weight_out was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/mul_out was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/sum_reg_out was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/bias was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer2/\neurons(0)\/neuron_i/out_ReLU was not found in the design.
+WARNING: Simulation object /DNN_tb/clk was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer3/data_in was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer3/data_out_sel was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer3/data_in_sel was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer3/data_v was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer3/addr_TC was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer3/out_v was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer3/fsm_layer_comp/pr_state was not found in the design.
+WARNING: Simulation object /DNN_tb/DNN_cmp/layer3/data_out_vect was not found in the design.
 close_sim
 INFO: [Simtcl 6-16] Simulation closed
-close_sim: Time (s): cpu = 00:00:05 ; elapsed = 00:00:16 . Memory (MB): peak = 1015.082 ; gain = 0.000
+close_sim: Time (s): cpu = 00:00:04 ; elapsed = 00:00:19 . Memory (MB): peak = 1015.547 ; gain = 0.000
 exit
-INFO: [Common 17-206] Exiting Vivado at Wed Aug 10 17:08:44 2022...
+INFO: [Common 17-206] Exiting Vivado at Wed Aug 10 16:38:08 2022...

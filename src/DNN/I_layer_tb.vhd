@@ -288,6 +288,10 @@ start_gen: process is
 begin
     wait for 880 ns;
     start <= '0';
+    wait for 39120ns;
+    start <= '1';
+    wait for 200 ns;
+    start <= '0';
     wait;
 end process;
 

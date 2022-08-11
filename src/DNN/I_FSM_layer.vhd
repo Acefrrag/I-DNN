@@ -83,7 +83,7 @@ begin
     
     
 fsm_state_save <= fsm_state_save_internal;
-state_backup_eval: process(pr_state) is
+state_backup_eval: process(clk) is
 begin     
     --Logic for saving.
     --fsm_state_save
@@ -173,7 +173,7 @@ end process;
         when power_off =>
         --default values
             sum_reg_rst <= '1';
-            addr_in_gen_rst <= '1';
+            --addr_in_gen_rst <= '1';
         when init =>
             mul_sel <= '0';
             sum_reg_rst <= '1';
@@ -184,7 +184,7 @@ end process;
             mul_sel <= '0';
             sum_reg_rst <= '0';
             update_out <= '0';
-            addr_in_gen_rst <= '1';
+            --addr_in_gen_rst <= '1';
             reg_en <= '0';
             --Augumented FSM Outputs
             if fsm_nv_reg_state = recovery_s then

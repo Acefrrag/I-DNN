@@ -165,7 +165,7 @@ begin
             else
                 if rising_edge(clk) then
                         if s_rec = '1' then
-                            sum_reg_out <= resize(to_sfixed(state_rec, neuron_int_width+input_int_width-1, 0),sum_reg_out'high, sum_reg_out'low);
+                            sum_reg_out <= resize(to_sfixed(state_rec, neuron_int_width-1, -neuron_frac_width),sum_reg_out'high, sum_reg_out'low);
                         end if;
                         if en = '1' then
                              sum_reg_out <= mul_out;
@@ -176,7 +176,7 @@ begin
              end if;
      end if;
 end process sum_reg;
-wsum_save <= to_slv(resize(sum_reg_out, 31,0));
+wsum_save <= to_slv(resize(sum_reg_out, 15,-16));
 
 
 mul_temp: process(all)

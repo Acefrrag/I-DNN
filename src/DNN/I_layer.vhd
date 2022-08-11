@@ -24,7 +24,6 @@
 
 --Observations:
 --1) The amount of time to save data in the nv_reg is higher than what it takes to compute the layer output. In general it is not convenient to save the output of the layer whenver there is a hazard, but to enable only a certain amount of layer to save their state.
-
 library ieee_proposed;
 use ieee_proposed.fixed_pkg.all;
 
@@ -214,8 +213,8 @@ component I_FSM_layer is
         data_save_type: in data_backup_type_t;
         fsm_nv_reg_state: in fsm_nv_reg_state_t;
         data_rec_recovered_offset: in integer range 0 to num_outputs+1;
-        fsm_state_r: std_logic;
-        fsm_state_rec:std_logic_vector(0 to nv_reg_width-1);
+        fsm_state_r: in std_logic;
+        fsm_state_rec: in std_logic_vector(0 to nv_reg_width-1);
         --Output Pins
         o_r: out std_logic_vector(0 to num_outputs+1); --activation pins for recovery of the outputs (last 2 are unused)
         s_r: out std_logic_vector(0 to num_outputs+1);
@@ -317,7 +316,7 @@ port map(
     fsm_nv_reg_state => fsm_nv_reg_state,
     data_rec_recovered_offset => data_rec_recovered_offset, --data_rec_recovered_offset :
     fsm_state_r => s_rec_vect(num_outputs+1),
-    fsm_state_rec => data_backup_vect_state_rec(num_outputs+1),
+    fsm_state_rec => data_backup_vect_state_rec(num_outputs+2),
     --Output pins
     o_r => o_rec_vect,
     s_r => s_rec_vect,
@@ -460,7 +459,9 @@ begin
             addr_TC <= '0'; --If before shutting down and addr = num_inputs-2, it is necessary to reset addr_TC as well, because it is not reset during the idle state because the rst bit to the addr generator has prioritt over the reg_en
         else
            if rising_edge(clk) then
-                if reg_en = '1' then
+                if s_rec_vect(num_outputs) = '1' and data_rec_busy = '1' then
+                    addr <= data_backup_vect_state_rec(num_outputs+1)(natural(ceil(log2(real(num_inputs))))-1 downto 0);
+                elsif reg_en = '1' then
                     addr <= std_logic_vector(unsigned(addr) + 1);
                     if unsigned(addr) = num_inputs-2 then
                         addr_TC <= '1';
@@ -471,6 +472,7 @@ begin
                         addr <= (others=>'0');
                     end if;
                 end if;
+            
             end if;
         end if;
 end process gen_addr;
@@ -500,7 +502,7 @@ begin
             end if;
         end if;
     else
-         data_rec_type <= nothing;
+         data_rec_type <= data_rec_type;
     end if;
 end process LAYER_TYPE_ONREC;
 

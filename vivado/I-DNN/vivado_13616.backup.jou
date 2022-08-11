@@ -1,0 +1,52 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Aug 10 17:43:26 2022
+# Process ID: 13616
+# Current directory: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12868 C:\Users\Win10Admin\GithubRepositories\I-DNN\I-DNN\vivado\I-DNN\I-DNN.xpr
+# Log file: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/vivado.log
+# Journal file: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN\vivado.jou
+#-----------------------------------------------------------start_gui
+oopen_project C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.xprlaunch_simulation
+open_wave_config C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/test_sfixed_tb_behav.wcfg
+source I_layer_tb.tcl
+open_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I_DNN_tb_behav.wcfg}
+open_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN - state/I-DNN/I_DNN_tb_behav.wcfg}
+open_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I_layer_tb_behav.wcfg}
+current_wave_config {I_layer_tb_behav.wcfg}
+add_wave {{/I_layer_tb/I_layer_comp/\I_neurons(0)\/I_neuron_i/wsum_save}} 
+current_wave_config {I_layer_tb_behav.wcfg}
+add_wave {{/I_layer_tb/I_layer_comp/\I_neurons(0)\/I_neuron_i/sum_reg_out}} 
+relaunch_sim
+relaunch_sim
+save_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I_layer_tb_behav.wcfg}
+relaunch_sim
+relaunch_sim
+relaunch_sim
+current_wave_config {I_layer_tb_behav.wcfg}
+add_wave {{/I_layer_tb/I_layer_comp/\I_neurons(0)\/I_neuron_i/sum_reg_out}} 
+current_wave_config {I_layer_tb_behav.wcfg}
+add_wave {{/I_layer_tb/I_layer_comp/\I_neurons(4)\/I_neuron_i/sum_reg_out}} 
+current_wave_config {I_layer_tb_behav.wcfg}
+add_wave {{/I_layer_tb/I_layer_comp/\I_neurons(4)\/I_neuron_i/wsum_save}} 
+current_wave_config {I_layer_tb_behav.wcfg}
+add_wave {{/I_layer_tb/INTERMITTENCY_EMULATOR_1/voltage_trace_ROM/addr}} 
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+current_wave_config {I_layer_tb_behav.wcfg}
+add_wave {{/I_layer_tb/I_layer_comp/I_fsm_layer_comp/state_backup_save}} 
+current_wave_config {I_layer_tb_behav.wcfg}
+add_wave {{/I_layer_tb/I_layer_comp/I_fsm_layer_comp/state_backup_rec}} 
+add_bp {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/I_FSM_layer.vhd} 297
+remove_bps -file {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/I_FSM_layer.vhd} -line 297
+add_bp {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/I_FSM_layer.vhd} 297
+remove_bps -file {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/I_FSM_layer.vhd} -line 297
+relaunch_sim
+save_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I_layer_tb_behav.wcfg}
+close_sim

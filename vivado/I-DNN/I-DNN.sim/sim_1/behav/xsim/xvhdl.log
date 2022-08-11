@@ -23,6 +23,7 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/
 INFO: [VRFC 10-3107] analyzing entity 'nv_reg_emu'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/trace_ROM.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'trace_ROM'
+WARNING: [VRFC 10-393] cannot access 'text_header' from inside pure function 'init_trace_rom'. [C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/trace_ROM.vhd:61]
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/nv_reg.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'nv_reg'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd" into library xil_defaultlib
@@ -37,6 +38,8 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/
 INFO: [VRFC 10-3107] analyzing entity 'counter'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/I_DNN.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_DNN'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/new/slice_std_logic_vector.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'slice_std_logic_vector'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/I_FSM_layer_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_FSM_layer_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/I_neuron_tb.vhd" into library xil_defaultlib

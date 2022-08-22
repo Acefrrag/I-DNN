@@ -8,14 +8,28 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
--- Description: 
--- 
+-- Description: This testbench verifies the I-DNN operates correctly under different power failure scenarios.
+-- The voltage trace I_layer_trace_complete tests how I-DNN is able to resume computation after
+-- power failures occurs at different states of computation of the layer output.
+-- The architecture samples an hazard and starts the recovery procedure at the next clock cycle. Therefore the fsm evolves for on more clock cycle.
+--      1) In the beginning, during and at the end of the w_sum;
+--      2) At b_sum;
+--      3) At act_log;
+--      4) At finished;
+--      5) After output is computed and validated;
+-- Power failure timings:
+--      1) Hazard During w_sum:         1300 ns while computing w_sum (13th term of the weighted sum). Hazard occurs. Sytem shuts down at 4740ns. Data is recovered at 8000ns and output is computed at 8780ns
+--      2) No Hazard:                   Output is computed under normal conditions between 9020ns and 10300 ns
+--      3) Hazard at last w_sum term:   Hazard occurs and data_save starts while computing the last term of the weighted sum at 22100ns. 
+--      4) b_sum:                       Hazard occurs and data_save starts after computing b_sum at 30420ns.
+--      5) act_log:                     Hazard occurs and data_sae start after carrying out act_log operations at 38740ns
+--      6) After computing output:      Hazard occurs after computing the output at 45420      
 -- Dependencies: 
 -- 
 -- Revision:
 -- Revision 0.01 - File Created
 -- Additional Comments:
--- 
+-- It takes 1320 ns to compute the output of the layer(30 inputs)
 ----------------------------------------------------------------------------------
 library std;
 use std.textio.all;
@@ -286,12 +300,69 @@ end process;
 
 start_gen: process is
 begin
+    --Testing with hazard during w_sum(after computing element number 12) start at 780 ns. 
     wait for 880 ns;
     start <= '0';
-    wait for 39120ns;
+    --Testing with no power failure start at 10060 ns.
+    wait for 9160 ns;
     start <= '1';
     wait for 200 ns;
     start <= '0';
+    --Testing with hazard at the end of w_sum(after computing element 28) start at 13220 ns.
+    wait for 2980 ns;
+    start <= '1';
+    wait for 200 ns;
+    start <= '0';
+    --Testing with hazard at b_sum. Start at 22780 ns.
+    wait for 9360 ns;
+    start <= '1';
+    wait for 200 ns;
+    start <= '0';
+    --Testing with hazard at act_log. Start 
+    wait for 9640 ns;
+    start <= '1';
+    wait for 200 ns;
+    start <= '0';
+    wait for 8100 ns;
+    start <= '1';
+    wait for 200 ns;
+    start <= '0';
+    wait for 10740 ns;
+    start <= '1';
+    wait for 200 ns;
+    start <= '0';
+    wait;
+end process;
+
+out_inv_gen: process is
+begin
+    --Invalidating output after test 1. 
+    wait for 8540 ns;
+    out_inv <= 1;
+    wait for 40 ns;
+    out_inv <= 0;
+    --Invalidating output after test 2
+    wait for 2820 ns;
+    out_inv <= 1;
+    wait for 40 ns;
+    out_inv <= 0;
+    --Invalidating output after test 3
+    wait for 9560 ns;
+    out_inv <= 1;
+    wait for 40 ns;
+    out_inv <= 0;
+    wait for 9520 ns;
+    out_inv <= 1;
+    wait for 40 ns;
+    out_inv <= 0;
+    wait for 9780 ns;
+    out_inv <= 1;
+    wait for 40 ns;
+    out_inv <= 0;
+    wait for 11360 ns;
+    out_inv <= 1;
+    wait for 40 ns;
+    out_inv <= 0;
     wait;
 end process;
 

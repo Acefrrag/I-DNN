@@ -60,11 +60,12 @@ port(
     en: in std_logic;                                                           --en:           Pin to enable the register (Active on low) - en=0: Volatile registers hold their data to enable save process.
     o_rec: in std_logic;                                                        --o_rec:        Pin to enable the output recovery. '1': Content of neuron output is overwritten with the recovered data
     s_rec: in std_logic;                                                        --s_rec:        Pin to enable the state recovery. '1': Content of neuron w_sum and is overwritten with the recovered data
-    data_out_rec: in sfixed (input_int_width-1 downto -input_frac_width);       --data_out_rec: Recovery Port to recover the output of the neuron
-    state_rec: in std_logic_vector(input_int_width+neuron_int_width-1 downto 0);  --wsum_rec:     Recovery Port to recover the weighted sum or the ReLU output of the neuron
+    data_out_rec: in sfixed (neuron_int_width-1 downto -neuron_frac_width);       --data_out_rec: Recovery Port to recover the output of the neuron
+    state_rec: in std_logic_vector(neuron_frac_width+neuron_int_width-1 downto 0);  --wsum_rec:     Recovery Port to recover the weighted sum or the ReLU output of the neuron
+    data_v: in std_logic;
     --OUTPUT
-    wsum_save: out std_logic_vector(input_int_width+neuron_int_width-1 downto 0); --wsum_save:    Save Port to save the currently computed weighted sum
-    ReLU_save: out std_logic_vector(input_int_width+input_frac_width-1 downto 0)  --ReLU_save:    Save Port to save the output of the activation function
+    wsum_save: out std_logic_vector(neuron_frac_width+neuron_int_width-1 downto 0); --wsum_save:    Save Port to save the currently computed weighted sum
+    ReLU_save: out std_logic_vector(neuron_frac_width+neuron_int_width-1 downto 0)  --ReLU_save:    Save Port to save the output of the activation function
     );      
 end entity I_neuron;
 
@@ -73,11 +74,10 @@ architecture Behavioral of I_neuron is
 
 signal weight_out: sfixed (neuron_int_width-1 downto -neuron_frac_width):=(others=>'0');
 signal clk_sig: std_logic := '0';
-signal type_sfixed: sfixed((input_int_width+neuron_int_width)-1 downto -neuron_frac_width-neuron_frac_width);--signal to initialize the others
-signal sum_reg_out: sfixed((input_int_width+neuron_int_width)-1 downto (-neuron_frac_width-input_frac_width)) := (others => '0');
-signal mul_out: sfixed((neuron_int_width+input_int_width)-1 downto (-neuron_frac_width-input_frac_width)) := (others => '0');
-signal weight_prod: sfixed((neuron_int_width+input_int_width)-1 downto (-neuron_frac_width-input_frac_width)) := (others => '0');
-signal bias: sfixed((neuron_int_width+input_int_width)-1 downto (-neuron_frac_width-input_frac_width));
+signal sum_reg_out: sfixed((neuron_int_width)-1 downto (-neuron_frac_width)) := (others => '0');
+signal mul_out: sfixed((neuron_int_width)-1 downto (-neuron_frac_width)) := (others => '0');
+signal weight_prod: sfixed((neuron_int_width)-1 downto (-neuron_frac_width)) := (others => '0');
+signal bias: sfixed((neuron_int_width)-1 downto (-neuron_frac_width));
 signal out_reg_val: sfixed(neuron_int_width-1 downto -neuron_frac_width);
 signal out_ReLU: sfixed(input_int_width-1 downto -input_frac_width);
 signal out_ReLU_d: sfixed(input_int_width-1 downto -input_frac_width);
@@ -97,39 +97,39 @@ end component weight_memory;
 
 component ReLU is
 generic(data_width: natural);
-port(data_in: in sfixed((neuron_int_width+input_int_width)-1 downto (-neuron_frac_width-input_frac_width));
-    data_out: out sfixed(input_int_width-1 downto -input_frac_width));
+port(data_in: in sfixed((neuron_int_width)-1 downto (-neuron_frac_width));
+    data_out: out sfixed(neuron_int_width-1 downto -neuron_frac_width));
 end component ReLU;
 
-function makesfixed (bit_in: in bit_vector((neuron_width_sfixed+input_width)-1 downto 0)) return sfixed is
-    variable fixedpoint_s: sfixed((neuron_int_width+input_int_width)-1 downto (-neuron_frac_width-input_frac_width));
+function makesfixed (bit_in: in bit_vector((neuron_rom_width)-1 downto 0)) return sfixed is
+    variable fixedpoint_s: sfixed((neuron_int_width)-1 downto (-neuron_frac_width));
     --variable a: std_logic := 0;
     begin
     for i in fixedpoint_s'range loop
-        fixedpoint_s(i) := To_StdULogic(bit_in(i+neuron_frac_width+input_frac_width));
+        fixedpoint_s(i) := To_StdULogic(bit_in(i+neuron_frac_width));
     end loop;
     return fixedpoint_s;
 end function;
 
 impure function init_bias(bias_file: in string) return sfixed is
-file text_header2: text is in bias_file; --This produces a header to the file
-variable text_line2: line; --the type line represents a line in the file
-variable bit_line2: bit_vector(neuron_width_sfixed+input_width-1 downto 0);
-variable bias_content2: sfixed((neuron_int_width+input_int_width)-1 downto (-neuron_frac_width-input_frac_width));
+file text_header: text is in bias_file; --This produces a header to the file
+variable text_line: line; --the type line represents a line in the file
+variable bit_line: bit_vector(input_width-1 downto 0);
+variable bias_content: sfixed((neuron_int_width)-1 downto (-neuron_frac_width));
 variable j: std_logic;
 begin
 j:='0';
-readline(text_header2, text_line2);
-read(text_line2, bit_line2);
-bias_content2 := makesfixed(bit_line2);
-return bias_content2;
+readline(text_header, text_line);
+read(text_line, bit_line);
+bias_content := makesfixed(bit_line);
+return bias_content;
 
 end function; 
 
 
 begin
 
-weight_prod <= weight_out*data_in;
+weight_prod <= resize(weight_out*data_in, neuron_int_width-1, -neuron_frac_width);
 bias <= init_bias(bias_file);
 
 clk_sig <= clk;
@@ -165,7 +165,7 @@ begin
             else
                 if rising_edge(clk) then
                         if s_rec = '1' then
-                            sum_reg_out <= resize(to_sfixed(state_rec, neuron_int_width-1, -neuron_frac_width),sum_reg_out'high, sum_reg_out'low);
+                            sum_reg_out <= to_sfixed(state_rec, neuron_int_width-1, -neuron_frac_width);
                         end if;
                         if en = '1' then
                              sum_reg_out <= mul_out;
@@ -176,18 +176,18 @@ begin
              end if;
      end if;
 end process sum_reg;
-wsum_save <= to_slv(resize(sum_reg_out, 15,-16));
+wsum_save <= to_slv(sum_reg_out);
 
 
 mul_temp: process(all)
 begin
     case mul_sel is  
     when '0' => --the product w_i*x_i is chosen
-        mul_out <= resize(weight_prod + sum_reg_out,mul_out'high, mul_out'low);
+        mul_out <= resize(weight_prod + sum_reg_out, neuron_int_width-1, -neuron_frac_width);
     when '1' => -- the bias is added
-        mul_out <= resize(bias + sum_reg_out,mul_out'high, mul_out'low);
+        mul_out <= resize(bias + sum_reg_out,neuron_int_width-1, -neuron_frac_width);
     when others =>
-        mul_out <= resize(weight_prod + sum_reg_out, mul_out'high, mul_out'low);
+        mul_out <= resize(weight_prod + sum_reg_out,neuron_int_width-1, -neuron_frac_width);
     end case;
 end process mul_temp;
 
@@ -195,7 +195,7 @@ out_ReLU_reg: process(clk) is
 begin
     if rising_edge(clk) then
         if s_rec = '1' then
-            out_ReLU_d <= resize(to_sfixed(state_rec,neuron_int_width-1, -neuron_frac_width), out_ReLU_d'high, out_ReLU_d'low);
+            out_ReLU_d <= to_sfixed(state_rec,neuron_int_width-1, -neuron_frac_width);
         end if;
     end if;
     if falling_edge(clk) then
@@ -216,8 +216,10 @@ begin
                 out_reg_val <= data_out_rec;
             end if;
         end if;
-        if rising_edge(update_out) then
-            out_reg_val <= out_ReLU_d;
+        if rising_edge(clk) then
+            if data_v = '0' and en = '1' then
+                out_reg_val <= out_ReLU_d;
+            end if;
         end if;
     end if;
 end process out_reg;

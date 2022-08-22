@@ -10,33 +10,42 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="40159998fs"></ZoomStartTime>
-      <ZoomEndTime time="40160001fs"></ZoomEndTime>
-      <Cursor1Time time="40160000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="20fs"></ZoomEndTime>
+      <Cursor1Time time="2fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="176"></NameColumnWidth>
-      <ValueColumnWidth column_width="84"></ValueColumnWidth>
+      <NameColumnWidth column_width="128"></NameColumnWidth>
+      <ValueColumnWidth column_width="144"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="3" />
+   <WVObjectSize size="4" />
    <wvobject fp_name="/test_sfixed_tb/inputa" type="array">
-      <obj_property name="ElementShortName">inputa[5:-2]</obj_property>
-      <obj_property name="ObjectShortName">inputa[5:-2]</obj_property>
+      <obj_property name="ElementShortName">inputa[31:-32]</obj_property>
+      <obj_property name="ObjectShortName">inputa[31:-32]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">2</obj_property>
+      <obj_property name="radix_fractionWidth">32</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
-   <wvobject fp_name="/test_sfixed_tb/test_sfixed_cmp/testa" type="array">
-      <obj_property name="ElementShortName">testa[10:-4]</obj_property>
-      <obj_property name="ObjectShortName">testa[10:-4]</obj_property>
+   <wvobject fp_name="/test_sfixed_tb/inputa" type="array">
+      <obj_property name="ElementShortName">inputa[31:-32]</obj_property>
+      <obj_property name="ObjectShortName">inputa[31:-32]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">32</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test_sfixed_tb/test_sfixed_cmp/test1" type="array">
+      <obj_property name="ElementShortName">test1[15:-16]</obj_property>
+      <obj_property name="ObjectShortName">test1[15:-16]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">4</obj_property>
+      <obj_property name="radix_fractionWidth">16</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
-   <wvobject fp_name="/test_sfixed_tb/test_sfixed_cmp/test_std_lv" type="array">
-      <obj_property name="ElementShortName">test_std_lv[14:0]</obj_property>
-      <obj_property name="ObjectShortName">test_std_lv[14:0]</obj_property>
+   <wvobject fp_name="/test_sfixed_tb/test_sfixed_cmp/test1" type="array">
+      <obj_property name="ElementShortName">test1[15:-16]</obj_property>
+      <obj_property name="ObjectShortName">test1[15:-16]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
 </wave_config>

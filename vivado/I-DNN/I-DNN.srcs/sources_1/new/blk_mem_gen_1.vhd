@@ -126,9 +126,11 @@ begin
     if(clka'event and clka = '1') then
         if(ena = '1') then
             if(wea = '1') then
-                ram_name(to_integer(unsigned(addra))) <= dina;
+                ram_name(to_integer(unsigned(addra))) <= dina;--If wea='0' ram must be unresponsive.
             end if;
             ram_data <= ram_name(to_integer(unsigned(addra)));
+        else
+            ram_data <= (others => '0');--ram is disabled. Ram must be unresponsive.
         end if;
     end if;
 end process;

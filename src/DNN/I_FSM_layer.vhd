@@ -60,7 +60,7 @@ port(
     fsm_state_rec: in std_logic_vector(nv_reg_width-1 downto 0);    --fsm_state_rec             :To recover the state of the fsm from the nv_reg -------
     --OUTPUT
     o_r: out std_logic_vector (0 to num_outputs+1);                 --o_r               :activation pins for recovery of the outputs (last 2 are unused).
-    s_r: out std_logic_vector (0 to num_outputs+1);                 --s_r               :activation pins for recovery of the state(RelU and w_sum).
+    s_r: out std_logic_vector (0 to num_outputs+1);                 --s_r               :activation pins for recovery of the state(ReLU, w_sum, b_sum, act_log).
     save_state_selector: out integer range 0 to 3;                  --mul_state         :selector to correctly route the data to be saved when saving the state (ReLU or w_sum) of the layer.
     addra: out integer range 0 to num_outputs+2;                    --addra             :
     fsm_state_save: out std_logic_vector(nv_reg_width-1 downto 0);  --fsm_state_save    :To save the state of the fsm of the layer, it is also used to determine the type of save 
@@ -71,7 +71,7 @@ end I_FSM_layer;
 
 architecture Behavioral of I_FSM_layer is
 --Declarative Part
-signal nx_state, state_backup_rec, state_backup_save: fsm_layer_state_t := idle;
+signal nx_state, state_backup_rec, state_backup_save: fsm_layer_state_t := power_off;
 signal pr_state: fsm_layer_state_t:=power_off;
 signal out_val: std_logic := '0';
 signal fsm_state_save_internal:  std_logic_vector(nv_reg_width-1 downto 0);
@@ -84,51 +84,69 @@ begin
     
 fsm_state_save <= fsm_state_save_internal;
 state_backup_eval: process(clk) is
-begin     
-    --Logic for saving.
-    --fsm_state_save
-    --state_backup_save is evaluated in order to
-    --resume computation after a save operation
-    --fsm_state_save <= (others => '0');
-    if pr_state = idle then
+begin
+    if n_power_rst = '0' then
+        state_backup_rec <= idle;
+        state_backup_save <= idle;
         fsm_state_save_internal <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
-        state_backup_save <= pr_state;
-    elsif pr_state = w_sum then
-        fsm_state_save_internal <= std_logic_vector(to_unsigned(1,fsm_state_save'length));
-        state_backup_save <= pr_state;
-    elsif pr_state = b_sum then
-        fsm_state_save_internal <= std_logic_vector(to_unsigned(2,fsm_state_save'length));
-        state_backup_save <= pr_state;
-    elsif pr_state = act_log then
-        fsm_state_save_internal <= std_logic_vector(to_unsigned(3,fsm_state_save'length));
-        state_backup_save <= pr_state;
-    elsif pr_state = finished then
-        fsm_state_save_internal <= std_logic_vector(to_unsigned(4,fsm_state_save'length));
-        state_backup_save <= pr_state;
     else
-        --1)When we start the data save process,
-        --state_backup_save will be containing
-        --the last state of the layer before
-        --starting saving.
-        --2)In this way after we finish the save process
-        --the fsm remembers what to write inside the nv_reg.
-        fsm_state_save_internal <= fsm_state_save_internal;
-        state_backup_save <= state_backup_save;
-    end if;
-    --Logic for recovery
-    --fsm_state_rec
-    if data_rec_busy = '1' then
-        if fsm_state_r = '1' then
-            if unsigned(fsm_state_rec) = 0 then
-                state_backup_rec <= idle;
-            elsif unsigned(fsm_state_rec) = 1 then
-                state_backup_rec <= w_sum;
-            elsif unsigned(fsm_state_rec) = 2 then
-                state_backup_rec <= b_sum;
-            elsif unsigned(fsm_state_rec) = 3 then
-                state_backup_rec <= act_log;
-            elsif unsigned(fsm_state_rec) = 4 then
-                state_backup_rec <= finished;
+        --Logic for saving.
+        --fsm_state_save
+        --When a hazard occur, the architecture first samples the hazard, then at next clock cycle it starts the daa_save process.
+        --At this time instant, the architecture evolves for another clock cycle. he architecutre has evolved to the next state.
+        --Therefore when computation will be resumed it is neccessary to start from the next state/addr.
+        --fsm_state_save <= (others => '0');
+        if rising_edge(clk) then
+--            state_backup_rec <= idle;
+--            state_backup_save <= idle;
+--            fsm_state_save_internal <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
+            if pr_state = idle then
+                fsm_state_save_internal <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
+                state_backup_save <= pr_state;
+            elsif pr_state = w_sum then
+                if addr_TC = '1' then
+                    state_backup_save <= b_sum;
+                    fsm_state_save_internal <= std_logic_vector(to_unsigned(2,fsm_state_save'length));
+                else
+                    fsm_state_save_internal <= std_logic_vector(to_unsigned(1,fsm_state_save'length));
+                    state_backup_save <= pr_state;
+                end if;     
+            elsif pr_state = b_sum then
+                fsm_state_save_internal <= std_logic_vector(to_unsigned(3,fsm_state_save'length));
+                state_backup_save <= act_log;
+            elsif pr_state = act_log then
+                --In this case we can sckip the finished state, since after the act_log, data is already available outside
+                fsm_state_save_internal <= std_logic_vector(to_unsigned(4,fsm_state_save'length));
+                state_backup_save <= finished;
+            elsif pr_state = finished then
+                fsm_state_save_internal <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
+                state_backup_save <= idle;
+            else
+                --1)When we start the data save process,
+                --state_backup_save will be containing
+                --the last state of the layer before
+                --starting saving.
+                --2)In this way after we finish the save process
+                --the fsm remembers what to write inside the nv_reg.
+                fsm_state_save_internal <= fsm_state_save_internal;
+                state_backup_save <= state_backup_save;
+            end if;
+            --Logic for recovery
+            --fsm_state_rec
+            if data_rec_busy = '1' then
+                if fsm_state_r = '1' then
+                    if unsigned(fsm_state_rec) = 0 then
+                        state_backup_rec <= idle;
+                    elsif unsigned(fsm_state_rec) = 1 then
+                        state_backup_rec <= w_sum;
+                    elsif unsigned(fsm_state_rec) = 2 then
+                        state_backup_rec <= b_sum;
+                    elsif unsigned(fsm_state_rec) = 3 then
+                        state_backup_rec <= act_log;
+                    elsif unsigned(fsm_state_rec) = 4 then
+                        state_backup_rec <= finished;
+                    end if;
+                end if;
             end if;
         end if;
     end if;
@@ -153,17 +171,20 @@ end process;
     --addr_in_gen_en: To enable the address generator.
     begin
     --################ V_REG DEFAULTS
-    o_r <= (others => '0'); 
+    --o_r <= (others => '0'); 
     addra <= 0;
     mul_sel <= '0';
     --The default value of out_val depends on out_inv
     if out_inv = 1 then
         out_val <= '0';
     elsif out_inv = 2 then
-        out_val <= out_val;
+        out_val <= out_val and n_power_rst;
     elsif out_inv = 3 then 
-        out_val <= '1';
+        out_val <= '1' and n_power_rst;
+    else
+        out_val <= out_val and n_power_rst;
     end if;
+    --out_val <= out_val;-- and n_power_rst;
     sum_reg_rst <= '0';
     update_out<='0';
     addr_in_gen_rst <='0';
@@ -216,7 +237,10 @@ end process;
                     --If we are recovering the output the input address range from 0 to num_outputs-1
                     -- enable and write to V_REG
                     --ena <= '1';                    
-                    -- If we're recovering the 
+                    -- If we're recovering the
+                else
+                    o_r <= (others => '0');
+                    s_r <= (others => '0');                   
                 end if;
             end if;
         when idle =>
@@ -264,7 +288,7 @@ end process;
             reg_en <= '0';
             sum_reg_rst <= '0';
             addr_in_gen_rst <= '0';
-            if fsm_state_save_internal = std_logic_vector(to_unsigned(3,fsm_state_save_internal'length)) then--act_log
+            if fsm_state_save_internal = std_logic_vector(to_unsigned(3,fsm_state_save_internal'length)) or fsm_state_save_internal = std_logic_vector(to_unsigned(3,fsm_state_save_internal'length)) then--act_log
                 save_state_selector <= 1; --We route the ReLU_out register into the nv_reg cells
             else
                 save_state_selector <= 0; --We route the sum_reg register into the nv_reg cells

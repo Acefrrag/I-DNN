@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Company: University of Trento
+-- Engineer: Michele Pio Fragasso
 -- 
 -- Create Date: 03/25/2022 11:04:08 AM
 -- Design Name: 
@@ -8,7 +8,7 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
--- Description: 
+-- Description: This entity computes the or between the bits of std_logic_logic vector. It is used to verify if there is an overflow
 -- 
 -- Dependencies: 
 -- 
@@ -22,14 +22,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
--------------------------------------------
 entity unary_OR IS
     generic (N: natural := 8); --array size
     port (

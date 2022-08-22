@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 08/07/2022 09:33:47 AM
+-- Create Date: 08/13/2022 07:07:22 AM
 -- Design Name: 
--- Module Name: test_sfixed_tb - Behavioral
+-- Module Name: test_sfixed - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -34,31 +34,20 @@ use ieee_proposed.fixed_pkg.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity test_sfixed_tb is
---  Port ( );
-end test_sfixed_tb;
-
-architecture Behavioral of test_sfixed_tb is
-signal inputa: sfixed(31 downto -32);
-component test_sfixed is
+entity test_sfixed is
 port(
-    inputa: in sfixed (31 downto -32)
+    inputa: in sfixed(31 downto -32)
 );
-end component;
+end test_sfixed;
+
+architecture Behavioral of test_sfixed is
+
+signal test1: sfixed(15 downto -16);
+
 begin
 
-test_sfixed_cmp: test_sfixed
-port map(
-    inputa => inputa
-);
+test1 <= resize(inputa, 15, -16);
 
-pr_comp: process is
-begin
-inputa <= to_sfixed(0.0178462595213205, inputa);
-wait for 20 ns;
-wait;
-end process;
+
 
 end Behavioral;
-
-

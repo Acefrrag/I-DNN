@@ -21,7 +21,6 @@ Compiling package xil_defaultlib.common_package
 Compiling package synopsys.attributes
 Compiling package ieee.std_logic_misc
 Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
-Compiling architecture unary_or of entity xil_defaultlib.unary_OR [\unary_OR(n=17)\]
 Compiling architecture behavioral of entity xil_defaultlib.ReLU [\ReLU(data_width=32)\]
 Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
 Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]

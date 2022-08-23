@@ -175,7 +175,7 @@ component nv_reg is
         busy_sig        : out STD_LOGIC;
         en              : in STD_LOGIC;
         we              : in STD_LOGIC;
-        addr            : in STD_LOGIC_VECTOR(integer(ceil(log2(real(NV_REG_WIDTH))))-1 DOWNTO 0);
+        addr            : in STD_LOGIC_VECTOR(nv_reg_addr_width_bit-1 DOWNTO 0);
         din             : in STD_LOGIC_VECTOR(31 DOWNTO 0);
         dout            : out STD_LOGIC_VECTOR(31 DOWNTO 0)
         -------------change to here---------------- 

@@ -340,29 +340,29 @@ begin
     wait for 8540 ns;
     out_inv <= 1;
     wait for 40 ns;
-    out_inv <= 0;
+    out_inv <= 2;
     --Invalidating output after test 2
     wait for 2820 ns;
     out_inv <= 1;
     wait for 40 ns;
-    out_inv <= 0;
+    out_inv <= 2;
     --Invalidating output after test 3
     wait for 9560 ns;
     out_inv <= 1;
     wait for 40 ns;
-    out_inv <= 0;
+    out_inv <= 2;
     wait for 9520 ns;
     out_inv <= 1;
     wait for 40 ns;
-    out_inv <= 0;
+    out_inv <= 2;
     wait for 9780 ns;
     out_inv <= 1;
     wait for 40 ns;
-    out_inv <= 0;
+    out_inv <= 2;
     wait for 11360 ns;
     out_inv <= 1;
     wait for 40 ns;
-    out_inv <= 0;
+    out_inv <= 2;
     wait;
 end process;
 

@@ -46,8 +46,8 @@ generic(
     constant num_outputs: natural := 30;
     constant layer_no: natural := 1;                                                    --layer_no          :     Layer number (identifier)
     constant act_type: string := "ReLU";                                                --act_type          :     Choose between "ReLU","Sig"
-    constant act_fun_size: natural := 10;                                               --act_fun_size      :     If the user chooses an analytical activation function the number of sample have to be chosen
-    constant en_backup: std_logic := '1'                                                --en_backup         :     '1': This layer is enabled to save its output '0': This layer is disabled from saving its output                                               
+    constant act_fun_size: natural := 10                                               --act_fun_size      :     If the user chooses an analytical activation function the number of sample have to be chosen
+    --constant en_backup: std_logic := '1'                                                --en_backup         :     '1': This layer is enabled to save its output '0': This layer is disabled from saving its output                                               
 );
 --------PORTS-------
 port(                                                                                   
@@ -68,9 +68,8 @@ port(
     nv_reg_busy: in std_logic;                                                          --nv_reg_busy       :       Together with nv_reg_bbusy_sig aknowledges the availability fro r/w operation into/from the nv_reg
     nv_reg_busy_sig: in  STD_LOGIC;                                                     --nv_reg_busy_sig   :    
     nv_reg_dout: in STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0);                          --nv_reg_dout       :       Contains the nv_reg output (used when recovering data)
-    out_inv: in integer range 0 to 3;                                                   --out_inv          :        1: output is invalidated. 2: as long we are computing the output of the next layer. 3:After a power-off and we recover data.                                                                                        
+    out_inv: in integer range 0 to 3;                                                   --out_inv          :        1: output is invalidated. 2: as long we are computing the output of the next layer, or the layer is idle. 3:After a power-off and we recover data.                                                                                        
     -------OUTPUTS-------
-    state_layer: out std_logic_vector(3 downto 0);
     task_status: out std_logic;                                                         --task_status       :       0: The recovery/save operation has finished. 1: It is still being carried on.
     nv_reg_en: out std_logic;                                                           --nv_reg_en         :       1: Reading/Wrinting operation request. 0: nv_reg is disabled
     nv_reg_we: out std_logic;                                                           --nv_reg_we         :       1: Write Operation Request. 0: No operation
@@ -421,7 +420,6 @@ end process ROUTE_STATE_SIG;
 task_status <= task_status_internal;                     
 task_status_internal <= data_rec_busy OR data_save_busy;    --combined signal: tells if some process is ongoing 
                                                                 --> (used to regulate v_reg access to avoid collisions)
-state_layer <= fsm_state_save(0 to 3);
                                                               
 
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

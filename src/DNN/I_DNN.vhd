@@ -94,6 +94,7 @@ signal nv_reg_en1: std_logic;
 signal nv_reg_we1: std_logic;
 signal nv_reg_addr1: std_logic_vector(nv_reg_addr_width_bit-1 downto 0);
 signal nv_reg_din1: STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0);
+signal pr_state_layer1: fsm_layer_state_t;
 --Layer2
 signal nv_reg_busy2: std_logic:='0';
 signal nv_reg_busy_sig2:  std_logic:='0';
@@ -104,6 +105,7 @@ signal nv_reg_en2: std_logic;
 signal nv_reg_we2: std_logic;
 signal nv_reg_addr2: std_logic_vector(nv_reg_addr_width_bit-1 downto 0);
 signal nv_reg_din2: STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0);
+signal pr_state_layer2: fsm_layer_state_t;
 --Layer3
 signal nv_reg_busy3: std_logic:='0';
 signal nv_reg_busy_sig3:  std_logic:='0';
@@ -114,6 +116,43 @@ signal nv_reg_en3: std_logic;
 signal nv_reg_we3: std_logic;
 signal nv_reg_addr3: std_logic_vector(nv_reg_addr_width_bit-1 downto 0);
 signal nv_reg_din3: STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0);
+signal pr_state_layer3: fsm_layer_state_t;
+--POWER_APPROXIMATION
+--LAYER1
+signal power_state_en_layer1          : std_logic_vector(NUM_PWR_STATES - 1 downto 0);                              -- array of power state that are enable
+signal power_counter_val_layer1       : power_approx_counter_type(NUM_PWR_STATES - 1 downto 0) := (others => 0);    -- array of state counter values
+signal power_counter_full_layer1      : std_logic_vector(NUM_PWR_STATES - 1 downto 0) := (others => '0');           -- array of terminal counters 
+signal power_counter_reset_layer1     : std_logic_vector(NUM_PWR_STATES - 1 downto 0):=(others => '0');                              -- array to reset counters
+--LAYER2
+signal power_state_en_layer2          : std_logic_vector(NUM_PWR_STATES - 1 downto 0);                              -- array of power state that are enable
+signal power_counter_val_layer2       : power_approx_counter_type(NUM_PWR_STATES - 1 downto 0) := (others => 0);    -- array of state counter values
+signal power_counter_full_layer2      : std_logic_vector(NUM_PWR_STATES - 1 downto 0) := (others => '0');           -- array of terminal counters 
+signal power_counter_reset_layer2     : std_logic_vector(NUM_PWR_STATES - 1 downto 0):=(others => '0');                              -- array to reset counters
+--LAYER3
+signal power_state_en_layer3          : std_logic_vector(NUM_PWR_STATES - 1 downto 0);                              -- array of power state that are enable
+signal power_counter_val_layer3       : power_approx_counter_type(NUM_PWR_STATES - 1 downto 0) := (others => 0);    -- array of state counter values
+signal power_counter_full_layer3      : std_logic_vector(NUM_PWR_STATES - 1 downto 0) := (others => '0');           -- array of terminal counters 
+signal power_counter_reset_layer3     : std_logic_vector(NUM_PWR_STATES - 1 downto 0):=(others => '0');                              -- array to reset counters
+--NVREG1
+signal power_state_en_nvreg1          : std_logic_vector(NUM_PWR_STATES - 1 downto 0);                              -- array of power state that are enable
+signal power_counter_val_nvreg1       : power_approx_counter_type(NUM_PWR_STATES - 1 downto 0) := (others => 0);    -- array of state counter values
+signal power_counter_full_nvreg1      : std_logic_vector(NUM_PWR_STATES - 1 downto 0) := (others => '0');           -- array of terminal counters 
+signal power_counter_reset_nvreg1     : std_logic_vector(NUM_PWR_STATES - 1 downto 0):=(others => '0');                              -- array to reset counters
+--NVREG2
+signal power_state_en_nvreg2          : std_logic_vector(NUM_PWR_STATES - 1 downto 0);                              -- array of power state that are enable
+signal power_counter_val_nvreg2       : power_approx_counter_type(NUM_PWR_STATES - 1 downto 0) := (others => 0);    -- array of state counter values
+signal power_counter_full_nvreg2      : std_logic_vector(NUM_PWR_STATES - 1 downto 0) := (others => '0');           -- array of terminal counters 
+signal power_counter_reset_nvreg2     : std_logic_vector(NUM_PWR_STATES - 1 downto 0):=(others => '0');                              -- array to reset counters
+--NVREG3
+signal power_state_en_nvreg3          : std_logic_vector(NUM_PWR_STATES - 1 downto 0);                              -- array of power state that are enable
+signal power_counter_val_nvreg3       : power_approx_counter_type(NUM_PWR_STATES - 1 downto 0) := (others => 0);    -- array of state counter values
+signal power_counter_full_nvreg3      : std_logic_vector(NUM_PWR_STATES - 1 downto 0) := (others => '0');           -- array of terminal counters 
+signal power_counter_reset_nvreg3     : std_logic_vector(NUM_PWR_STATES - 1 downto 0):=(others => '0');                              -- array to reset counters
+--SOFTMAX
+signal power_state_en_softmax          : std_logic_vector(NUM_PWR_STATES - 1 downto 0);                              -- array of power state that are enable
+signal power_counter_val_softmax       : power_approx_counter_type(NUM_PWR_STATES - 1 downto 0) := (others => 0);    -- array of state counter values
+signal power_counter_full_softmax      : std_logic_vector(NUM_PWR_STATES - 1 downto 0) := (others => '0');           -- array of terminal counters 
+signal power_counter_reset_softmax     : std_logic_vector(NUM_PWR_STATES - 1 downto 0):=(others => '0');                              -- array to reset counters
 --COMPONENTS DECLARATION---------------------------------------------------
 --LAYER
 component I_layer is
@@ -148,7 +187,8 @@ port(
     nv_reg_en: out std_logic;                                                       
     nv_reg_we: out std_logic;                                                   
     nv_reg_addr: out std_logic_vector(nv_reg_addr_width_bit-1 downto 0);    
-    nv_reg_din: out STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0)                           
+    nv_reg_din: out STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0);
+    pr_state: out fsm_layer_state_t                           
     );                                                     
 end component;
 --FSM_NV_REG_DB
@@ -200,6 +240,18 @@ out_v: out std_logic;
 data_out: out sfixed(neuron_int_width-1 downto -neuron_frac_width);
 digit_out: out integer range 0 to 9
 );
+end component;
+component power_approximation is
+    generic(
+        pwr_states_num          :natural
+        );
+    port(
+        sys_clk                 : in std_logic; -- system clock
+        power_state_en          : in std_logic_vector(NUM_PWR_STATES - 1 downto 0); -- array of power state that are enable
+        power_counter_val       : out power_approx_counter_type(NUM_PWR_STATES - 1 downto 0) := (others => 0); -- array of state counter values
+        power_counter_full      : out std_logic_vector(NUM_PWR_STATES - 1 downto 0) := (others => '0'); -- array of terminal counters 
+        power_counter_reset     : in std_logic_vector(NUM_PWR_STATES - 1 downto 0) -- array to reset counters
+    );
 end component;
 
 begin
@@ -311,7 +363,8 @@ I_layer1: I_layer
     nv_reg_en => nv_reg_en1,
     nv_reg_we => nv_reg_we1,
     nv_reg_addr => nv_reg_addr1,
-    nv_reg_din => nv_reg_din1
+    nv_reg_din => nv_reg_din1,
+    
     );                                                     
 --LAYER2
 --NVREG
@@ -438,4 +491,271 @@ out_v => softmax_data_v,
 data_out => data_out,
 digit_out => digit_out
 );
+pwr_appr_comp_layer1: power_approximation
+generic map(
+    pwr_states_num => 2*num_layers+1
+)
+port map(
+        sys_clk                 => clk,
+        power_state_en          => power_state_en_layer1,
+        power_counter_val       => power_counter_val_layer1,
+        power_counter_full      => power_counter_full_layer1,
+        power_counter_reset     => power_counter_reset_layer1
+);
+pwr_appr_comp_layer2: power_approximation
+generic map(
+    pwr_states_num => 2*num_layers+1
+)
+port map(
+        sys_clk                 => clk,
+        power_state_en          => power_state_en_layer2,
+        power_counter_val       => power_counter_val_layer2,
+        power_counter_full      => power_counter_full_layer2,
+        power_counter_reset     => power_counter_reset_layer2
+);
+pwr_appr_comp_layer3: power_approximation
+generic map(
+    pwr_states_num => 2*num_layers+1
+)
+port map(
+        sys_clk                 => clk,
+        power_state_en          => power_state_en_layer3,
+        power_counter_val       => power_counter_val_layer3,
+        power_counter_full      => power_counter_full_layer3,
+        power_counter_reset     => power_counter_reset_layer3
+);
+pwr_appr_comp_nvreg1: power_approximation
+generic map(
+    pwr_states_num => 2*num_layers+1
+)
+port map(
+        sys_clk                 => clk,
+        power_state_en          => power_state_en_layer3,
+        power_counter_val       => power_counter_val_layer3,
+        power_counter_full      => power_counter_full_layer3,
+        power_counter_reset     => power_counter_reset_layer3
+);
+pwr_appr_comp_nv_reg2: power_approximation
+generic map(
+    pwr_states_num => 2*num_layers+1
+)
+port map(
+        sys_clk                 => clk,
+        power_state_en          => power_state_en_layer3,
+        power_counter_val       => power_counter_val_layer3,
+        power_counter_full      => power_counter_full_layer3,
+        power_counter_reset     => power_counter_reset_layer3
+);
+pwr_appr_comp_nvreg3: power_approximation
+generic map(
+    pwr_states_num => 2*num_layers+1
+)
+port map(
+        sys_clk                 => clk,
+        power_state_en          => power_state_en_layer3,
+        power_counter_val       => power_counter_val_layer3,
+        power_counter_full      => power_counter_full_layer3,
+        power_counter_reset     => power_counter_reset_layer3
+);
+pwr_appr_comp_softmax: power_approximation
+generic map(
+    pwr_states_num => 2*num_layers+1
+)
+port map(
+        sys_clk                 => clk,
+        power_state_en          => power_state_en_layer3,
+        power_counter_val       => power_counter_val_layer3,
+        power_counter_full      => power_counter_full_layer3,
+        power_counter_reset     => power_counter_reset_layer3
+);
+
+power_states_gen: process is
+begin
+------------------------LAYER1
+case pr_state_layer1 is
+when idle =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(0) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(0) <= '1';
+when init =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(1) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(0) <= '1';
+when idle =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(1) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(0) <= '1';
+when w_sum =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(2) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(0) <= '1';
+when b_sum =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(2) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(0) <= '1';
+when act_log =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(3) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(0) <= '1';
+when finished =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(4) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(0) <= '1';
+when data_save_init =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(1) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(0) <= '1';
+when data_save_init_cmpl =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(1) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(0) <= '1';
+when data_save =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(5) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(1) <= '1';
+when recovery =>
+    power_state_en_layer1 <= (others => '0');
+    power_state_en_layer1(6) <= '1';
+    power_state_en_nvreg1 <= (others => '0');
+    power_state_en_nvreg1(2) <= '1';
+end case;
+--LAYER2
+case pr_state_layer2 is
+when idle =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(0) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(0) <= '1';
+when init =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(1) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(0) <= '1';
+when idle =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(1) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(0) <= '1';
+when w_sum =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(2) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(0) <= '1';
+when b_sum =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(2) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(0) <= '1';
+when act_log =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(3) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(0) <= '1';
+when finished =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(4) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(0) <= '1';
+when data_save_init =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(1) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(0) <= '1';
+when data_save_init_cmpl =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(1) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(0) <= '1';
+when data_save =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(5) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(1) <= '1';
+when recovery =>
+    power_state_en_layer2 <= (others => '0');
+    power_state_en_layer2(6) <= '1';
+    power_state_en_nvreg2 <= (others => '0');
+    power_state_en_nvreg2(2) <= '1';
+end case;
+--LAYER3
+case pr_state_layer3 is
+when idle =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(0) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(0) <= '1';
+when init =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(1) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(0) <= '1';
+when idle =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(1) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(0) <= '1';
+when w_sum =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(2) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(0) <= '1';
+when b_sum =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(2) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(0) <= '1';
+when act_log =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(3) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(0) <= '1';
+when finished =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(4) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(0) <= '1';
+when data_save_init =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(1) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(0) <= '1';
+when data_save_init_cmpl =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(1) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(0) <= '1';
+when data_save =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(5) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(1) <= '1';
+when recovery =>
+    power_state_en_layer3 <= (others => '0');
+    power_state_en_layer3(6) <= '1';
+    power_state_en_nvreg3 <= (others => '0');
+    power_state_en_nvreg3(2) <= '1';
+end case;
+--SOFTMAX LAYER
+
+
+
+
+
+
+
+end process;
+
+
+
+
 end Behavioral;

@@ -35,11 +35,14 @@ use work.COMMON_PACKAGE.all;
 use work.NVME_FRAMEWORK_PACKAGE.all;
 
 entity instant_pwr_calc is
+    generic(
+        pwr_states_num              :natural:=3
+    );
     port (
         sys_clk                 : in std_logic; -- system clock
         start_evaluation        : in std_logic; -- start evaluation signal 
         evaluation_ready        : out std_logic; -- evaluation ready singal 
-        num_state_to_evaluate   : in integer range 0 to NUM_PWR_STATES; -- number of state to evaluate
+        num_state_to_evaluate   : in integer range 0 to pwr_states_num; -- number of state to evaluate
         input_counter_val       : in power_approx_counter_type(NUM_PWR_STATES -1 downto 0); -- array of each state counter
         output_data             : out std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0) -- output data
     );

@@ -36,6 +36,9 @@ use work.NVME_FRAMEWORK_PACKAGE.all;
 
 
 entity power_approximation is
+    generic(
+        pwr_states_num          :natural:=3
+        );
     port(
         sys_clk                 : in std_logic; -- system clock
         power_state_en          : in std_logic_vector(NUM_PWR_STATES - 1 downto 0); -- array of power state that are enable
@@ -68,7 +71,7 @@ architecture Behavioral of power_approximation is
 begin
     
     -- counter generator
-    GEN_COUNTERS : for i in 0 to NUM_PWR_STATES - 1 generate 
+    GEN_COUNTERS : for i in 0 to PWR_STATES_NUM - 1 generate 
         COUTER : counter 
             generic map(
                 MAX         => 2**PWR_APPROX_COUNTER_NUM_BITS-1,

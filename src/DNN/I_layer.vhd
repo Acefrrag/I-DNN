@@ -74,7 +74,8 @@ port(
     nv_reg_en: out std_logic;                                                           --nv_reg_en         :       1: Reading/Wrinting operation request. 0: nv_reg is disabled
     nv_reg_we: out std_logic;                                                           --nv_reg_we         :       1: Write Operation Request. 0: No operation
     nv_reg_addr: out std_logic_vector(nv_reg_addr_width_bit-1 downto 0);                --nv_reg_addr       :       Contains the address of the nv_reg to access         
-    nv_reg_din: out STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0)                           --nv_reg_din        :       It contains data to write into the nv_rega
+    nv_reg_din: out STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0);                          --nv_reg_din        :       It contains data to write into the nv_rega
+    pr_state: out fsm_layer_state_t                                                     --pr_state          :       It contains the present state of the layer 
     );                                                     
 end I_layer;
 
@@ -287,6 +288,7 @@ out_inv_mul <= 3 when data_rec_type = outputt and fsm_nv_reg_state = data_recove
     data_rec_var_cntr_init <= not data_rec_busy;
     data_rec_nv_reg_en <= not var_cntr_tc; --the value is still gated by the mux, so if we are not in data_rec the nv_reg is not enabled
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+pr_state <= fsm_pr_state;
 
 --COMPONENTS INSTANTIATION
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%FSM_LAYER%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

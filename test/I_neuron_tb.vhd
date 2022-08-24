@@ -38,13 +38,17 @@ end I_neuron_tb;
 
 architecture Behavioral of I_neuron_tb is
 
-signal clk, mul_sel, sum_reg_rst,update_out,w_rec,o_rec, n_power_rst: std_logic;
+signal clk, mul_sel, sum_reg_rst,update_out,w_rec,o_rec, n_power_rst: std_logic:= '0';
 signal data_in, data_out,data_out_rec: sfixed (input_int_width-1 downto -input_frac_width);
 signal addr: std_logic_vector (0 to natural(ceil(log2(real(neuron_rom_depth))))-1);
 signal weighted_sum_save, weighted_sum_rec: sfixed (input_int_width+neuron_int_width-1 downto -input_frac_width-neuron_frac_width);
 --Register to store neuron weighted sum and output;
 signal weighted_sum_backup: sfixed (input_int_width+neuron_int_width-1 downto -input_frac_width-neuron_frac_width);
 signal neuron_output_backup: sfixed (input_int_width-1 downto -input_frac_width);
+signal state_rec: std_logic_vector(input_int_width+neuron_int_width-1 downto 0);
+signal en: std_logic;
+signal wsum_save: std_logic_vector(input_int_width+neuron_int_width downto 0);
+signal ReLU_save: std_logic_vector(input_int_width+input_frac_width downto 0);
 
 
 component I_neuron is
@@ -54,20 +58,28 @@ component I_neuron is
     constant weight_file: string;
     constant bias_file: string);
 port(
+    --ORIGINARY PINS
+    --INPUT
     clk: in std_logic;
     data_in: in sfixed (input_int_width-1 downto -input_frac_width);
     addr: in std_logic_vector (0 to natural(ceil(log2(real(rom_depth))))-1);
     mul_sel: in std_logic;
     sum_reg_rst: in std_logic;
     update_out: in std_logic;
+    --OUTPUT
     data_out: out sfixed (input_int_width-1 downto -input_frac_width);
-    --Augumented pins
+    --ADDED PINS
+    --INPUT
     n_power_reset: in std_logic;
-    w_rec: in std_logic;
+    en: in std_logic;
+    s_rec: in std_logic;
     o_rec: in std_logic;
     data_out_rec: in sfixed (input_int_width-1 downto -input_frac_width);
-    weighted_sum_save: out sfixed (input_int_width+neuron_int_width-1 downto -input_frac_width-neuron_frac_width);
-    weighted_sum_rec: in sfixed (input_int_width+neuron_int_width-1 downto -input_frac_width-neuron_frac_width));
+    state_rec: in std_logic_vector(input_int_width+neuron_int_width-1 downto 0);
+    --OUTPUT
+    wsum_save: out std_logic_vector(input_int_width+neuron_int_width-1 downto 0);
+    ReLU_save: out std_logic_vector(input_int_width+input_frac_width-1 downto 0)
+    );
 end component I_neuron;
 
 begin
@@ -80,94 +92,36 @@ generic map(
     bias_file => neuron_bias_file
     )
 port map(
+    --ORIGINARY PINS
+    --INPUT
     clk => clk,
     data_in => data_in,
     addr => addr,
     mul_sel => mul_sel,
     sum_reg_rst => sum_reg_rst,
     update_out => update_out,
+    --OUTPUT
     data_out => data_out,
-    --Augumented pins
+    --ADDED PINS
+    --INPUT
     n_power_reset => n_power_rst,
-    w_rec => w_rec,
+    en => en,
+    s_rec => w_rec,
     o_rec => o_rec,
     data_out_rec => data_out_rec,
-    weighted_sum_save => weighted_sum_save,
-    weighted_sum_rec => weighted_sum_rec);
+    state_rec => state_rec,
+    --OUTPUT
+    wsum_save => wsum_save,
+    ReLU_save => ReLU_save);
     
-test_neuron: process is
+clk_gen: process is
 begin
-
-clk <= '0';--0
-mul_sel <= '0';
-update_out <= '0';
-sum_reg_rst <= '0';
-w_rec <= '0';
-o_rec <= '0';
-n_power_rst <= '1';
-data_in <= to_sfixed(0,data_in);
-data_out_rec <= (others => '0');
-weighted_sum_rec <=(others => '0');
-addr <= (others => '0');
-wait for 20 ns;
-clk <= not(clk);--1
-data_in <= to_sfixed(3.7,data_in);
-wait for 20 ns;
-clk <= not(clk);--0
-wait for 20 ns;
-addr <= std_logic_vector(unsigned(addr)+1);
-data_in <= to_sfixed(10.7,data_in);
-clk <= not(clk);--1
-wait for 20 ns;
-clk <= not(clk);--0
-wait for 20 ns;
-clk <= not(clk);--1
-weighted_sum_backup <= weighted_sum_save;
-wait for 20 ns;
-n_power_rst <= '0';
-wait for 20 ns;
-n_power_rst <= '1';
-wait for 10 ns;
-weighted_sum_rec <= weighted_sum_backup;
-wait for 10 ns;
-w_rec <= '1';
-clk <= not(clk);--0
-wait for 20 ns;
-clk <= not(clk);--1
-addr <= std_logic_vector(unsigned(addr)+1);
-data_in <= to_sfixed(10.7,data_in);
-wait for 20 ns;
-w_rec <= '0';
-clk <= not(clk);--0
-wait for 20 ns;
-clk <= not(clk);--1
-wait for 20 ns;
-clk <= not(clk);--0
-wait for 20 ns;
-update_out <= '1';
-clk <= not(clk);--1
-wait for 20 ns;
-update_out <= '0';
-clk <= not(clk);--0
-wait for 20 ns;
-neuron_output_backup <= data_out;
-n_power_rst <= '0';
-wait for 20 ns;
-n_power_rst <= '1';
-clk <= not(clk);--1
-wait for 20 ns;
-clk <= not(clk); --0
-data_out_rec <= neuron_output_backup;
-o_rec <= '1';
-wait for 20 ns;
-clk <= not(clk); --1
-wait for 20 ns;
+clk <= not(clk);
+wait for 20ns;
+end process clk_gen;
 
 
 
-
-
-end process test_neuron;
 
 
 end Behavioral;

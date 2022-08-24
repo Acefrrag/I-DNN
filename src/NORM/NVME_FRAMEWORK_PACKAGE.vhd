@@ -21,6 +21,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.math_real.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -42,6 +43,8 @@ package NVME_FRAMEWORK_PACKAGE is
     constant PWR_APPROX_COUNTER_NUM_BITS        : integer := 31;    -- The register size (in bits) of all power approximators (if the pa is used a lot bigger values are suggested)
     constant INTERMITTENCY_NUM_THRESHOLDS       : integer := 2;     -- The number of voltage thsholds the intermittency emulator will track (at least one, i.e. the shutdown threshold)
     constant NV_REG_WIDTH                       : INTEGER := 32;    -- The word size in bits of all non volatile registers
-                                                                    ---> !!!!! This value must be kept in sync with the one used inside the bram ip for all nv_reg !!!!!
+    constant nv_reg_depth                       : integer := 35;
+    constant bram_addr_width_bit : INTEGER := integer(ceil(log2(real(NV_REG_depth))));
+                                                                ---> !!!!! This value must be kept in sync with the one used inside the bram ip for all nv_reg !!!!!
    
 end package NVME_FRAMEWORK_PACKAGE;

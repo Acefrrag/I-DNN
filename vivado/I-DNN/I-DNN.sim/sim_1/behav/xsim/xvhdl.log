@@ -15,22 +15,37 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/
 INFO: [VRFC 10-3107] analyzing entity 'unary_OR'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/weight_memory.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'weight_memory'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/DATA_REC_PROCESS.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'DATA_REC_PROCESS'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/DATA_SAVE_PROCESS.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'DATA_SAVE_PROCESS'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/VAR_CNTR_PROCESS.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'VAR_CNTR_PROCESS'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/I_layer.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_layer'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/fsm_nv_reg_db.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'fsm_nv_reg_db'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/nv_reg_emu.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'nv_reg_emu'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/trace_ROM.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'trace_ROM'
+WARNING: [VRFC 10-393] cannot access 'text_header' from inside pure function 'init_trace_rom'. [C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/trace_ROM.vhd:61]
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/nv_reg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'nv_reg'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'blk_mem_gen_1'
+WARNING: [VRFC 10-393] cannot access 'ramfile' from inside pure function 'initramfromfile'. [C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd:100]
+WARNING: [VRFC 10-3165] cannot call impure function 'initramfromfile' from within pure function 'init_from_file_or_zeroes' [C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd:110]
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/intermittency_emulator.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'intermittency_emulator'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/scaler.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'scaler'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/counter.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'counter'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/I_DNN.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_DNN'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/test_sfixed.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'test_sfixed'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/SOFT_MAX.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SOFT_MAX'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/I_FSM_layer_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_FSM_layer_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/I_neuron_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_neuron_tb'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/DATA_REC_PROCESS_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'DATA_REC_PROCESS_tb'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/DATA_SAVE_PROCESS_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'DATA_SAVE_PROCESS_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/VAR_CNTR_PROCESS_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'VAR_CNTR_PROCESS_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/routing_w_sum_sig.vhd" into library xil_defaultlib
@@ -39,3 +54,10 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/
 INFO: [VRFC 10-3107] analyzing entity 'routing_w_sum_sig_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/I_layer_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_layer_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/I_DNN_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_DNN_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/test_sfixed_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'test_sfixed_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/SOFTMAX_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SOFTMAX_tb'
+WARNING: [VRFC 10-393] cannot access 'text_header' from inside pure function 'gen_data_in'. [C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/SOFTMAX_tb.vhd:72]

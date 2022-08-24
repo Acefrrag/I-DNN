@@ -22,6 +22,9 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
+library work;
+use work.NVME_FRAMEWORK_PACKAGE.all;
+
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
@@ -41,15 +44,15 @@ entity nv_reg is
         clk             : in STD_LOGIC;
         resetN          : in STD_LOGIC; 
         power_resetN 	: in STD_LOGIC;
-        -------------chage from here-------------- 
+        -------------change from here-------------- 
         busy            : out STD_LOGIC;
         busy_sig        : out STD_LOGIC;
         en              : in STD_LOGIC;
-        we              : in STD_LOGIC_VECTOR(0 DOWNTO 0);
-        addr            : in STD_LOGIC_VECTOR(integer(ceil(log2(real(NV_REG_WIDTH))))-1 DOWNTO 0);
+        we              : in STD_LOGIC;
+        addr            : in STD_LOGIC_VECTOR(integer(ceil(log2(real(nv_reg_depth))))-1 DOWNTO 0);
         din             : in STD_LOGIC_VECTOR(31 DOWNTO 0);
         dout            : out STD_LOGIC_VECTOR(31 DOWNTO 0)
-        -------------chage to here---------------- 
+        -------------change to here---------------- 
     );
 end nv_reg;
 
@@ -59,18 +62,22 @@ architecture Behavioral of nv_reg is
     signal busy_internal: STD_LOGIC;
     ------------------------------------------------------------------------------------------------
     ------------------------------------NV_REG_CNST-------------------------------------------------
-    constant bram_addr_width_bit : INTEGER := integer(ceil(log2(real(NV_REG_WIDTH))));
+    constant bram_addr_width_bit : INTEGER := integer(ceil(log2(real(NV_REG_depth))));
+    constant ram_performance: string := "LOW_LATENCY";
+    constant depth: natural := nv_reg_depth;
+    constant width: natural := nv_reg_width;
+    constant init_file: string := "init_ram_file.txt";
     ------------------------------------------------------------------------------------------------
     ------------------------------------BRAM_SIGNALS------------------------------------------------
     signal bram_en  :STD_LOGIC;                     
-    signal bram_we  :STD_LOGIC_VECTOR(0 DOWNTO 0);  
+    signal bram_we  :STD_LOGIC;  
     signal bram_addr:STD_LOGIC_VECTOR(bram_addr_width_bit-1 DOWNTO 0); 
     signal bram_din :STD_LOGIC_VECTOR(31 DOWNTO 0); 
     signal bram_dout:STD_LOGIC_VECTOR(31 DOWNTO 0);                
     ------------------------------------------------------------------------------------------------   
     ------------------------------------RESET_SIGNALS-----------------------------------------------
     signal bram_en_rst         :STD_LOGIC := '0';                     
-    signal bram_we_rst         :STD_LOGIC_VECTOR(0 DOWNTO 0) := (OTHERS => '0');  
+    signal bram_we_rst         :STD_LOGIC := '0';  
     signal bram_addr_rst       :STD_LOGIC_VECTOR(bram_addr_width_bit-1 DOWNTO 0) := (OTHERS => '0'); 
     signal bram_din_rst        :STD_LOGIC_VECTOR(31 DOWNTO 0):= (OTHERS => '0'); 
     ------------------------------------------------------------------------------------------------
@@ -78,12 +85,20 @@ architecture Behavioral of nv_reg is
     --to use a different bram memory as primitive for the nv_reg
     --------------------place here new memory component--------------------
     COMPONENT blk_mem_gen_1 IS
+    generic(
+        constant depth: natural;
+        constant width: natural;
+        constant ram_performance: string;
+        constant init_file:string
+    );
     PORT (
         clka : IN STD_LOGIC;
         ena : IN STD_LOGIC;
-        wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        wea : IN STD_LOGIC;
         addra : IN STD_LOGIC_VECTOR(bram_addr_width_bit-1 DOWNTO 0);
         dina : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+        rsta:   in std_logic;                                               -- Output reset (does not affect memory contents)                     
+        regcea: in std_logic;                                               -- Output register enable      
         douta : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
       );
     END COMPONENT blk_mem_gen_1;
@@ -107,13 +122,21 @@ begin
     --to use a different bram memory as primitive for the nv_reg
     -----------------instantiate here new memory component------------------
     BRAM: blk_mem_gen_1
-    Port map (
+    generic map(
+        depth => depth,
+        width => width,
+        ram_performance => ram_performance,
+        init_file => init_file
+    )
+    port map (
         clka        =>clk,
         ena         =>bram_en,
         wea         =>bram_we,
         addra       =>bram_addr,
         dina        =>bram_din,
-        douta       =>bram_dout    
+        douta       =>bram_dout,
+        rsta        =>'0',
+        regcea      =>'0'    
     );
     ------------------------------------------------------------------------
 
@@ -139,7 +162,7 @@ begin
             '0' when power_resetN = '0' else
             (en or busy_internal);              --ENABLE HOLD: IMPORTANT keeps the bram active even if the signal was deactivated
     bram_we <= bram_we_rst when resetN = '0' else
-            (OTHERS => '0') when power_resetN = '0' else
+            '0' when power_resetN = '0' else
             we;
     bram_addr <= bram_addr_rst when resetN = '0' else
             (OTHERS => '0') when power_resetN = '0' else
@@ -165,18 +188,18 @@ begin
         if(rising_edge(clk)) then
             if(resetN = '0') then
                 bram_en_rst <= '1';
-                bram_we_rst <= (OTHERS => '1');
+                bram_we_rst <= '1';
                 
                 bram_din_rst <= (OTHERS => '0');
                 if(counter < NV_REG_WIDTH ) then
                     counter := counter +1;
                 elsif(counter = NV_REG_WIDTH ) then
-                    bram_we_rst <= (OTHERS => '0');
+                    bram_we_rst <= '0';
                     bram_en_rst <= '0';
                 end if;
                 bram_addr_rst <= std_logic_vector(to_unsigned(counter-1,bram_addr_width_bit));
             else
-                bram_we_rst <= (OTHERS => '0');
+                bram_we_rst <= '0';
                 counter := 0;
             end if;
 

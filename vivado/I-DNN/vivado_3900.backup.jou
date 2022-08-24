@@ -1,0 +1,21 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Aug 10 14:11:45 2022
+# Process ID: 3900
+# Current directory: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7780 C:\Users\Win10Admin\GithubRepositories\I-DNN\I-DNN\vivado\I-DNN\I-DNN.xpr
+# Log file: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/vivado.log
+# Journal file: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.xpr
+export_ip_user_files -of_objects  [get_files C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/test_sfixed.vhd] -no_script -reset -force -quiet
+remove_files  C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/test_sfixed.vhd
+launch_simulation
+open_wave_config C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/test_sfixed_tb_behav.wcfg
+source I_layer_tb.tcl
+create_wave_config; add_wave /; set_property needs_save false [current_wave_config]
+open_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN - state/I-DNN/vivado/I-DNN/I_DNN_tb_behav.wcfg}
+close_sim

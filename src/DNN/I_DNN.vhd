@@ -45,13 +45,13 @@ port(
 data_in: in sfixed (data_int_width-1 downto -data_frac_width);                      --data_in   : serial input to the DNN.
 start: in std_logic;                                                                --start     : signal to trigger the DNN
 clk: in std_logic;                                                                  --clk       : system clock
-data_out: out sfixed (data_int_width-1 downto -data_frac_width);                    --data_out  : serial output from the DNN
+data_out: out sfixed (data_int_width-1 downto -data_frac_width);--data_out  : serial output from the DNN
+digit_out: out integer range 0 to 9;                   
 data_v: out std_logic;                                                              --data_v    : data validity bit. It aknowledges the availability of data from the DNN  
 addr_in: out std_logic_vector(0 to natural(ceil(log2(real(layer_inputs(1)))))-1);   --addr_in   : To scan through the valdation data set
-addr_out: out std_logic_vector(0 to natural(ceil(log2(real(layer_outputs(3)))))-1); --addr_out  : To scan through the output of the DNN
 --AUGUMENTED PINS
 n_power_reset: in std_logic;                                                        --n_power_reset     : reset pin which emulates a power failure                                         
-out_inv: in integer range 0 to 3;                                                   --out_inv           : output invalidity bit. This is used to invalidate the output of the                                                                                                   --     last layer, to prevent the DNN to save useless data. 
+data_sampled: in std_logic;
 thresh_stats: in threshold_t                                                        --threshold_stats   : this contains the hazard signal to trigger the data save process
 ); --To scan through the valdation data set
 end I_DNN;
@@ -73,6 +73,8 @@ signal data_in_sel2: std_logic_vector(0 to  natural(ceil(log2(real(layer_inputs(
 signal data_out_sel2: std_logic_vector(0 to  natural(ceil(log2(real(layer_outputs(2)))))-1);
 signal data_in_sel3: std_logic_vector(0 to  natural(ceil(log2(real(layer_inputs(3)))))-1);
 signal data_out_sel3: std_logic_vector(0 to  natural(ceil(log2(real(layer_outputs(3)))))-1);
+--SOFTMAX
+signal softmax_data_v: std_logic;
 --INTERMITTENCY EMULATOR---------------------------------
 signal resetN_emulator: std_logic;
 --FSM_NV_REG SIGNALS-------------------------------------
@@ -181,6 +183,24 @@ component nv_reg is
         -------------change to here---------------- 
     );
 end component;
+component SOFT_MAX is
+generic(
+num_inputs: natural := 10
+);
+port(
+--INPUTS
+clk: in std_logic;
+start: in std_logic;
+data_in: in sfixed(neuron_int_width-1 downto -neuron_frac_width);
+data_sampled: in std_logic;
+n_power_reset: in std_logic;
+--OUTPUTS
+data_in_sel: out std_logic_vector(natural(ceil(log2(real(num_inputs))))-1 downto 0);
+out_v: out std_logic;
+data_out: out sfixed(neuron_int_width-1 downto -neuron_frac_width);
+digit_out: out integer range 0 to 9
+);
+end component;
 
 begin
 
@@ -189,7 +209,6 @@ begin
 data_in_vect(1) <= data_in;
 data_in_vect(2) <= data_out_vect(1);
 data_in_vect(3) <= data_out_vect(2);
-data_out <= data_out_vect(3);
 --Aknowledges Bits
 start_vect(1) <= start;
 start_vect(2) <= data_v_vect(1);
@@ -198,8 +217,7 @@ start_vect(3) <= data_v_vect(2);
 addr_in <= data_in_sel1;
 data_out_sel1 <= data_in_sel2;
 data_out_sel2 <= data_in_sel3;
-data_out_sel3 <= addr_out;
-data_v <= data_v_vect(3);
+data_v <= softmax_data_v;
 --Reset bit
 resetN_emulator <= n_power_reset;
 --TASK STATUS bit
@@ -221,7 +239,12 @@ elsif data_v_vect(3) = '1' then
     out_inv_vect(2) <= 1;
 end if;
 --Layer3
-out_inv_vect(3) <= out_inv;
+if softmax_data_v = '0' then
+    out_inv_vect(3) <= 2;
+elsif softmax_data_v = '1' then
+    out_inv_vect(3) <= 1;
+end if;
+--out_inv_vect(3) <= out_inv;
 end process out_inv_val;
 --COMPONENT INSTANTIATION
 --FMS_NV_REG_DB_COMP
@@ -400,5 +423,19 @@ I_layer3: I_layer
     nv_reg_addr => nv_reg_addr3,
     nv_reg_din => nv_reg_din3
     ); 
-
+soft_max_comp: SOFT_MAX
+generic map(
+num_inputs => 10
+)
+port map(
+clk => clk,
+start => data_v_vect(3),
+data_in => data_out_vect(3),
+data_sampled => data_sampled,
+n_power_reset => n_power_reset,
+data_in_sel => data_out_sel3,
+out_v => softmax_data_v,
+data_out => data_out,
+digit_out => digit_out
+);
 end Behavioral;

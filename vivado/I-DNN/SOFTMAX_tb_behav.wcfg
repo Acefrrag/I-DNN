@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="SOFTMAX_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="SOFTMAX_tb" />
+            <top_module name="common_package" />
+            <top_module name="i_dnn_package" />
+            <top_module name="nvme_framework_package" />
+            <top_module name="test_architecture_package" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="299001fs"></ZoomEndTime>
+      <Cursor1Time time="590000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="128"></NameColumnWidth>
+      <ValueColumnWidth column_width="140"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="18" />
+   <wvobject fp_name="/SOFTMAX_tb/data_in_vect" type="array">
+      <obj_property name="ElementShortName">data_in_vect[0:9][15:-16]</obj_property>
+      <obj_property name="ObjectShortName">data_in_vect[0:9][15:-16]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">16</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+      <wvobject fp_name="/SOFTMAX_tb/data_in_vect[0]" type="array">
+         <obj_property name="ElementShortName">[0][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[0][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/SOFTMAX_tb/data_in_vect[1]" type="array">
+         <obj_property name="ElementShortName">[1][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[1][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/SOFTMAX_tb/data_in_vect[2]" type="array">
+         <obj_property name="ElementShortName">[2][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[2][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/SOFTMAX_tb/data_in_vect[3]" type="array">
+         <obj_property name="ElementShortName">[3][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[3][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/SOFTMAX_tb/data_in_vect[4]" type="array">
+         <obj_property name="ElementShortName">[4][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[4][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/SOFTMAX_tb/data_in_vect[5]" type="array">
+         <obj_property name="ElementShortName">[5][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[5][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/SOFTMAX_tb/data_in_vect[6]" type="array">
+         <obj_property name="ElementShortName">[6][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[6][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/SOFTMAX_tb/data_in_vect[7]" type="array">
+         <obj_property name="ElementShortName">[7][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[7][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/SOFTMAX_tb/data_in_vect[8]" type="array">
+         <obj_property name="ElementShortName">[8][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[8][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/SOFTMAX_tb/data_in_vect[9]" type="array">
+         <obj_property name="ElementShortName">[9][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[9][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/start" type="logic">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/data_in" type="array">
+      <obj_property name="ElementShortName">data_in[15:-16]</obj_property>
+      <obj_property name="ObjectShortName">data_in[15:-16]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">16</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/data_sampled" type="logic">
+      <obj_property name="ElementShortName">data_sampled</obj_property>
+      <obj_property name="ObjectShortName">data_sampled</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/n_power_reset" type="logic">
+      <obj_property name="ElementShortName">n_power_reset</obj_property>
+      <obj_property name="ObjectShortName">n_power_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/data_in_sel" type="array">
+      <obj_property name="ElementShortName">data_in_sel[3:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in_sel[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/out_v" type="logic">
+      <obj_property name="ElementShortName">out_v</obj_property>
+      <obj_property name="ObjectShortName">out_v</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/data_out" type="array">
+      <obj_property name="ElementShortName">data_out[15:-16]</obj_property>
+      <obj_property name="ObjectShortName">data_out[15:-16]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">16</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/digit_out" type="other">
+      <obj_property name="ElementShortName">digit_out</obj_property>
+      <obj_property name="ObjectShortName">digit_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/num_inputs" type="other">
+      <obj_property name="ElementShortName">num_inputs</obj_property>
+      <obj_property name="ObjectShortName">num_inputs</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/SOFTMAX_comp/addr_TC" type="logic">
+      <obj_property name="ElementShortName">addr_TC</obj_property>
+      <obj_property name="ObjectShortName">addr_TC</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/SOFTMAX_comp/addr" type="array">
+      <obj_property name="ElementShortName">addr[3:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/SOFTMAX_comp/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/SOFTMAX_comp/comparator_out" type="array">
+      <obj_property name="ElementShortName">comparator_out[15:-16]</obj_property>
+      <obj_property name="ObjectShortName">comparator_out[15:-16]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">16</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/SOFTMAX_comp/data_v" type="logic">
+      <obj_property name="ElementShortName">data_v</obj_property>
+      <obj_property name="ObjectShortName">data_v</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/SOFTMAX_comp/pr_state" type="other">
+      <obj_property name="ElementShortName">pr_state</obj_property>
+      <obj_property name="ObjectShortName">pr_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/SOFTMAX_tb/SOFTMAX_comp/nx_state" type="other">
+      <obj_property name="ElementShortName">nx_state</obj_property>
+      <obj_property name="ObjectShortName">nx_state</obj_property>
+   </wvobject>
+</wave_config>

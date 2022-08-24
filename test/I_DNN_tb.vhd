@@ -81,7 +81,6 @@ signal data_out: sfixed (data_int_width-1 downto -data_frac_width) := (others =>
 signal addr_in: std_logic_vector(0 to natural(ceil(log2(real(layer_inputs(1)))))-1) := (others => '0');
 signal addr_out: std_logic_vector(0 to natural(ceil(log2(real(layer_outputs(3)))))-1) := (others => '0');
 signal data_v: std_logic;
-signal out_inv: integer range 0 to 3 := 2;
 signal n_power_reset: std_logic;
 --Intermittency emulator
 signal reset_emulator       : std_logic; 
@@ -90,6 +89,7 @@ signal threshold_compared   : std_logic_vector(INTERMITTENCY_NUM_THRESHOLDS - 1 
 signal select_threshold     : integer range 0 to INTERMITTENCY_NUM_THRESHOLDS -1; --This is used to select the threshold for power failure
 --
 signal thresh_stats         : threshold_t;
+signal data_sampled         : std_logic:='0';
 
 
 component I_DNN is
@@ -99,11 +99,10 @@ start: in std_logic;
 clk: in std_logic;
 data_out: out sfixed (data_int_width-1 downto -data_frac_width);
 addr_in: out std_logic_vector(0 to natural(ceil(log2(real(layer_inputs(1)))))-1); --To scan through the valdation data set
-addr_out: out std_logic_vector(0 to natural(ceil(log2(real(layer_outputs(3)))))-1); --To scan through the valdation data set
 data_v: out std_logic;
+data_sampled: in std_logic;
 --Augumented Pins
 n_power_reset: in std_logic;
-out_inv: in integer range 0 to 3;
 thresh_stats: in threshold_t
 );
 end component;
@@ -137,11 +136,10 @@ start => start,
 clk => clk,
 data_out => data_out,
 addr_in =>  addr_in, --To scan through the validation data set
-addr_out => addr_out, --To scan through the validation data set
 data_v => data_v,
+data_sampled => data_sampled,
 --Augumented Pins
 n_power_reset => n_power_reset,
-out_inv => out_inv,
 thresh_stats => thresh_stats
 );
 

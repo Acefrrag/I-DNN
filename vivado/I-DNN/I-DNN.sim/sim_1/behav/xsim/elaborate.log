@@ -161,6 +161,7 @@ Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(r
 Compiling architecture behavioral of entity xil_defaultlib.I_FSM_layer [\I_FSM_layer(num_outputs=10,rom_...]
 Compiling architecture behavioral of entity xil_defaultlib.var_counter [\var_counter(max=12,init_value=0...]
 Compiling architecture behavioral of entity xil_defaultlib.I_layer [\I_layer(num_inputs=20,num_outpu...]
+Compiling architecture behavioral of entity xil_defaultlib.SOFT_MAX [soft_max_default]
 Compiling architecture behavioral of entity xil_defaultlib.I_DNN [i_dnn_default]
 Compiling architecture behavioral of entity xil_defaultlib.i_dnn_tb
 Built simulation snapshot I_DNN_tb_behav

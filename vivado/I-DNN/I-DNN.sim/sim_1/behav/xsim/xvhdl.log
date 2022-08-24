@@ -40,6 +40,8 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/
 INFO: [VRFC 10-3107] analyzing entity 'I_DNN'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/test_sfixed.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'test_sfixed'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/SOFT_MAX.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SOFT_MAX'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/I_FSM_layer_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_FSM_layer_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/I_neuron_tb.vhd" into library xil_defaultlib
@@ -56,3 +58,6 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/
 INFO: [VRFC 10-3107] analyzing entity 'I_DNN_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/test_sfixed_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'test_sfixed_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/SOFTMAX_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SOFTMAX_tb'
+WARNING: [VRFC 10-393] cannot access 'text_header' from inside pure function 'gen_data_in'. [C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/SOFTMAX_tb.vhd:72]

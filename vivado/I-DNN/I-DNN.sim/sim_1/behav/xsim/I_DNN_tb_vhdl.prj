@@ -24,6 +24,7 @@ vhdl2008 xil_defaultlib  \
 "../../../../../../src/NORM/counter.vhd" \
 "../../../../../../src/DNN/I_DNN.vhd" \
 "../../../../../../src/DNN/test_sfixed.vhd" \
+"../../../../../../src/DNN/SOFT_MAX.vhd" \
 "../../../../../../test/I_FSM_layer_tb.vhd" \
 "../../../../../../test/I_neuron_tb.vhd" \
 "../../../../../../test/VAR_CNTR_PROCESS_tb.vhd" \
@@ -32,6 +33,7 @@ vhdl2008 xil_defaultlib  \
 "../../../../../../src/DNN/I_layer_tb.vhd" \
 "../../../../../../test/I_DNN_tb.vhd" \
 "../../../../../../test/test_sfixed_tb.vhd" \
+"../../../../../../test/SOFTMAX_tb.vhd" \
 
 # Do not sort compile order
 nosort

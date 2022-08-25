@@ -11,3 +11,26 @@
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.xpr
+launch_simulation
+launch_simulation
+launch_simulation
+launch_simulation
+launch_simulation
+open_wave_config C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/test_sfixed_tb_behav.wcfg
+open_wave_config C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/SOFTMAX_tb_behav.wcfg
+source I_DNN_tb.tcl
+export_ip_user_files -of_objects  [get_files C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/test_sfixed_tb_behav.wcfg] -no_script -reset -force -quiet
+remove_files  -fileset sim_1 C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/test_sfixed_tb_behav.wcfg
+export_ip_user_files -of_objects  [get_files C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/SOFTMAX_tb_behav.wcfg] -no_script -reset -force -quiet
+remove_files  -fileset sim_1 C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/SOFTMAX_tb_behav.wcfg
+open_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I_DNN_tb_behav.wcfg}
+current_wave_config {I_DNN_tb_behav.wcfg}
+add_wave {{/I_DNN_tb/I_DNN_cmp/power_state_en_layer1}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_layer2}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_layer3}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_nvreg1}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_nvreg2}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_nvreg3}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_softmax}} 
+current_wave_config {I_DNN_tb_behav.wcfg}
+add_wave {{/I_DNN_tb/I_DNN_cmp/power_state_en_layer1}} {{/I_DNN_tb/I_DNN_cmp/power_counter_val_layer1}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_layer2}} {{/I_DNN_tb/I_DNN_cmp/power_counter_val_layer2}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_layer3}} {{/I_DNN_tb/I_DNN_cmp/power_counter_val_layer3}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_nvreg1}} {{/I_DNN_tb/I_DNN_cmp/power_counter_val_nvreg1}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_nvreg2}} {{/I_DNN_tb/I_DNN_cmp/power_counter_val_nvreg2}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_nvreg3}} {{/I_DNN_tb/I_DNN_cmp/power_counter_val_nvreg3}} {{/I_DNN_tb/I_DNN_cmp/power_state_en_softmax}} {{/I_DNN_tb/I_DNN_cmp/power_counter_val_softmax}} 
+run 3000 ns
+run 3000 ns
+run 3000 ns
+run 3000 ns
+save_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I_DNN_tb_behav.wcfg}
+close_sim

@@ -1,0 +1,853 @@
+/*
+
+Xilinx Vivado v2020.2 (64-bit) [Major: 2020, Minor: 2]
+SW Build: 3064766 on Wed Nov 18 09:12:45 MST 2020
+IP Build: 3064653 on Wed Nov 18 14:17:31 MST 2020
+
+Process ID (PID): 13940
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Thu Aug 25 12:53:42 CEST 2022
+Time zone: 	Central European Standard Time (Europe/Berlin)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 4
+
+Screen size: 1366x768
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.2 64-bit
+Java home: 	C:/Xilinx/Vivado/2020.2/tps/win64/jre11.0.2
+Java executable location: 	C:/Xilinx/Vivado/2020.2/tps/win64/jre11.0.2/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	MicheleFragasso
+User home directory: C:/Users/Win10Admin
+User working directory: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: C:/Xilinx/Vivado
+HDI_APPROOT: C:/Xilinx/Vivado/2020.2
+RDI_DATADIR: C:/Xilinx/Vivado/2020.2/data
+RDI_BINDIR: C:/Xilinx/Vivado/2020.2/bin
+
+Vivado preferences file location: C:/Users/Win10Admin/AppData/Roaming/Xilinx/Vivado/2020.2/vivado.xml
+Vivado preferences directory: C:/Users/Win10Admin/AppData/Roaming/Xilinx/Vivado/2020.2/
+Vivado layouts directory: C:/Users/Win10Admin/AppData/Roaming/Xilinx/Vivado/2020.2/data/layouts
+PlanAhead jar file location: 	C:/Xilinx/Vivado/2020.2/lib/classes/planAhead.jar
+Vivado log file location: 	C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/vivado.log
+Vivado journal file location: 	C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/vivado.jou
+Engine tmp dir: 	C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/.Xil/Vivado-13940-DESKTOP-H3FGT66
+
+Xilinx Environment Variables
+----------------------------
+XILINX: C:/Xilinx/Vivado/2020.2/ids_lite/ISE
+XILINX_DSP: C:/Xilinx/Vivado/2020.2/ids_lite/ISE
+XILINX_HLS: C:/Xilinx/Vitis_HLS/2020.2
+XILINX_PLANAHEAD: C:/Xilinx/Vivado/2020.2
+XILINX_VIVADO: C:/Xilinx/Vivado/2020.2
+XILINX_VIVADO_HLS: C:/Xilinx/Vivado/2020.2
+
+
+GUI allocated memory:	154 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,029 MB
+
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// bz (cr):  Open Project : addNotify
+// Opening Vivado Project: C:\Users\Win10Admin\GithubRepositories\I-DNN\I-DNN\vivado\I-DNN\I-DNN.xpr. Version: Vivado v2020.2 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 101 MB (+103286kb) [00:00:16]
+// [Engine Memory]: 1,029 MB (+927005kb) [00:00:16]
+// [GUI Memory]: 107 MB (+1281kb) [00:00:19]
+// [GUI Memory]: 117 MB (+4841kb) [00:00:19]
+// WARNING: HEventQueue.dispatchEvent() is taking  4841 ms.
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,029 MB. GUI used memory: 57 MB. Current time: 8/25/22, 12:53:48 PM CEST
+// Tcl Message: open_project: Time (s): cpu = 00:00:19 ; elapsed = 00:00:08 . Memory (MB): peak = 1016.918 ; gain = 0.000 
+// Project name: I-DNN; location: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN; part: xc7z020clg484-1
+dismissDialog("Open Project"); // bz
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+// PAPropertyPanels.initPanels (I_DNN.vhd) elapsed time: 0.2s
+// Elapsed time: 17 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, I_DNN(Behavioral) (I_DNN.vhd)]", 2, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, I_DNN(Behavioral) (I_DNN.vhd)]", 2, true, false, false, false, false, true); // D - Double Click - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, I_DNN(Behavioral) (I_DNN.vhd)]", 2, true); // D - Node
+// [GUI Memory]: 132 MB (+9351kb) [00:00:40]
+floatFrame(PAResourceOtoP.PAViews_CODE, "I_DNN.vhd"); // az
+// PAResourceOtoP.PAViews_CODE: Code: float view
+maximizeFrame(PAResourceOtoP.PAViews_CODE, "I_DNN.vhd"); // az
+selectCodeEditor("I_DNN.vhd", 275, 280); // bP
+selectCodeEditor("I_DNN.vhd", 306, 283); // bP
+selectCodeEditor("I_DNN.vhd", 336, 319); // bP
+selectCodeEditor("I_DNN.vhd", 306, 335); // bP
+selectCodeEditor("I_DNN.vhd", 311, 333); // bP
+selectCodeEditor("I_DNN.vhd", 285, 380); // bP
+selectCodeEditor("I_DNN.vhd", 249, 406); // bP
+selectCodeEditor("I_DNN.vhd", 255, 384); // bP
+selectCodeEditor("I_DNN.vhd", 279, 384); // bP
+selectCodeEditor("I_DNN.vhd", 287, 428); // bP
+selectCodeEditor("I_DNN.vhd", 331, 441); // bP
+selectCodeEditor("I_DNN.vhd", 286, 433); // bP
+selectCodeEditor("I_DNN.vhd", 264, 481); // bP
+selectCodeEditor("I_DNN.vhd", 205, 493); // bP
+selectCodeEditor("I_DNN.vhd", 262, 488); // bP
+selectCodeEditor("I_DNN.vhd", 282, 482); // bP
+selectCodeEditor("I_DNN.vhd", 279, 486, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("I_DNN.vhd", 290, 450); // bP
+selectCodeEditor("I_DNN.vhd", 273, 476); // bP
+selectCodeEditor("I_DNN.vhd", 279, 482); // bP
+selectCodeEditor("I_DNN.vhd", 263, 537); // bP
+selectCodeEditor("I_DNN.vhd", 297, 481); // bP
+selectCodeEditor("I_DNN.vhd", 294, 482); // bP
+selectCodeEditor("I_DNN.vhd", 271, 483); // bP
+selectCodeEditor("I_DNN.vhd", 2, 485); // bP
+// Elapsed time: 75 seconds
+selectCodeEditor("I_DNN.vhd", 125, 347); // bP
+selectCodeEditor("I_DNN.vhd", 268, 367); // bP
+// Elapsed time: 53 seconds
+selectCodeEditor("I_DNN.vhd", 268, 367); // bP
+selectCodeEditor("I_DNN.vhd", 92, 391); // bP
+selectCodeEditor("I_DNN.vhd", 104, 381); // bP
+// Elapsed time: 26 seconds
+selectCodeEditor("I_DNN.vhd", 294, 419); // bP
+selectCodeEditor("I_DNN.vhd", 274, 434); // bP
+selectCodeEditor("I_DNN.vhd", 240, 423); // bP
+selectCodeEditor("I_DNN.vhd", 239, 421, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("I_DNN.vhd", 247, 422); // bP
+selectCodeEditor("I_DNN.vhd", 254, 404); // bP
+selectCodeEditor("I_DNN.vhd", 246, 416); // bP
+selectCodeEditor("I_DNN.vhd", 251, 402); // bP
+selectCodeEditor("I_DNN.vhd", 240, 416); // bP
+selectCodeEditor("I_DNN.vhd", 29, 388); // bP
+selectCodeEditor("I_DNN.vhd", 17, 417); // bP
+selectCodeEditor("I_DNN.vhd", 28, 417); // bP
+selectCodeEditor("I_DNN.vhd", 14, 395); // bP
+selectCodeEditor("I_DNN.vhd", 25, 384); // bP
+selectCodeEditor("I_DNN.vhd", 127, 360); // bP
+selectCodeEditor("I_DNN.vhd", 172, 432); // bP
+selectCodeEditor("I_DNN.vhd", 221, 422); // bP
+selectCodeEditor("I_DNN.vhd", 95, 419); // bP
+selectCodeEditor("I_DNN.vhd", 104, 419); // bP
+selectCodeEditor("I_DNN.vhd", 209, 421); // bP
+selectCodeEditor("I_DNN.vhd", 233, 436); // bP
+// Elapsed time: 10 seconds
+selectCodeEditor("I_DNN.vhd", 19, 418); // bP
+selectCodeEditor("I_DNN.vhd", 6, 439); // bP
+selectCodeEditor("I_DNN.vhd", 102, 438); // bP
+selectCodeEditor("I_DNN.vhd", 115, 457); // bP
+selectCodeEditor("I_DNN.vhd", 97, 437); // bP
+selectCodeEditor("I_DNN.vhd", 87, 436); // bP
+selectCodeEditor("I_DNN.vhd", 90, 433, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("I_DNN.vhd", 110, 438); // bP
+selectCodeEditor("I_DNN.vhd", 199, 447); // bP
+selectCodeEditor("I_DNN.vhd", 167, 473); // bP
+// Elapsed time: 38 seconds
+selectCodeEditor("I_DNN.vhd", 98, 521); // bP
+selectCodeEditor("I_DNN.vhd", 75, 526); // bP
+// Elapsed time: 17 seconds
+selectCodeEditor("I_DNN.vhd", 246, 449); // bP
+selectCodeEditor("I_DNN.vhd", 232, 445); // bP
+selectCodeEditor("I_DNN.vhd", 213, 436); // bP
+selectCodeEditor("I_DNN.vhd", 38, 378); // bP
+selectCodeEditor("I_DNN.vhd", 178, 314); // bP
+selectCodeEditor("I_DNN.vhd", 206, 351); // bP
+selectCodeEditor("I_DNN.vhd", 287, 362); // bP
+selectCodeEditor("I_DNN.vhd", 291, 376); // bP
+selectCodeEditor("I_DNN.vhd", 272, 367); // bP
+selectCodeEditor("I_DNN.vhd", 274, 384); // bP
+selectCodeEditor("I_DNN.vhd", 264, 358); // bP
+selectCodeEditor("I_DNN.vhd", 255, 390); // bP
+selectCodeEditor("I_DNN.vhd", 268, 372); // bP
+selectCodeEditor("I_DNN.vhd", 272, 399); // bP
+selectCodeEditor("I_DNN.vhd", 274, 365); // bP
+// Elapsed time: 11 seconds
+selectCodeEditor("I_DNN.vhd", 288, 389); // bP
+selectCodeEditor("I_DNN.vhd", 295, 389); // bP
+selectCodeEditor("I_DNN.vhd", 307, 395); // bP
+selectCodeEditor("I_DNN.vhd", 288, 379); // bP
+// WARNING: HTimer (ActiveMsgMonitor Process Messages Timer) is taking 211ms to process. Increasing delay to 2000 ms.
+// Elapsed time: 18 seconds
+selectCodeEditor("I_DNN.vhd", 194, 351); // bP
+selectCodeEditor("I_DNN.vhd", 254, 390); // bP
+// Elapsed time: 24 seconds
+selectCodeEditor("I_DNN.vhd", 264, 437); // bP
+selectCodeEditor("I_DNN.vhd", 211, 420); // bP
+// Elapsed time: 50 seconds
+selectCodeEditor("I_DNN.vhd", 103, 431); // bP
+// Elapsed time: 16 seconds
+selectCodeEditor("I_DNN.vhd", 72, 403); // bP
+selectCodeEditor("I_DNN.vhd", 102, 470); // bP
+// Elapsed time: 68 seconds
+selectCodeEditor("I_DNN.vhd", 173, 430); // bP
+selectCodeEditor("I_DNN.vhd", 179, 452); // bP
+selectCodeEditor("I_DNN.vhd", 187, 446); // bP
+selectCodeEditor("I_DNN.vhd", 176, 446); // bP
+selectCodeEditor("I_DNN.vhd", 3, 451); // bP
+selectCodeEditor("I_DNN.vhd", 282, 426); // bP
+selectCodeEditor("I_DNN.vhd", 288, 419); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 30, 450); // bP
+selectCodeEditor("I_DNN.vhd", 0, 469); // bP
+selectCodeEditor("I_DNN.vhd", 29, 487); // bP
+selectCodeEditor("I_DNN.vhd", 303, 437); // bP
+selectCodeEditor("I_DNN.vhd", 173, 140); // bP
+selectCodeEditor("I_DNN.vhd", 254, 119); // bP
+selectCodeEditor("I_DNN.vhd", 281, 428); // bP
+selectCodeEditor("I_DNN.vhd", 281, 437); // bP
+selectCodeEditor("I_DNN.vhd", 199, 455); // bP
+// [GUI Memory]: 142 MB (+3321kb) [00:10:06]
+selectCodeEditor("I_DNN.vhd", 227, 444); // bP
+selectCodeEditor("I_DNN.vhd", 230, 434); // bP
+// Elapsed time: 11 seconds
+selectCodeEditor("I_DNN.vhd", 346, 524); // bP
+selectCodeEditor("I_DNN.vhd", 311, 510); // bP
+selectCodeEditor("I_DNN.vhd", 325, 501); // bP
+selectCodeEditor("I_DNN.vhd", 335, 503); // bP
+selectCodeEditor("I_DNN.vhd", 338, 508); // bP
+selectCodeEditor("I_DNN.vhd", 346, 516); // bP
+selectCodeEditor("I_DNN.vhd", 322, 466); // bP
+selectCodeEditor("I_DNN.vhd", 356, 466); // bP
+selectCodeEditor("I_DNN.vhd", 286, 474); // bP
+selectCodeEditor("I_DNN.vhd", 291, 476); // bP
+selectCodeEditor("I_DNN.vhd", 297, 483); // bP
+selectCodeEditor("I_DNN.vhd", 306, 480); // bP
+// Elapsed time: 10 seconds
+selectCodeEditor("I_DNN.vhd", 276, 423); // bP
+selectCodeEditor("I_DNN.vhd", 295, 408); // bP
+selectCodeEditor("I_DNN.vhd", 214, 431); // bP
+selectCodeEditor("I_DNN.vhd", 219, 469); // bP
+selectCodeEditor("I_DNN.vhd", 309, 472); // bP
+selectCodeEditor("I_DNN.vhd", 98, 420); // bP
+selectCodeEditor("I_DNN.vhd", 306, 339); // bP
+selectCodeEditor("I_DNN.vhd", 74, 521); // bP
+selectCodeEditor("I_DNN.vhd", 3, 500); // bP
+selectCodeEditor("I_DNN.vhd", 13, 503); // bP
+selectCodeEditor("I_DNN.vhd", 7, 502); // bP
+selectCodeEditor("I_DNN.vhd", 79, 517); // bP
+selectCodeEditor("I_DNN.vhd", 120, 523); // bP
+selectCodeEditor("I_DNN.vhd", 79, 281); // bP
+// Elapsed time: 108 seconds
+selectCodeEditor("I_DNN.vhd", 94, 381); // bP
+selectCodeEditor("I_DNN.vhd", 88, 369); // bP
+// Elapsed time: 153 seconds
+selectCodeEditor("I_DNN.vhd", 310, 488); // bP
+selectCodeEditor("I_DNN.vhd", 300, 484); // bP
+selectCodeEditor("I_DNN.vhd", 292, 485); // bP
+selectCodeEditor("I_DNN.vhd", 288, 486, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("I_DNN.vhd", 288, 482); // bP
+selectCodeEditor("I_DNN.vhd", 285, 488); // bP
+selectCodeEditor("I_DNN.vhd", 520, 502); // bP
+selectCodeEditor("I_DNN.vhd", 523, 495); // bP
+selectCodeEditor("I_DNN.vhd", 528, 487); // bP
+selectCodeEditor("I_DNN.vhd", 318, 295); // bP
+selectCodeEditor("I_DNN.vhd", 65, 109); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// WARNING: HTimer (FileMgr Design Graph Update Timer) is taking 455ms to process. Increasing delay to 3000 ms.
+selectCodeEditor("I_DNN.vhd", 266, 117); // bP
+selectCodeEditor("I_DNN.vhd", 220, 104); // bP
+selectCodeEditor("I_DNN.vhd", 178, 286); // bP
+selectCodeEditor("I_DNN.vhd", 491, 291); // bP
+selectCodeEditor("I_DNN.vhd", 499, 277); // bP
+// Elapsed time: 31 seconds
+selectCodeEditor("I_DNN.vhd", 930, 534); // bP
+// Elapsed time: 125 seconds
+selectCodeEditor("I_DNN.vhd", 945, 391); // bP
+selectCodeEditor("I_DNN.vhd", 948, 384); // bP
+selectCodeEditor("I_DNN.vhd", 499, 405); // bP
+selectCodeEditor("I_DNN.vhd", 497, 421); // bP
+selectCodeEditor("I_DNN.vhd", 365, 442); // bP
+selectCodeEditor("I_DNN.vhd", 369, 463); // bP
+selectCodeEditor("I_DNN.vhd", 370, 492); // bP
+selectCodeEditor("I_DNN.vhd", 0, 328); // bP
+selectCodeEditor("I_DNN.vhd", 107, 320); // bP
+// Elapsed time: 12 seconds
+selectCodeEditor("I_DNN.vhd", 268, 195); // bP
+selectCodeEditor("I_DNN.vhd", 287, 192); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 11 seconds
+selectCodeEditor("I_DNN.vhd", 120, 268); // bP
+selectCodeEditor("I_DNN.vhd", 145, 331); // bP
+selectCodeEditor("I_DNN.vhd", 141, 338); // bP
+// Elapsed time: 10 seconds
+selectCodeEditor("I_DNN.vhd", 241, 347); // bP
+selectCodeEditor("I_DNN.vhd", 272, 379); // bP
+selectCodeEditor("I_DNN.vhd", 351, 336); // bP
+// Elapsed time: 21 seconds
+selectCodeEditor("I_DNN.vhd", 168, 337); // bP
+selectCodeEditor("I_DNN.vhd", 71, 361); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 34, 361); // bP
+selectCodeEditor("I_DNN.vhd", 29, 367); // bP
+selectCodeEditor("I_DNN.vhd", 29, 382); // bP
+selectCodeEditor("I_DNN.vhd", 123, 444); // bP
+selectCodeEditor("I_DNN.vhd", 158, 419); // bP
+selectCodeEditor("I_DNN.vhd", 341, 351); // bP
+selectCodeEditor("I_DNN.vhd", 207, 360); // bP
+selectCodeEditor("I_DNN.vhd", 239, 336); // bP
+selectCodeEditor("I_DNN.vhd", 240, 371); // bP
+selectCodeEditor("I_DNN.vhd", 78, 331); // bP
+selectCodeEditor("I_DNN.vhd", 286, 304); // bP
+selectCodeEditor("I_DNN.vhd", 379, 339); // bP
+selectCodeEditor("I_DNN.vhd", 387, 349); // bP
+selectCodeEditor("I_DNN.vhd", 311, 189); // bP
+selectCodeEditor("I_DNN.vhd", 320, 173); // bP
+selectCodeEditor("I_DNN.vhd", 274, 432); // bP
+selectCodeEditor("I_DNN.vhd", 273, 424); // bP
+selectCodeEditor("I_DNN.vhd", 311, 74); // bP
+selectCodeEditor("I_DNN.vhd", 319, 76); // bP
+selectCodeEditor("I_DNN.vhd", 97, 323); // bP
+selectCodeEditor("I_DNN.vhd", 101, 362); // bP
+selectCodeEditor("I_DNN.vhd", 97, 317); // bP
+selectCodeEditor("I_DNN.vhd", 99, 325); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 287, 128); // bP
+selectCodeEditor("I_DNN.vhd", 322, 127); // bP
+selectCodeEditor("I_DNN.vhd", 127, 391); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 66, 402); // bP
+selectCodeEditor("I_DNN.vhd", 58, 401); // bP
+selectCodeEditor("I_DNN.vhd", 298, 404); // bP
+selectCodeEditor("I_DNN.vhd", 301, 408, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("I_DNN.vhd", 307, 408); // bP
+selectCodeEditor("I_DNN.vhd", 315, 455); // bP
+selectCodeEditor("I_DNN.vhd", 166, 426); // bP
+selectCodeEditor("I_DNN.vhd", 172, 444); // bP
+// Elapsed time: 10 seconds
+selectCodeEditor("I_DNN.vhd", 182, 348); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("I_DNN.vhd", 277, 341); // bP
+selectCodeEditor("I_DNN.vhd", 271, 420); // bP
+selectCodeEditor("I_DNN.vhd", 0, 400); // bP
+selectCodeEditor("I_DNN.vhd", 1, 427); // bP
+selectCodeEditor("I_DNN.vhd", 2, 432); // bP
+selectCodeEditor("I_DNN.vhd", 1, 399); // bP
+selectCodeEditor("I_DNN.vhd", 3, 400); // bP
+selectCodeEditor("I_DNN.vhd", 0, 428); // bP
+selectCodeEditor("I_DNN.vhd", 1, 433); // bP
+selectCodeEditor("I_DNN.vhd", 1, 399); // bP
+selectCodeEditor("I_DNN.vhd", 1, 399); // bP
+selectCodeEditor("I_DNN.vhd", 0, 436); // bP
+selectCodeEditor("I_DNN.vhd", 49, 451); // bP
+// Elapsed time: 10 seconds
+selectCodeEditor("I_DNN.vhd", 270, 111); // bP
+selectCodeEditor("I_DNN.vhd", 306, 110); // bP
+// Elapsed time: 170 seconds
+selectCodeEditor("I_DNN.vhd", 348, 389); // bP
+// Elapsed time: 112 seconds
+selectCodeEditor("I_DNN.vhd", 179, 329); // bP
+selectCodeEditor("I_DNN.vhd", 217, 322); // bP
+selectCodeEditor("I_DNN.vhd", 187, 326); // bP
+selectCodeEditor("I_DNN.vhd", 155, 399); // bP
+selectCodeEditor("I_DNN.vhd", 287, 395); // bP
+selectCodeEditor("I_DNN.vhd", 298, 402); // bP
+selectCodeEditor("I_DNN.vhd", 271, 275); // bP
+selectCodeEditor("I_DNN.vhd", 333, 422); // bP
+selectCodeEditor("I_DNN.vhd", 333, 417); // bP
+selectCodeEditor("I_DNN.vhd", 335, 402); // bP
+selectCodeEditor("I_DNN.vhd", 270, 162); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+selectCodeEditor("I_DNN.vhd", 190, 396); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 52, 398); // bP
+selectCodeEditor("I_DNN.vhd", 293, 415); // bP
+selectCodeEditor("I_DNN.vhd", 292, 442); // bP
+// Elapsed time: 12 seconds
+selectCodeEditor("I_DNN.vhd", 278, 120); // bP
+selectCodeEditor("I_DNN.vhd", 356, 132); // bP
+selectCodeEditor("I_DNN.vhd", 299, 110); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+selectCodeEditor("I_DNN.vhd", 35, 388); // bP
+selectCodeEditor("I_DNN.vhd", 2, 397); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 291, 211); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+selectCodeEditor("I_DNN.vhd", 247, 446); // bP
+selectCodeEditor("I_DNN.vhd", 294, 422); // bP
+selectCodeEditor("I_DNN.vhd", 298, 443); // bP
+selectCodeEditor("I_DNN.vhd", 305, 428); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 50, 456); // bP
+selectCodeEditor("I_DNN.vhd", 51, 445); // bP
+selectCodeEditor("I_DNN.vhd", 56, 451); // bP
+selectCodeEditor("I_DNN.vhd", 302, 460); // bP
+selectCodeEditor("I_DNN.vhd", 306, 485); // bP
+selectCodeEditor("I_DNN.vhd", 314, 160); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+selectCodeEditor("I_DNN.vhd", 288, 497); // bP
+selectCodeEditor("I_DNN.vhd", 288, 488); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 269, 212); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+selectCodeEditor("I_DNN.vhd", 294, 438); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 57, 453); // bP
+selectCodeEditor("I_DNN.vhd", 437, 466); // bP
+selectCodeEditor("I_DNN.vhd", 222, 480); // bP
+selectCodeEditor("I_DNN.vhd", 76, 337); // bP
+// Elapsed time: 17 seconds
+selectCodeEditor("I_DNN.vhd", 138, 95); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("I_DNN.vhd", 162, 62); // bP
+selectCodeEditor("I_DNN.vhd", 165, 61); // bP
+selectCodeEditor("I_DNN.vhd", 148, 78); // bP
+selectCodeEditor("I_DNN.vhd", 138, 65); // bP
+selectCodeEditor("I_DNN.vhd", 138, 65, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("I_DNN.vhd", 127, 62); // bP
+// Elapsed time: 13 seconds
+selectCodeEditor("I_DNN.vhd", 75, 68); // bP
+selectCodeEditor("I_DNN.vhd", 68, 64); // bP
+selectCodeEditor("I_DNN.vhd", 461, 313); // bP
+selectCodeEditor("I_DNN.vhd", 418, 289); // bP
+// Elapsed time: 15 seconds
+selectCodeEditor("I_DNN.vhd", 316, 417); // bP
+selectCodeEditor("I_DNN.vhd", 126, 67); // bP
+selectCodeEditor("I_DNN.vhd", 215, 113); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("I_DNN.vhd", 249, 63); // bP
+selectCodeEditor("I_DNN.vhd", 198, 357); // bP
+selectCodeEditor("I_DNN.vhd", 172, 343); // bP
+selectCodeEditor("I_DNN.vhd", 162, 330); // bP
+selectCodeEditor("I_DNN.vhd", 165, 551); // bP
+selectCodeEditor("I_DNN.vhd", 152, 537); // bP
+selectCodeEditor("I_DNN.vhd", 175, 536); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+// HMemoryUtils.trashcanNow. Engine heap size: 1,029 MB. GUI used memory: 78 MB. Current time: 8/25/22, 1:23:49 PM CEST
+// Elapsed time: 112 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, I_DNN(Behavioral) (I_DNN.vhd)]", 2, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, I_DNN(Behavioral) (I_DNN.vhd), fsm_nv_reg_db_comp : fsm_nv_reg_db(Behavioral) (fsm_nv_reg_db.vhd)]", 3, false, false, false, false, false, true); // D - Double Click
+// Elapsed time: 82 seconds
+selectCodeEditor("I_DNN.vhd", 227, 505); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+// Elapsed time: 478 seconds
+selectCodeEditor("I_DNN.vhd", 117, 549); // bP
+selectCodeEditor("I_DNN.vhd", 110, 571); // bP
+// Elapsed time: 18 seconds
+selectCodeEditor("I_DNN.vhd", 87, 346); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 107, 148); // bP
+selectCodeEditor("I_DNN.vhd", 138, 146); // bP
+selectCodeEditor("I_DNN.vhd", 208, 148); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 39 seconds
+selectCodeEditor("I_DNN.vhd", 256, 403); // bP
+selectCodeEditor("I_DNN.vhd", 212, 423); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 10 seconds
+selectCodeEditor("I_DNN.vhd", 282, 496); // bP
+// Elapsed time: 38 seconds
+selectCodeEditor("I_DNN.vhd", 83, 40); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 21 seconds
+selectCodeEditor("I_DNN.vhd", 116, 365); // bP
+selectCodeEditor("I_DNN.vhd", 125, 324); // bP
+// Elapsed time: 15 seconds
+selectCodeEditor("I_DNN.vhd", 220, 331); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 22 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, I_DNN(Behavioral) (I_DNN.vhd), soft_max_comp : SOFT_MAX(Behavioral) (SOFT_MAX.vhd)]", 10, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, I_DNN(Behavioral) (I_DNN.vhd), soft_max_comp : SOFT_MAX(Behavioral) (SOFT_MAX.vhd)]", 10, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, I_DNN(Behavioral) (I_DNN.vhd), soft_max_comp : SOFT_MAX(Behavioral) (SOFT_MAX.vhd)]", 10, false, false, false, false, false, true); // D - Double Click
+selectCodeEditor("SOFT_MAX.vhd", 293, 68); // bP
+selectCodeEditor("SOFT_MAX.vhd", 285, 62); // bP
+selectCodeEditor("SOFT_MAX.vhd", 186, 116); // bP
+typeControlKey((HResource) null, "SOFT_MAX.vhd", 'c'); // bP
+selectCodeEditor("SOFT_MAX.vhd", 483, 76); // bP
+selectCodeEditor("SOFT_MAX.vhd", 447, 61); // bP
+selectCodeEditor("SOFT_MAX.vhd", 442, 58); // bP
+// Elapsed time: 42 seconds
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "Libraries", 1); // i
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL 2008, xil_defaultlib, TEST_ARCHITECTURE_PACKAGE.vhd]", 11, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL 2008, xil_defaultlib, TEST_ARCHITECTURE_PACKAGE.vhd]", 11, false, false, false, false, false, true); // D - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, VHDL 2008, xil_defaultlib, TEST_ARCHITECTURE_PACKAGE.vhd]", 11, false); // D
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 436, 127); // bP
+typeControlKey((HResource) null, "TEST_ARCHITECTURE_PACKAGE.vhd", 'v'); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 190, 146); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 102, 108); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 65, 132); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 68, 129); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 84, 148); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 183, 161); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 61 seconds
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 186, 41); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 179, 47); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 233, 102); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 112, 119); // bP
+// TclEventType: DG_GRAPH_STALE
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 0, 147); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 0, 147); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 3, 48); // bP
+// Elapsed time: 35 seconds
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 0, 39); // bP
+// Elapsed time: 23 seconds
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 2, 145); // bP
+// Elapsed time: 57 seconds
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 144); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 8, 48); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 40, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 40); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 40); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 30, 63); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 5, 44); // bP
+// Elapsed time: 77 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "SOFT_MAX.vhd", 1); // m
+// Elapsed time: 13 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "TEST_ARCHITECTURE_PACKAGE.vhd", 2); // m
+// Elapsed time: 64 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "SOFT_MAX.vhd", 1); // m
+selectCodeEditor("SOFT_MAX.vhd", 142, 141); // bP
+selectCodeEditor("SOFT_MAX.vhd", 103, 131); // bP
+selectCodeEditor("SOFT_MAX.vhd", 45, 30); // bP
+selectCodeEditor("SOFT_MAX.vhd", 47, 40); // bP
+selectCodeEditor("SOFT_MAX.vhd", 45, 23); // bP
+selectCodeEditor("SOFT_MAX.vhd", 66, 52); // bP
+selectCodeEditor("SOFT_MAX.vhd", 54, 44); // bP
+// Elapsed time: 11 seconds
+selectCodeEditor("SOFT_MAX.vhd", 177, 119); // bP
+// Elapsed time: 10 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "TEST_ARCHITECTURE_PACKAGE.vhd", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "SOFT_MAX.vhd", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "TEST_ARCHITECTURE_PACKAGE.vhd", 2); // m
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 151, 93); // bP
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "SOFT_MAX.vhd", 1); // m
+// Elapsed time: 18 seconds
+selectCodeEditor("SOFT_MAX.vhd", 215, 93); // bP
+selectCodeEditor("SOFT_MAX.vhd", 239, 77); // bP
+selectCodeEditor("SOFT_MAX.vhd", 259, 82); // bP
+selectCodeEditor("SOFT_MAX.vhd", 257, 90); // bP
+selectCodeEditor("SOFT_MAX.vhd", 250, 72); // bP
+selectCodeEditor("SOFT_MAX.vhd", 256, 85); // bP
+selectCodeEditor("SOFT_MAX.vhd", 255, 75); // bP
+selectCodeEditor("SOFT_MAX.vhd", 251, 96); // bP
+selectCodeEditor("SOFT_MAX.vhd", 276, 119); // bP
+selectCodeEditor("SOFT_MAX.vhd", 279, 114); // bP
+selectCodeEditor("SOFT_MAX.vhd", 370, 109); // bP
+selectCodeEditor("SOFT_MAX.vhd", 60, 96); // bP
+// Elapsed time: 19 seconds
+selectCodeEditor("SOFT_MAX.vhd", 335, 43); // bP
+// Elapsed time: 30 seconds
+selectCodeEditor("SOFT_MAX.vhd", 226, 126); // bP
+selectCodeEditor("SOFT_MAX.vhd", 197, 107); // bP
+selectCodeEditor("SOFT_MAX.vhd", 125, 184); // bP
+// TclEventType: FILE_SET_CHANGE
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "TEST_ARCHITECTURE_PACKAGE.vhd", 2); // m
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 207, 87); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 81, 128); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 3, 149); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 2, 145); // bP
+// TclEventType: DG_GRAPH_STALE
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 4, 41); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 0, 39); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 2, 41); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 6, 143); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 148); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 148); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 0, 43, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 4, 43); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 0, 43); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 2, 40); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 144); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 144); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 0, 47); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 0, 47, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 141, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 141); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 141); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 0, 42); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 0, 42); // bP
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 1, 148); // bP
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "SOFT_MAX.vhd", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "TEST_ARCHITECTURE_PACKAGE.vhd", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "SOFT_MAX.vhd", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "TEST_ARCHITECTURE_PACKAGE.vhd", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "SOFT_MAX.vhd", 1); // m
+selectCodeEditor("SOFT_MAX.vhd", 74, 69); // bP
+selectCodeEditor("SOFT_MAX.vhd", 73, 58); // bP
+selectCodeEditor("SOFT_MAX.vhd", 72, 68); // bP
+selectCodeEditor("SOFT_MAX.vhd", 67, 63); // bP
+selectCodeEditor("SOFT_MAX.vhd", 47, 111); // bP
+// Elapsed time: 10 seconds
+selectCodeEditor("SOFT_MAX.vhd", 210, 89); // bP
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "TEST_ARCHITECTURE_PACKAGE.vhd", 2); // m
+selectCodeEditor("TEST_ARCHITECTURE_PACKAGE.vhd", 119, 119); // bP
+// Elapsed time: 254 seconds
+selectCodeEditor("I_DNN.vhd", 832, 358); // bP
+typeControlKey(null, null, 'z');
+// Elapsed time: 15 seconds
+selectCodeEditor("I_DNN.vhd", 308, 253); // bP
+selectCodeEditor("I_DNN.vhd", 267, 263); // bP
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 44 seconds
+selectCodeEditor("I_DNN.vhd", 281, 292); // bP
+selectCodeEditor("I_DNN.vhd", 275, 284); // bP
+selectCodeEditor("I_DNN.vhd", 272, 279); // bP
+selectCodeEditor("I_DNN.vhd", 224, 276); // bP
+selectCodeEditor("I_DNN.vhd", 41, 282); // bP
+// HMemoryUtils.trashcanNow. Engine heap size: 1,029 MB. GUI used memory: 72 MB. Current time: 8/25/22, 1:53:49 PM CEST
+selectCodeEditor("I_DNN.vhd", 189, 387); // bP
+selectCodeEditor("I_DNN.vhd", 190, 389, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("I_DNN.vhd", 194, 396); // bP
+// Elapsed time: 30 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "SOFT_MAX.vhd", 1); // m
+// Elapsed time: 26 seconds
+selectCodeEditor("I_DNN.vhd", 270, 244); // bP
+selectCodeEditor("I_DNN.vhd", 400, 157); // bP
+// Elapsed time: 30 seconds
+selectCodeEditor("I_DNN.vhd", 189, 301); // bP
+selectCodeEditor("I_DNN.vhd", 393, 267); // bP
+// Elapsed time: 20 seconds
+selectCodeEditor("I_DNN.vhd", 114, 340); // bP
+selectCodeEditor("I_DNN.vhd", 519, 340); // bP
+selectCodeEditor("I_DNN.vhd", 282, 345); // bP
+selectCodeEditor("I_DNN.vhd", 0, 315); // bP
+selectCodeEditor("I_DNN.vhd", 195, 352); // bP
+selectCodeEditor("I_DNN.vhd", 191, 353); // bP
+selectCodeEditor("I_DNN.vhd", 191, 353); // bP
+selectCodeEditor("I_DNN.vhd", 180, 399); // bP
+selectCodeEditor("I_DNN.vhd", 186, 401); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("I_DNN.vhd", 194, 253); // bP
+selectCodeEditor("I_DNN.vhd", 190, 248); // bP
+selectCodeEditor("I_DNN.vhd", 333, 332); // bP
+selectCodeEditor("I_DNN.vhd", 361, 349); // bP
+selectCodeEditor("I_DNN.vhd", 211, 363); // bP
+// TclEventType: DG_GRAPH_STALE
+// Elapsed time: 10 seconds
+selectCodeEditor("I_DNN.vhd", 1, 110); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+selectCodeEditor("I_DNN.vhd", 22, 402); // bP
+selectCodeEditor("I_DNN.vhd", 3, 421); // bP
+selectCodeEditor("I_DNN.vhd", 326, 483); // bP
+selectCodeEditor("I_DNN.vhd", 232, 487); // bP
+selectCodeEditor("I_DNN.vhd", 223, 502); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+// Elapsed time: 86 seconds
+selectCodeEditor("I_DNN.vhd", 356, 316); // bP
+selectCodeEditor("I_DNN.vhd", 223, 386); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+// Elapsed time: 52 seconds
+selectCodeEditor("I_DNN.vhd", 110, 395); // bP
+selectCodeEditor("I_DNN.vhd", 109, 392, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("I_DNN.vhd", 103, 383); // bP
+selectCodeEditor("I_DNN.vhd", 101, 380, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("I_DNN.vhd", 101, 380); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 12 seconds
+typeControlKey(null, null, 'z');
+// Elapsed time: 29 seconds
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 84, 380); // bP
+selectCodeEditor("I_DNN.vhd", 141, 385); // bP
+selectCodeEditor("I_DNN.vhd", 147, 269); // bP
+selectCodeEditor("I_DNN.vhd", 200, 255); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+selectCodeEditor("I_DNN.vhd", 461, 299); // bP
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+typeControlKey(null, null, 'z');
+selectCodeEditor("I_DNN.vhd", 1272, 310); // bP
+selectCodeEditor("I_DNN.vhd", 133, 275); // bP
+selectCodeEditor("I_DNN.vhd", 132, 263); // bP
+selectCodeEditor("I_DNN.vhd", 140, 358); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 114, 494); // bP
+selectCodeEditor("I_DNN.vhd", 71, 421); // bP
+selectCodeEditor("I_DNN.vhd", 73, 446); // bP
+selectCodeEditor("I_DNN.vhd", 75, 435); // bP
+selectCodeEditor("I_DNN.vhd", 1, 332); // bP
+selectCodeEditor("I_DNN.vhd", 85, 370); // bP
+// Elapsed time: 99 seconds
+selectCodeEditor("I_DNN.vhd", 284, 483); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'c'); // bP
+selectCodeEditor("I_DNN.vhd", 104, 511); // bP
+selectCodeEditor("I_DNN.vhd", 112, 515); // bP
+typeControlKey((HResource) null, "I_DNN.vhd", 'v'); // bP
+selectCodeEditor("I_DNN.vhd", 50, 515); // bP
+selectCodeEditor("I_DNN.vhd", 55, 516); // bP
+selectCodeEditor("I_DNN.vhd", 185, 534); // bP
+selectCodeEditor("I_DNN.vhd", 198, 538); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("I_DNN.vhd", 344, 549); // bP
+selectCodeEditor("I_DNN.vhd", 320, 537); // bP
+selectCodeEditor("I_DNN.vhd", 306, 533); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("I_DNN.vhd", 265, 409); // bP
+selectCodeEditor("I_DNN.vhd", 44, 453); // bP
+selectCodeEditor("I_DNN.vhd", 38, 450); // bP
+selectCodeEditor("I_DNN.vhd", 31, 450); // bP
+selectCodeEditor("I_DNN.vhd", 127, 447); // bP
+// Elapsed time: 19 seconds
+selectCodeEditor("I_DNN.vhd", 366, 501); // bP
+selectCodeEditor("I_DNN.vhd", 283, 520); // bP
+selectCodeEditor("I_DNN.vhd", 309, 507); // bP
+// WARNING: HEventQueue.dispatchEvent() is taking  1463 ms.
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 24 seconds
+selectCodeEditor("I_DNN.vhd", 250, 532); // bP
+selectCodeEditor("I_DNN.vhd", 259, 534); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("I_DNN.vhd", 1262, 574); // bP
+selectCodeEditor("I_DNN.vhd", 236, 210); // bP
+selectCodeEditor("I_DNN.vhd", 133, 213); // bP
+selectCodeEditor("I_DNN.vhd", 96, 196); // bP
+selectCodeEditor("I_DNN.vhd", 1, 216); // bP
+// WARNING: HEventQueue.dispatchEvent() is taking  1094 ms.
+selectCodeEditor("I_DNN.vhd", 95, 200); // bP
+// Elapsed time: 22 seconds
+selectCodeEditor("I_DNN.vhd", 301, 264); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 10 seconds
+selectCodeEditor("I_DNN.vhd", 322, 230); // bP
+selectCodeEditor("I_DNN.vhd", 322, 230); // bP
+selectCodeEditor("I_DNN.vhd", 323, 262); // bP
+selectCodeEditor("I_DNN.vhd", 291, 253); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE

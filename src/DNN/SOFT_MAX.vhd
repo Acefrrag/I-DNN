@@ -47,12 +47,13 @@ n_power_reset: in std_logic;
 data_in_sel: out std_logic_vector(natural(ceil(log2(real(num_inputs))))-1 downto 0);
 out_v: out std_logic;
 data_out: out sfixed(neuron_int_width-1 downto -neuron_frac_width);
-digit_out: out integer range 0 to 9
+digit_out: out integer range 0 to 9;
+softmax_state: out softmax_state_t
 );
 end SOFT_MAX;
 
 architecture Behavioral of SOFT_MAX is
-type softmax_state is (power_off, idle, active, finished);
+
 --Comparator signals
 signal temp_max: sfixed(neuron_int_width-1 downto -neuron_frac_width):=(others => '0');
 signal temp_max_addr: integer range 0 to 9;
@@ -64,12 +65,13 @@ signal rst: std_logic := '0';
 signal addr: std_logic_vector(natural(ceil(log2(real(num_inputs))))-1 downto 0):=(others=>'0');
 signal addr_TC: std_logic := '0';
 --FSM
-signal pr_state, nx_state: softmax_state := idle;
+signal pr_state, nx_state: softmax_state_t := idle;
 signal digit_out_internal: integer range 0 to 9:=0;
 signal data_out_internal: sfixed(neuron_int_width-1 downto -neuron_frac_width):=(others => '0');
 signal reg_en: std_logic:='0';
 begin
 
+softmax_state <= pr_state;
 out_v <= data_v;
 rst <= not(n_power_reset);
 digit_out <= digit_out_internal;

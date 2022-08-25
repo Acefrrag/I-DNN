@@ -41,10 +41,10 @@ entity power_approximation is
         );
     port(
         sys_clk                 : in std_logic; -- system clock
-        power_state_en          : in std_logic_vector(NUM_PWR_STATES - 1 downto 0); -- array of power state that are enable
-        power_counter_val       : out power_approx_counter_type(NUM_PWR_STATES - 1 downto 0) := (others => 0); -- array of state counter values
-        power_counter_full      : out std_logic_vector(NUM_PWR_STATES - 1 downto 0) := (others => '0'); -- array of terminal counters 
-        power_counter_reset     : in std_logic_vector(NUM_PWR_STATES - 1 downto 0) -- array to reset counters
+        power_state_en          : in std_logic_vector(pwr_states_num - 1 downto 0); -- array of power state that are enable
+        power_counter_val       : out power_approx_counter_type(pwr_states_num - 1 downto 0) := (others => 0); -- array of state counter values
+        power_counter_full      : out std_logic_vector(pwr_states_num - 1 downto 0) := (others => '0'); -- array of terminal counters 
+        power_counter_reset     : in std_logic_vector(pwr_states_num - 1 downto 0) -- array to reset counters
     );
 end power_approximation;
 
@@ -71,7 +71,7 @@ architecture Behavioral of power_approximation is
 begin
     
     -- counter generator
-    GEN_COUNTERS : for i in 0 to PWR_STATES_NUM - 1 generate 
+    GEN_COUNTERS : for i in 0 to pwr_states_num - 1 generate 
         COUTER : counter 
             generic map(
                 MAX         => 2**PWR_APPROX_COUNTER_NUM_BITS-1,

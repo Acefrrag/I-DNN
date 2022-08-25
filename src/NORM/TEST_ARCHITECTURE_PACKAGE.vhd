@@ -45,6 +45,12 @@ package TEST_ARCHITECTURE_PACKAGE is
     
     
     -- States of a general finate state machine for fsm_nv_reg
+    type softmax_state_t is(
+    power_off,
+    idle,
+    active,
+    finished
+    );
     type fsm_nv_reg_state_t is(
         shutdown_s,
         init_s,

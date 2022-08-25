@@ -2,37 +2,12 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Thu Aug 11 18:10:50 2022
-# Process ID: 11412
+# Start of session at: Thu Aug 25 12:53:22 2022
+# Process ID: 13940
 # Current directory: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5384 C:\Users\Win10Admin\GithubRepositories\I-DNN\I-DNN\vivado\I-DNN\I-DNN.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12176 C:\Users\Win10Admin\GithubRepositories\I-DNN\I-DNN\vivado\I-DNN\I-DNN.xpr
 # Log file: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/vivado.log
 # Journal file: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I-DNN.xpr
-launch_simulation
-open_wave_config C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/test_sfixed_tb_behav.wcfg
-source I_layer_tb.tcl
-open_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I_layer_tb_behav.wcfg}
-current_wave_config {I_layer_tb_behav.wcfg}
-add_wave {{/I_layer_tb/I_layer_comp/I_fsm_layer_comp/fsm_state_r}} 
-current_wave_config {I_layer_tb_behav.wcfg}
-add_wave {{/I_layer_tb/I_layer_comp/I_fsm_layer_comp/state_backup_rec}} 
-relaunch_sim
-save_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I_layer_tb_behav.wcfg}
-relaunch_sim
-relaunch_sim
-current_wave_config {I_layer_tb_behav.wcfg}
-add_wave {{/I_layer_tb/nv_reg_comp/BRAM/ram_name}} 
-relaunch_sim
-run 3000 ns
-relaunch_sim
-relaunch_sim
-relaunch_sim
-run 3000 ns
-relaunch_sim
-run 3000 ns
-run 3000 ns
-save_wave_config {C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/vivado/I-DNN/I_layer_tb_behav.wcfg}
-close_sim

@@ -3,8 +3,6 @@ Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
 Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 63630931c3274f1193fa45ad0cc3506d --debug typical --relax --mt 2 -L xil_defaultlib -L ieee_proposed -L secureip --snapshot I_DNN_tb_behav xil_defaultlib.I_DNN_tb -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
-WARNING: [VRFC 10-1537] value 32 is out of target constraint range 0 to 24 [C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/I_layer.vhd:518]
-WARNING: [VRFC 10-1537] value 32 is out of target constraint range 0 to 14 [C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/I_layer.vhd:518]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -166,6 +164,13 @@ Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max
 Compiling architecture behavioral of entity xil_defaultlib.power_approximation [\power_approximation(pwr_states_...]
 Compiling architecture behavioral of entity xil_defaultlib.power_approximation [power_approximation_default]
 Compiling architecture behavioral of entity xil_defaultlib.power_approximation [\power_approximation(pwr_states_...]
+Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_ROM [\pwr_consumption_val_ROM(num_ele...]
+Compiling architecture behavioral of entity xil_defaultlib.mult [mult_default]
+Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(pwr_states_num...]
+Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_ROM [\pwr_consumption_val_ROM(num_ele...]
+Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(type_device="n...]
+Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_ROM [\pwr_consumption_val_ROM(num_ele...]
+Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(pwr_states_num...]
 Compiling architecture behavioral of entity xil_defaultlib.I_DNN [i_dnn_default]
 Compiling architecture behavioral of entity xil_defaultlib.i_dnn_tb
 Built simulation snapshot I_DNN_tb_behav

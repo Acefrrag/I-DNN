@@ -36,14 +36,15 @@ use work.NVME_FRAMEWORK_PACKAGE.all;
 
 entity instant_pwr_calc is
     generic(
-        pwr_states_num              :natural:=3
+        pwr_states_num              :natural:=3;
+        type_device                 :string:="layer"
     );
     port (
         sys_clk                 : in std_logic; -- system clock
         start_evaluation        : in std_logic; -- start evaluation signal 
         evaluation_ready        : out std_logic; -- evaluation ready singal 
-        num_state_to_evaluate   : in integer range 0 to pwr_states_num; -- number of state to evaluate
-        input_counter_val       : in power_approx_counter_type(NUM_PWR_STATES -1 downto 0); -- array of each state counter
+        num_state_to_evaluate   : in integer range 0 to pwr_states_num-1; -- number of state to evaluate
+        input_counter_val       : in power_approx_counter_type(pwr_states_num -1 downto 0); -- array of each state counter
         output_data             : out std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0) -- output data
     );
 end instant_pwr_calc;
@@ -53,8 +54,9 @@ architecture Behavioral of instant_pwr_calc is
     --- ROM component declaration ---
     component PWR_CONSUMPTION_VAL_ROM is
         generic(
-            NUM_ELEMENTS_ROM : integer;
-            MAX_VAL         : integer
+            NUM_ELEMENTS_ROM    : integer;
+            MAX_VAL             : integer;
+            type_device         : string:="layer"
         );
         port(	
             clk       : in	std_logic;
@@ -64,17 +66,11 @@ architecture Behavioral of instant_pwr_calc is
     end component;
     
     --- multiplier component declaration ---
-    COMPONENT xbip_multadd_0
+    COMPONENT mult
         PORT (
-            CLK         : IN STD_LOGIC;
-            CE          : IN STD_LOGIC;
-            SCLR        : IN STD_LOGIC;
             A           : IN STD_LOGIC_VECTOR(PWR_APPROX_COUNTER_NUM_BITS - 1 DOWNTO 0);
             B           : IN STD_LOGIC_VECTOR(PWR_CONSUMPTION_ROM_BITS - 1 DOWNTO 0);
-            C           : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-            SUBTRACT    : IN STD_LOGIC;
-            P           : OUT STD_LOGIC_VECTOR(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS DOWNTO 0);
-            PCOUT       : OUT STD_LOGIC_VECTOR(47 DOWNTO 0)
+            P           : OUT STD_LOGIC_VECTOR(PWR_APPROX_COUNTER_NUM_BITS+PWR_CONSUMPTION_ROM_BITS DOWNTO 0)
         );
     END COMPONENT;
 
@@ -115,10 +111,11 @@ begin
     output_data <= P;
 
     --- ROM INSTANCE ---
-    PWR_CONSUMPTION_VAL_ROM_1 : PWR_CONSUMPTION_VAL_ROM
+    PWR_CONSUMPTION_VAL_ROM_comp : PWR_CONSUMPTION_VAL_ROM
         generic map(
             NUM_ELEMENTS_ROM => NUM_PWR_STATES,
-            MAX_VAL => 2**PWR_CONSUMPTION_ROM_BITS
+            MAX_VAL => 2**PWR_CONSUMPTION_ROM_BITS,
+            type_device => type_device
         )
         port map(
             clk => sys_clk,
@@ -127,17 +124,11 @@ begin
         );
 
     --- MULTIPLIER INSTANCE --- 
-    MULTIPLIER_0 : xbip_multadd_0
+    MULTIPLIER_0 : mult
         port map(
-            CLK => sys_clk,
-            CE => CE,
-            SCLR => SCLR,
             A => input_counter_val_std_logic_vector_FF,
             B => ROM_data_out_std_logic_vector,
-            C => (others => '0'),
-            SUBTRACT => '0',
-            P => P,
-            PCOUT => PCOUT
+            P => P
         );
         
     --- SEQUANTIAL FSM ---

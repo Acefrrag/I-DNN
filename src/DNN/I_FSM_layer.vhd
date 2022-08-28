@@ -48,7 +48,7 @@ port(
     addr_in_gen_rst: out std_logic;                                 --addr_in_gen_rst   :This bit 
     --ADDED PORTS
     --INPUTS
-    out_inv: in integer range 0 to 3;                               --out_inv                   :Used to reset the validity bit of the layer. 1:Output of the next layer has been computed, the out_v of this layer must be reset, 2:Output of the next layer has still to be computed. Hold the vallue 3:The output has been recovered from the nv_reg. Set the out_v to 1 to trigger the next layer.
+    out_v_set: in integer range 0 to 3;                               --out_v_set                   :Used to reset the validity bit of the layer. 1:Output of the next layer has been computed, the out_v of this layer must be reset, 2:Output of the next layer has still to be computed. Hold the vallue 3:The output has been recovered from the nv_reg. Set the out_v to 1 to trigger the next layer.
     n_power_rst: in std_logic;                                      --n_power_rst
     data_rec_busy: in std_logic;                                    --data_rec_busy
     data_save_busy: in std_logic;                                   --data_save_busy
@@ -174,12 +174,12 @@ end process;
     --o_r <= (others => '0'); 
     addra <= 0;
     mul_sel <= '0';
-    --The default value of out_val depends on out_inv
-    if out_inv = 1 then
+    --The default value of out_val depends on out_v_set
+    if out_v_set = 1 then
         out_val <= '0';
-    elsif out_inv = 2 then
+    elsif out_v_set = 2 then
         out_val <= out_val and n_power_rst;
-    elsif out_inv = 3 then 
+    elsif out_v_set = 3 then 
         out_val <= '1' and n_power_rst;
     else
         out_val <= out_val and n_power_rst;

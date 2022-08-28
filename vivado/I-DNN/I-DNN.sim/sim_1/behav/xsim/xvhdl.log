@@ -48,6 +48,8 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/
 INFO: [VRFC 10-3107] analyzing entity 'power_approximation'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/pwr_consumption_val_ROM.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'pwr_consumption_val_ROM'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/NORM/mult.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mult'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/I_FSM_layer_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_FSM_layer_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/test/I_neuron_tb.vhd" into library xil_defaultlib

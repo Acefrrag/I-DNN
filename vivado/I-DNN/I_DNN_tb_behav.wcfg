@@ -14,12 +14,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="61851050fs"></ZoomStartTime>
-      <ZoomEndTime time="62717051fs"></ZoomEndTime>
-      <Cursor1Time time="62180000fs"></Cursor1Time>
+      <ZoomStartTime time="63967710fs"></ZoomStartTime>
+      <ZoomEndTime time="68357711fs"></ZoomEndTime>
+      <Cursor1Time time="66000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="398"></NameColumnWidth>
+      <NameColumnWidth column_width="386"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="15" />
@@ -42,14 +42,6 @@
    <wvobject fp_name="/I_DNN_tb/data_in" type="array">
       <obj_property name="ElementShortName">data_in[15:-16]</obj_property>
       <obj_property name="ObjectShortName">data_in[15:-16]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
-      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">16</obj_property>
-      <obj_property name="radix_otherWidth">0</obj_property>
-   </wvobject>
-   <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer3/data_out_vect" type="array">
-      <obj_property name="ElementShortName">data_out_vect[0:9][15:-16]</obj_property>
-      <obj_property name="ObjectShortName">data_out_vect[0:9][15:-16]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">16</obj_property>
@@ -144,7 +136,6 @@
    <wvobject fp_name="group302" type="group">
       <obj_property name="label">LAYER1</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject type="divider" fp_name="divider4152">
          <obj_property name="label">LAYER1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -153,14 +144,6 @@
          <obj_property name="ElementShortName">data_in_sel[0:9]</obj_property>
          <obj_property name="ObjectShortName">data_in_sel[0:9]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/out_inv" type="other">
-         <obj_property name="ElementShortName">out_inv</obj_property>
-         <obj_property name="ObjectShortName">out_inv</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/out_inv_mul" type="other">
-         <obj_property name="ElementShortName">out_inv_mul</obj_property>
-         <obj_property name="ObjectShortName">out_inv_mul</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/I_fsm_layer_comp/pr_state" type="other">
          <obj_property name="ElementShortName">pr_state</obj_property>
@@ -181,7 +164,6 @@
       <wvobject fp_name="group202" type="group">
          <obj_property name="label">NV_REG1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject type="divider" fp_name="divider954">
             <obj_property name="label">NV_REG1</obj_property>
             <obj_property name="DisplayName">label</obj_property>
@@ -486,10 +468,6 @@
          <obj_property name="ElementShortName">data_v</obj_property>
          <obj_property name="ObjectShortName">data_v</obj_property>
       </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer2/out_inv" type="other">
-         <obj_property name="ElementShortName">out_inv</obj_property>
-         <obj_property name="ObjectShortName">out_inv</obj_property>
-      </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer2/I_fsm_layer_comp/pr_state" type="other">
          <obj_property name="ElementShortName">pr_state</obj_property>
          <obj_property name="ObjectShortName">pr_state</obj_property>
@@ -606,10 +584,6 @@
          <obj_property name="ElementShortName">out_v</obj_property>
          <obj_property name="ObjectShortName">out_v</obj_property>
       </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer3/out_inv" type="other">
-         <obj_property name="ElementShortName">out_inv</obj_property>
-         <obj_property name="ObjectShortName">out_inv</obj_property>
-      </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer3/data_in_sel" type="array">
          <obj_property name="ElementShortName">data_in_sel[0:4]</obj_property>
          <obj_property name="ObjectShortName">data_in_sel[0:4]</obj_property>
@@ -618,14 +592,11 @@
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer3/data_rec_offset" type="other">
          <obj_property name="ElementShortName">data_rec_offset</obj_property>
          <obj_property name="ObjectShortName">data_rec_offset</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="divider" fp_name="divider874">
          <obj_property name="label">Neuron 0</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer3/I_fsm_layer_comp/out_inv" type="other">
-         <obj_property name="ElementShortName">out_inv</obj_property>
-         <obj_property name="ObjectShortName">out_inv</obj_property>
       </wvobject>
       <wvobject fp_name="group201" type="group">
          <obj_property name="label">I-FSM</obj_property>
@@ -721,6 +692,23 @@
          <obj_property name="ElementShortName">power_counter_val_layer1[3:0]</obj_property>
          <obj_property name="ObjectShortName">power_counter_val_layer1[3:0]</obj_property>
       </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/num_state_to_evaluate" type="other">
+         <obj_property name="ElementShortName">num_state_to_evaluate</obj_property>
+         <obj_property name="ObjectShortName">num_state_to_evaluate</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/start_evaluation_layer1" type="logic">
+         <obj_property name="ElementShortName">start_evaluation_layer1</obj_property>
+         <obj_property name="ObjectShortName">start_evaluation_layer1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer3/evaluation_ready" type="logic">
+         <obj_property name="ElementShortName">evaluation_ready</obj_property>
+         <obj_property name="ObjectShortName">evaluation_ready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_layer1" type="array">
+         <obj_property name="ElementShortName">output_data_layer1[41:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_layer1[41:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
       <wvobject type="divider" fp_name="divider244">
          <obj_property name="label">LAYER2</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -785,13 +773,87 @@
          <obj_property name="label">SOFTMAX</obj_property>
          <obj_property name="DisplayName">label</obj_property>
       </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/power_counter_val_softmax" type="array">
+         <obj_property name="ElementShortName">power_counter_val_softmax[1:0]</obj_property>
+         <obj_property name="ObjectShortName">power_counter_val_softmax[1:0]</obj_property>
+      </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/power_state_en_softmax" type="array">
          <obj_property name="ElementShortName">power_state_en_softmax[1:0]</obj_property>
          <obj_property name="ObjectShortName">power_state_en_softmax[1:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/power_counter_val_softmax" type="array">
-         <obj_property name="ElementShortName">power_counter_val_softmax[1:0]</obj_property>
-         <obj_property name="ObjectShortName">power_counter_val_softmax[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="group480" type="group">
+      <obj_property name="label">INT_PWR_CALC</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer2/num_state_to_evaluate" type="other">
+         <obj_property name="ElementShortName">num_state_to_evaluate</obj_property>
+         <obj_property name="ObjectShortName">num_state_to_evaluate</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer3/num_state_to_evaluate" type="other">
+         <obj_property name="ElementShortName">num_state_to_evaluate</obj_property>
+         <obj_property name="ObjectShortName">num_state_to_evaluate</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_nvreg1/num_state_to_evaluate" type="other">
+         <obj_property name="ElementShortName">num_state_to_evaluate</obj_property>
+         <obj_property name="ObjectShortName">num_state_to_evaluate</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_nvreg2/num_state_to_evaluate" type="other">
+         <obj_property name="ElementShortName">num_state_to_evaluate</obj_property>
+         <obj_property name="ObjectShortName">num_state_to_evaluate</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_nvreg3/num_state_to_evaluate" type="other">
+         <obj_property name="ElementShortName">num_state_to_evaluate</obj_property>
+         <obj_property name="ObjectShortName">num_state_to_evaluate</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_softmax/num_state_to_evaluate" type="other">
+         <obj_property name="ElementShortName">num_state_to_evaluate</obj_property>
+         <obj_property name="ObjectShortName">num_state_to_evaluate</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/num_state_to_evaluate_softmax" type="other">
+         <obj_property name="ElementShortName">num_state_to_evaluate_softmax</obj_property>
+         <obj_property name="ObjectShortName">num_state_to_evaluate_softmax</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_layer2" type="array">
+         <obj_property name="ElementShortName">output_data_layer2[41:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_layer2[41:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_layer3" type="array">
+         <obj_property name="ElementShortName">output_data_layer3[41:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_layer3[41:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_nvreg1" type="array">
+         <obj_property name="ElementShortName">output_data_nvreg1[41:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_nvreg1[41:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_nvreg2" type="array">
+         <obj_property name="ElementShortName">output_data_nvreg2[41:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_nvreg2[41:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_nvreg3" type="array">
+         <obj_property name="ElementShortName">output_data_nvreg3[41:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_nvreg3[41:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_softmax" type="array">
+         <obj_property name="ElementShortName">output_data_softmax[41:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_softmax[41:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/P" type="array">
+         <obj_property name="ElementShortName">P[41:0]</obj_property>
+         <obj_property name="ObjectShortName">P[41:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/input_counter_val" type="array">
+         <obj_property name="ElementShortName">input_counter_val[3:0]</obj_property>
+         <obj_property name="ObjectShortName">input_counter_val[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/ROM_data_out" type="other">
+         <obj_property name="ElementShortName">ROM_data_out</obj_property>
+         <obj_property name="ObjectShortName">ROM_data_out</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

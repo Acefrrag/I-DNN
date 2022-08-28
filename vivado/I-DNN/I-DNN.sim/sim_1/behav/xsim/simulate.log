@@ -1,6 +1,0 @@
-Vivado Simulator 2020.2
-Time resolution is 1 ps
-Warning: FIXED_GENERIC_PKG.">": metavalue detected, returning FALSE
-Time: 0 ps  Iteration: 5  Process: /I_DNN_tb/I_DNN_cmp/soft_max_comp/line__80  File: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/SOFT_MAX.vhd
-Warning: FIXED_GENERIC_PKG.">": metavalue detected, returning FALSE
-Time: 0 ps  Iteration: 5  Process: /I_DNN_tb/I_DNN_cmp/soft_max_comp/line__83  File: C:/Users/Win10Admin/GithubRepositories/I-DNN/I-DNN/src/DNN/SOFT_MAX.vhd

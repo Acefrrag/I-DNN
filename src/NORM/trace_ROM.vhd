@@ -67,7 +67,7 @@ architecture Behavioral of trace_ROM is
     
     
     signal ROM: rom_type := init_trace_ROM("voltage_traces/I_DNN_trace_complete.txt");
-
+    --signal ROM: rom_type := init_trace_ROM("voltage_traces/I_layer_trace_complete.txt");
     begin
     
     

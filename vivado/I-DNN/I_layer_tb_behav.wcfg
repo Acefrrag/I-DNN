@@ -14,18 +14,23 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="447849fs"></ZoomStartTime>
-      <ZoomEndTime time="2147850fs"></ZoomEndTime>
-      <Cursor1Time time="53000000fs"></Cursor1Time>
+      <ZoomStartTime time="33296666fs"></ZoomStartTime>
+      <ZoomEndTime time="34164667fs"></ZoomEndTime>
+      <Cursor1Time time="34020000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="330"></NameColumnWidth>
-      <ValueColumnWidth column_width="142"></ValueColumnWidth>
+      <ValueColumnWidth column_width="134"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="9" />
    <wave_markers>
       <marker time="10060000" label="" />
-      <marker time="11380000" label="" />
+      <marker time="1300000" label="" />
+      <marker time="14380000" label="" />
+      <marker time="23980000" label="" />
+      <marker time="45460000" label="" />
+      <marker time="53100000" label="" />
+      <marker time="33900000" label="" />
    </wave_markers>
    <wvobject fp_name="group1310" type="group">
       <obj_property name="label">PORTS</obj_property>
@@ -79,6 +84,246 @@
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">16</obj_property>
          <obj_property name="radix_otherWidth">0</obj_property>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[0]" type="array">
+            <obj_property name="ElementShortName">[0][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[0][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[1]" type="array">
+            <obj_property name="ElementShortName">[1][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[1][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[2]" type="array">
+            <obj_property name="ElementShortName">[2][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[2][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[3]" type="array">
+            <obj_property name="ElementShortName">[3][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[3][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[4]" type="array">
+            <obj_property name="ElementShortName">[4][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[4][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[5]" type="array">
+            <obj_property name="ElementShortName">[5][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[5][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[6]" type="array">
+            <obj_property name="ElementShortName">[6][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[6][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[7]" type="array">
+            <obj_property name="ElementShortName">[7][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[7][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[8]" type="array">
+            <obj_property name="ElementShortName">[8][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[8][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[9]" type="array">
+            <obj_property name="ElementShortName">[9][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[9][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[10]" type="array">
+            <obj_property name="ElementShortName">[10][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[10][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[11]" type="array">
+            <obj_property name="ElementShortName">[11][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[11][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[12]" type="array">
+            <obj_property name="ElementShortName">[12][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[12][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[13]" type="array">
+            <obj_property name="ElementShortName">[13][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[13][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[14]" type="array">
+            <obj_property name="ElementShortName">[14][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[14][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[15]" type="array">
+            <obj_property name="ElementShortName">[15][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[15][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[16]" type="array">
+            <obj_property name="ElementShortName">[16][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[16][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[17]" type="array">
+            <obj_property name="ElementShortName">[17][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[17][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[18]" type="array">
+            <obj_property name="ElementShortName">[18][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[18][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[19]" type="array">
+            <obj_property name="ElementShortName">[19][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[19][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[20]" type="array">
+            <obj_property name="ElementShortName">[20][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[20][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[21]" type="array">
+            <obj_property name="ElementShortName">[21][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[21][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[22]" type="array">
+            <obj_property name="ElementShortName">[22][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[22][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[23]" type="array">
+            <obj_property name="ElementShortName">[23][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[23][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[24]" type="array">
+            <obj_property name="ElementShortName">[24][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[24][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[25]" type="array">
+            <obj_property name="ElementShortName">[25][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[25][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[26]" type="array">
+            <obj_property name="ElementShortName">[26][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[26][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[27]" type="array">
+            <obj_property name="ElementShortName">[27][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[27][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[28]" type="array">
+            <obj_property name="ElementShortName">[28][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[28][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/I_layer_comp/data_out_vect[29]" type="array">
+            <obj_property name="ElementShortName">[29][15:-16]</obj_property>
+            <obj_property name="ObjectShortName">[29][15:-16]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/fsm_nv_reg_state" type="other">
          <obj_property name="ElementShortName">fsm_nv_reg_state</obj_property>
@@ -100,27 +345,10 @@
          <obj_property name="ElementShortName">n_power_rst</obj_property>
          <obj_property name="ObjectShortName">n_power_rst</obj_property>
       </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/n_power_rst" type="logic">
-         <obj_property name="ElementShortName">n_power_rst</obj_property>
-         <obj_property name="ObjectShortName">n_power_rst</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/out_inv" type="other">
-         <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="ElementShortName">out_inv</obj_property>
-         <obj_property name="ObjectShortName">out_inv</obj_property>
-         <obj_property name="label">out_inv(outer)</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/out_inv" type="other">
-         <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="ElementShortName">out_inv</obj_property>
-         <obj_property name="ObjectShortName">out_inv</obj_property>
-         <obj_property name="label">out_inv(inner)</obj_property>
-      </wvobject>
    </wvobject>
    <wvobject fp_name="group1306" type="group">
       <obj_property name="label">FSM_NV_REG</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject type="divider" fp_name="divider90">
          <obj_property name="label">VOLTAGE_TRACE</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -166,8 +394,270 @@
          <obj_property name="ObjectShortName">clk</obj_property>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name" type="array">
-         <obj_property name="ElementShortName">ram_name[34:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">ram_name[34:0][31:0]</obj_property>
+         <obj_property name="ElementShortName">ram_name[0:34][31:0]</obj_property>
+         <obj_property name="ObjectShortName">ram_name[0:34][31:0]</obj_property>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[34]" type="array">
+            <obj_property name="ElementShortName">[34][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[34][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[33]" type="array">
+            <obj_property name="ElementShortName">[33][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[33][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[32]" type="array">
+            <obj_property name="ElementShortName">[32][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[32][31:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[31]" type="array">
+            <obj_property name="ElementShortName">[31][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[31][31:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[30]" type="array">
+            <obj_property name="ElementShortName">[30][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[30][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[29]" type="array">
+            <obj_property name="ElementShortName">[29][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[29][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[28]" type="array">
+            <obj_property name="ElementShortName">[28][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[28][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[27]" type="array">
+            <obj_property name="ElementShortName">[27][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[27][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[26]" type="array">
+            <obj_property name="ElementShortName">[26][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[26][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[25]" type="array">
+            <obj_property name="ElementShortName">[25][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[25][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[24]" type="array">
+            <obj_property name="ElementShortName">[24][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[24][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[23]" type="array">
+            <obj_property name="ElementShortName">[23][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[23][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[22]" type="array">
+            <obj_property name="ElementShortName">[22][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[22][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[21]" type="array">
+            <obj_property name="ElementShortName">[21][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[21][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[20]" type="array">
+            <obj_property name="ElementShortName">[20][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[20][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[19]" type="array">
+            <obj_property name="ElementShortName">[19][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[19][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[18]" type="array">
+            <obj_property name="ElementShortName">[18][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[18][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[17]" type="array">
+            <obj_property name="ElementShortName">[17][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[17][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[16]" type="array">
+            <obj_property name="ElementShortName">[16][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[16][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[15]" type="array">
+            <obj_property name="ElementShortName">[15][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[15][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[14]" type="array">
+            <obj_property name="ElementShortName">[14][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[14][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[13]" type="array">
+            <obj_property name="ElementShortName">[13][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[13][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[12]" type="array">
+            <obj_property name="ElementShortName">[12][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[12][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[11]" type="array">
+            <obj_property name="ElementShortName">[11][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[11][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[10]" type="array">
+            <obj_property name="ElementShortName">[10][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[10][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[9]" type="array">
+            <obj_property name="ElementShortName">[9][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[9][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[8]" type="array">
+            <obj_property name="ElementShortName">[8][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[8][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[7]" type="array">
+            <obj_property name="ElementShortName">[7][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[7][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[6]" type="array">
+            <obj_property name="ElementShortName">[6][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[6][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[5]" type="array">
+            <obj_property name="ElementShortName">[5][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[5][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[4]" type="array">
+            <obj_property name="ElementShortName">[4][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[4][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[3]" type="array">
+            <obj_property name="ElementShortName">[3][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[3][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[2]" type="array">
+            <obj_property name="ElementShortName">[2][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[1]" type="array">
+            <obj_property name="ElementShortName">[1][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[0]" type="array">
+            <obj_property name="ElementShortName">[0][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[0][31:0]</obj_property>
+         </wvobject>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/addra" type="array">
          <obj_property name="ElementShortName">addra[5:0]</obj_property>
@@ -226,7 +716,7 @@
       <wvobject fp_name="/I_layer_tb/nv_reg_din" type="array">
          <obj_property name="ElementShortName">nv_reg_din[31:0]</obj_property>
          <obj_property name="ObjectShortName">nv_reg_din[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">16</obj_property>
          <obj_property name="radix_otherWidth">0</obj_property>
@@ -240,6 +730,7 @@
    <wvobject fp_name="group1194" type="group">
       <obj_property name="label">REC</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="divider" fp_name="divider1734">
          <obj_property name="label">REC</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -249,8 +740,306 @@
          <obj_property name="ObjectShortName">clk</obj_property>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name" type="array">
-         <obj_property name="ElementShortName">ram_name[34:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">ram_name[34:0][31:0]</obj_property>
+         <obj_property name="ElementShortName">ram_name[0:34][31:0]</obj_property>
+         <obj_property name="ObjectShortName">ram_name[0:34][31:0]</obj_property>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[34]" type="array">
+            <obj_property name="ElementShortName">[34][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[34][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[33]" type="array">
+            <obj_property name="ElementShortName">[33][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[33][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[32]" type="array">
+            <obj_property name="ElementShortName">[32][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[32][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[31]" type="array">
+            <obj_property name="ElementShortName">[31][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[31][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[30]" type="array">
+            <obj_property name="ElementShortName">[30][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[30][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[29]" type="array">
+            <obj_property name="ElementShortName">[29][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[29][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[28]" type="array">
+            <obj_property name="ElementShortName">[28][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[28][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[27]" type="array">
+            <obj_property name="ElementShortName">[27][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[27][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[26]" type="array">
+            <obj_property name="ElementShortName">[26][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[26][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[25]" type="array">
+            <obj_property name="ElementShortName">[25][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[25][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[24]" type="array">
+            <obj_property name="ElementShortName">[24][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[24][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[23]" type="array">
+            <obj_property name="ElementShortName">[23][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[23][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[22]" type="array">
+            <obj_property name="ElementShortName">[22][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[22][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[21]" type="array">
+            <obj_property name="ElementShortName">[21][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[21][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[20]" type="array">
+            <obj_property name="ElementShortName">[20][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[20][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[19]" type="array">
+            <obj_property name="ElementShortName">[19][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[19][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[18]" type="array">
+            <obj_property name="ElementShortName">[18][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[18][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[17]" type="array">
+            <obj_property name="ElementShortName">[17][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[17][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[16]" type="array">
+            <obj_property name="ElementShortName">[16][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[16][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[15]" type="array">
+            <obj_property name="ElementShortName">[15][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[15][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[14]" type="array">
+            <obj_property name="ElementShortName">[14][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[14][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[13]" type="array">
+            <obj_property name="ElementShortName">[13][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[13][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[12]" type="array">
+            <obj_property name="ElementShortName">[12][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[12][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[11]" type="array">
+            <obj_property name="ElementShortName">[11][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[11][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[10]" type="array">
+            <obj_property name="ElementShortName">[10][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[10][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[9]" type="array">
+            <obj_property name="ElementShortName">[9][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[9][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[8]" type="array">
+            <obj_property name="ElementShortName">[8][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[8][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[7]" type="array">
+            <obj_property name="ElementShortName">[7][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[7][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[6]" type="array">
+            <obj_property name="ElementShortName">[6][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[6][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[5]" type="array">
+            <obj_property name="ElementShortName">[5][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[5][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[4]" type="array">
+            <obj_property name="ElementShortName">[4][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[4][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[3]" type="array">
+            <obj_property name="ElementShortName">[3][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[3][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[2]" type="array">
+            <obj_property name="ElementShortName">[2][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[1]" type="array">
+            <obj_property name="ElementShortName">[1][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[0]" type="array">
+            <obj_property name="ElementShortName">[0][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[0][31:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/data_rec_busy" type="logic">
+         <obj_property name="ElementShortName">data_rec_busy</obj_property>
+         <obj_property name="ObjectShortName">data_rec_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/nv_reg_busy" type="logic">
+         <obj_property name="ElementShortName">nv_reg_busy</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/nv_reg_busy_sig" type="logic">
+         <obj_property name="ElementShortName">nv_reg_busy_sig</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_busy_sig</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/nv_reg_addr" type="array">
+         <obj_property name="ElementShortName">nv_reg_addr[5:0]</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_addr[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/nv_reg_dout" type="array">
+         <obj_property name="ElementShortName">nv_reg_dout[31:0]</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_dout[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/data_rec_nv_reg_addr" type="array">
+         <obj_property name="ElementShortName">data_rec_nv_reg_addr[5:0]</obj_property>
+         <obj_property name="ObjectShortName">data_rec_nv_reg_addr[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/data_rec_recovered_data" type="array">
+         <obj_property name="ElementShortName">data_rec_recovered_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_rec_recovered_data[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/I_layer_comp/data_backup_vect_output_rec" type="array">
          <obj_property name="ElementShortName">data_backup_vect_output_rec[0:32][31:0]</obj_property>
@@ -268,10 +1057,6 @@
          <obj_property name="ElementShortName">task_status</obj_property>
          <obj_property name="ObjectShortName">task_status</obj_property>
       </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/data_rec_busy" type="logic">
-         <obj_property name="ElementShortName">data_rec_busy</obj_property>
-         <obj_property name="ObjectShortName">data_rec_busy</obj_property>
-      </wvobject>
       <wvobject fp_name="/I_layer_tb/I_layer_comp/data_rec_offset" type="other">
          <obj_property name="ElementShortName">data_rec_offset</obj_property>
          <obj_property name="ObjectShortName">data_rec_offset</obj_property>
@@ -279,23 +1064,6 @@
       <wvobject fp_name="/I_layer_tb/I_layer_comp/data_rec_type" type="other">
          <obj_property name="ElementShortName">data_rec_type</obj_property>
          <obj_property name="ObjectShortName">data_rec_type</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/nv_reg_dout" type="array">
-         <obj_property name="ElementShortName">nv_reg_dout[31:0]</obj_property>
-         <obj_property name="ObjectShortName">nv_reg_dout[31:0]</obj_property>
-         <obj_property name="Radix">HEXRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">16</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/data_rec_recovered_data" type="array">
-         <obj_property name="ElementShortName">data_rec_recovered_data[31:0]</obj_property>
-         <obj_property name="ObjectShortName">data_rec_recovered_data[31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/data_rec_nv_reg_addr" type="array">
-         <obj_property name="ElementShortName">data_rec_nv_reg_addr[5:0]</obj_property>
-         <obj_property name="ObjectShortName">data_rec_nv_reg_addr[5:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/I_layer_comp/fsm_state_rec" type="array">
          <obj_property name="ElementShortName">fsm_state_rec[0:31]</obj_property>
@@ -369,8 +1137,158 @@
          <obj_property name="ObjectShortName">clk</obj_property>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name" type="array">
-         <obj_property name="ElementShortName">ram_name[34:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">ram_name[34:0][31:0]</obj_property>
+         <obj_property name="ElementShortName">ram_name[0:34][31:0]</obj_property>
+         <obj_property name="ObjectShortName">ram_name[0:34][31:0]</obj_property>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[34]" type="array">
+            <obj_property name="ElementShortName">[34][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[34][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[33]" type="array">
+            <obj_property name="ElementShortName">[33][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[33][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[32]" type="array">
+            <obj_property name="ElementShortName">[32][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[32][31:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[31]" type="array">
+            <obj_property name="ElementShortName">[31][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[31][31:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[30]" type="array">
+            <obj_property name="ElementShortName">[30][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[30][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[29]" type="array">
+            <obj_property name="ElementShortName">[29][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[29][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[28]" type="array">
+            <obj_property name="ElementShortName">[28][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[28][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[27]" type="array">
+            <obj_property name="ElementShortName">[27][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[27][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[26]" type="array">
+            <obj_property name="ElementShortName">[26][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[26][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[25]" type="array">
+            <obj_property name="ElementShortName">[25][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[25][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[24]" type="array">
+            <obj_property name="ElementShortName">[24][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[24][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[23]" type="array">
+            <obj_property name="ElementShortName">[23][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[23][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[22]" type="array">
+            <obj_property name="ElementShortName">[22][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[22][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[21]" type="array">
+            <obj_property name="ElementShortName">[21][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[21][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[20]" type="array">
+            <obj_property name="ElementShortName">[20][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[20][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[19]" type="array">
+            <obj_property name="ElementShortName">[19][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[19][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[18]" type="array">
+            <obj_property name="ElementShortName">[18][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[18][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[17]" type="array">
+            <obj_property name="ElementShortName">[17][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[17][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[16]" type="array">
+            <obj_property name="ElementShortName">[16][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[16][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[15]" type="array">
+            <obj_property name="ElementShortName">[15][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[15][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[14]" type="array">
+            <obj_property name="ElementShortName">[14][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[14][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[13]" type="array">
+            <obj_property name="ElementShortName">[13][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[13][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[12]" type="array">
+            <obj_property name="ElementShortName">[12][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[12][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[11]" type="array">
+            <obj_property name="ElementShortName">[11][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[11][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[10]" type="array">
+            <obj_property name="ElementShortName">[10][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[10][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[9]" type="array">
+            <obj_property name="ElementShortName">[9][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[9][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[8]" type="array">
+            <obj_property name="ElementShortName">[8][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[8][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[7]" type="array">
+            <obj_property name="ElementShortName">[7][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[7][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[6]" type="array">
+            <obj_property name="ElementShortName">[6][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[6][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[5]" type="array">
+            <obj_property name="ElementShortName">[5][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[5][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[4]" type="array">
+            <obj_property name="ElementShortName">[4][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[4][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[3]" type="array">
+            <obj_property name="ElementShortName">[3][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[3][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[2]" type="array">
+            <obj_property name="ElementShortName">[2][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[1]" type="array">
+            <obj_property name="ElementShortName">[1][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_layer_tb/nv_reg_comp/BRAM/ram_name[0]" type="array">
+            <obj_property name="ElementShortName">[0][31:0]</obj_property>
+            <obj_property name="ObjectShortName">[0][31:0]</obj_property>
+         </wvobject>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/I_layer_comp/data_save_busy" type="logic">
          <obj_property name="ElementShortName">data_save_busy</obj_property>
@@ -383,6 +1301,43 @@
       <wvobject fp_name="/I_layer_tb/nv_reg_busy_sig" type="logic">
          <obj_property name="ElementShortName">nv_reg_busy_sig</obj_property>
          <obj_property name="ObjectShortName">nv_reg_busy_sig</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/nv_reg_din" type="array">
+         <obj_property name="ElementShortName">nv_reg_din[31:0]</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_din[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/nv_reg_addr" type="array">
+         <obj_property name="ElementShortName">nv_reg_addr[5:0]</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_addr[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/data_save_nv_reg_din" type="array">
+         <obj_property name="ElementShortName">data_save_nv_reg_din[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_save_nv_reg_din[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/data_save_nv_reg_addr" type="array">
+         <obj_property name="ElementShortName">data_save_nv_reg_addr[5:0]</obj_property>
+         <obj_property name="ObjectShortName">data_save_nv_reg_addr[5:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/addrb" type="other">
+         <obj_property name="ElementShortName">addrb</obj_property>
+         <obj_property name="ObjectShortName">addrb</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/doutb" type="array">
+         <obj_property name="ElementShortName">doutb[31:0]</obj_property>
+         <obj_property name="ObjectShortName">doutb[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/I_layer_comp/data_backup_vect_state_save" type="array">
          <obj_property name="ElementShortName">data_backup_vect_state_save[0:32][31:0]</obj_property>
@@ -415,27 +1370,6 @@
       <wvobject fp_name="/I_layer_tb/I_layer_comp/data_save_v_reg_offset" type="other">
          <obj_property name="ElementShortName">data_save_v_reg_offset</obj_property>
          <obj_property name="ObjectShortName">data_save_v_reg_offset</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/addrb" type="other">
-         <obj_property name="ElementShortName">addrb</obj_property>
-         <obj_property name="ObjectShortName">addrb</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/doutb" type="array">
-         <obj_property name="ElementShortName">doutb[31:0]</obj_property>
-         <obj_property name="ObjectShortName">doutb[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">16</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/data_save_nv_reg_din" type="array">
-         <obj_property name="ElementShortName">data_save_nv_reg_din[31:0]</obj_property>
-         <obj_property name="ObjectShortName">data_save_nv_reg_din[31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/data_save_nv_reg_addr" type="array">
-         <obj_property name="ElementShortName">data_save_nv_reg_addr[5:0]</obj_property>
-         <obj_property name="ObjectShortName">data_save_nv_reg_addr[5:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/I_layer_comp/data_save_nv_reg_start_addr" type="array">
          <obj_property name="ElementShortName">data_save_nv_reg_start_addr[5:0]</obj_property>
@@ -546,7 +1480,6 @@
    <wvobject fp_name="group1302" type="group">
       <obj_property name="label">I_FSM</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject type="divider" fp_name="divider48">
          <obj_property name="label">I_FSM_layer</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -620,7 +1553,6 @@
       <wvobject fp_name="group1307" type="group">
          <obj_property name="label">Neuron0</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject type="divider" fp_name="divider120">
             <obj_property name="label">Neuron 0</obj_property>
             <obj_property name="DisplayName">label</obj_property>
@@ -702,7 +1634,6 @@
       <wvobject fp_name="group1309" type="group">
          <obj_property name="label">Neuron9</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject type="divider" fp_name="divider1161">
             <obj_property name="label">Neuron 9</obj_property>
             <obj_property name="DisplayName">label</obj_property>
@@ -745,7 +1676,7 @@
             <obj_property name="ObjectShortName">weight_prod[15:-16]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">32</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
          <wvobject fp_name="/I_layer_tb/I_layer_comp/\I_neurons(9)\/I_neuron_i/sum_reg_out" type="array">
@@ -753,7 +1684,7 @@
             <obj_property name="ObjectShortName">sum_reg_out[15:-16]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">32</obj_property>
+            <obj_property name="radix_fractionWidth">16</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
          <wvobject fp_name="/I_layer_tb/I_layer_comp/\I_neurons(9)\/I_neuron_i/bias" type="array">

@@ -340,7 +340,7 @@ resetN_emulator <= n_power_reset;
 task_status <= task_status1 or task_status2 or task_status3;
 --out_v_set PROCESS
 --Description: This process computes the out_v_set bit feeding the layer, in order to invalidate the output of that layer.
-out_v_set_val: process(data_v_vect) is
+out_v_set_val: process(all) is
 begin
 --Layer1
 if data_v_vect(2) = '0' then

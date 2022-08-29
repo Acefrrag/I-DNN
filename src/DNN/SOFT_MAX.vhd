@@ -69,18 +69,23 @@ signal pr_state, nx_state: softmax_state_t := idle;
 signal digit_out_internal: integer range 0 to 9:=0;
 signal data_out_internal: sfixed(neuron_int_width-1 downto -neuron_frac_width):=(others => '0');
 signal reg_en: std_logic:='0';
+signal rst_internal: std_logic :='0';
 begin
 
 softmax_state <= pr_state;
 out_v <= data_v;
-rst <= not(n_power_reset);
-digit_out <= digit_out_internal;
-data_out<= data_out_internal;
+
+digit_out <= 0 when n_power_reset = '0' else
+digit_out_internal;
+data_out <= (others => '0') when n_power_reset = '0' else
+data_out_internal;
 --Comparator
-comparator_out <= (others => '0') when data_v = '0' and pr_state = idle else
+comparator_out <= (others => '0') when rst = '1' or n_power_reset = '0' else
+(others => '0') when data_v = '0' and pr_state = idle else
 data_in when data_in > temp_max else
 temp_max;
-comparator_out_addr <= 0 when data_v = '0' and pr_state = idle else
+comparator_out_addr <= 0 when rst = '1' or n_power_reset = '0' else
+0 when data_v = '0' and pr_state = idle else
 to_integer(unsigned(data_in_sel)) when data_in > temp_max else
 temp_max_addr;
 data_out_internal <= comparator_out when data_v = '0' else
@@ -89,21 +94,24 @@ digit_out_internal <= comparator_out_addr when data_v = '0' else
 digit_out_internal;
 
 --Temporary Maximum Value Register
-max_register: process(clk) is
+max_register: process(clk,rst) is
     begin
-        if rising_edge(clk) then
+        if rst = '1' or n_power_reset = '0' then
+            temp_max <= (others => '0');
+            temp_max_addr <= 0;
+        elsif rising_edge(clk) then
             temp_max <= comparator_out;
             temp_max_addr <= comparator_out_addr;
         end if;
 end process;
 
-addr_TC <= '0' when rst = '1' else
+addr_TC <= '0' when n_power_reset = '0' or rst = '1' else
      --data_backup_vect_state_rec(num_outputs+1)(natural(nv_reg_width-1)) when s_rec_vect(num_outputs) = '1' and data_rec_busy = '1' else
      '1' when unsigned(addr) = num_inputs-1;
 data_in_sel <= addr;
-gen_addr: process(clk,rst,data_sampled) is --This process generate the address to access the neuron weight and get the input from the previous layer
+counter_data_in_sel: process(clk,rst,data_sampled) is --This process generate the address to access the neuron weight and get the input from the previous layer
 begin
-    if rst = '1' then
+    if rst = '1' or n_power_reset = '0' then
         addr <= (others => '0');
     else
        if rising_edge(clk) then
@@ -115,12 +123,13 @@ begin
             end if;
         end if;
     end if;
-end process gen_addr;
+end process counter_data_in_sel;
 
 fsm_softmax_output: process(all) is
 begin
     --Default values
     reg_en <= '0';
+    rst <= '0';
     if data_sampled = '1' then
         data_v <= '0';
     else
@@ -133,12 +142,15 @@ begin
         when idle =>
             --data_v <= data_v;
             reg_en <= '0';
+            rst <= '1';
         when active =>
             data_v <= '0';
             reg_en <= '1';
+            rst <= '0';
         when finished =>
             data_v <= '1';
             reg_en <= '0';
+            rst <= '0';
     end case;
 end process;
 

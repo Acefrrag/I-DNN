@@ -33,7 +33,7 @@
 --      4) b_sum:                       Hazard occurs at 23980 ns. Data starts to be saved before state b_sum.
 --      6) finished:                    Hazard occurs at 33900 ns. Data starts to be saved before state finished.
 --      7) After computing output:      Hazard occurs at 45460 ns. Data starts to be saved after ouput is computed.
---      5) act_log                      Hazarfd occurs at 53100 ns. Data starts to be saved before state act_log.
+--      5) act_log                      Hazard occurs at 53100 ns. Data starts to be saved before state act_log.
 -- Dependencies: 
 -- 
 -- Revision:

@@ -34,27 +34,47 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity pwr_consumption_val_ROM is
     generic(
         NUM_ELEMENTS_ROM : integer;
-        MAX_VAL         : integer
+        MAX_VAL         : integer;
+		type_device		: string:="layer"
     );
     port(	
 	   	clk       : in	std_logic;
-		addr      : in	integer range 0 to NUM_ELEMENTS_ROM - 1;
+		addr      : in	integer range 0 to NUM_ELEMENTS_ROM;
 		data_out  : out	integer range 0 to MAX_VAL - 1
     );
 end pwr_consumption_val_ROM;
 
 architecture Behavioral of pwr_consumption_val_ROM is
-    type rom_type is array (0 to NUM_ELEMENTS_ROM - 1) of integer range 0 to  MAX_VAL - 1;
-    signal ROM: rom_type := (
+    type rom_type is array (0 to 3) of integer range 0 to  MAX_VAL - 1;
+    signal ROM_layer: rom_type := (
         100,
         50,
+        50,
         50
+    );
+	signal ROM_nvreg: rom_type := (
+        100,
+        50,
+        50,
+        0--unused
+    );
+	signal ROM_softmax: rom_type := (
+        100,
+        50,
+        0,
+        0--unused
     );
 begin
     get_data:process (clk) is begin
         if rising_edge(clk) then
-            data_out <= ROM(addr);	--get the address read it as unsigned and convert to integer to get the value from ROM(integer)
-        end if;
+			if type_device = "layer" then
+				data_out <= ROM_layer(addr);
+			elsif type_device = "nvreg" then
+				data_out <= ROM_nvreg(addr);
+			elsif type_device = "softmax" then
+				data_out <= ROM_softmax(addr);	--get the address read it as unsigned and convert to integer to get the value from ROM(integer)
+			end if;
+		end if;
 	end process;
 
 end Behavioral;

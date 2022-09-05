@@ -25,6 +25,14 @@ vhdl2008 xil_defaultlib  \
 "../../../../../../src/DNN/I_DNN.vhd" \
 "../../../../../../src/DNN/test_sfixed.vhd" \
 "../../../../../../src/DNN/SOFT_MAX.vhd" \
+
+vhdl xil_defaultlib  \
+"../../../../../../src/NORM/instant_pwr_calc.vhd" \
+"../../../../../../src/NORM/power_approximation.vhd" \
+"../../../../../../src/NORM/pwr_consumption_val_ROM.vhd" \
+"../../../../../../src/NORM/mult.vhd" \
+
+vhdl2008 xil_defaultlib  \
 "../../../../../../test/I_FSM_layer_tb.vhd" \
 "../../../../../../test/I_neuron_tb.vhd" \
 "../../../../../../test/VAR_CNTR_PROCESS_tb.vhd" \

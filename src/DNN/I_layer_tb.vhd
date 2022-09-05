@@ -8,22 +8,32 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
--- Description: This testbench verifies the I-DNN operates correctly under different power failure scenarios.
--- The voltage trace I_layer_trace_complete tests how I-DNN is able to resume computation after
--- power failures occurs at different states of computation of the layer output.
--- The architecture samples an hazard and starts the recovery procedure at the next clock cycle. Therefore the fsm evolves for on more clock cycle.
---      1) In the beginning, during and at the end of the w_sum;
---      2) At b_sum;
---      3) At act_log;
---      4) At finished;
---      5) After output is computed and validated;
--- Power failure timings:
---      1) Hazard During w_sum:         1300 ns while computing w_sum (13th term of the weighted sum). Hazard occurs. Sytem shuts down at 4740ns. Data is recovered at 8000ns and output is computed at 8780ns
---      2) No Hazard:                   Output is computed under normal conditions between 9020ns and 10300 ns
---      3) Hazard at last w_sum term:   Hazard occurs and data_save starts while computing the last term of the weighted sum at 22100ns. 
---      4) b_sum:                       Hazard occurs and data_save starts after computing b_sum at 30420ns.
---      5) act_log:                     Hazard occurs and data_sae start after carrying out act_log operations at 38740ns
---      6) After computing output:      Hazard occurs after computing the output at 45420      
+-- Description: This testbench verifies that I-layer operates correctly under different power failure scenarios.
+-- After and hazard occurs, the layer save its state into the NV_REG, the system then powers off and data is retrieved as soon as the voltage goes back to normal level.
+-- After the output is computed, the output is invalidated and we overwritten the nv_reg to reset. The layer is then powered off and powered on again to cpmpletely erase its content.
+
+-- The data fed into the layer is always the same for every test included in this testbench, but every time the hazard scenario is different.
+-- After a test is performed, the nv_reg is reset and the layer is virtually powered off and on back again.
+-- Usage: Before starting the simulation, make sure that the line of code that initializes the ROM with the testing I-layer voltage trace inside the trace_ROM entity is uncommented
+--      (remember to comment the line of code used in I-DNN testbench.
+-- Testbench overview: The architecture samples an hazard at the rising edge of the clock and starts the recovery procedure at the next clock cycle.
+-- Therefore the fsm evolves for on more clock cycle.
+-- Hazard scenarios:
+--      1) In the middle of w_sum;
+--      2) No Hazard;
+--      3) Before computing the last element of the w_sum;
+--      4) At b_sum;
+--      5) At act_log;
+--      6) At finished;
+--      7) After output is computed and validated;
+-- Hazard timings:
+--      1) Middle of Weithed Sum:       Hazard occurs at 1300 ns. Data starts to be saved before computing the element number 13 of the weighted sum.
+--      2) No Hazard:                   Computation of the output starts at 10060 ns. No hazard occurs.
+--      3) Hazard at last w_sum term:   Hazard occurs at 14380 ns. Data starts to be saved before computing the element number 29 of the weighted sum.
+--      4) b_sum:                       Hazard occurs at 23980 ns. Data starts to be saved before state b_sum.
+--      6) finished:                    Hazard occurs at 33900 ns. Data starts to be saved before state finished.
+--      7) After computing output:      Hazard occurs at 45460 ns. Data starts to be saved after ouput is computed.
+--      5) act_log                      Hazard occurs at 53100 ns. Data starts to be saved before state act_log.
 -- Dependencies: 
 -- 
 -- Revision:
@@ -143,7 +153,7 @@ port(                                                                           
     nv_reg_busy: in std_logic;                                                          --nv_reg_busy       :       Together with nv_reg_bbusy_sig aknowledges the availability fro r/w operation into/from the nv_reg
     nv_reg_busy_sig: in  STD_LOGIC;                                                     --nv_reg_busy_sig   :    
     nv_reg_dout: in STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0);                          --nv_reg_dout       :       Contains the nv_reg output (used when recovering data)
-    out_inv: in integer range 0 to 3;                                                              --out_inv            :     This resets the validity bit(Only one layer output can be valid at a time).
+    out_v_set: in integer range 0 to 3;                                                              --out_v_set            :     This resets the validity bit(Only one layer output can be valid at a time).
                                                                                         
     -------Outputs-------
     task_status: out std_logic;                                                         --task_status       :       0: The recovery/save operation has finished. 1: It is still being carried on.
@@ -189,7 +199,7 @@ signal start: std_logic:='1';--to increment the counter while the output is begi
 signal data_out: sfixed(neuron_int_width-1 downto -neuron_frac_width);--The next layer controls which neuron's output to access
 signal data_in_sel: std_logic_vector(0 to natural(ceil(log2(real(num_inputs))))-1);
 signal data_v: std_logic;
-signal out_inv: integer range 0 to 3:=0;
+signal out_v_set: integer range 0 to 3:=0;
 --Augumented Pins
 --Input
 signal n_power_reset: std_logic:='0';--Device is powered up
@@ -250,7 +260,7 @@ port map
     nv_reg_we => nv_reg_we,
     nv_reg_addr => nv_reg_addr,
     nv_reg_din => nv_reg_din,
-    out_inv => out_inv
+    out_v_set => out_v_set
 );
 
 INTERMITTENCY_EMULATOR_1 : intermittency_emulator
@@ -334,35 +344,35 @@ begin
     wait;
 end process;
 
-out_inv_gen: process is
+out_v_set_gen: process is
 begin
     --Invalidating output after test 1. 
     wait for 8540 ns;
-    out_inv <= 1;
+    out_v_set <= 1;
     wait for 40 ns;
-    out_inv <= 2;
+    out_v_set <= 2;
     --Invalidating output after test 2
     wait for 2820 ns;
-    out_inv <= 1;
+    out_v_set <= 1;
     wait for 40 ns;
-    out_inv <= 2;
+    out_v_set <= 2;
     --Invalidating output after test 3
     wait for 9560 ns;
-    out_inv <= 1;
+    out_v_set <= 1;
     wait for 40 ns;
-    out_inv <= 2;
+    out_v_set <= 2;
     wait for 9520 ns;
-    out_inv <= 1;
+    out_v_set <= 1;
     wait for 40 ns;
-    out_inv <= 2;
+    out_v_set <= 2;
     wait for 9780 ns;
-    out_inv <= 1;
+    out_v_set <= 1;
     wait for 40 ns;
-    out_inv <= 2;
+    out_v_set <= 2;
     wait for 11360 ns;
-    out_inv <= 1;
+    out_v_set <= 1;
     wait for 40 ns;
-    out_inv <= 2;
+    out_v_set <= 2;
     wait;
 end process;
 

@@ -68,13 +68,14 @@ port(
     nv_reg_busy: in std_logic;                                                          --nv_reg_busy       :       Together with nv_reg_bbusy_sig aknowledges the availability fro r/w operation into/from the nv_reg
     nv_reg_busy_sig: in  STD_LOGIC;                                                     --nv_reg_busy_sig   :    
     nv_reg_dout: in STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0);                          --nv_reg_dout       :       Contains the nv_reg output (used when recovering data)
-    out_inv: in integer range 0 to 3;                                                   --out_inv          :        1: output is invalidated. 2: as long we are computing the output of the next layer, or the layer is idle. 3:After a power-off and we recover data.                                                                                        
+    out_v_set: in integer range 0 to 3;                                                   --out_v_set          :        1: output is invalidated. 2: as long we are computing the output of the next layer, or the layer is idle. 3:After a power-off and we recover data.                                                                                        
     -------OUTPUTS-------
     task_status: out std_logic;                                                         --task_status       :       0: The recovery/save operation has finished. 1: It is still being carried on.
     nv_reg_en: out std_logic;                                                           --nv_reg_en         :       1: Reading/Wrinting operation request. 0: nv_reg is disabled
     nv_reg_we: out std_logic;                                                           --nv_reg_we         :       1: Write Operation Request. 0: No operation
     nv_reg_addr: out std_logic_vector(nv_reg_addr_width_bit-1 downto 0);                --nv_reg_addr       :       Contains the address of the nv_reg to access         
-    nv_reg_din: out STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0)                           --nv_reg_din        :       It contains data to write into the nv_rega
+    nv_reg_din: out STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0);                          --nv_reg_din        :       It contains data to write into the nv_rega
+    pr_state: out fsm_layer_state_t                                                     --pr_state          :       It contains the present state of the layer 
     );                                                     
 end I_layer;
 
@@ -134,7 +135,7 @@ signal dina     : std_logic_vector(31 DOWNTO 0);                            --Lo
 signal task_status_internal: STD_LOGIC;
 signal rst: std_logic:='1';
 signal reg_en: std_logic;
-signal out_inv_mul: integer range 0 to 3 :=1;
+signal out_v_set_mul: integer range 0 to 3 :=1;
 --------------------------------------------------------------------------------------
 -------------------------------DATA_REC_SIGNALS---------------------------------------  
 signal data_rec_busy: STD_LOGIC := '0';                                     
@@ -164,7 +165,7 @@ signal var_cntr_value, var_cntr_value_last,var_cntr_end_value: INTEGER range 0 t
 ------------------------------DATA_REC process----------------------------------------
 signal data_rec_nv_reg_start_addr: STD_LOGIC_VECTOR(nv_reg_addr_width_bit-1 DOWNTO 0);	--data_rec_nv_reg_start_addr     :address from which start recovering data in nv_reg
 signal data_rec_v_reg_start_addr: STD_LOGIC_VECTOR(v_reg_addr_width_bit-1 DOWNTO 0);    --data_rec_v_reg_start_addr     :address from which the recovered data (#ofdata=data_rec_offset) will be collected
-signal data_rec_offset: INTEGER RANGE 0 TO num_outputs+2+2:=1;					    --data_rec_offset              :the offset used to calculate the last address recovered from nv_reg in data recovery process
+signal data_rec_offset: INTEGER RANGE 0 TO num_outputs+2+2:=1;					         --data_rec_offset               :the number of elements to save/recover from the nv_reg
                                                                                                                             -- ex: recover data from a total number of cells equal to 3 consecutive then data_rec_offset = 2
                                                                                                                             -- Initialized to 0 because we recover 1 element(type of recovery)
 signal data_rec_type: data_backup_type_t := nothing;                                    --data_rec_type                 :it contains the type of recovery to be carried out
@@ -201,7 +202,7 @@ component I_FSM_layer is
         addr_in_gen_rst: out std_logic;
         --Augumented Pins
         --Input pins
-        out_inv: in integer range 0 to 3;
+        out_v_set: in integer range 0 to 3;
         n_power_rst: in std_logic;
         data_rec_busy: in std_logic;
         data_save_busy: in std_logic;
@@ -261,8 +262,8 @@ fsm_state_r <= o_rec_vect(num_outputs+1) when data_rec_type = outputt and data_r
                     (OTHERS => '0');
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 --
-out_inv_mul <= 3 when data_rec_type = outputt and fsm_nv_reg_state = data_recovered_s else
-                out_inv;
+out_v_set_mul <= 3 when data_rec_type = outputt and fsm_nv_reg_state = data_recovered_s else
+                out_v_set;
 --
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%VOL_ARC CONSTANTS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     data_rec_nv_reg_start_addr  <= (others => '0');--(0 => '1', OTHERS => '0'); -- 1 
@@ -287,6 +288,7 @@ out_inv_mul <= 3 when data_rec_type = outputt and fsm_nv_reg_state = data_recove
     data_rec_var_cntr_init <= not data_rec_busy;
     data_rec_nv_reg_en <= not var_cntr_tc; --the value is still gated by the mux, so if we are not in data_rec the nv_reg is not enabled
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+pr_state <= fsm_pr_state;
 
 --COMPONENTS INSTANTIATION
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%FSM_LAYER%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -307,7 +309,7 @@ port map(
     addr_in_gen_rst => addr_in_gen_rst, --addr_in_gen_rst   :addr_in_gen_rst
     --Augumented Pins
     --Input pins
-    out_inv => out_inv_mul,
+    out_v_set => out_v_set_mul,
     data_rec_type => data_rec_type,     
     data_save_type => data_save_type,
     n_power_rst => n_power_reset,
@@ -464,7 +466,7 @@ addr_TC <= '0' when rst = '1' else
      '1' when unsigned(addr) = num_inputs-1;
      
 
-gen_addr: process(clk,rst) is --This process generate the address to access the neuron weight and get the input from the previous layer
+gen_addr: process(clk,rst) is --This process generates the address to access the neuron weight and get the input from the previous layer
 begin
    -- if rst = '1' then
     --    addr <= '0';
@@ -513,7 +515,7 @@ begin
                         data_rec_offset <= 1;
                         data_rec_type <= nothing;
                     elsif to_integer(unsigned(nv_reg_dout)) = 4 then
-                        data_rec_offset <= 32;
+                        data_rec_offset <= num_outputs+2;
                         data_rec_type <= outputt;
                     else
                         data_rec_offset <= data_rec_offset;

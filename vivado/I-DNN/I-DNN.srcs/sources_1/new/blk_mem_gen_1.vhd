@@ -85,7 +85,7 @@ constant C_INIT_FILE : string := "insert_the_correct_init_file.txt";
 signal douta_reg : std_logic_vector(C_RAM_WIDTH-1 downto 0) := (others => '0');           -- RAM output data when RAM_PERFORMANCE = HIGH_PERFORMANCE
                                          -- Specify name/location of RAM initialization file if using one (leave blank if not)
 
-type ram_type is array (C_RAM_DEPTH-1 downto 0) of std_logic_vector (C_RAM_WIDTH-1 downto 0);      -- 2D Array Declaration for RAM signal
+type ram_type is array (0 to C_RAM_DEPTH-1) of std_logic_vector (C_RAM_WIDTH-1 downto 0);      -- 2D Array Declaration for RAM signal
 signal ram_data : std_logic_vector(C_RAM_WIDTH-1 downto 0) ;--this contains one element of the ram
 
 -- The folowing code either initializes the memory values to a specified file or to all zeros to match hardware

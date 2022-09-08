@@ -26,7 +26,7 @@ Compiling architecture behavioral of entity xil_defaultlib.scaler [\scaler(presc
 Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=1569,init_value=0,i...]
 Compiling architecture behavioral of entity xil_defaultlib.intermittency_emulator [intermittency_emulator_default]
 Compiling architecture behavioral of entity xil_defaultlib.fsm_nv_reg_db [fsm_nv_reg_db_default]
-Compiling architecture behavioral of entity xil_defaultlib.blk_mem_gen_1 [\blk_mem_gen_1(depth=35,width=32...]
+Compiling architecture syn of entity xil_defaultlib.rams_sp_rf [\rams_sp_rf(ram_depth=35,ram_wid...]
 Compiling architecture behavioral of entity xil_defaultlib.nv_reg_emu [\nv_reg_emu(max_delay_ns=80)\]
 Compiling architecture behavioral of entity xil_defaultlib.nv_reg [\nv_reg(max_delay_ns=80,nv_reg_w...]
 Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]

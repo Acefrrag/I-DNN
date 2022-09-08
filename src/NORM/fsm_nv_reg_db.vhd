@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: 
+-- Engineer: Simone Ruffini
 -- 
 -- Create Date: 06/25/2020 01:06:12 PM
 -- Design Name: 
@@ -8,12 +8,16 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
--- Description: 
--- 
+-- Description: The finite state machine of the non-volatile register is the enity which supervises the operation of the volatile
+-- architecture(VARC). It sends imperative commands to the VARC which mainly are:
+-- 1) do_operation
+-- 2) save state to the nv_reg
+-- 3) recover state from the nv_reg
 -- Dependencies: 
 -- 
 -- Revision:
 -- Revision 0.01 - File Created
+-- Revision 0.02 - Michele Pio Fragasso - Added Description and Pin description
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
@@ -22,26 +26,20 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 use work.COMMON_PACKAGE.all;
 use work.TEST_ARCHITECTURE_PACKAGE.all;
 
 entity fsm_nv_reg_db is
     port ( 
-        clk                     : in STD_LOGIC;
-        resetN                  : in STD_LOGIC;
-        thresh_stats            : in threshold_t;
-        task_status             : in STD_LOGIC;
-        fsm_state               : out fsm_nv_reg_state_t;
-        fsm_state_sig           : out fsm_nv_reg_state_t --used with care (it is the future state of the machine, and it is combinatory so it is prone to glitces)
+        clk                     : in STD_LOGIC;             --clk           : clock signal
+        resetN                  : in STD_LOGIC;             --resetN        : Active-on-low reset signal
+        thresh_stats            : in threshold_t;           --thresh_stats  : vector containing the hazard and the power-off threshold
+        task_status             : in STD_LOGIC;             --task_status   : VARC Task status for recovery and save operation. '0': REC/SAVE operation completed '1': REC/SAVE opration 
+        fsm_state               : out fsm_nv_reg_state_t;   --fsm_state     : this the state of the finite state machine. It is used to send the imperative commands to the VARC
+        fsm_state_sig           : out fsm_nv_reg_state_t    --fsm_state_sig : used with care (it is the future state of the machine, and it is combinatory so it is prone to glitces)
     );
 end fsm_nv_reg_db;
 

@@ -58,8 +58,8 @@ port(
     --INPUT
     n_power_reset: in std_logic;                                                --n_power_reset:To reset the volatile register of the neuron
     en: in std_logic;                                                           --en:           Pin to enable the register (Active on low) - en=0: Volatile registers hold their data to enable save process.
-    o_rec: in std_logic;                                                        --o_rec:        Pin to enable the output recovery. '1': Content of neuron output is overwritten with the recovered data
-    s_rec: in std_logic;                                                        --s_rec:        Pin to enable the state recovery. '1': Content of neuron w_sum and is overwritten with the recovered data
+    output_en_rec: in std_logic;                                                        --output_en_rec:        Pin to enable the output recovery. '1': Content of neuron output is overwritten with the recovered data
+    internal_en_rec: in std_logic;                                                        --internal_en_rec:        Pin to enable the state recovery. '1': Content of neuron w_sum and is overwritten with the recovered data
     data_out_rec: in sfixed (neuron_int_width-1 downto -neuron_frac_width);       --data_out_rec: Recovery Port to recover the output of the neuron
     state_rec: in std_logic_vector(neuron_frac_width+neuron_int_width-1 downto 0);  --wsum_rec:     Recovery Port to recover the weighted sum or the ReLU output of the neuron
     data_v: in std_logic;
@@ -164,7 +164,7 @@ begin
                 sum_reg_out <= (others => '0');
             else
                 if rising_edge(clk) then
-                        if s_rec = '1' then
+                        if internal_en_rec = '1' then
                             sum_reg_out <= to_sfixed(state_rec, neuron_int_width-1, -neuron_frac_width);
                         end if;
                         if en = '1' then
@@ -194,7 +194,7 @@ end process mul_temp;
 out_ReLU_reg: process(clk) is
 begin
     if rising_edge(clk) then
-        if s_rec = '1' then
+        if internal_en_rec = '1' then
             out_ReLU_d <= to_sfixed(state_rec,neuron_int_width-1, -neuron_frac_width);
         end if;
     end if;
@@ -212,7 +212,7 @@ begin
         out_reg_val <= (others => '0');
     else
         if rising_edge(clk) then
-            if o_rec = '1' then
+            if output_en_rec = '1' then
                 out_reg_val <= data_out_rec;
             end if;
         end if;

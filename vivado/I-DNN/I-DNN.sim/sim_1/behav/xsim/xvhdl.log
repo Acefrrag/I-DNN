@@ -28,8 +28,8 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Michele/GithubRepositories/I-D
 INFO: [VRFC 10-3107] analyzing entity 'nv_reg'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Michele/GithubRepositories/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'blk_mem_gen_1'
-WARNING: [VRFC 10-393] cannot access 'ramfile' from inside pure function 'initramfromfile'. [C:/Users/Michele/GithubRepositories/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd:100]
-WARNING: [VRFC 10-3165] cannot call impure function 'initramfromfile' from within pure function 'init_from_file_or_zeroes' [C:/Users/Michele/GithubRepositories/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd:110]
+WARNING: [VRFC 10-393] cannot access 'ramfile' from inside pure function 'initramfromfile'. [C:/Users/Michele/GithubRepositories/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd:91]
+WARNING: [VRFC 10-3165] cannot call impure function 'initramfromfile' from within pure function 'init_from_file_or_zeroes' [C:/Users/Michele/GithubRepositories/I-DNN/vivado/I-DNN/I-DNN.srcs/sources_1/new/blk_mem_gen_1.vhd:101]
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Michele/GithubRepositories/I-DNN/src/NORM/intermittency_emulator.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'intermittency_emulator'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Michele/GithubRepositories/I-DNN/src/NORM/scaler.vhd" into library xil_defaultlib
@@ -50,6 +50,8 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Michele/GithubRepositories/I-D
 INFO: [VRFC 10-3107] analyzing entity 'pwr_consumption_val_ROM'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Michele/GithubRepositories/I-DNN/src/NORM/mult.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'mult'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Michele/GithubRepositories/I-DNN/src/NORM/rams_sp_rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rams_sp_rf'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Michele/GithubRepositories/I-DNN/test/I_FSM_layer_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_FSM_layer_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Michele/GithubRepositories/I-DNN/test/I_neuron_tb.vhd" into library xil_defaultlib

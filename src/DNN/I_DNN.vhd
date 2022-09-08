@@ -11,17 +11,13 @@
 -- Description: This vhdl file instantiate the intermittent architecture of the DNN. This vhdl is generated with a python script, therefore if you need to modify this file, you have
 -- to change the python script.
 -- 
-
--- 
 -- Dependencies: 
 -- 
 -- Revision:
 -- Revision 0.01 - File Created
 -- Additional Comments:
--- It would be nice if it is possible to implement a way to evaluate
--- if it is more convenient to save the output or keep on computing the layer output
--- For example if the number of clock cycles required to save the output equals the ones required
--- to compute the output of the DNN. 
+-- It would be nice if it is possible to implement a way to evaluate if it is more convenient to save the output or keep on computing the layer output
+-- For example if the number of clock cycles required to save the output equals the ones required to compute the output of the DNN.
 ----------------------------------------------------------------------------------
 
 
@@ -45,14 +41,14 @@ port(
 data_in: in sfixed (data_int_width-1 downto -data_frac_width);                      --data_in   : serial input to the DNN.
 start: in std_logic;                                                                --start     : signal to trigger the DNN
 clk: in std_logic;                                                                  --clk       : system clock
-data_out: out sfixed (data_int_width-1 downto -data_frac_width);--data_out  : serial output from the DNN
-digit_out: out integer range 0 to 9;                   
+data_out: out sfixed (data_int_width-1 downto -data_frac_width);                    --data_out  : serial output from the DNN
+digit_out: out integer range 0 to 9;                                                --digit_out : digit(0 to 9) the input handwritten number is classified with.                                      
 data_v: out std_logic;                                                              --data_v    : data validity bit. It aknowledges the availability of data from the DNN
 addr_in: out std_logic_vector(0 to natural(ceil(log2(real(layer_inputs(1)))))-1);   --addr_in   : To scan through the valdation data set
 --AUGUMENTED PINS
-n_power_reset: in std_logic;                                                        --n_power_reset     : reset pin which emulates a power failure                       
-data_sampled: in std_logic;
-thresh_stats: in threshold_t                                                        --threshold_stats   : this contains the hazard signal to trigger the data save process
+n_power_reset: in std_logic;                                                        --n_power_reset     : Reset pin which emulates a power failure                       
+data_sampled: in std_logic;                                                         --data_sampled      : When the DNN output is no longer needed, this pin is set to '1'.
+thresh_stats: in threshold_t                                                        --threshold_stats   : This contains the hazard signal to trigger the data save process
 ); --To scan through the valdation data set
 end I_DNN;
 
@@ -60,6 +56,8 @@ architecture Behavioral of I_DNN is
 --TYPES-------------------------------------------------
 type data_vect_type is array(1 to num_layers) of sfixed(data_int_width-1 downto -data_frac_width);
 type out_v_set_vect_t is array(1 to num_layers) of integer range 0 to 3;
+constant NV_REG_WIDTH: natural := 32;
+constant NV_REG_DEPTH: natural := 35;
 --LAYER SIGNALS-----------------------------------------
 signal out_v_set_vect: out_v_set_vect_t;
 signal data_out_vect, data_in_vect: data_vect_type;
@@ -293,7 +291,8 @@ end component;
 component nv_reg is
     Generic(
         MAX_DELAY_NS: INTEGER;
-        NV_REG_WIDTH: INTEGER
+        NV_REG_WIDTH: INTEGER;
+        NV_REG_DEPTH: INTEGER
     );
     Port ( 
         clk             : in STD_LOGIC;
@@ -425,7 +424,8 @@ fsm_nv_reg_db_comp: fsm_nv_reg_db
 nv_reg_comp1: nv_reg
     Generic map(
         MAX_DELAY_NS => FRAM_MAX_DELAY_NS,
-        NV_REG_WIDTH => NV_REG_WIDTH
+        NV_REG_WIDTH => NV_REG_WIDTH,
+        NV_REG_DEPTH => NV_REG_DEPTH
     )
     Port map(
         clk             => clk,
@@ -483,7 +483,8 @@ I_layer1: I_layer
 nv_reg_comp2: nv_reg
     Generic map(
         MAX_DELAY_NS => FRAM_MAX_DELAY_NS,
-        NV_REG_WIDTH => NV_REG_WIDTH
+        NV_REG_WIDTH => NV_REG_WIDTH,
+        NV_REG_DEPTH => NV_REG_DEPTH
     )
     Port map(
         clk             => clk,
@@ -541,7 +542,8 @@ I_layer2: I_layer
 nv_reg_comp3: nv_reg
     Generic map(
         MAX_DELAY_NS => FRAM_MAX_DELAY_NS,
-        NV_REG_WIDTH => NV_REG_WIDTH
+        NV_REG_WIDTH => NV_REG_WIDTH,
+        NV_REG_DEPTH => NV_REG_DEPTH
     )
     Port map(
         clk             => clk,
@@ -599,7 +601,8 @@ I_layer3: I_layer
 nv_reg_comp4: nv_reg
     Generic map(
         MAX_DELAY_NS => FRAM_MAX_DELAY_NS,
-        NV_REG_WIDTH => NV_REG_WIDTH
+        NV_REG_WIDTH => NV_REG_WIDTH,
+        NV_REG_DEPTH => NV_REG_DEPTH
     )
     Port map(
         clk             => clk,

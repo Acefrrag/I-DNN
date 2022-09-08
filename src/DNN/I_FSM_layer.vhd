@@ -48,24 +48,23 @@ port(
     addr_in_gen_rst: out std_logic;                                 --addr_in_gen_rst   :This bit 
     --ADDED PORTS
     --INPUTS
-    out_v_set: in integer range 0 to 3;                               --out_v_set                   :Used to reset the validity bit of the layer. 1:Output of the next layer has been computed, the out_v of this layer must be reset, 2:Output of the next layer has still to be computed. Hold the vallue 3:The output has been recovered from the nv_reg. Set the out_v to 1 to trigger the next layer.
-    n_power_rst: in std_logic;                                      --n_power_rst
-    data_rec_busy: in std_logic;                                    --data_rec_busy
-    data_save_busy: in std_logic;                                   --data_save_busy
-    fsm_nv_reg_state: in fsm_nv_reg_state_t;                        --fsm_nv_reg_state          :State of fsm of the nv_reg state
-    data_rec_recovered_offset: in integer range 0 to num_outputs+1; --data_rec_recovered_offset :This contains the address 
-    data_rec_type: in data_backup_type_t;                           --data_rec_type             :This value must be held from the outer module during the whole recovery/save process
-    data_save_type: in data_backup_type_t;                          --data_save_type            :
-    fsm_state_r: in std_logic;                                      --fsm_state_r               :activation pin for recovery of the fsm state.  -------
-    fsm_state_rec: in std_logic_vector(nv_reg_width-1 downto 0);    --fsm_state_rec             :To recover the state of the fsm from the nv_reg -------
+    out_v_set: in integer range 0 to 3;                             --out_v_set                 :Used to reset the validity bit of the layer. 1:It means that the output of the next layer has been computed, and this layer has to reset it out_v to '0' 2: Hold the out_v bit value(This is when the layer still has to be used, has already been used, it's being used by the next layer) 3:Set out_v to '1'. This is when the output has been recovered from the nv_reg, so this aknowledges that the layer is still being used.
+    n_power_rst: in std_logic;                                      --n_power_rst               :Active-on-low power reset pin
+    data_rec_busy: in std_logic;                                    --data_rec_busy             :data_rec_busy pin 
+    data_save_busy: in std_logic;                                   --data_save_busy            :data_save_busy pin
+    fsm_nv_reg_state: in fsm_nv_reg_state_t;                        --fsm_nv_reg_state          :State of fsm of the nv_reg state. Contains the imperative command from the fsm_nv_rev.
+    data_rec_recovered_offset: in integer range 0 to num_outputs+1; --data_rec_recovered_offset :This contains the offset reached (counting from the start address). It's used to access the volatile registers of the layer.
+    data_rec_type: in data_backup_type_t;                           --data_rec_type             :It contains the type of recovery to perform. 'nothing', 'internal' or 'outputs'. This value must be held during the whole recovery/save process
+    fsm_state_en_rec: in std_logic;                                 --fsm_state_en_rec          :pin to enable sampling of the fsm state
+    fsm_state_rec: in std_logic_vector(nv_reg_width-1 downto 0);    --fsm_state_rec             :It contains the enconding of the state of layer fsm. It is used to resume the state of the layer after recovering data. 
     --OUTPUT
-    o_r: out std_logic_vector (0 to num_outputs+1);                 --o_r               :activation pins for recovery of the outputs (last 2 are unused).
-    s_r: out std_logic_vector (0 to num_outputs+1);                 --s_r               :activation pins for recovery of the state(ReLU, w_sum, b_sum, act_log).
-    save_state_selector: out integer range 0 to 3;                  --mul_state         :selector to correctly route the data to be saved when saving the state (ReLU or w_sum) of the layer.
-    addra: out integer range 0 to num_outputs+2;                    --addra             :
-    fsm_state_save: out std_logic_vector(nv_reg_width-1 downto 0);  --fsm_state_save    :To save the state of the fsm of the layer, it is also used to determine the type of save 
-    fsm_pr_state: out fsm_layer_state_t;                            --fsm_pr_state      :It contains the present state of the fsm.
-    reg_en: out std_logic                                           --reg_en          :This is used to enable/disable the register, ,including this fsm machine
+    output_en_rec_vect: out std_logic_vector (0 to num_outputs+1);  --output_en_rec_vect        :Collection of pins to enable recovery by layer's neurons of their output. 
+    internal_en_rec_vect: out std_logic_vector (0 to num_outputs+1);--internal_en_rec_vect      :Collection of pins to enable recover by layer's neurons of their internal registers.
+    save_state_selector: out integer range 0 to 3;                  --save_state_selector       :Selector to correctly route the data to be saved when saving the internal registers of the layer.'0' The
+    addra: out integer range 0 to num_outputs+2;                    --addra                     :This address is used to fetch data from the volatile registers of the layer (which are supposed to be saved into the nv_reg)
+    fsm_state_save: out std_logic_vector(nv_reg_width-1 downto 0);  --fsm_state_save            :The encoded state of the fsm of the layer, it is also used to determine the type of save to perform
+    fsm_pr_state: out fsm_layer_state_t;                            --fsm_pr_state              :It contains the present state of the fsm. it is used by the power_approzimation units 
+    reg_en: out std_logic                                           --reg_en                    :This is used to enable/disable the register, ,including this fsm machine
     );
 end I_FSM_layer;
 
@@ -77,13 +76,12 @@ signal out_val: std_logic := '0';
 signal fsm_state_save_internal:  std_logic_vector(nv_reg_width-1 downto 0);
 constant number: integer range 0 to 5:=1;
 
-
 begin
-    fsm_pr_state <= pr_state;
     
-    
+fsm_pr_state <= pr_state;
 fsm_state_save <= fsm_state_save_internal;
-state_backup_eval: process(clk) is
+
+state_backup_eval: process(all) is
 begin
     if n_power_rst = '0' then
         state_backup_rec <= idle;
@@ -91,25 +89,18 @@ begin
         fsm_state_save_internal <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
     else
         --Logic for saving.
-        --fsm_state_save
-        --When a hazard occur, the architecture first samples the hazard, then at next clock cycle it starts the daa_save process.
-        --At this time instant, the architecture evolves for another clock cycle. he architecutre has evolved to the next state.
-        --Therefore when computation will be resumed it is neccessary to start from the next state/addr.
-        --fsm_state_save <= (others => '0');
-        if rising_edge(clk) then
---            state_backup_rec <= idle;
---            state_backup_save <= idle;
---            fsm_state_save_internal <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
+        --When saving the state, the state to be saved is the one that the layer is supposed to evolve to if there was no hazard.
+        --if rising_edge(clk) then
             if pr_state = idle then
                 fsm_state_save_internal <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
-                state_backup_save <= pr_state;
+                state_backup_save <= idle;
             elsif pr_state = w_sum then
                 if addr_TC = '1' then
                     state_backup_save <= b_sum;
                     fsm_state_save_internal <= std_logic_vector(to_unsigned(2,fsm_state_save'length));
                 else
                     fsm_state_save_internal <= std_logic_vector(to_unsigned(1,fsm_state_save'length));
-                    state_backup_save <= pr_state;
+                    state_backup_save <= w_sum;
                 end if;     
             elsif pr_state = b_sum then
                 fsm_state_save_internal <= std_logic_vector(to_unsigned(3,fsm_state_save'length));
@@ -130,11 +121,11 @@ begin
                 --the fsm remembers what to write inside the nv_reg.
                 fsm_state_save_internal <= fsm_state_save_internal;
                 state_backup_save <= state_backup_save;
-            end if;
+       --     end if;
             --Logic for recovery
             --fsm_state_rec
             if data_rec_busy = '1' then
-                if fsm_state_r = '1' then
+                if fsm_state_en_rec = '1' then
                     if unsigned(fsm_state_rec) = 0 then
                         state_backup_rec <= idle;
                     elsif unsigned(fsm_state_rec) = 1 then
@@ -171,7 +162,7 @@ end process;
     --addr_in_gen_en: To enable the address generator.
     begin
     --################ V_REG DEFAULTS
-    --o_r <= (others => '0'); 
+    --output_en_rec_vect <= (others => '0'); 
     addra <= 0;
     mul_sel <= '0';
     --The default value of out_val depends on out_v_set
@@ -218,20 +209,20 @@ end process;
                     addra <= data_rec_recovered_offset;
                     case data_rec_type is
                     when nothing =>
-                        o_r <= (others => '0');
-                        s_r <= (others => '0');
-                    when state =>
-                        o_r <= (others => '0');
-                        s_r(addra) <= '1';
+                        output_en_rec_vect <= (others => '0');
+                        internal_en_rec_vect <= (others => '0');
+                    when internal =>
+                        output_en_rec_vect <= (others => '0');
+                        internal_en_rec_vect(addra) <= '1';
 --                        if fsm_state_save_internal = std_logic_vector(to_unsigned(3,fsm_state_save_internal'length)) then--act_log
 --                            mul_state <= '1';
 --                        else
 --                            mul_state <= '0';
 --                        end if;
                         --if fsm_state_rec = 
-                    when outputt =>
-                        o_r(addra) <= '1';--addr 0 to num_outputs+1
-                        s_r <= (others => '0');
+                    when outputs =>
+                        output_en_rec_vect(addra) <= '1';--addr 0 to num_outputs+1
+                        internal_en_rec_vect <= (others => '0');
                     end case;
                     --LAYER OUTPUT RECOVERY)
                     --If we are recovering the output the input address range from 0 to num_outputs-1
@@ -239,8 +230,8 @@ end process;
                     --ena <= '1';                    
                     -- If we're recovering the
                 else
-                    o_r <= (others => '0');
-                    s_r <= (others => '0');                   
+                    output_en_rec_vect <= (others => '0');
+                    internal_en_rec_vect <= (others => '0');                   
                 end if;
             end if;
         when idle =>

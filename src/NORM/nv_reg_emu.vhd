@@ -15,6 +15,7 @@
 -- 
 -- Revision:
 -- Revision 0.01 - File Created
+-- Revision 0.02 - Michele Pio Fragasso - Added Additional Comments and Pin Description
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
@@ -37,14 +38,16 @@ use work.NVME_FRAMEWORK_PACKAGE.all;
 
 entity nv_reg_emu is
     Generic(
-        MAX_DELAY_NS: INTEGER -- this is the maximum delay that the nv_reg uses to process data
+        MAX_DELAY_NS: INTEGER       --MAX_DELAY_NS: this is the maximum delay that the nv_reg uses to process data. It must be a multiple of the clock cycle duration
     );
     Port ( 
-        clk     : IN STD_LOGIC;
-        resetN  : IN STD_LOGIC;
-        load_en : IN STD_LOGIC; 
-        busy_sig: OUT STD_LOGIC;
-        busy    : OUT STD_LOGIC
+        clk     : IN STD_LOGIC;     --clk           : clock signal
+        resetN  : IN STD_LOGIC;     --resetN        : active-on-low reset bit. '0':It reset the emulator registers(counter)
+        load_en : IN STD_LOGIC;     --load_en       : signal to request access to the nv_reg. Outside it is latched to bram_en bit
+        busy_sig: OUT STD_LOGIC;    --busy_sig      : it anticipates the busy signal by one clock cycle.
+        busy    : OUT STD_LOGIC     --busy          : busy signal. It's used to communicate the busyness or the availability of the nv_reg.
+                                        --When saving, we look at this value before fetching the next data from the volatile registers and putting 
+                                        --When recovering, we look at this value before sampling the output of the non-volatile register nv_reg_dout.
     );
 end nv_reg_emu;
 

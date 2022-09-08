@@ -30,15 +30,6 @@ use std.textio.all;
 library work;
 use work.NVME_FRAMEWORK_PACKAGE.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
 entity blk_mem_gen_1 is
 generic(
     constant depth: natural:=1;

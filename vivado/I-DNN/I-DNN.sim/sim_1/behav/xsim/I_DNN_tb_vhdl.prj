@@ -31,6 +31,7 @@ vhdl xil_defaultlib  \
 "../../../../../../src/NORM/power_approximation.vhd" \
 "../../../../../../src/NORM/pwr_consumption_val_ROM.vhd" \
 "../../../../../../src/NORM/mult.vhd" \
+"../../../../../../src/NORM/rams_sp_rf.vhd" \
 
 vhdl2008 xil_defaultlib  \
 "../../../../../../test/I_FSM_layer_tb.vhd" \

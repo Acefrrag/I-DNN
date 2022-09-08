@@ -78,8 +78,8 @@ package TEST_ARCHITECTURE_PACKAGE is
 
     type data_backup_type_t is(
     nothing,
-    state,
-    outputt);
+    internal,
+    outputs);
     -- Possible thresholds of the voltage trace
     -- Add more thresholds in case of fsmn_nv_reg_db
     type threshold_t is(

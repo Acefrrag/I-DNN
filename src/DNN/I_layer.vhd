@@ -62,9 +62,9 @@ port(
     n_power_reset: in std_logic;                                                        --n_power_reset     :       Emulates power failure. 1 Power on 0: Power Off
     fsm_nv_reg_state: in fsm_nv_reg_state_t;                                            --fsm_nv_reg_state  :       This contains the imperative commands to the varc.
     nv_reg_busy: in std_logic;                                                          --nv_reg_busy       :       Together with nv_reg_bbusy_sig aknowledges the availability fro r/w operation into/from the nv_reg
-    nv_reg_busy_sig: in  STD_LOGIC;                                                     --nv_reg_busy_sig   :    
+    nv_reg_busy_sig: in  STD_LOGIC;                                                     --nv_reg_busy_sig   :       It anticipate nv_reg_busy by one clock cycle    
     nv_reg_dout: in STD_LOGIC_VECTOR(NV_REG_WIDTH-1 DOWNTO 0);                          --nv_reg_dout       :       Contains the nv_reg output (used when recovering data)
-    out_v_set: in integer range 0 to 3;                                                 --out_v_set          :      1: layer's output is invalidated. 2: as long we are computing the output of the next layer, or the layer is idle. 3:After a power-off and we recover data.                                                                                        
+    out_v_set: in integer range 0 to 3;                                                 --out_v_set         :      1: layer's output is invalidated. 2: as long we are computing the output of the next layer, or the layer is idle. 3:After a power-off and we recover data.                                                                                        
     -------OUTPUTS-------
     task_status: out std_logic;                                                         --task_status       :       0: The recovery/save operation has finished. 1: It is still being carried on.
     nv_reg_en: out std_logic;                                                           --nv_reg_en         :       1: Reading/Wrinting operation request. 0: nv_reg is disabled
@@ -95,12 +95,10 @@ signal addr_in_gen_rst: std_logic;  --Wire
 -----------------LAYER----------------
 --INPUT
 --OUTPUT
-signal data_out_vect: data_out_type;                                                                 --data_out_vect : Neurons' outputs
-
------------VOLATILE REGISTERS SIGNALS------------
---This signals are used to group the input and output to the volatile elements of the architecture. FSM_layer state, addr_gen content, neurons' output and weighted sum.
-------------------------------------LAYER RECOVERY SIGNALS--------------------------------------
--------------------------------LAYER RECOVERY CONTROL SIGNALS-----------------------------------
+    signal data_out_vect: data_out_type;        --data_out_vect : Neurons' outputs
+-------------------------------VOLATILE REGISTERS SIGNALS----------------------------------------
+---------------------------------LAYER RECOVERY SIGNALS------------------------------------------
+-----------------------------LAYER RECOVERY CONTROL SIGNALS--------------------------------------
 signal output_en_rec_vect: std_logic_vector(0 to num_outputs+1);                        --Recovery enable bits. :Wire
 signal internal_en_rec_vect: std_logic_vector(0 to num_outputs+1);                      --internal_en_rec_vect  :Wire
 signal fsm_state_rec: std_logic_vector(0 to nv_reg_width-1);                            --fsm_state_rec         :Wire 
@@ -111,35 +109,37 @@ signal data_backup_vect_internal_rec: data_backup_internal_type := (others => (o
 signal addra: integer range 0 to num_outputs+2;                                                     --addra                         : Address to fetch the volatile registers when recovering data 
 --------------------------------------LAYER SAVE SIGNALS------------------------------------------
 signal fsm_state_save: std_logic_vector(0 to nv_reg_width-1);                                                           --fsm_state_save                :It contain the encoded state of the layer to save into the nv_reg
-signal en: std_logic;                                                                                                   --en                            :Bit to disable neuron registers when saving/recovering data.
+signal en: std_logic;                                                                                                   --en                            :Bit to disable VARC registers when saving/recovering data. This is done to prevent the architecture to change its state when saving data.
 signal addrb: integer range 0 to num_outputs+2;                                                                         --addrb                         :for saving the output and one for saving the                                          --addrb                 :address to read from the volatile registers when saving data
-signal data_backup_vect_output_save: data_backup_output_type;                                                           --data_backup_vect_output_save  :Collection of layer's neuron output
-signal data_backup_vect_state_save, data_backup_vect_ReLU_save, data_backup_vect_wsum_save: data_backup_internal_type;  --data_backup_vect_state_save   :
 signal doutb: std_logic_vector(nv_reg_width-1 downto 0);                                                                --doutb                         :It contains               
+signal data_backup_vect_output_save: data_backup_output_type;                                                           --data_backup_vect_output_save  :Collection of layer's neuron output.
+signal data_backup_vect_state_save, data_backup_vect_ReLU_save, data_backup_vect_wsum_save: data_backup_internal_type;  --data_backup_vect_state_save   :Collection of layer's and neurons' internal registers.
+signal data_save_type_marker  : integer range 1 to 4:= 1;                                                               --data_save_type_marker         :This encodes the type of data saved inside the nv_reg. The code is written inside the first element of the nv_reg which and instructs the volatile architecture how many cells are supposed to be recovered.
 signal data_save_type: data_backup_type_t := nothing;                                                                   --data_save_type                :It contains the type of save to be performed
-signal save_state_selector  : integer range 0 to 3;                                                                     
-signal mul_sel_backup       : integer range 1 to 4:= 1;
-signal fsm_pr_state         : fsm_layer_state_t;
+signal save_state_selector  : integer range 0 to 3;                                                                     --save_state_selector           :It's used to route the correct set of data into the nv_reg. '0': The cumulative sum registers are routed into the nv_reg. '1': The ReLU registers aree routed into the nv_reg.                                                                   
+signal fsm_pr_state         : fsm_layer_state_t;                                                                        --fsm_pr_state                  :It contains the present of the layer. It used both to enable the power_approximation unit and to set the data_rec_busy bit.
 --------------------------------------------------------------------------------------
 -------------------------------COMMON_SIGNALS-----------------------------------------
-signal task_status_internal: STD_LOGIC;
-signal rst: std_logic:='1';
-signal reg_en: std_logic;
-signal out_v_set_mul: integer range 0 to 3 :=1;
+signal task_status_internal: STD_LOGIC;         --task_status_internal  : wire
+signal rst: std_logic:='1';                     --rst                   :
+signal reg_en: std_logic;                       --reg_en                : register enable to enable/disable the internal registers of the volatile architecture when saving and recovering data.
+signal out_v_set_mul: integer range 0 to 3 :=1; --out_v_set_mul         : this set the output validity bit of the layer.
+                                                                            --Normally this is driven by the output validity bit of the next layer, but when the VARC recovers an output type data, this value is forced to 3 by the fsm of the layer(3 instruct the fsm_layer to set the validity bit to '1').
 --------------------------------------------------------------------------------------
--------------------------------DATA_REC_SIGNALS---------------------------------------  
-signal data_rec_busy: STD_LOGIC := '0';                                     
-signal data_rec_nv_reg_en: STD_LOGIC;  
-signal data_rec_nv_reg_we: STD_LOGIC;  
-signal data_rec_nv_reg_din: STD_LOGIC_VECTOR( 31 DOWNTO 0);
-signal data_rec_nv_reg_addr : STD_LOGIC_VECTOR(nv_reg_addr_width_bit-1 DOWNTO 0);
-signal data_rec_var_cntr_init :STD_LOGIC;
-signal data_rec_var_cntr_ce: STD_LOGIC;
-signal data_rec_var_cntr_end_value : INTEGER;   
+-------------------------------DATA_REC_SIGNALS---------------------------------------
+signal data_rec_busy: STD_LOGIC := '0';                                                     --data_rec_busy         : '1': when data recovery is initialized                               
+signal data_rec_nv_reg_en: STD_LOGIC:='1';                                                  --data_rec_nv_reg_en    :This enables the nv_reg when recovering data.
+constant data_rec_nv_reg_we: STD_LOGIC:='0';                                                --data_rec_nv_reg_we    :'0':This disables the nv_reg_we bit when recovering data  
+constant data_rec_nv_reg_din: STD_LOGIC_VECTOR( nv_reg_width-1 DOWNTO 0):=(others => '0');  --data_rec_nv_reg_din   :the nv_reg_din is latched to this when we are recovering data 
+signal data_rec_nv_reg_addr : STD_LOGIC_VECTOR(nv_reg_addr_width_bit-1 DOWNTO 0);           --data_rec_nv_reg_addr  :addr to rec data from nv_reg 
+signal data_rec_var_cntr_init :STD_LOGIC;                                                   --data_rec_var_cntr_init:VAR_CNTR init value when recovering data
+signal data_rec_var_cntr_ce: STD_LOGIC;                                                     --data_rec_var_cntr_ce  :
+signal data_rec_var_cntr_end_value : INTEGER;                                               --data_rec_cntr_end_vlue:
+constant data_rec_nv_reg_start_addr: STD_LOGIC_VECTOR(nv_reg_addr_width_bit-1 DOWNTO 0):=(others => '0');  --data_rec_nv_reg_start_addr    :address from which start recovering data in nv_reg
+constant data_rec_v_reg_start_addr: STD_LOGIC_VECTOR(v_reg_addr_width_bit-1 DOWNTO 0):=(others => '0');    --data_rec_v_reg_start_addr     :address from which the recovered data (#ofdata=data_rec_offset) will be collected
+
 --------------------------------------------------------------------------------------
 ------------------------------DATA_REC process----------------------------------------
-signal data_rec_nv_reg_start_addr: STD_LOGIC_VECTOR(nv_reg_addr_width_bit-1 DOWNTO 0);  --data_rec_nv_reg_start_addr    :address from which start recovering data in nv_reg
-signal data_rec_v_reg_start_addr: STD_LOGIC_VECTOR(v_reg_addr_width_bit-1 DOWNTO 0);    --data_rec_v_reg_start_addr     :address from which the recovered data (#ofdata=data_rec_offset) will be collected
 signal data_rec_offset: INTEGER RANGE 0 TO num_outputs+2+2:=1;					        --data_rec_offset               :the number of elements to save/recover from the nv_reg
                                                                                                                             -- ex: recover data from a total number of cells equal to 3 consecutive then data_rec_offset = 2
                                                                                                                             -- Initialized to 0 because we recover 1 element(type of recovery)
@@ -158,14 +158,15 @@ signal data_save_nv_reg_addr : STD_LOGIC_VECTOR(nv_reg_addr_width_bit-1 DOWNTO 0
 signal data_save_var_cntr_init :STD_LOGIC;                                              --data_save_var_cntr_init       : to initialize the counter for save op           
 signal data_save_var_cntr_ce: STD_LOGIC;                                                --data_save_var_cntr_ce         : to enable the counter for save op
 signal data_save_var_cntr_end_value : INTEGER;                                          --data_save_var_cntr_end_value  : end value of the counter for save op
+constant data_save_nv_reg_start_addr: STD_LOGIC_VECTOR(nv_reg_addr_width_bit-1 DOWNTO 0):=(others => '0');  --data_save_nv_reg_start_addr   :start address (in nv_reg) from which the data save process will save volatile values
+constant data_save_v_reg_start_addr: STD_LOGIC_VECTOR(v_reg_addr_width_bit-1 DOWNTO 0):=(others => '0');    --data_save_v_reg_start_addr    :start address (in bram aka volatile register) from which the data save process will fetch data
+
 --------------------------------------------------------------------------------------
 --------------------------------------------------DATA_SAVE process-------------------
-signal data_save_nv_reg_start_addr: STD_LOGIC_VECTOR(nv_reg_addr_width_bit-1 DOWNTO 0);	--data_save_nv_reg_start_addr   :start address (in nv_reg) from which the data save process will save volatile values
-signal data_save_v_reg_start_addr: STD_LOGIC_VECTOR(v_reg_addr_width_bit-1 DOWNTO 0);   --data_save_v_reg_start_addr    :start address (in bram aka volatile register) from which the data save process will fetch data
-
-signal data_save_v_reg_offset : INTEGER RANGE 0 TO V_REG_WIDTH -1;				        --data_save_v_reg_offset          : the offset used to calculate the last address of v_reg (aka volatile register) for data save process
+signal data_save_v_reg_offset : INTEGER RANGE 0 TO V_REG_WIDTH -1;                      --data_save_v_reg_offset        :the offset used to calculate the last address of v_reg (aka volatile register) for data save process
 
 -------------------------------VAR_COUNTER_SIGNALS------------------------------------
+--These signals are latched to the corresponding save/rec signals depending on what it is been commanded by the fsm_nv_reg
 signal var_cntr_clk,var_cntr_init,var_cntr_ce,var_cntr_tc: STD_LOGIC;                               --clk, init, ce and tc signals for the counter
 signal var_cntr_value, var_cntr_value_last,var_cntr_end_value: INTEGER range 0 to NV_REG_WIDTH+2;   --value, value_last and end value for the counter
 --------------------------------------------------------------------------------------   
@@ -190,7 +191,6 @@ component I_FSM_layer is
         out_v_set: in integer range 0 to 3;
         n_power_rst: in std_logic;
         data_rec_busy: in std_logic;
-        data_save_busy: in std_logic;
         data_rec_type: in data_backup_type_t;
         fsm_nv_reg_state: in fsm_nv_reg_state_t;
         data_rec_recovered_offset: in integer range 0 to num_outputs+1;
@@ -225,12 +225,14 @@ component var_counter is
 end component var_counter;
 
 begin
+--------------------------FSM_STATE_REC MULTIPLEXER--------------------------------------------
+--The state of the layer to be recovered is normally latched to the regular value (data_backup-vect_internal(num_outputs+2) but if we are recovering the state "finished" (which is when we are recovering an output_type set of data but with an offset of num_outputs+2) it takes the corresponding element from the output collection.
 fsm_state_rec <= data_backup_vect_output_rec(num_outputs+2) when data_rec_type = outputs and data_rec_offset = num_outputs+2 else
                  data_backup_vect_internal_rec(num_outputs+2);
+--It's the same concept for what happens for fsm_state_rec
 fsm_state_en_rec <= output_en_rec_vect(num_outputs+1) when data_rec_type = outputs and data_rec_offset = num_outputs+2 else
                 internal_en_rec_vect(num_outputs+1);                       
-                    
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% NV_REG PORTS ACCESS MULTIPLEXER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-------------------------------NV_REG PORTS ACCESS MULTIPLEXER----------------------------------
     nv_reg_en   <=  data_rec_nv_reg_en      when data_rec_busy = '1'    else
                     data_save_nv_reg_en     when data_save_busy = '1'   else
                     '0';
@@ -244,19 +246,12 @@ fsm_state_en_rec <= output_en_rec_vect(num_outputs+1) when data_rec_type = outpu
     nv_reg_din  <=  data_rec_nv_reg_din     when data_rec_busy = '1'    else
                     data_save_nv_reg_din    when data_save_busy = '1'   else
                     (OTHERS => '0');
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
---
+-------------------------------------------------------------------------------------------------
+---------------------------------OUT_VAL_SET MULTIPLEXER-----------------------------------------
 out_v_set_mul <= 3 when data_rec_type = outputs and fsm_nv_reg_state = data_recovered_s else
                 out_v_set;
---
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%VOL_ARC CONSTANTS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    data_rec_nv_reg_start_addr  <= (others => '0');--(0 => '1', OTHERS => '0'); -- 1 
-    data_rec_v_reg_start_addr   <= (others => '0');--(3 => '1', OTHERS => '0'); -- 8
-    data_save_nv_reg_start_addr <= data_rec_nv_reg_start_addr;
-    data_save_v_reg_start_addr  <= data_rec_v_reg_start_addr;
-    --data_save_v_reg_offset      <= data_rec_offset;
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% VAR_CNTR PORT ACCESS MULITPLEXER %%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+-------------------------------------------------------------------------------------------------
+--------------------------VAR_CNTR PORT ACCESS MULITPLEXER---------------------------------------
     var_cntr_init       <=  data_rec_var_cntr_init          when data_rec_busy = '1'    else
                             data_save_var_cntr_init         when data_save_busy = '1'   else
                             '1'; --default initialize counter
@@ -266,17 +261,15 @@ out_v_set_mul <= 3 when data_rec_type = outputs and fsm_nv_reg_state = data_reco
     var_cntr_end_value  <=  data_rec_var_cntr_end_value     when data_rec_busy = '1'    else
                             data_save_var_cntr_end_value    when data_save_busy = '1'   else
                             1; --default end value is 1
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
---%%%%%%%%%%%%%%%%%%% DATA_REC COMB LOGIC %%%%%%%%%%%%%%%%%%%%%%%
+-------------------------------------------------------------------------------------------------
+------------------------------DATA_REC COMB LOGIC------------------------------------------------
     data_rec_var_cntr_ce <= data_rec_busy;
     data_rec_var_cntr_init <= not data_rec_busy;
     data_rec_nv_reg_en <= not var_cntr_tc; --the value is still gated by the mux, so if we are not in data_rec the nv_reg is not enabled
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-------------------------------------------------------------------------------------------------
 pr_state <= fsm_pr_state;
-
---COMPONENTS INSTANTIATION
---%%%%%%%%%%%%%%%%%%%%%%%%%%%FSM_LAYER%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
---fsm_state_save <= data_backup_vect_state_save(num_outputs+1);
+----------------------------COMPONENTS INSTANTIATION---------------------------------------------
+-----------------------------------FSM_LAYER-----------------------------------------------------
 I_fsm_layer_comp: I_FSM_layer
 generic map(
     num_outputs => num_outputs,
@@ -291,13 +284,12 @@ port map(
     out_v => out_v,                     
     update_out => update_out,           
     addr_in_gen_rst => addr_in_gen_rst, 
-    --Augumented Pins
+    --Added Pins
     --Input pins
     out_v_set => out_v_set_mul,                             
     data_rec_type => data_rec_type,
     n_power_rst => n_power_reset,
     data_rec_busy => data_rec_busy,
-    data_save_busy => data_save_busy,
     fsm_nv_reg_state => fsm_nv_reg_state,
     data_rec_recovered_offset => data_rec_recovered_offset, --data_rec_recovered_offset :
     fsm_state_en_rec => fsm_state_en_rec,
@@ -311,8 +303,8 @@ port map(
     fsm_pr_state => fsm_pr_state,
     reg_en => reg_en
     ); 
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%NEURONS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-------------------------------------------------------------------------------
+-------------------------------NEURONS---------------------------------------
 I_neurons: for i in 0 to num_outputs-1 generate
     component I_neuron is
         generic(
@@ -372,18 +364,18 @@ I_neurons: for i in 0 to num_outputs-1 generate
         ReLU_save => data_backup_vect_ReLU_save(i+1)    
         );
 end generate;
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-ROUTE_OUTPUT_SIG: process(data_out_vect, mul_sel_backup) is
+-----------------------------------------------------------------------------------------------------------
+ROUTE_OUTPUT_SIG: process(data_out_vect, data_save_type_marker) is
 begin
 for i in 1 to num_outputs loop
     data_backup_vect_output_save(i) <= to_slv(data_out_vect(i-1));
 end loop;
-data_backup_vect_output_save(0) <= std_logic_vector(to_unsigned(mul_sel_backup, 32));
+data_backup_vect_output_save(0) <= std_logic_vector(to_unsigned(data_save_type_marker, 32));
 data_backup_vect_output_save(num_outputs+1) <= addr_compl & addr;
 data_backup_vect_output_save(num_outputs+2) <= fsm_state_save;
 end process ROUTE_OUTPUT_SIG;
 
-ROUTE_STATE_SIG: process(data_backup_vect_wsum_save, data_backup_vect_ReLU_save, addr_TC, addr,mul_sel_backup,fsm_state_save) is
+ROUTE_STATE_SIG: process(data_backup_vect_wsum_save, data_backup_vect_ReLU_save, addr_TC, addr,data_save_type_marker,fsm_state_save) is
 begin
 if save_state_selector = 0 then--w_sum, b_sum state then
     for i in 1 to num_outputs loop
@@ -396,19 +388,19 @@ else --mul_state = '1' 'act_log'
 end if;
 data_backup_vect_state_save(num_outputs+2) <= fsm_state_save;
 data_backup_vect_state_save(num_outputs+1) <= addr_compl & addr;
-data_backup_vect_state_save(0) <= std_logic_vector(to_unsigned(mul_sel_backup,32));
+data_backup_vect_state_save(0) <= std_logic_vector(to_unsigned(data_save_type_marker,32));
 
 end process ROUTE_STATE_SIG;
 
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%COMBINATORIAL LOGIC%%%%%%%%%%%%%%%%%%%%%%%%%%%
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TASK STATUS LOGIC%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+--------------------------------COMBINATORIAL LOGIC---------------------------
+--------------------------------TASK STATUS LOGIC-------------------------------
 task_status <= task_status_internal;                     
 task_status_internal <= data_rec_busy OR data_save_busy;    --combined signal: tells if some process is ongoing 
                                                                 --> (used to regulate v_reg access to avoid collisions)
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
------------------------------------------------------DATA BACKUP WIRING%%%%%%%%%%%%%%%%%%%%%
---%%%%REC%%%%%
---%%DATA SIGNALS
+--------------------------------------------------------
+-----------------------------------------------------DATA BACKUP WIRING---------------------
+------REC-----
+----DATA SIGNALS
 data_backup_vect_output_wire: process(clk) is
 begin
 if n_power_reset = '1' then
@@ -431,17 +423,17 @@ end process;
 --data_backup_vect_internal_rec(addra) <= data_rec_recovered_data;
 --end if;
 --end process;
---%%%SAVE%%
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
---%%%%LAYER DATA_VALID%%%%%%%%%%%
+-----SAVE--
+-----------------------------------------------------------------
+------LAYER DATA_VALID-----------
 data_v <= out_v;
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
---%%%%%addr_gen rst%%%%%%
+---------------------------------
+---------------------------------
+-------addr_gen rst------
 rst <= addr_in_gen_rst or not(n_power_reset);
---%%addr to fetch data%%%
+----addr to fetch data---
 data_in_sel <= addr;
---%%%%%%%%
+----------
 addr_TC <= '0' when rst = '1' else
      --data_backup_vect_internal_rec(num_outputs+1)(natural(nv_reg_width-1)) when internal_en_rec_vect(num_outputs) = '1' and data_rec_busy = '1' else
      '1' when unsigned(addr) = num_inputs-1;
@@ -529,18 +521,18 @@ begin
     if unsigned(fsm_state_save) = 1 or  unsigned(fsm_state_save)= 2 or  unsigned(fsm_state_save) = 3  then
         --The state of the layer is being computed
         data_save_type <= internal;
-        mul_sel_backup <= 3;
+        data_save_type_marker <= 3;
     elsif unsigned(fsm_state_save) = 4 then
         data_save_type <= outputs; --because we have to save the content of the output register
-        mul_sel_backup <= 4;
+        data_save_type_marker <= 4;
     elsif out_v = '1' then
         --The output of the layer has been computed, it has been recovered by the layer 
         --other states and the output is necessary to the next layer
         data_save_type <= outputs;
-        mul_sel_backup <= 2;
+        data_save_type_marker <= 2;
     else--out_v = '0'
         data_save_type <= nothing;
-        mul_sel_backup <= 1;
+        data_save_type_marker <= 1;
         --Also, we need to set the number of elements to retrieve from the nv_reg
         --In case it's nothing we only need to write to the first element of the nv_reg
    
@@ -555,10 +547,6 @@ end process;
 --      from request to offer there are delays expecially from NV_REG.
 -----------------------------------------------------------------------------------------------------------------------------------
 
---%%%%%%%%%%%%%%%%%%% DATA_REC CONSTANTS %%%%%%%%%%%%%%%%%%%%%%%%
-data_rec_nv_reg_we <= '0';
-data_rec_nv_reg_din <= (OTHERS => '0');
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 --Data Recovery entities
 DATA_REC: process(n_power_reset,clk) is
@@ -654,9 +642,9 @@ begin
     end if;
 end process DATA_SAVE_V_REG_SIG_CNTRL;
 
-doutb <= data_backup_vect_output_save(addrb) when (mul_sel_backup = 2 or mul_sel_backup = 4) else
-            data_backup_vect_state_save(addrb) when mul_sel_backup = 3 else
-                    std_logic_vector(to_unsigned(mul_sel_backup,nv_reg_width));
+doutb <= data_backup_vect_output_save(addrb) when (data_save_type_marker = 2 or data_save_type_marker = 4) else
+            data_backup_vect_state_save(addrb) when data_save_type_marker = 3 else
+                    std_logic_vector(to_unsigned(data_save_type_marker,nv_reg_width));
 
 DATA_SAVE_NV_REG_SIG: process (clk,var_cntr_value,data_save_busy) is
 begin
@@ -674,13 +662,13 @@ begin
     end if;
 end process DATA_SAVE_NV_REG_SIG;
 
-DATA_SAVE_OFFSET: process(data_save_type, mul_sel_backup) is
+DATA_SAVE_OFFSET: process(data_save_type, data_save_type_marker) is
 begin
 case data_save_type is
     when internal =>--we never end in this case for save output
         data_save_v_reg_offset <= num_outputs+2;  
     when outputs =>
-        if mul_sel_backup = 4 then
+        if data_save_type_marker = 4 then
             data_save_v_reg_offset <= num_outputs+2;
         else
             data_save_v_reg_offset <= num_outputs;
@@ -693,12 +681,12 @@ end process DATA_SAVE_OFFSET;
 
 
 --------------------------------------------------VAR_CNTR process--------------------------------------------------------------------    
---%%%%%%%%%%%%%%%%%%%%VAR_CNTR process COMBINATORIAL LOGIC%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+----------------------VAR_CNTR process COMBINATORIAL LOGIC----------------------------------
 data_rec_var_cntr_end_value <= data_rec_offset + 2;         --the plus two is because a cycle is used to get the first data and then 
                                                                 --> the other one just to notify as terminal count cycle
 data_save_var_cntr_end_value <= data_save_v_reg_offset + 2; --should be + 1 just for the terminal count clk cycle but +2 because on how the var_cntr_clk ticks
                                                                 --> beacuase of this an extra clk cycle will be wasted
---%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+------------------------------------------------------------------------------------------------------------------------------------------
 VAR_CNTR_CLK_GEN: process(clk,task_status_internal) is
 begin
 if(task_status_internal = '0') then

@@ -46,66 +46,65 @@ end fsm_nv_reg_db;
 architecture Behavioral of fsm_nv_reg_db is
     
 signal present_state, future_state : fsm_nv_reg_state_t;
-constant max_slack: INTEGER := 0;--The operation slack disable the hazard as long as the volatile architecture didn't carry a certain amount of operations 
+constant max_slack: INTEGER := 0;--The operation slack disable the hazard as long as the volatile architecture didn't carry a certain amount of operations(which is the max_slack value)
 begin
     
-    FSM_NV_REG_DB_SEQ: process (clk,resetN) is 
-    variable do_operation_s_slack: INTEGER RANGE 0 to max_slack;
-    begin
-        if resetN = '0' then
-            present_state <= shutdown_s;
+FSM_NV_REG_DB_SEQ: process (clk,resetN) is 
+variable do_operation_s_slack: INTEGER RANGE 0 to max_slack;
+begin
+    if resetN = '0' then
+        present_state <= shutdown_s;
+        do_operation_s_slack := 0;
+    elsif rising_edge(clk) then
+        present_state <= future_state;
+        if(present_state = do_operation_s AND do_operation_s_slack < max_slack ) then
+            present_state <= do_operation_s;
+            do_operation_s_slack := do_operation_s_slack + 1;
+        else
             do_operation_s_slack := 0;
-        elsif rising_edge(clk) then
-            present_state <= future_state;
-            if(present_state = do_operation_s AND do_operation_s_slack < max_slack ) then
-                present_state <= do_operation_s;
-                do_operation_s_slack := do_operation_s_slack + 1;
-            else
-                do_operation_s_slack := 0;
+        end if;
+    end if;  
+end process;
+
+
+FSM_NV_REG_DB_FUTURE: process(present_state,thresh_stats,task_status) is 
+begin
+    future_state <= present_state; -- default do nothing
+    case present_state is
+        when shutdown_s =>
+            future_state <= init_s;
+        when init_s =>
+            future_state <= start_data_recovery_s;
+        when start_data_recovery_s =>
+            if (task_status = '1') then
+                future_state <= recovery_s;
             end if;
-        end if;  
-    end process;
-    
-    
-    
-    FSM_NV_REG_DB_FUTURE: process(present_state,thresh_stats,task_status) is 
-    begin
-        future_state <= present_state; -- default do nothing
-        case present_state is
-            when shutdown_s =>
-                future_state <= init_s;
-            when init_s =>
-                future_state <= start_data_recovery_s;
-            when start_data_recovery_s =>
-                if (task_status = '1') then
-                    future_state <= recovery_s;
-                end if;
-            when recovery_s =>
-                if (task_status = '0') then
-                    future_state <= data_recovered_s;
-                end if;
-            when data_recovered_s =>
-                future_state <= do_operation_s;
-            when do_operation_s =>
-                if(thresh_stats = hazard) then
-                    future_state <= start_data_save_s;
-                end if;
-            when start_data_save_s =>
-                if(task_status = '1') then
-                    future_state <= data_save_s;    
-                end if;
-            when data_save_s =>
-                if ( task_status = '0' ) then
-                    future_state <=  data_saved_s;
-                end if;
-            when data_saved_s =>
-                future_state <= do_operation_s;
-            when others =>
-        end case;
-    end process FSM_NV_REG_DB_FUTURE;
-    
-    fsm_state <= present_state;
-    fsm_state_sig <= future_state;
+        when recovery_s =>
+            if (task_status = '0') then
+                future_state <= data_recovered_s;
+            end if;
+        when data_recovered_s =>
+            future_state <= do_operation_s;
+        when do_operation_s =>
+            if(thresh_stats = hazard) then
+                future_state <= start_data_save_s;
+            end if;
+        when start_data_save_s =>
+            if(task_status = '1') then
+                future_state <= data_save_s;    
+            end if;
+        when data_save_s =>
+            if ( task_status = '0' ) then
+                future_state <=  data_saved_s;
+            end if;
+        when data_saved_s =>
+            future_state <= do_operation_s;
+        when others =>
+    end case;
+end process FSM_NV_REG_DB_FUTURE;
+
+fsm_state <= present_state;
+fsm_state_sig <= future_state;
     
 end Behavioral;
 -------------------------------------------------------------------------------------------------------------------------------------

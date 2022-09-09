@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: 
+-- Engineer: Michele Pio Fragasso
 -- 
 -- Create Date: 08/23/2022 04:58:18 PM
 -- Design Name: 
@@ -8,10 +8,9 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
--- Description: 
--- 
+-- Description: This entity implements the softmax layer which implements the argmax function of the last layer of the DNN.
+-- In other words, it return the index of the elements of maximum value, which is the class the input is classified with.
 -- Dependencies: 
--- 
 -- Revision:
 -- Revision 0.01 - File Created
 -- Additional Comments:
@@ -34,34 +33,34 @@ use work.NVME_FRAMEWORK_PACKAGE.all;
 
 entity SOFT_MAX is
 generic(
-num_inputs: natural := 10
+num_inputs: natural := 10                                                           --num_inputs    : number of inputs to determine the maximum value
 );
 port(
 --INPUTS
-clk: in std_logic;
-start: in std_logic;
-data_in: in sfixed(neuron_int_width-1 downto -neuron_frac_width);
-data_sampled: in std_logic;
-n_power_reset: in std_logic;
---OUTPUTS
-data_in_sel: out std_logic_vector(natural(ceil(log2(real(num_inputs))))-1 downto 0);
-out_v: out std_logic;
-data_out: out sfixed(neuron_int_width-1 downto -neuron_frac_width);
-digit_out: out integer range 0 to 9;
-softmax_state: out softmax_state_t
+clk: in std_logic;                                                                  --clk           : clock signal
+start: in std_logic;                                                                --start         : start signal. This trigger the SOFTMAX which starts computing the maximum between the inputs 
+data_in: in sfixed(neuron_int_width-1 downto -neuron_frac_width);                   --data_in       : data input. This is a sequential input.
+data_sampled: in std_logic;                                                         --data_sampled  : This is set to '1' to tell the SOFTMAX layer output has been sampled.
+n_power_reset: in std_logic;                                                        --n_power_reset : active-on-low power reset.
+--OUTPUTS           
+data_in_sel: out std_logic_vector(natural(ceil(log2(real(num_inputs))))-1 downto 0);--data_in_sel   : data input selector, used to fetch the previous layer input cycle by cycle
+out_v: out std_logic;                                                               --out_v         : output valid bit
+data_out: out sfixed(neuron_int_width-1 downto -neuron_frac_width);                 --data_out      : data output. This contain the maximum value of the previous layer
+digit_out: out integer range 0 to 9;                                                --digit_out     : digit output. This contain the index of the maximum value. Which is the digit the DNN has classfied the input with
+softmax_state: out softmax_state_t                                                  --softmax_state : This contain the state of the softmax layer. Used to commpute the power consumption of this entity.
 );
 end SOFT_MAX;
 
 architecture Behavioral of SOFT_MAX is
 
 --Comparator signals
-signal temp_max: sfixed(neuron_int_width-1 downto -neuron_frac_width):=(others => '0');
-signal temp_max_addr: integer range 0 to 9;
-signal comparator_out: sfixed(neuron_int_width-1 downto -neuron_frac_width):=(others => '0');
-signal comparator_out_addr: integer range 0 to 9;
-signal data_v: std_logic := '0';
+signal temp_max: sfixed(neuron_int_width-1 downto -neuron_frac_width):=(others => '0');             --temp_max              :contains the maximum value at the previous step.
+signal temp_max_addr: integer range 0 to 9;                                                         --temp_max_addr         :contain the temporary index of the maximum value
+signal comparator_out: sfixed(neuron_int_width-1 downto -neuron_frac_width):=(others => '0');       --comparator_out        :This contain the output of the comparator
+signal comparator_out_addr: integer range 0 to 9;                                                   --comparator_out_addr   :This contain the index of the 
+signal data_v: std_logic := '0';                                                                    --data_v                :data valid bit
 --others
-signal rst: std_logic := '0';
+signal rst: std_logic := '0';                                                                           
 signal addr: std_logic_vector(natural(ceil(log2(real(num_inputs))))-1 downto 0):=(others=>'0');
 signal addr_TC: std_logic := '0';
 --FSM

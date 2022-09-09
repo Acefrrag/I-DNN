@@ -59,7 +59,6 @@ port(
     --OUTPUT
     output_en_rec_vect: out std_logic_vector (0 to num_outputs+1);  --output_en_rec_vect        :Collection of pins to enable recovery by layer's neurons of their output. 
     internal_en_rec_vect: out std_logic_vector (0 to num_outputs+1);--internal_en_rec_vect      :Collection of pins to enable recover by layer's neurons of their internal registers.
-    save_state_selector: out integer range 0 to 3;                  --save_state_selector       :Selector to correctly route the data to be saved when saving the internal registers of the layer.'0' The
     addra: out integer range 0 to num_outputs+2;                    --addra                     :This address is used to fetch data from the volatile registers of the layer (which are supposed to be saved into the nv_reg)
     fsm_state_save: out std_logic_vector(nv_reg_width-1 downto 0);  --fsm_state_save            :The encoded state of the fsm of the layer, it is also used to determine the type of save to perform
     fsm_pr_state: out fsm_layer_state_t;                            --fsm_pr_state              :It contains the present state of the fsm. it is used by the power_approzimation units 
@@ -105,7 +104,6 @@ begin
                 fsm_state_save_internal <= std_logic_vector(to_unsigned(3,fsm_state_save'length));
                 state_backup_save <= act_log;
             elsif pr_state = act_log then
-                --In this case we can sckip the finished state, since after the act_log, data is already available outside
                 fsm_state_save_internal <= std_logic_vector(to_unsigned(4,fsm_state_save'length));
                 state_backup_save <= finished;
             elsif pr_state = finished then
@@ -120,6 +118,7 @@ begin
                 --the fsm remembers what to write inside the nv_reg.
                 fsm_state_save_internal <= fsm_state_save_internal;
                 state_backup_save <= state_backup_save;
+             end if;
        --     end if;
             --Logic for recovery
             --fsm_state_rec
@@ -139,7 +138,6 @@ begin
                 end if;
             end if;
         end if;
-    end if;
 end process;
 
     out_v <= out_val;
@@ -278,11 +276,6 @@ end process;
             reg_en <= '0';
             sum_reg_rst <= '0';
             addr_in_gen_rst <= '0';
-            if fsm_state_save_internal = std_logic_vector(to_unsigned(3,fsm_state_save_internal'length)) or fsm_state_save_internal = std_logic_vector(to_unsigned(3,fsm_state_save_internal'length)) then--act_log
-                save_state_selector <= 1; --We route the ReLU_out register into the nv_reg cells
-            else
-                save_state_selector <= 0; --We route the sum_reg register into the nv_reg cells
-            end if;
             --default values
     end case;
     end process output;

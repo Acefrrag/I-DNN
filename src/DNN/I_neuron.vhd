@@ -199,6 +199,7 @@ begin
         end if;
     end if;
     if falling_edge(clk) then
+    --It is necessary to sample the activation function output after its transition. Otherwise it samples the old output of the activation function.
         if en = '1' then
             out_ReLU_d <= out_ReLU;
         end if;

@@ -109,7 +109,8 @@ signal input_reg: datain_type := gen_datain(dataset_path);
 component nv_reg is
     Generic(
         MAX_DELAY_NS: INTEGER;
-        NV_REG_WIDTH: INTEGER
+        NV_REG_WIDTH: INTEGER;
+        NV_REG_DEPTH: INTEGER
     );
     Port ( 
         clk             : in STD_LOGIC;
@@ -285,7 +286,8 @@ fsm_nv_reg_db_comp: fsm_nv_reg_db
 nv_reg_comp: nv_reg
     Generic map(
         MAX_DELAY_NS => FRAM_MAX_DELAY_NS,
-        NV_REG_WIDTH => NV_REG_WIDTH
+        NV_REG_WIDTH => NV_REG_WIDTH,
+        NV_REG_DEPTH => num_outputs+3
     )
     Port map( 
         clk             => clk,

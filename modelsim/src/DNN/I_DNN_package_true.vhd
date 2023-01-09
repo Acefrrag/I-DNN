@@ -1,10 +1,8 @@
-library ieee_proposed;
-use ieee_proposed.fixed_pkg.all;
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.math_real.all;
-
+use ieee.fixed_pkg.all;
 
 package I_DNN_package is
     -- Package Declarative Part

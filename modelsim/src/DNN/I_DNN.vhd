@@ -25,9 +25,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
+use ieee.fixed_pkg.all;
 
-library ieee_proposed;
-use ieee_proposed.fixed_pkg.all;
 
 library work;
 use work.I_DNN_package.all;
@@ -186,57 +185,57 @@ signal power_counter_reset_softmax     : std_logic_vector(num_pwr_states_softmax
 --LAYER1 INST_PWR_CALC
 signal start_evaluation_layer1          : std_logic:='1';
 signal evaluation_ready_layer1          : std_logic;
-signal num_state_to_evaluate_layer1     : integer range 0 to num_pwr_states_layer-1:=0;
+signal num_state_to_evaluate_layer1     : integer range 0 to num_pwr_states_layer:=0;
 signal input_counter_val_layer1         : power_approx_counter_type(num_pwr_states_layer -1 downto 0);
-signal output_data_layer1               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+signal output_data_layer1               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0);
 --NV_REG1INST_PWR_CALC
 signal start_evaluation_nvreg1          : std_logic:='1';
 signal evaluation_ready_nvreg1          : std_logic;
-signal num_state_to_evaluate_nvreg1     : integer range 0 to num_pwr_states_nvreg-1:=0;
+signal num_state_to_evaluate_nvreg1     : integer range 0 to num_pwr_states_nvreg:=0;
 signal input_counter_val_nvreg1         : power_approx_counter_type(num_pwr_states_nvreg -1 downto 0);
-signal output_data_nvreg1               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+signal output_data_nvreg1               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0);
 --LAYER2 INST_PWR_CALC
 signal start_evaluation_layer2          : std_logic:='1';
 signal evaluation_ready_layer2          : std_logic;
-signal num_state_to_evaluate_layer2     : integer range 0 to num_pwr_states_layer-1:=0;
+signal num_state_to_evaluate_layer2     : integer range 0 to num_pwr_states_layer:=0;
 signal input_counter_val_layer2         : power_approx_counter_type(num_pwr_states_layer -1 downto 0);
-signal output_data_layer2               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+signal output_data_layer2               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0);
 --NV_REG2INST_PWR_CALC
 signal start_evaluation_nvreg2          : std_logic:='1';
 signal evaluation_ready_nvreg2          : std_logic;
-signal num_state_to_evaluate_nvreg2     : integer range 0 to num_pwr_states_nvreg-1:=0;
+signal num_state_to_evaluate_nvreg2     : integer range 0 to num_pwr_states_nvreg:=0;
 signal input_counter_val_nvreg2         : power_approx_counter_type(num_pwr_states_nvreg -1 downto 0);
-signal output_data_nvreg2               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+signal output_data_nvreg2               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0);
 --LAYER3 INST_PWR_CALC
 signal start_evaluation_layer3          : std_logic:='1';
 signal evaluation_ready_layer3          : std_logic;
-signal num_state_to_evaluate_layer3     : integer range 0 to num_pwr_states_layer-1:=0;
+signal num_state_to_evaluate_layer3     : integer range 0 to num_pwr_states_layer:=0;
 signal input_counter_val_layer3         : power_approx_counter_type(num_pwr_states_layer -1 downto 0);
-signal output_data_layer3               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+signal output_data_layer3               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0);
 --NV_REG3INST_PWR_CALC
 signal start_evaluation_nvreg3          : std_logic:='1';
 signal evaluation_ready_nvreg3          : std_logic;
-signal num_state_to_evaluate_nvreg3     : integer range 0 to num_pwr_states_nvreg-1:=0;
+signal num_state_to_evaluate_nvreg3     : integer range 0 to num_pwr_states_nvreg:=0;
 signal input_counter_val_nvreg3         : power_approx_counter_type(num_pwr_states_nvreg -1 downto 0);
-signal output_data_nvreg3               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+signal output_data_nvreg3               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0);
 --LAYER4 INST_PWR_CALC
 signal start_evaluation_layer4          : std_logic:='1';
 signal evaluation_ready_layer4          : std_logic;
-signal num_state_to_evaluate_layer4     : integer range 0 to num_pwr_states_layer-1:=0;
+signal num_state_to_evaluate_layer4     : integer range 0 to num_pwr_states_layer:=0;
 signal input_counter_val_layer4         : power_approx_counter_type(num_pwr_states_layer -1 downto 0);
-signal output_data_layer4               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+signal output_data_layer4               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0);
 --NV_REG4INST_PWR_CALC
 signal start_evaluation_nvreg4          : std_logic:='1';
 signal evaluation_ready_nvreg4          : std_logic;
-signal num_state_to_evaluate_nvreg4     : integer range 0 to num_pwr_states_nvreg-1:=0;
+signal num_state_to_evaluate_nvreg4     : integer range 0 to num_pwr_states_nvreg:=0;
 signal input_counter_val_nvreg4         : power_approx_counter_type(num_pwr_states_nvreg -1 downto 0);
-signal output_data_nvreg4               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+signal output_data_nvreg4               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0);
 --SOFTMAX
 signal start_evaluation_softmax          : std_logic:='1';
 signal evaluation_ready_softmax          : std_logic;
-signal num_state_to_evaluate_softmax     : integer range 0 to num_pwr_states_softmax-1:=0;
+signal num_state_to_evaluate_softmax     : integer range 0 to num_pwr_states_softmax:=0;
 signal input_counter_val_softmax         : power_approx_counter_type(num_pwr_states_softmax -1 downto 0);
-signal output_data_softmax               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+signal output_data_softmax               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0);
 --
 --COMPONENTS DECLARATION---------------------------------------------------
 --LAYER
@@ -351,7 +350,7 @@ component instant_pwr_calc is
         evaluation_ready        : out std_logic; -- evaluation ready singal 
         num_state_to_evaluate   : in integer range 0 to pwr_states_num-1; -- number of state to evaluate
         input_counter_val       : in power_approx_counter_type(pwr_states_num -1 downto 0); -- array of each state counter
-        output_data             : out std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0) -- output data
+        output_data             : out std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS -1 downto 0) -- output data
     );
 end component;
 
@@ -1046,7 +1045,7 @@ evaluation_gen_process: process(evaluation_ready_layer1,start_evaluation_layer1)
 
 begin
 if rising_edge(evaluation_ready_layer1) then
-    start_evaluation_layer1 <= '0' after 20ns;
+    start_evaluation_layer1 <= '0' after 20 ns;
     num_state_to_evaluate_layer1 <= num_state_to_evaluate_layer1 +1;
     if num_state_to_evaluate_layer1 = num_pwr_states_layer-1 then
         num_state_to_evaluate_layer1 <= 0;
@@ -1060,7 +1059,7 @@ if rising_edge(evaluation_ready_nvreg1)  then
     end if;
 end if;
 if rising_edge(evaluation_ready_layer2) then
-    start_evaluation_layer2 <= '0' after 20ns;
+    start_evaluation_layer2 <= '0' after 20 ns;
     num_state_to_evaluate_layer2 <= num_state_to_evaluate_layer2 +1;
     if num_state_to_evaluate_layer2 = num_pwr_states_layer-1 then
         num_state_to_evaluate_layer2 <= 0;
@@ -1074,7 +1073,7 @@ if rising_edge(evaluation_ready_nvreg2)  then
     end if;
 end if;
 if rising_edge(evaluation_ready_layer3) then
-    start_evaluation_layer3 <= '0' after 20ns;
+    start_evaluation_layer3 <= '0' after 20 ns;
     num_state_to_evaluate_layer3 <= num_state_to_evaluate_layer3 +1;
     if num_state_to_evaluate_layer3 = num_pwr_states_layer-1 then
         num_state_to_evaluate_layer3 <= 0;
@@ -1088,7 +1087,7 @@ if rising_edge(evaluation_ready_nvreg3)  then
     end if;
 end if;
 if rising_edge(evaluation_ready_layer4) then
-    start_evaluation_layer4 <= '0' after 20ns;
+    start_evaluation_layer4 <= '0' after 20 ns;
     num_state_to_evaluate_layer4 <= num_state_to_evaluate_layer4 +1;
     if num_state_to_evaluate_layer4 = num_pwr_states_layer-1 then
         num_state_to_evaluate_layer4 <= 0;
@@ -1102,18 +1101,18 @@ if rising_edge(evaluation_ready_nvreg4)  then
     end if;
 end if;
 if start_evaluation_layer1 = '0' then
-start_evaluation_layer1 <= '1' after 320ns;
-start_evaluation_nvreg1 <= '1' after 320ns;
-start_evaluation_layer2 <= '1' after 320ns;
-start_evaluation_nvreg2 <= '1' after 320ns;
-start_evaluation_layer3 <= '1' after 320ns;
-start_evaluation_nvreg3 <= '1' after 320ns;
-start_evaluation_layer4 <= '1' after 320ns;
-start_evaluation_nvreg4 <= '1' after 320ns;
-start_evaluation_softmax <= '1' after 320ns;
+start_evaluation_layer1 <= '1' after 320 ns;
+start_evaluation_nvreg1 <= '1' after 320 ns;
+start_evaluation_layer2 <= '1' after 320 ns;
+start_evaluation_nvreg2 <= '1' after 320 ns;
+start_evaluation_layer3 <= '1' after 320 ns;
+start_evaluation_nvreg3 <= '1' after 320 ns;
+start_evaluation_layer4 <= '1' after 320 ns;
+start_evaluation_nvreg4 <= '1' after 320 ns;
+start_evaluation_softmax <= '1' after 320 ns;
 end if;
 if rising_edge(evaluation_ready_softmax) then
-    start_evaluation_softmax <= '0' after 20ns;
+    start_evaluation_softmax <= '0' after 20 ns;
     num_state_to_evaluate_softmax <= num_state_to_evaluate_softmax +1;
     if num_state_to_evaluate_softmax = num_pwr_states_softmax-1 then
         num_state_to_evaluate_softmax <= 0;

@@ -21,9 +21,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.math_real.all;
 use ieee.numeric_std.all;
-
-library ieee_proposed;
-use ieee_proposed.fixed_pkg.all;
+use ieee.fixed_pkg.all;
 
 library work;
 use work.COMMON_PACKAGE.all;

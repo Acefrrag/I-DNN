@@ -51,8 +51,8 @@ end trace_ROM;
 architecture Behavioral of trace_ROM is
     type rom_type is array (0 to NUM_ELEMNTS_ROM - 1) of integer range 0 to  MAX_VAL;
 
-    function init_trace_ROM(file_name: in string) return rom_type is
-        file text_header : text is in file_name;--Open the file with filename path
+    impure function init_trace_ROM(file_name: in string) return rom_type is
+        file text_header : text open read_mode is file_name;--Open the file with filename path
         variable voltage_i: integer range 0 to MAX_VAL;
         variable line_i: line;
         variable voltage_trace_content: rom_type;
@@ -67,7 +67,7 @@ architecture Behavioral of trace_ROM is
     
     
     --signal ROM: rom_type := init_trace_ROM("voltage_traces/I_DNN_trace_complete_4layers.txt");
-    signal ROM: rom_type := init_trace_ROM("voltage_traces/I_layer_trace_complete.txt");
+    signal ROM: rom_type := init_trace_ROM("../src/NORM/voltage_traces/I_layer_trace_complete.txt");
     --signal ROM: rom_type := init_trace_ROM("voltage_traces/I_DNN_trace_complete.txt");
     begin
     

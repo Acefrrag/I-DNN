@@ -111,7 +111,7 @@ function makesfixed (bit_in: in bit_vector((neuron_rom_width)-1 downto 0)) retur
 end function;
 
 impure function init_bias(bias_file: in string) return sfixed is
-file text_header: text open read_mode is bias_file; --This produces a header to the file
+file text_header: text is in bias_file; --This produces a header to the file
 variable text_line: line; --the type line represents a line in the file
 variable bit_line: bit_vector(input_width-1 downto 0);
 variable bias_content: sfixed((neuron_int_width)-1 downto (-neuron_frac_width));

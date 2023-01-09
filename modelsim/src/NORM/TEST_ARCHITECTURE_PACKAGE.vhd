@@ -24,11 +24,10 @@ use work.I_DNN_package.all;
 --use work.COMMON_PACKAGE.all;
 --use work.NVME_FRAMEWORK_PACKAGE.all;
 
-library ieee_proposed;
-use ieee_proposed.fixed_pkg.all;
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.fixed_pkg.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values

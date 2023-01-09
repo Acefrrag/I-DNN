@@ -61,7 +61,7 @@ function makesfixed (bit_in: in bit_vector(rom_width-1 downto 0)) return sfixed 
 end function;
 
 impure function initweightmemory(text_in: in string) return rom_type is
-  file text_header : text open read_mode is text_in;
+  file text_header : text is in text_in;
   variable text_line : line;
   variable line_i : bit_vector(rom_width-1 downto 0);
   variable rom_content : rom_type;

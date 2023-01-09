@@ -53,7 +53,7 @@ end function;
 
 impure function gen_datain(dataset_path: in string) return datain_type is
 
-file text_header: text open read_mode is dataset_path;
+file text_header: text open read_mode is in dataset_path;
 variable text_line: line;
 variable line_i: bit_vector(0 to neuron_rom_width-1);
 variable dataset_content: datain_type;

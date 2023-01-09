@@ -57,13 +57,13 @@ architecture Behavioral of nv_reg_emu is
     ----------------------------------------------------
     constant counter_end_value : INTEGER := get_busy_counter_end_value(MASTER_CLK_PERIOD_NS, MAX_DELAY_NS);
     
-    signal counter : INTEGER RANGE 0 TO counter_end_value;
+    signal counter : INTEGER RANGE 0 TO counter_end_value+1;
     
 begin
     
     
     busy <= '0' when counter = counter_end_value else '1';
-    busy_sig <= '0' when counter_end_value <2 else
+    busy_sig <= '0' when counter_end_value < 2 else
                 '0' when counter >= counter_end_value -1 else '1';
                 
     COUNT:process(clk,resetN) is

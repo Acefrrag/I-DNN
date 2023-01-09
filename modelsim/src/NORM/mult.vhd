@@ -29,20 +29,11 @@ use work.NVME_FRAMEWORK_PACKAGE.all;
 use work.TEST_ARCHITECTURE_PACKAGE.all;
 use work.I_DNN_package.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
 entity mult is
 port(
             A         : IN STD_LOGIC_VECTOR(PWR_APPROX_COUNTER_NUM_BITS - 1 DOWNTO 0);
             B           : IN STD_LOGIC_VECTOR(PWR_CONSUMPTION_ROM_BITS - 1 DOWNTO 0);
-            P           : OUT STD_LOGIC_VECTOR(PWR_APPROX_COUNTER_NUM_BITS+PWR_CONSUMPTION_ROM_BITS DOWNTO 0)
+            P           : OUT STD_LOGIC_VECTOR(PWR_APPROX_COUNTER_NUM_BITS+PWR_CONSUMPTION_ROM_BITS-1 DOWNTO 0)
 
 );
 end mult;

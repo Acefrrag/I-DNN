@@ -343,7 +343,7 @@ try:
         block.append("--LAYER"+index+" INST_PWR_CALC")
         block.append("signal start_evaluation_layer"+index+"          : std_logic:='1';")
         block.append("signal evaluation_ready_layer"+index+"          : std_logic;")
-        block.append("signal num_state_to_evaluate_layer"+index+"     : integer range 0 to num_pwr_states_layer-1:=0;")
+        block.append("signal num_state_to_evaluate_layer"+index+"     : integer range 0 to num_pwr_states_layer:=0;")
         block.append("signal input_counter_val_layer"+index+"         : power_approx_counter_type(num_pwr_states_layer -1 downto 0);")
         block.append("signal output_data_layer"+index+"               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);")
         block.append("--NV_REG"+index+"INST_PWR_CALC")
@@ -351,7 +351,7 @@ try:
         block.append("signal evaluation_ready_nvreg"+index+"          : std_logic;")
         block.append("signal num_state_to_evaluate_nvreg"+index+"     : integer range 0 to num_pwr_states_nvreg-1:=0;")
         block.append("signal input_counter_val_nvreg"+index+"         : power_approx_counter_type(num_pwr_states_nvreg -1 downto 0);")
-        block.append("signal output_data_nvreg"+index+"               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);\n")
+        block.append("signal output_data_nvreg"+index+"               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0);\n")
         f.write("\n".join(block))
     f.write(
     "--SOFTMAX\n"
@@ -473,7 +473,7 @@ try:
     "        evaluation_ready        : out std_logic; -- evaluation ready singal \n"
     "        num_state_to_evaluate   : in integer range 0 to pwr_states_num-1; -- number of state to evaluate\n"
     "        input_counter_val       : in power_approx_counter_type(pwr_states_num -1 downto 0); -- array of each state counter\n"
-    "        output_data             : out std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0) -- output data\n"
+    "        output_data             : out std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0) -- output data\n"
     "    );\n"
     "end component;\n"
     "\n"

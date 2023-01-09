@@ -45,7 +45,7 @@ entity instant_pwr_calc is
         evaluation_ready        : out std_logic; -- evaluation ready singal 
         num_state_to_evaluate   : in integer range 0 to pwr_states_num-1; -- number of state to evaluate
         input_counter_val       : in power_approx_counter_type(pwr_states_num -1 downto 0); -- array of each state counter
-        output_data             : out std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0) -- output data
+        output_data             : out std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS-1 downto 0) -- output data
     );
 end instant_pwr_calc;
 
@@ -70,13 +70,13 @@ architecture Behavioral of instant_pwr_calc is
         PORT (
             A           : IN STD_LOGIC_VECTOR(PWR_APPROX_COUNTER_NUM_BITS - 1 DOWNTO 0);
             B           : IN STD_LOGIC_VECTOR(PWR_CONSUMPTION_ROM_BITS - 1 DOWNTO 0);
-            P           : OUT STD_LOGIC_VECTOR(PWR_APPROX_COUNTER_NUM_BITS+PWR_CONSUMPTION_ROM_BITS DOWNTO 0)
+            P           : OUT STD_LOGIC_VECTOR(PWR_APPROX_COUNTER_NUM_BITS+PWR_CONSUMPTION_ROM_BITS-1 DOWNTO 0)
         );
     END COMPONENT;
 
     --- MULTIPLIER SIGNALS ---
     signal SCLR : std_logic := '0';
-    signal P : std_logic_vector(41 downto 0);
+    signal P : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS+PWR_CONSUMPTION_ROM_BITS-1	downto 0);
     signal PCOUT : std_logic_vector(47 downto 0);
     signal CE : std_logic := '0';
     

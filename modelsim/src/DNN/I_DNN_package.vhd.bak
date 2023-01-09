@@ -5,7 +5,7 @@ use ieee.std_logic_1164.all;
 use ieee.math_real.all;
 use ieee.fixed_pkg.all;
 
-   package I_DNN_package is
+           package I_DNN_package is
    -- Package Declarative Part
    --(It contains variables, types, procedures and function declaration)
    --TestBench for neuron entities and its subentities
@@ -39,7 +39,7 @@ use ieee.fixed_pkg.all;
    constant layer_outputs: layer_neurons_type := (30,25,15,10);
    constant data_int_width: natural := 16;
    constant data_frac_width: natural := 16;
-   constant validation_dataset_path: string := "../scripts/datasets/testData/test_data.txt";
+   constant validation_dataset_path: string := "../../../../../../scripts/datasets/testData/test_data.txt";
    constant bias_int_width: natural := 1;            
 
 

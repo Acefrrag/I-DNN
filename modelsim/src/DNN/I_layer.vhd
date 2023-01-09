@@ -20,13 +20,13 @@
 
 --Observations:
 --1) The amount of time to save data in the nv_reg is higher than what it takes to compute the layer output. In general it is not convenient to save the output of the layer whenver there is a hazard, but to enable only a certain amount of layer to save their state?
-library ieee_proposed;
-use ieee_proposed.fixed_pkg.all;
+
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
+use ieee.fixed_pkg.all;
 
 library work;
 use work.I_DNN_package.all;
@@ -170,7 +170,9 @@ signal data_save_v_reg_offset : INTEGER RANGE 0 TO V_REG_WIDTH -1;              
 -------------------------------VAR_COUNTER_SIGNALS------------------------------------
 --These signals are latched to the corresponding var_cntr_save/rec_[..] signals depending on what it is been commanded by the fsm_nv_reg
 signal var_cntr_clk,var_cntr_init,var_cntr_ce,var_cntr_tc: std_logic;                               --clk, init, ce and tc signals for the counter
-signal var_cntr_value, var_cntr_value_last,var_cntr_end_value: integer range 0 to NV_REG_WIDTH+2;   --value, value_last and end value for the counter
+signal var_cntr_value: integer range 0 to (NV_REG_WIDTH + 2);		
+signal var_cntr_value_last: integer range 0 to (NV_REG_WIDTH + 2);	
+signal var_cntr_end_value: integer range 0 to (NV_REG_WIDTH + 2);   --value, value_last and end value for the counter
 --------------------------------------------------------------------------------------
 
 --COMPONENT DECLARATION
@@ -327,8 +329,8 @@ I_neurons: for i in 0 to num_outputs-1 generate
         generic map(
         rom_width => neuron_rom_width,
         rom_depth => num_inputs,
-        weight_file => "../../scripts/weights_and_bias/w_b/w_" & integer'image(layer_no)&"_"&integer'image(i)&".mif",
-        bias_file => "../../../../../../scripts/weights_and_bias/w_b/b_" & integer'image(layer_no)&"_"&integer'image(i)&".mif")
+        weight_file => "../scripts/weights_and_bias/w_b/w_" & integer'image(layer_no)&"_"&integer'image(i)&".mif",
+        bias_file => "../scripts/weights_and_bias/w_b/b_" & integer'image(layer_no)&"_"&integer'image(i)&".mif")
         port map(
         clk => clk,
         data_in =>data_in,

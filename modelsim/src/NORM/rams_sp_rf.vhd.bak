@@ -37,7 +37,7 @@ architecture syn of rams_sp_rf is
  type RamType is array (0 to ram_depth) of std_logic_vector(31 downto 0);
 
  impure function InitRamFromFile(RamFileName : in string) return RamType is
-  FILE RamFile : text open read_mode is RamFileName;
+  FILE RamFile : text is in RamFileName;
   variable RamFileLine : line;
   variable RAM_content : bit_vector(ram_width-1 downto 0);
   variable RAM : RamType;

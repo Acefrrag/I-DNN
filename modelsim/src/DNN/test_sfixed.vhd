@@ -22,8 +22,8 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-library ieee_proposed;
-use ieee_proposed.fixed_pkg.all;
+library ieee;
+use ieee.fixed_pkg.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values

@@ -11,17 +11,13 @@
 -- Description: This vhdl file instantiate the intermittent architecture of the DNN. This vhdl is generated with a python script, therefore if you need to modify this file, you have
 -- to change the python script.
 -- 
-
--- 
 -- Dependencies: 
 -- 
 -- Revision:
 -- Revision 0.01 - File Created
 -- Additional Comments:
--- It would be nice if it is possible to implement a way to evaluate
--- if it is more convenient to save the output or keep on computing the layer output
--- For example if the number of clock cycles required to save the output equals the ones required
--- to compute the output of the DNN. 
+-- It would be nice if it is possible to implement a way to evaluate if it is more convenient to save the output or keep on computing the layer output
+-- For example if the number of clock cycles required to save the output equals the ones required to compute the output of the DNN.
 ----------------------------------------------------------------------------------
 
 
@@ -29,9 +25,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
+use ieee.fixed_pkg.all;
 
-library ieee_proposed;
-use ieee_proposed.fixed_pkg.all;
 
 library work;
 use work.I_DNN_package.all;
@@ -45,14 +40,14 @@ port(
 data_in: in sfixed (data_int_width-1 downto -data_frac_width);                      --data_in   : serial input to the DNN.
 start: in std_logic;                                                                --start     : signal to trigger the DNN
 clk: in std_logic;                                                                  --clk       : system clock
-data_out: out sfixed (data_int_width-1 downto -data_frac_width);--data_out  : serial output from the DNN
-digit_out: out integer range 0 to 9;                   
+data_out: out sfixed (data_int_width-1 downto -data_frac_width);                    --data_out  : serial output from the DNN
+digit_out: out integer range 0 to 9;                                                --digit_out : digit(0 to 9) the input handwritten number is classified with.                                      
 data_v: out std_logic;                                                              --data_v    : data validity bit. It aknowledges the availability of data from the DNN
 addr_in: out std_logic_vector(0 to natural(ceil(log2(real(layer_inputs(1)))))-1);   --addr_in   : To scan through the valdation data set
 --AUGUMENTED PINS
-n_power_reset: in std_logic;                                                        --n_power_reset     : reset pin which emulates a power failure                       
-data_sampled: in std_logic;
-thresh_stats: in threshold_t                                                        --threshold_stats   : this contains the hazard signal to trigger the data save process
+n_power_reset: in std_logic;                                                        --n_power_reset     : Reset pin which emulates a power failure                       
+data_sampled: in std_logic;                                                         --data_sampled      : When the DNN output is no longer needed, this pin is set to '1'.
+thresh_stats: in threshold_t                                                        --threshold_stats   : This contains the hazard signal to trigger the data save process
 ); --To scan through the valdation data set
 end I_DNN;
 
@@ -60,6 +55,8 @@ architecture Behavioral of I_DNN is
 --TYPES-------------------------------------------------
 type data_vect_type is array(1 to num_layers) of sfixed(data_int_width-1 downto -data_frac_width);
 type out_v_set_vect_t is array(1 to num_layers) of integer range 0 to 3;
+constant NV_REG_WIDTH: natural := 32;
+constant NV_REG_DEPTH: natural := 35;
 --LAYER SIGNALS-----------------------------------------
 signal out_v_set_vect: out_v_set_vect_t;
 signal data_out_vect, data_in_vect: data_vect_type;
@@ -76,6 +73,9 @@ signal data_out_sel2: std_logic_vector(0 to  natural(ceil(log2(real(layer_output
 signal data_in_sel3: std_logic_vector(0 to  natural(ceil(log2(real(layer_inputs(3)))))-1);
 
 signal data_out_sel3: std_logic_vector(0 to  natural(ceil(log2(real(layer_outputs(3)))))-1);
+signal data_in_sel4: std_logic_vector(0 to  natural(ceil(log2(real(layer_inputs(4)))))-1);
+
+signal data_out_sel4: std_logic_vector(0 to  natural(ceil(log2(real(layer_outputs(4)))))-1);
 --SOFTMAX
 signal softmax_data_v: std_logic;
 signal softmax_state: softmax_state_t:=power_off;
@@ -97,7 +97,7 @@ signal task_status1:std_logic;
 signal nv_reg_en1:std_logic;
 signal nv_reg_we1:std_logic;
 signal nv_reg_addr1:std_logic_vector(nv_reg_addr_width_bit-1 downto 0);
-signal nv_reg_din1:std_logic:vector(nv_reg_width-1 downto 0);
+signal nv_reg_din1:std_logic_vector(nv_reg_width-1 downto 0);
 --NV_REG1
 signal nv_reg_busy2:std_logic:='0';
 signal nv_reg_busy_sig2: std_logic:='0';
@@ -107,7 +107,7 @@ signal task_status2:std_logic;
 signal nv_reg_en2:std_logic;
 signal nv_reg_we2:std_logic;
 signal nv_reg_addr2:std_logic_vector(nv_reg_addr_width_bit-1 downto 0);
-signal nv_reg_din2:std_logic:vector(nv_reg_width-1 downto 0);
+signal nv_reg_din2:std_logic_vector(nv_reg_width-1 downto 0);
 --NV_REG1
 signal nv_reg_busy3:std_logic:='0';
 signal nv_reg_busy_sig3: std_logic:='0';
@@ -117,7 +117,17 @@ signal task_status3:std_logic;
 signal nv_reg_en3:std_logic;
 signal nv_reg_we3:std_logic;
 signal nv_reg_addr3:std_logic_vector(nv_reg_addr_width_bit-1 downto 0);
-signal nv_reg_din3:std_logic:vector(nv_reg_width-1 downto 0);
+signal nv_reg_din3:std_logic_vector(nv_reg_width-1 downto 0);
+--NV_REG1
+signal nv_reg_busy4:std_logic:='0';
+signal nv_reg_busy_sig4: std_logic:='0';
+signal nv_reg_dout4: std_logic_vector(nv_reg_width-1 DOWNTO 0):=(others=>'0');
+signal previous_layer4:std_logic_vector(nv_reg_width-1 downto 0):=(others=>'0');
+signal task_status4:std_logic;
+signal nv_reg_en4:std_logic;
+signal nv_reg_we4:std_logic;
+signal nv_reg_addr4:std_logic_vector(nv_reg_addr_width_bit-1 downto 0);
+signal nv_reg_din4:std_logic_vector(nv_reg_width-1 downto 0);
 ---------------POWER APPROXIMATION (PA) UNITS SIGNALS------------------------
 constant num_pwr_states_layer: natural:=4;
 constant num_pwr_states_nvreg: natural:=3;
@@ -155,6 +165,17 @@ signal power_state_en_nvreg3          : std_logic_vector(num_pwr_states_nvreg - 
 signal power_counter_val_nvreg3       : power_approx_counter_type(num_pwr_states_nvreg - 1 downto 0) := (others => 0);    -- array of state counter values
 signal power_counter_full_nvreg3      : std_logic_vector(num_pwr_states_nvreg - 1 downto 0) := (others => '0');           -- array of terminal counters 
 signal power_counter_reset_nvreg3     : std_logic_vector(num_pwr_states_nvreg - 1 downto 0):=(others => '0');                              -- array to reset counters
+--LAYER4 PA
+signal pr_state_layer4: fsm_layer_state_t;
+signal power_state_en_layer4				: std_logic_vector(num_pwr_states_layer - 1 downto 0);                              -- array of power state that are enable
+signal power_counter_val_layer4				: power_approx_counter_type(num_pwr_states_layer - 1 downto 0) := (others => 0);    -- array of state counter values
+signal power_counter_full_layer4		: std_logic_vector(num_pwr_states_layer - 1 downto 0) := (others => '0');           -- array of terminal counters
+signal power_counter_reset_layer4		: std_logic_vector(num_pwr_states_layer - 1 downto 0):=(others => '0');             -- array to reset counters
+--NVREG4 PA
+signal power_state_en_nvreg4          : std_logic_vector(num_pwr_states_nvreg - 1 downto 0);                              -- array of power state that are enable
+signal power_counter_val_nvreg4       : power_approx_counter_type(num_pwr_states_nvreg - 1 downto 0) := (others => 0);    -- array of state counter values
+signal power_counter_full_nvreg4      : std_logic_vector(num_pwr_states_nvreg - 1 downto 0) := (others => '0');           -- array of terminal counters 
+signal power_counter_reset_nvreg4     : std_logic_vector(num_pwr_states_nvreg - 1 downto 0):=(others => '0');                              -- array to reset counters
 --SOFTMAX PA
 signal power_state_en_softmax          : std_logic_vector(num_pwr_states_softmax - 1 downto 0);                              -- array of power state that are enable
 signal power_counter_val_softmax       : power_approx_counter_type(num_pwr_states_softmax - 1 downto 0) := (others => 0);    -- array of state counter values
@@ -197,6 +218,18 @@ signal evaluation_ready_nvreg3          : std_logic;
 signal num_state_to_evaluate_nvreg3     : integer range 0 to num_pwr_states_nvreg-1:=0;
 signal input_counter_val_nvreg3         : power_approx_counter_type(num_pwr_states_nvreg -1 downto 0);
 signal output_data_nvreg3               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+--LAYER4 INST_PWR_CALC
+signal start_evaluation_layer4          : std_logic:='1';
+signal evaluation_ready_layer4          : std_logic;
+signal num_state_to_evaluate_layer4     : integer range 0 to num_pwr_states_layer-1:=0;
+signal input_counter_val_layer4         : power_approx_counter_type(num_pwr_states_layer -1 downto 0);
+signal output_data_layer4               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
+--NV_REG4INST_PWR_CALC
+signal start_evaluation_nvreg4          : std_logic:='1';
+signal evaluation_ready_nvreg4          : std_logic;
+signal num_state_to_evaluate_nvreg4     : integer range 0 to num_pwr_states_nvreg-1:=0;
+signal input_counter_val_nvreg4         : power_approx_counter_type(num_pwr_states_nvreg -1 downto 0);
+signal output_data_nvreg4               : std_logic_vector(PWR_APPROX_COUNTER_NUM_BITS + PWR_CONSUMPTION_ROM_BITS downto 0);
 --SOFTMAX
 signal start_evaluation_softmax          : std_logic:='1';
 signal evaluation_ready_softmax          : std_logic;
@@ -257,7 +290,8 @@ end component;
 component nv_reg is
     Generic(
         MAX_DELAY_NS: INTEGER;
-        NV_REG_WIDTH: INTEGER
+        NV_REG_WIDTH: INTEGER;
+        NV_REG_DEPTH: INTEGER
     );
     Port ( 
         clk             : in STD_LOGIC;
@@ -327,19 +361,22 @@ begin
 data_in_vect(1) <= data_in;
 data_in_vect(2) <= data_out_vect(1);
 data_in_vect(3) <= data_out_vect(2);
+data_in_vect(4) <= data_out_vect(3);
 --Aknowledges Bits
 start_vect(1) <= start;
 start_vect(2) <= data_v_vect(1);
 start_vect(3) <= data_v_vect(2);
+start_vect(4) <= data_v_vect(3);
 --Data Selectors
 addr_in <= data_in_sel1;
 data_out_sel1<= data_in_sel2;
 data_out_sel2<= data_in_sel3;
+data_out_sel3<= data_in_sel4;
 data_v <= softmax_data_v;
 --Reset bit
 resetN_emulator <= n_power_reset;
 --TASK STATUS bit
-task_status <= task_status1 or task_status2 or task_status3
+task_status <= task_status1 or task_status2 or task_status3 or task_status4;
 --out_v_set PROCESS
 --Description: This process computes the out_v_set bit feeding the layer, in order to invalidate the output of that layer.
 out_v_set_val: process(all) is
@@ -356,11 +393,17 @@ if data_v_vect(3) = '0' then
 elsif data_v_vect(3) = '1' then
     out_v_set_vect(2) <= 1;
 end if;
---Layer2
-if softmax_data_v = '0' then
+--Layer3
+if data_v_vect(4) = '0' then
     out_v_set_vect(3) <= 2;
-elsif softmax_data_v = '1' then
+elsif data_v_vect(4) = '1' then
     out_v_set_vect(3) <= 1;
+end if;
+--Layer3
+if softmax_data_v = '0' then
+    out_v_set_vect(4) <= 2;
+elsif softmax_data_v = '1' then
+    out_v_set_vect(4) <= 1;
 end if;
 --out_v_set_vect(3) <= out_v_set;
 end process out_v_set_val;
@@ -380,7 +423,8 @@ fsm_nv_reg_db_comp: fsm_nv_reg_db
 nv_reg_comp1: nv_reg
     Generic map(
         MAX_DELAY_NS => FRAM_MAX_DELAY_NS,
-        NV_REG_WIDTH => NV_REG_WIDTH
+        NV_REG_WIDTH => NV_REG_WIDTH,
+        NV_REG_DEPTH => NV_REG_DEPTH
     )
     Port map(
         clk             => clk,
@@ -438,7 +482,8 @@ I_layer1: I_layer
 nv_reg_comp2: nv_reg
     Generic map(
         MAX_DELAY_NS => FRAM_MAX_DELAY_NS,
-        NV_REG_WIDTH => NV_REG_WIDTH
+        NV_REG_WIDTH => NV_REG_WIDTH,
+        NV_REG_DEPTH => NV_REG_DEPTH
     )
     Port map(
         clk             => clk,
@@ -496,7 +541,8 @@ I_layer2: I_layer
 nv_reg_comp3: nv_reg
     Generic map(
         MAX_DELAY_NS => FRAM_MAX_DELAY_NS,
-        NV_REG_WIDTH => NV_REG_WIDTH
+        NV_REG_WIDTH => NV_REG_WIDTH,
+        NV_REG_DEPTH => NV_REG_DEPTH
     )
     Port map(
         clk             => clk,
@@ -549,17 +595,76 @@ I_layer3: I_layer
     pr_state => pr_state_layer3
 
     );
+--LAYER4
+--NVREG
+nv_reg_comp4: nv_reg
+    Generic map(
+        MAX_DELAY_NS => FRAM_MAX_DELAY_NS,
+        NV_REG_WIDTH => NV_REG_WIDTH,
+        NV_REG_DEPTH => NV_REG_DEPTH
+    )
+    Port map(
+        clk             => clk,
+        resetN          => '1',
+        power_resetN 	=> resetN_emulator,
+        -------------chage from here--------------
+        busy            => nv_reg_busy4,
+        busy_sig        => nv_reg_busy_sig4,
+        en              => nv_reg_en4,
+        we              => nv_reg_we4,
+        addr            => nv_reg_addr4,
+        din             => nv_reg_din4,
+        dout            => nv_reg_dout4
+        -------------chage to here----------------
+        );
+--LAYER
+I_layer4: I_layer
+    generic map(
+    num_inputs => layer_inputs(4),
+    num_outputs => layer_outputs(4),
+    layer_no => 4,
+    act_type => "ReLU",
+    act_fun_size => 0
+    )
+    port map(
+    --ORIGINARY PINS
+    --Input
+    clk => clk,
+    data_in => data_in_vect(4),
+    data_out_sel => data_out_sel4,
+    start => start_vect(4),
+    --Output
+    data_out => data_out_vect(4),
+    data_in_sel => data_in_sel4,
+    data_v => data_v_vect(4),
+    --ADDED PINS
+    --Inputs
+    n_power_reset => n_power_reset,
+    fsm_nv_reg_state => fsm_nv_reg_state,
+    nv_reg_busy => nv_reg_busy4,
+    nv_reg_busy_sig => nv_reg_busy_sig4,
+    nv_reg_dout => nv_reg_dout4,
+    out_v_set => out_v_set_vect(4),
+    --Outputs
+    task_status => task_status4,
+    nv_reg_en => nv_reg_en4,
+    nv_reg_we => nv_reg_we4,
+    nv_reg_addr => nv_reg_addr4,
+    nv_reg_din => nv_reg_din4,
+    pr_state => pr_state_layer4
+
+    );
 soft_max_comp: SOFT_MAX
 generic map(
 num_inputs => 10
 )
 port map(
 clk => clk,
-start => data_v_vect(3),
-data_in => data_out_vect(3),
+start => data_v_vect(4),
+data_in => data_out_vect(4),
 data_sampled => data_sampled,
 n_power_reset => n_power_reset,
-data_in_sel => data_out_sel3,
+data_in_sel => data_out_sel4,
 out_v => softmax_data_v,
 data_out => data_out,
 digit_out => digit_out,
@@ -630,6 +735,28 @@ port map(
         power_counter_val       => power_counter_val_nvreg3,
         power_counter_full      => power_counter_full_nvreg3,
         power_counter_reset     => power_counter_reset_nvreg3
+);
+pwr_appr_comp_layer4: power_approximation
+generic map(
+    pwr_states_num => num_pwr_states_layer
+)
+port map(
+        sys_clk                 => clk,
+        power_state_en          => power_state_en_layer4,
+        power_counter_val       => power_counter_val_layer4,
+        power_counter_full      => power_counter_full_layer4,
+        power_counter_reset     => power_counter_reset_layer4
+);
+pwr_appr_comp_nvreg4: power_approximation
+generic map(
+    pwr_states_num => num_pwr_states_nvreg
+)
+port map(
+        sys_clk                 => clk,
+        power_state_en          => power_state_en_nvreg4,
+        power_counter_val       => power_counter_val_nvreg4,
+        power_counter_full      => power_counter_full_nvreg4,
+        power_counter_reset     => power_counter_reset_nvreg4
 );
 pwr_appr_comp_softmax: power_approximation
 generic map(
@@ -723,6 +850,33 @@ inst_pwr_calc_comp_nvreg3: instant_pwr_calc
         num_state_to_evaluate   => num_state_to_evaluate_nvreg3,
         input_counter_val       => input_counter_val_nvreg3,
         output_data             => output_data_nvreg3
+    );input_counter_val_layer4 <= power_counter_val_layer4;
+inst_pwr_calc_comp_layer4: instant_pwr_calc
+    generic map(
+        pwr_states_num => num_pwr_states_layer,
+        type_device => "layer"
+    )
+    port map(
+        sys_clk                 => clk,
+        start_evaluation        => start_evaluation_layer4,
+        evaluation_ready        => evaluation_ready_layer4,
+        num_state_to_evaluate   => num_state_to_evaluate_layer4,
+        input_counter_val       => input_counter_val_layer4,
+        output_data             => output_data_layer4
+    );
+input_counter_val_nvreg4 <= power_counter_val_nvreg4;
+inst_pwr_calc_comp_nvreg4: instant_pwr_calc
+    generic map(
+        pwr_states_num => num_pwr_states_nvreg,
+        type_device => "nvreg"
+    )
+    port map(
+        sys_clk                 => clk,
+        start_evaluation        => start_evaluation_nvreg4,
+        evaluation_ready        => evaluation_ready_nvreg4,
+        num_state_to_evaluate   => num_state_to_evaluate_nvreg4,
+        input_counter_val       => input_counter_val_nvreg4,
+        output_data             => output_data_nvreg4
     );input_counter_val_softmax <= power_counter_val_softmax;
 inst_pwr_calc_comp_softmax: instant_pwr_calc
     generic map(
@@ -774,7 +928,7 @@ else
         power_state_en_nvreg1(2) <= '0';
     end if;
 end if;
-----------LAYER1------------
+----------LAYER2------------
 if pr_state_layer2 = power_off then
     power_state_en_layer2 <= (others => '0');
 elsif pr_state_layer2 = idle or pr_state_layer2 = init or pr_state_layer2 = data_save_init or pr_state_layer2 = data_save_init_cmpl then
@@ -806,7 +960,7 @@ else
         power_state_en_nvreg2(2) <= '0';
     end if;
 end if;
-----------LAYER1------------
+----------LAYER3------------
 if pr_state_layer3 = power_off then
     power_state_en_layer3 <= (others => '0');
 elsif pr_state_layer3 = idle or pr_state_layer3 = init or pr_state_layer3 = data_save_init or pr_state_layer3 = data_save_init_cmpl then
@@ -838,6 +992,38 @@ else
         power_state_en_nvreg3(2) <= '0';
     end if;
 end if;
+----------LAYER4------------
+if pr_state_layer4 = power_off then
+    power_state_en_layer4 <= (others => '0');
+elsif pr_state_layer4 = idle or pr_state_layer4 = init or pr_state_layer4 = data_save_init or pr_state_layer4 = data_save_init_cmpl then
+    power_state_en_layer4 <= (others => '0');
+    power_state_en_layer4(0) <= '1';
+elsif pr_state_layer4 = w_sum or pr_state_layer4 = b_sum or pr_state_layer4 = act_log or pr_state_layer4 = finished then
+    power_state_en_layer4 <= (others => '0');
+    power_state_en_layer4(1) <= '1';
+elsif pr_state_layer4 = data_save then
+    power_state_en_layer4 <= (others => '0');
+    power_state_en_layer4(2) <= '1';
+elsif pr_state_layer4 = recovery then
+    power_state_en_layer4 <= (others => '0');
+    power_state_en_layer4(3) <= '1';
+end if;
+--NVREG4
+if pr_state_layer4 = power_off then
+    power_state_en_nvreg4 <= (others => '0');
+elsif nv_reg_en4 = '0' then
+    power_state_en_nvreg4(0) <= '1';
+    power_state_en_nvreg4(1) <= '0';
+    power_state_en_nvreg4(2) <= '0';
+else
+    power_state_en_nvreg4(0) <= '1';
+    power_state_en_nvreg4(1) <= '1';
+    if nv_reg_we4 = '1' then
+        power_state_en_nvreg4(2) <= '1';
+    else
+        power_state_en_nvreg4(2) <= '0';
+    end if;
+end if;
 --SOFTMAX
 if softmax_state = power_off then
     power_state_en_softmax <= (others => '0');
@@ -859,7 +1045,7 @@ evaluation_gen_process: process(evaluation_ready_layer1,start_evaluation_layer1)
 
 begin
 if rising_edge(evaluation_ready_layer1) then
-    start_evaluation_layer1 <= '0' after 20ns;
+    start_evaluation_layer1 <= '0' after 20 ns;
     num_state_to_evaluate_layer1 <= num_state_to_evaluate_layer1 +1;
     if num_state_to_evaluate_layer1 = num_pwr_states_layer-1 then
         num_state_to_evaluate_layer1 <= 0;
@@ -871,8 +1057,9 @@ if rising_edge(evaluation_ready_nvreg1)  then
     if num_state_to_evaluate_nvreg1 = num_pwr_states_nvreg-1 then
         num_state_to_evaluate_nvreg1 <= 0;
     end if;
-end if;if rising_edge(evaluation_ready_layer2) then
-    start_evaluation_layer2 <= '0' after 20ns;
+end if;
+if rising_edge(evaluation_ready_layer2) then
+    start_evaluation_layer2 <= '0' after 20 ns;
     num_state_to_evaluate_layer2 <= num_state_to_evaluate_layer2 +1;
     if num_state_to_evaluate_layer2 = num_pwr_states_layer-1 then
         num_state_to_evaluate_layer2 <= 0;
@@ -884,8 +1071,9 @@ if rising_edge(evaluation_ready_nvreg2)  then
     if num_state_to_evaluate_nvreg2 = num_pwr_states_nvreg-1 then
         num_state_to_evaluate_nvreg2 <= 0;
     end if;
-end if;if rising_edge(evaluation_ready_layer3) then
-    start_evaluation_layer3 <= '0' after 20ns;
+end if;
+if rising_edge(evaluation_ready_layer3) then
+    start_evaluation_layer3 <= '0' after 20 ns;
     num_state_to_evaluate_layer3 <= num_state_to_evaluate_layer3 +1;
     if num_state_to_evaluate_layer3 = num_pwr_states_layer-1 then
         num_state_to_evaluate_layer3 <= 0;
@@ -897,15 +1085,33 @@ if rising_edge(evaluation_ready_nvreg3)  then
     if num_state_to_evaluate_nvreg3 = num_pwr_states_nvreg-1 then
         num_state_to_evaluate_nvreg3 <= 0;
     end if;
-end if;if start_evaluation_layer1 = '0' then
-start_evaluation_layer3 <= '1' after 320ns;
-start_evaluation_nvreg3 <= '1' after 320ns;
-start_evaluation_layer3 <= '1' after 320ns;
-start_evaluation_nvreg3 <= '1' after 320ns;
-start_evaluation_layer3 <= '1' after 320ns;
-start_evaluation_nvreg3 <= '1' after 320ns;
-start_evaluation_softmax <= '1' after 320ns;
-end if;if rising_edge(evaluation_ready_softmax) then
+end if;
+if rising_edge(evaluation_ready_layer4) then
+    start_evaluation_layer4 <= '0' after 20 ns;
+    num_state_to_evaluate_layer4 <= num_state_to_evaluate_layer4 +1;
+    if num_state_to_evaluate_layer4 = num_pwr_states_layer-1 then
+        num_state_to_evaluate_layer4 <= 0;
+    end if;
+end if;
+if rising_edge(evaluation_ready_nvreg4)  then
+    start_evaluation_nvreg4 <= '0' after 20 ns;
+    num_state_to_evaluate_nvreg4 <= num_state_to_evaluate_nvreg4 +1;
+    if num_state_to_evaluate_nvreg4 = num_pwr_states_nvreg-1 then
+        num_state_to_evaluate_nvreg4 <= 0;
+    end if;
+end if;
+if start_evaluation_layer1 = '0' then
+start_evaluation_layer1 <= '1' after 320 ns;
+start_evaluation_nvreg1 <= '1' after 320 ns;
+start_evaluation_layer2 <= '1' after 320 ns;
+start_evaluation_nvreg2 <= '1' after 320 ns;
+start_evaluation_layer3 <= '1' after 320 ns;
+start_evaluation_nvreg3 <= '1' after 320 ns;
+start_evaluation_layer4 <= '1' after 320 ns;
+start_evaluation_nvreg4 <= '1' after 320 ns;
+start_evaluation_softmax <= '1' after 320 ns;
+end if;
+if rising_edge(evaluation_ready_softmax) then
     start_evaluation_softmax <= '0' after 20ns;
     num_state_to_evaluate_softmax <= num_state_to_evaluate_softmax +1;
     if num_state_to_evaluate_softmax = num_pwr_states_softmax-1 then

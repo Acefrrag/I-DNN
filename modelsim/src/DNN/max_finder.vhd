@@ -17,19 +17,19 @@
 -- Additional Comments:
 -- 
 ----------------------------------------------------------------------------------
-library ieee_proposed;
-use ieee_proposed.fixed_pkg.all;
+
+
 
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.math_real.all;
-
+use ieee.fixed_pkg.all;
 
 
 library work;
-use work.DNN_package.all;
+use work.I_DNN_package.all;
 
 entity max_finder is
 generic(
@@ -97,10 +97,7 @@ end case;
 
 end process fsm_nx_state;
 
-fsm_seq: process is
-begin
 
-end process fsm_seq;
 
 
 

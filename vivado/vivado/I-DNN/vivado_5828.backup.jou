@@ -1,0 +1,19 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Sep  5 12:43:03 2022
+# Process ID: 5828
+# Current directory: C:/Users/Michele/GithubRepositories/I-DNN/vivado/I-DNN
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent4324 C:\Users\Michele\GithubRepositories\I-DNN\vivado\I-DNN\I-DNN.xpr
+# Log file: C:/Users/Michele/GithubRepositories/I-DNN/vivado/I-DNN/vivado.log
+# Journal file: C:/Users/Michele/GithubRepositories/I-DNN/vivado/I-DNN\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Michele/GithubRepositories/I-DNN/vivado/I-DNN/I-DNN.xpr
+launch_simulation
+source I_DNN_tb.tcl
+run 3 us
+run 3 us
+open_wave_config {C:/Users/Michele/GithubRepositories/I-DNN/vivado/I-DNN/I_DNN_tb_behav.wcfg}
+close_sim

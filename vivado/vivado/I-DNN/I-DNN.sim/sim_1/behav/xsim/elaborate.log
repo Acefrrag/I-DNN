@@ -81,8 +81,8 @@ Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weigh
 Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
 Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
 Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
-Compiling architecture behavioral of entity xil_defaultlib.I_FSM_layer [\I_FSM_layer(rom_depth=30)\]
 Compiling architecture behavioral of entity xil_defaultlib.var_counter [\var_counter(max=32,init_value=0...]
+Compiling architecture behavioral of entity xil_defaultlib.I_FSM_layer [\I_FSM_layer(rom_depth=30)\]
 Compiling architecture behavioral of entity xil_defaultlib.I_layer [\I_layer(act_type="ReLu")(1,4)\]
 Compiling architecture behavioral of entity xil_defaultlib.trace_ROM [\trace_ROM(num_elemnts_rom=1570,...]
 Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=3,init_value=0,incr...]
@@ -94,4 +94,3 @@ Compiling architecture syn of entity xil_defaultlib.rams_sp_rf [\rams_sp_rf(ram_
 Compiling architecture behavioral of entity xil_defaultlib.nv_reg_emu [\nv_reg_emu(max_delay_ns=80)\]
 Compiling architecture behavioral of entity xil_defaultlib.nv_reg [\nv_reg(max_delay_ns=80,nv_reg_w...]
 Compiling architecture behavioral of entity xil_defaultlib.i_layer_tb
-Built simulation snapshot I_layer_tb_behav

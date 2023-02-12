@@ -1,0 +1,132 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Feb  2 11:03:24 2023
+# Process ID: 1164
+# Current directory: C:/Users/miche/Github_Repositories/I-DNN/vivado/scripts/mains
+# Command line: vivado.exe -mode batch -source ./tcl/DB_setup_prms.tcl
+# Log file: C:/Users/miche/Github_Repositories/I-DNN/vivado/scripts/mains/vivado.log
+# Journal file: C:/Users/miche/Github_Repositories/I-DNN/vivado/scripts/mains\vivado.jou
+#-----------------------------------------------------------
+source ./tcl/DB_setup_prms.tcl
+# set_param general.MaxThreads 4
+# open_project ../../vivado/I-DNN/I-DNN.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN/I-DNN.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+# set_property top I_DNN_multiple_images_tb [get_filesets sim_1]
+# set_property top_lib xil_defaultlib [get_filesets sim_1]
+# update_compile_order -fileset sim_1
+update_compile_order: Time (s): cpu = 00:00:00 ; elapsed = 00:00:14 . Memory (MB): peak = 1014.773 ; gain = 0.000
+# set_property -name {xsim.simulate.runtime} -value {0us} -objects [get_filesets sim_1]
+# set fp [open ./results/DB_results_NVREG_DELAY_FACTOR2.txt w]
+# puts "Launching simulation..."
+Launching simulation...
+# flush stdout
+# launch_simulation
+Command: launch_simulation 
+WARNING: [Vivado 12-3661] Failed to remove file:C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/I_DNN_multiple_images_tb_behav.wdb
+WARNING: [Vivado 12-3661] Failed to remove file:C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/simulate.log
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'I_DNN_multiple_images_tb' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-100] Fetching design files from 'sources_1'...(this may take a while)...
+INFO: [USF-XSim-101] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim'
+"xvhdl --relax -prj I_DNN_multiple_images_tb_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/fixed_pkg_2008.vhd" into library ieee_proposed
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/I_DNN_MI_package.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/I_DNN_package.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/TEST_ARCHITECTURE_PACKAGE.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/NVME_FRAMEWORK_PACKAGE.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/COMMON_PACKAGE.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/INTERMITTENCY_EMULATOR_package.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/var_counter.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'var_counter'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/I_FSM_layer.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_FSM_layer'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/I_neuron.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_neuron'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/weight_memory.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'weight_memory'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/I_layer.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_layer'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/fsm_nv_reg_db.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'fsm_nv_reg_db'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/nv_reg_emu.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'nv_reg_emu'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/trace_ROM.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'trace_ROM'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/nv_reg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'nv_reg'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/intermittency_emulator.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'intermittency_emulator'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/scaler.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'scaler'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/counter.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'counter'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/test_sfixed.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'test_sfixed'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/instant_pwr_calc.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'instant_pwr_calc'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/power_approximation.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'power_approximation'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/pwr_consumption_val_ROM.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'pwr_consumption_val_ROM'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/mult.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mult'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/rams_sp_rf.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'rams_sp_rf'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/ReLU.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'ReLU'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/VAR_CNTR_PROCESS.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'VAR_CNTR_PROCESS'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/unary_or.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'unary_OR'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/Sigmoid.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'Sigmoid'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/I_DNN.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_DNN'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/DNN/SOFT_MAX.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SOFT_MAX'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/src/NORM/fsm_nv_reg_cb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'fsm_nv_reg_cb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/test/I_DNN_multiple_images_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_DNN_multiple_images_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/test/I_layer_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_layer_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/test/I_DNN_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_DNN_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/test/I_layer_tb_hazard_scenarios.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_layer_tb_hazard_scenarios'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/Github_Repositories/I-DNN/vivado/test/mult_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'mult_tb'
+INFO: [USF-XSim-69] 'compile' step finished in '4' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim'
+"xelab -wto 63630931c3274f1193fa45ad0cc3506d --debug typical --relax --mt 4 -L xil_defaultlib -L ieee_proposed -L secureip --snapshot I_DNN_multiple_images_tb_behav xil_defaultlib.I_DNN_multiple_images_tb -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 63630931c3274f1193fa45ad0cc3506d --debug typical --relax --mt 4 -L xil_defaultlib -L ieee_proposed -L secureip --snapshot I_DNN_multiple_images_tb_behav xil_defaultlib.I_DNN_multiple_images_tb -log elaborate.log 
+Using 4 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+ERROR: [XSIM 43-3356]  Could not open file xsim.dir/I_DNN_multiple_images_tb_behav/xsim.type for writing.
+ERROR: [XSIM 43-3915] Encountered a fatal error. Cannot continue. Exiting... 
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:52 . Memory (MB): peak = 1014.773 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '52' seconds
+INFO: [USF-XSim-99] Step results log file:'C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/elaborate.log'
+ERROR: [USF-XSim-62] 'elaborate' step failed with error(s). Please check the Tcl console output or 'C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/elaborate.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:58 . Memory (MB): peak = 1014.773 ; gain = 0.000
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+
+    while executing
+"launch_simulation"
+    (file "./tcl/DB_setup_prms.tcl" line 11)
+INFO: [Common 17-206] Exiting Vivado at Thu Feb  2 11:04:44 2023...

@@ -48,6 +48,7 @@ entity power_approximation is
     );
 end power_approximation;
 
+
 architecture Behavioral of power_approximation is
 
     component counter is

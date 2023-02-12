@@ -19,8 +19,8 @@
 ----------------------------------------------------------------------------------
 
 
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+library ieee;
+use ieee.STD_LOGIC_1164.ALL;
 use ieee.math_real.all;
 use ieee.numeric_std.all;
 
@@ -62,7 +62,7 @@ function makesfixed (bit_in: in bit_vector(neuron_rom_width-1 downto 0)) return 
     return fixedpoint_s;
 end function;
 
-function gen_data_in(datain_path: in string) return data_in_vect_t is
+impure function gen_data_in(datain_path: in string) return data_in_vect_t is
 file text_header: text is in datain_path;
 variable text_line: line;
 variable line_i: bit_vector( 0 to neuron_rom_width-1);

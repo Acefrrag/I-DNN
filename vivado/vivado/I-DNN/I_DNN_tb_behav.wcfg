@@ -8,21 +8,22 @@
             <top_module name="I_DNN_tb" />
             <top_module name="common_package" />
             <top_module name="i_dnn_package" />
+            <top_module name="intermittency_emulator_package" />
             <top_module name="nvme_framework_package" />
             <top_module name="test_architecture_package" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="71993443fs"></ZoomStartTime>
-      <ZoomEndTime time="72001312fs"></ZoomEndTime>
-      <Cursor1Time time="72000000fs"></Cursor1Time>
+      <ZoomStartTime time="299039250fs"></ZoomStartTime>
+      <ZoomEndTime time="299403751fs"></ZoomEndTime>
+      <Cursor1Time time="299260000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="357"></NameColumnWidth>
-      <ValueColumnWidth column_width="107"></ValueColumnWidth>
+      <NameColumnWidth column_width="398"></NameColumnWidth>
+      <ValueColumnWidth column_width="195"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="17" />
+   <WVObjectSize size="18" />
    <wvobject type="divider" fp_name="divider4150">
       <obj_property name="label">DNN</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -36,23 +37,23 @@
       <obj_property name="ObjectShortName">start</obj_property>
    </wvobject>
    <wvobject fp_name="/I_DNN_tb/input_reg" type="array">
-      <obj_property name="ElementShortName">input_reg[0:783][15:-16]</obj_property>
-      <obj_property name="ObjectShortName">input_reg[0:783][15:-16]</obj_property>
+      <obj_property name="ElementShortName">input_reg[0:783][13:-18]</obj_property>
+      <obj_property name="ObjectShortName">input_reg[0:783][13:-18]</obj_property>
    </wvobject>
    <wvobject fp_name="/I_DNN_tb/data_in" type="array">
-      <obj_property name="ElementShortName">data_in[15:-16]</obj_property>
-      <obj_property name="ObjectShortName">data_in[15:-16]</obj_property>
+      <obj_property name="ElementShortName">data_in[13:-18]</obj_property>
+      <obj_property name="ObjectShortName">data_in[13:-18]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">16</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/I_DNN_tb/data_out" type="array">
-      <obj_property name="ElementShortName">data_out[15:-16]</obj_property>
-      <obj_property name="ObjectShortName">data_out[15:-16]</obj_property>
+      <obj_property name="ElementShortName">data_out[13:-18]</obj_property>
+      <obj_property name="ObjectShortName">data_out[13:-18]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">16</obj_property>
+      <obj_property name="radix_fractionWidth">18</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
       <obj_property name="CustomSignalColor">#00FF00</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
@@ -116,10 +117,6 @@
          <obj_property name="ElementShortName">thresh_stats</obj_property>
          <obj_property name="ObjectShortName">thresh_stats</obj_property>
       </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/fsm_nv_reg_db_comp/task_status" type="logic">
-         <obj_property name="ElementShortName">task_status</obj_property>
-         <obj_property name="ObjectShortName">task_status</obj_property>
-      </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/task_status1" type="logic">
          <obj_property name="ElementShortName">task_status1</obj_property>
          <obj_property name="ObjectShortName">task_status1</obj_property>
@@ -132,15 +129,10 @@
          <obj_property name="ElementShortName">task_status3</obj_property>
          <obj_property name="ObjectShortName">task_status3</obj_property>
       </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/fsm_nv_reg_db_comp/fsm_state" type="other">
-         <obj_property name="ElementShortName">fsm_state</obj_property>
-         <obj_property name="ObjectShortName">fsm_state</obj_property>
-      </wvobject>
    </wvobject>
    <wvobject fp_name="group302" type="group">
       <obj_property name="label">LAYER1</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject type="divider" fp_name="divider4152">
          <obj_property name="label">LAYER1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -159,8 +151,8 @@
          <obj_property name="ObjectShortName">data_v</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/data_out_vect" type="array">
-         <obj_property name="ElementShortName">data_out_vect[0:29][15:-16]</obj_property>
-         <obj_property name="ObjectShortName">data_out_vect[0:29][15:-16]</obj_property>
+         <obj_property name="ElementShortName">data_out_vect[0:29][13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out_vect[0:29][13:-18]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">16</obj_property>
@@ -169,7 +161,6 @@
       <wvobject fp_name="group202" type="group">
          <obj_property name="label">NV_REG1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject type="divider" fp_name="divider954">
             <obj_property name="label">NV_REG1</obj_property>
             <obj_property name="DisplayName">label</obj_property>
@@ -246,8 +237,8 @@
                <obj_property name="DisplayName">label</obj_property>
             </wvobject>
             <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(1)\/I_neuron_i/data_out_rec" type="array">
-               <obj_property name="ElementShortName">data_out_rec[15:-16]</obj_property>
-               <obj_property name="ObjectShortName">data_out_rec[15:-16]</obj_property>
+               <obj_property name="ElementShortName">data_out_rec[13:-18]</obj_property>
+               <obj_property name="ObjectShortName">data_out_rec[13:-18]</obj_property>
                <obj_property name="Radix">REALRADIX</obj_property>
                <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
                <obj_property name="radix_fractionWidth">16</obj_property>
@@ -258,28 +249,28 @@
                <obj_property name="DisplayName">label</obj_property>
             </wvobject>
             <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/data_out_rec" type="array">
-               <obj_property name="ElementShortName">data_out_rec[15:-16]</obj_property>
-               <obj_property name="ObjectShortName">data_out_rec[15:-16]</obj_property>
+               <obj_property name="ElementShortName">data_out_rec[13:-18]</obj_property>
+               <obj_property name="ObjectShortName">data_out_rec[13:-18]</obj_property>
                <obj_property name="Radix">REALRADIX</obj_property>
                <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
                <obj_property name="radix_fractionWidth">16</obj_property>
                <obj_property name="radix_otherWidth">0</obj_property>
             </wvobject>
             <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/weight_out" type="array">
-               <obj_property name="ElementShortName">weight_out[15:-16]</obj_property>
-               <obj_property name="ObjectShortName">weight_out[15:-16]</obj_property>
+               <obj_property name="ElementShortName">weight_out[3:-28]</obj_property>
+               <obj_property name="ObjectShortName">weight_out[3:-28]</obj_property>
             </wvobject>
             <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/sum_reg_out" type="array">
-               <obj_property name="ElementShortName">sum_reg_out[15:-16]</obj_property>
-               <obj_property name="ObjectShortName">sum_reg_out[15:-16]</obj_property>
+               <obj_property name="ElementShortName">sum_reg_out[13:-18]</obj_property>
+               <obj_property name="ObjectShortName">sum_reg_out[13:-18]</obj_property>
             </wvobject>
             <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/mul_out" type="array">
-               <obj_property name="ElementShortName">mul_out[15:-16]</obj_property>
-               <obj_property name="ObjectShortName">mul_out[15:-16]</obj_property>
+               <obj_property name="ElementShortName">mul_out[13:-18]</obj_property>
+               <obj_property name="ObjectShortName">mul_out[13:-18]</obj_property>
             </wvobject>
             <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/weight_prod" type="array">
-               <obj_property name="ElementShortName">weight_prod[15:-16]</obj_property>
-               <obj_property name="ObjectShortName">weight_prod[15:-16]</obj_property>
+               <obj_property name="ElementShortName">weight_prod[13:-18]</obj_property>
+               <obj_property name="ObjectShortName">weight_prod[13:-18]</obj_property>
             </wvobject>
          </wvobject>
          <wvobject fp_name="group349" type="group">
@@ -357,36 +348,36 @@
             <obj_property name="DisplayName">label</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(5)\/I_neuron_i/weight_out" type="array">
-            <obj_property name="ElementShortName">weight_out[15:-16]</obj_property>
-            <obj_property name="ObjectShortName">weight_out[15:-16]</obj_property>
+            <obj_property name="ElementShortName">weight_out[3:-28]</obj_property>
+            <obj_property name="ObjectShortName">weight_out[3:-28]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">16</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(5)\/I_neuron_i/mul_out" type="array">
-            <obj_property name="ElementShortName">mul_out[15:-16]</obj_property>
-            <obj_property name="ObjectShortName">mul_out[15:-16]</obj_property>
+            <obj_property name="ElementShortName">mul_out[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">mul_out[13:-18]</obj_property>
             <obj_property name="Radix">BINARYRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">32</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(5)\/I_neuron_i/sum_reg_out" type="array">
-            <obj_property name="ElementShortName">sum_reg_out[15:-16]</obj_property>
-            <obj_property name="ObjectShortName">sum_reg_out[15:-16]</obj_property>
+            <obj_property name="ElementShortName">sum_reg_out[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">sum_reg_out[13:-18]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">32</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(5)\/I_neuron_i/data_out" type="array">
-            <obj_property name="ElementShortName">data_out[15:-16]</obj_property>
-            <obj_property name="ObjectShortName">data_out[15:-16]</obj_property>
+            <obj_property name="ElementShortName">data_out[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">data_out[13:-18]</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/\I_neurons(5)\/I_neuron_i/weight_memory_comp/ROM" type="array">
-            <obj_property name="ElementShortName">ROM[0:783][15:-16]</obj_property>
-            <obj_property name="ObjectShortName">ROM[0:783][15:-16]</obj_property>
+            <obj_property name="ElementShortName">ROM[0:783][3:-28]</obj_property>
+            <obj_property name="ObjectShortName">ROM[0:783][3:-28]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">16</obj_property>
@@ -419,8 +410,8 @@
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer2/data_out_vect" type="array">
-         <obj_property name="ElementShortName">data_out_vect[0:24][15:-16]</obj_property>
-         <obj_property name="ObjectShortName">data_out_vect[0:24][15:-16]</obj_property>
+         <obj_property name="ElementShortName">data_out_vect[0:24][13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out_vect[0:24][13:-18]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">16</obj_property>
@@ -430,10 +421,6 @@
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer2/start" type="logic">
          <obj_property name="ElementShortName">start</obj_property>
          <obj_property name="ObjectShortName">start</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/fsm_nv_reg_db_comp/fsm_state" type="other">
-         <obj_property name="ElementShortName">fsm_state</obj_property>
-         <obj_property name="ObjectShortName">fsm_state</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer2/out_v" type="logic">
          <obj_property name="ElementShortName">out_v</obj_property>
@@ -452,8 +439,8 @@
          <obj_property name="DisplayName">label</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer2/data_in" type="array">
-         <obj_property name="ElementShortName">data_in[15:-16]</obj_property>
-         <obj_property name="ObjectShortName">data_in[15:-16]</obj_property>
+         <obj_property name="ElementShortName">data_in[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_in[13:-18]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">16</obj_property>
@@ -496,28 +483,28 @@
          <obj_property name="DisplayName">label</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer2/\I_neurons(0)\/I_neuron_i/weight_out" type="array">
-         <obj_property name="ElementShortName">weight_out[15:-16]</obj_property>
-         <obj_property name="ObjectShortName">weight_out[15:-16]</obj_property>
+         <obj_property name="ElementShortName">weight_out[3:-28]</obj_property>
+         <obj_property name="ObjectShortName">weight_out[3:-28]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">16</obj_property>
          <obj_property name="radix_otherWidth">0</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer2/\I_neurons(0)\/I_neuron_i/weight_prod" type="array">
-         <obj_property name="ElementShortName">weight_prod[15:-16]</obj_property>
-         <obj_property name="ObjectShortName">weight_prod[15:-16]</obj_property>
+         <obj_property name="ElementShortName">weight_prod[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">weight_prod[13:-18]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer2/\I_neurons(0)\/I_neuron_i/mul_out" type="array">
-         <obj_property name="ElementShortName">mul_out[15:-16]</obj_property>
-         <obj_property name="ObjectShortName">mul_out[15:-16]</obj_property>
+         <obj_property name="ElementShortName">mul_out[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">mul_out[13:-18]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">32</obj_property>
          <obj_property name="radix_otherWidth">0</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer2/\I_neurons(0)\/I_neuron_i/sum_reg_out" type="array">
-         <obj_property name="ElementShortName">sum_reg_out[15:-16]</obj_property>
-         <obj_property name="ObjectShortName">sum_reg_out[15:-16]</obj_property>
+         <obj_property name="ElementShortName">sum_reg_out[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">sum_reg_out[13:-18]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">32</obj_property>
@@ -534,10 +521,6 @@
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer3/clk" type="logic">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/fsm_nv_reg_db_comp/fsm_state" type="other">
-         <obj_property name="ElementShortName">fsm_state</obj_property>
-         <obj_property name="ObjectShortName">fsm_state</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer3/I_fsm_layer_comp/pr_state" type="other">
          <obj_property name="ElementShortName">pr_state</obj_property>
@@ -589,8 +572,8 @@
             <obj_property name="ObjectShortName">nx_state</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer3/data_out_vect" type="array">
-            <obj_property name="ElementShortName">data_out_vect[0:14][15:-16]</obj_property>
-            <obj_property name="ObjectShortName">data_out_vect[0:14][15:-16]</obj_property>
+            <obj_property name="ElementShortName">data_out_vect[0:14][13:-18]</obj_property>
+            <obj_property name="ObjectShortName">data_out_vect[0:14][13:-18]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">16</obj_property>
@@ -624,12 +607,392 @@
          </wvobject>
       </wvobject>
    </wvobject>
+   <wvobject fp_name="group295" type="group">
+      <obj_property name="label">LAYER4</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_in" type="array">
+         <obj_property name="ElementShortName">data_in[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_in[13:-18]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_out_sel" type="array">
+         <obj_property name="ElementShortName">data_out_sel[0:3]</obj_property>
+         <obj_property name="ObjectShortName">data_out_sel[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/start" type="logic">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_out" type="array">
+         <obj_property name="ElementShortName">data_out[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out[13:-18]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_in_sel" type="array">
+         <obj_property name="ElementShortName">data_in_sel[0:3]</obj_property>
+         <obj_property name="ObjectShortName">data_in_sel[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_v" type="logic">
+         <obj_property name="ElementShortName">data_v</obj_property>
+         <obj_property name="ObjectShortName">data_v</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/n_power_reset" type="logic">
+         <obj_property name="ElementShortName">n_power_reset</obj_property>
+         <obj_property name="ObjectShortName">n_power_reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/fsm_nv_reg_state" type="other">
+         <obj_property name="ElementShortName">fsm_nv_reg_state</obj_property>
+         <obj_property name="ObjectShortName">fsm_nv_reg_state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/nv_reg_busy" type="logic">
+         <obj_property name="ElementShortName">nv_reg_busy</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/nv_reg_busy_sig" type="logic">
+         <obj_property name="ElementShortName">nv_reg_busy_sig</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_busy_sig</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/nv_reg_dout" type="array">
+         <obj_property name="ElementShortName">nv_reg_dout[31:0]</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_dout[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/out_v_set" type="other">
+         <obj_property name="ElementShortName">out_v_set</obj_property>
+         <obj_property name="ObjectShortName">out_v_set</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/task_status" type="logic">
+         <obj_property name="ElementShortName">task_status</obj_property>
+         <obj_property name="ObjectShortName">task_status</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/nv_reg_en" type="logic">
+         <obj_property name="ElementShortName">nv_reg_en</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/nv_reg_we" type="logic">
+         <obj_property name="ElementShortName">nv_reg_we</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_we</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/nv_reg_addr" type="array">
+         <obj_property name="ElementShortName">nv_reg_addr[5:0]</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_addr[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/nv_reg_din" type="array">
+         <obj_property name="ElementShortName">nv_reg_din[31:0]</obj_property>
+         <obj_property name="ObjectShortName">nv_reg_din[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/pr_state" type="other">
+         <obj_property name="ElementShortName">pr_state</obj_property>
+         <obj_property name="ObjectShortName">pr_state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/addr" type="array">
+         <obj_property name="ElementShortName">addr[0:3]</obj_property>
+         <obj_property name="ObjectShortName">addr[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/addr_TC" type="logic">
+         <obj_property name="ElementShortName">addr_TC</obj_property>
+         <obj_property name="ObjectShortName">addr_TC</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/addr_compl" type="array">
+         <obj_property name="ElementShortName">addr_compl[0:27]</obj_property>
+         <obj_property name="ObjectShortName">addr_compl[0:27]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/sum_reg_rst" type="logic">
+         <obj_property name="ElementShortName">sum_reg_rst</obj_property>
+         <obj_property name="ObjectShortName">sum_reg_rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/mul_sel" type="logic">
+         <obj_property name="ElementShortName">mul_sel</obj_property>
+         <obj_property name="ObjectShortName">mul_sel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/out_v" type="logic">
+         <obj_property name="ElementShortName">out_v</obj_property>
+         <obj_property name="ObjectShortName">out_v</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/update_out" type="logic">
+         <obj_property name="ElementShortName">update_out</obj_property>
+         <obj_property name="ObjectShortName">update_out</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/addr_in_gen_rst" type="logic">
+         <obj_property name="ElementShortName">addr_in_gen_rst</obj_property>
+         <obj_property name="ObjectShortName">addr_in_gen_rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_out_vect" type="array">
+         <obj_property name="ElementShortName">data_out_vect[0:9][13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out_vect[0:9][13:-18]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/output_en_rec_vect" type="array">
+         <obj_property name="ElementShortName">output_en_rec_vect[0:11]</obj_property>
+         <obj_property name="ObjectShortName">output_en_rec_vect[0:11]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/internal_en_rec_vect" type="array">
+         <obj_property name="ElementShortName">internal_en_rec_vect[0:11]</obj_property>
+         <obj_property name="ObjectShortName">internal_en_rec_vect[0:11]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/fsm_state_rec" type="array">
+         <obj_property name="ElementShortName">fsm_state_rec[0:31]</obj_property>
+         <obj_property name="ObjectShortName">fsm_state_rec[0:31]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/fsm_state_en_rec" type="logic">
+         <obj_property name="ElementShortName">fsm_state_en_rec</obj_property>
+         <obj_property name="ObjectShortName">fsm_state_en_rec</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_backup_vect_output_rec" type="array">
+         <obj_property name="ElementShortName">data_backup_vect_output_rec[0:12][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_backup_vect_output_rec[0:12][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec" type="array">
+         <obj_property name="ElementShortName">data_backup_vect_internal_rec[0:12][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_backup_vect_internal_rec[0:12][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/addra" type="other">
+         <obj_property name="ElementShortName">addra</obj_property>
+         <obj_property name="ObjectShortName">addra</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/fsm_state_save" type="array">
+         <obj_property name="ElementShortName">fsm_state_save[0:31]</obj_property>
+         <obj_property name="ObjectShortName">fsm_state_save[0:31]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/en" type="logic">
+         <obj_property name="ElementShortName">en</obj_property>
+         <obj_property name="ObjectShortName">en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/addrb" type="other">
+         <obj_property name="ElementShortName">addrb</obj_property>
+         <obj_property name="ObjectShortName">addrb</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/doutb" type="array">
+         <obj_property name="ElementShortName">doutb[31:0]</obj_property>
+         <obj_property name="ObjectShortName">doutb[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_backup_vect_output_save" type="array">
+         <obj_property name="ElementShortName">data_backup_vect_output_save[0:12][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_backup_vect_output_save[0:12][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_save" type="array">
+         <obj_property name="ElementShortName">data_backup_vect_internal_save[0:12][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_backup_vect_internal_save[0:12][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_backup_vect_ReLU_save" type="array">
+         <obj_property name="ElementShortName">data_backup_vect_ReLU_save[0:12][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_backup_vect_ReLU_save[0:12][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_backup_vect_wsum_save" type="array">
+         <obj_property name="ElementShortName">data_backup_vect_wsum_save[0:12][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_backup_vect_wsum_save[0:12][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_type_marker" type="other">
+         <obj_property name="ElementShortName">data_save_type_marker</obj_property>
+         <obj_property name="ObjectShortName">data_save_type_marker</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_type" type="other">
+         <obj_property name="ElementShortName">data_save_type</obj_property>
+         <obj_property name="ObjectShortName">data_save_type</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/fsm_pr_state" type="other">
+         <obj_property name="ElementShortName">fsm_pr_state</obj_property>
+         <obj_property name="ObjectShortName">fsm_pr_state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/task_status_internal" type="logic">
+         <obj_property name="ElementShortName">task_status_internal</obj_property>
+         <obj_property name="ObjectShortName">task_status_internal</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/rst" type="logic">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/reg_en" type="logic">
+         <obj_property name="ElementShortName">reg_en</obj_property>
+         <obj_property name="ObjectShortName">reg_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/out_v_set_mul" type="other">
+         <obj_property name="ElementShortName">out_v_set_mul</obj_property>
+         <obj_property name="ObjectShortName">out_v_set_mul</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_in_sel_internal" type="array">
+         <obj_property name="ElementShortName">data_in_sel_internal[0:3]</obj_property>
+         <obj_property name="ObjectShortName">data_in_sel_internal[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_busy" type="logic">
+         <obj_property name="ElementShortName">data_rec_busy</obj_property>
+         <obj_property name="ObjectShortName">data_rec_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_nv_reg_en" type="logic">
+         <obj_property name="ElementShortName">data_rec_nv_reg_en</obj_property>
+         <obj_property name="ObjectShortName">data_rec_nv_reg_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_nv_reg_addr" type="array">
+         <obj_property name="ElementShortName">data_rec_nv_reg_addr[5:0]</obj_property>
+         <obj_property name="ObjectShortName">data_rec_nv_reg_addr[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_var_cntr_init" type="logic">
+         <obj_property name="ElementShortName">data_rec_var_cntr_init</obj_property>
+         <obj_property name="ObjectShortName">data_rec_var_cntr_init</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_var_cntr_ce" type="logic">
+         <obj_property name="ElementShortName">data_rec_var_cntr_ce</obj_property>
+         <obj_property name="ObjectShortName">data_rec_var_cntr_ce</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_var_cntr_end_value" type="other">
+         <obj_property name="ElementShortName">data_rec_var_cntr_end_value</obj_property>
+         <obj_property name="ObjectShortName">data_rec_var_cntr_end_value</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_offset" type="other">
+         <obj_property name="ElementShortName">data_rec_offset</obj_property>
+         <obj_property name="ObjectShortName">data_rec_offset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_type" type="other">
+         <obj_property name="ElementShortName">data_rec_type</obj_property>
+         <obj_property name="ObjectShortName">data_rec_type</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_recovered_data" type="array">
+         <obj_property name="ElementShortName">data_rec_recovered_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_rec_recovered_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_recovered_offset" type="other">
+         <obj_property name="ElementShortName">data_rec_recovered_offset</obj_property>
+         <obj_property name="ObjectShortName">data_rec_recovered_offset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_busy" type="logic">
+         <obj_property name="ElementShortName">data_save_busy</obj_property>
+         <obj_property name="ObjectShortName">data_save_busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_nv_reg_en" type="logic">
+         <obj_property name="ElementShortName">data_save_nv_reg_en</obj_property>
+         <obj_property name="ObjectShortName">data_save_nv_reg_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_nv_reg_we" type="logic">
+         <obj_property name="ElementShortName">data_save_nv_reg_we</obj_property>
+         <obj_property name="ObjectShortName">data_save_nv_reg_we</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_nv_reg_din" type="array">
+         <obj_property name="ElementShortName">data_save_nv_reg_din[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_save_nv_reg_din[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_nv_reg_addr" type="array">
+         <obj_property name="ElementShortName">data_save_nv_reg_addr[5:0]</obj_property>
+         <obj_property name="ObjectShortName">data_save_nv_reg_addr[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_var_cntr_init" type="logic">
+         <obj_property name="ElementShortName">data_save_var_cntr_init</obj_property>
+         <obj_property name="ObjectShortName">data_save_var_cntr_init</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_var_cntr_ce" type="logic">
+         <obj_property name="ElementShortName">data_save_var_cntr_ce</obj_property>
+         <obj_property name="ObjectShortName">data_save_var_cntr_ce</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_var_cntr_end_value" type="other">
+         <obj_property name="ElementShortName">data_save_var_cntr_end_value</obj_property>
+         <obj_property name="ObjectShortName">data_save_var_cntr_end_value</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_v_reg_offset" type="other">
+         <obj_property name="ElementShortName">data_save_v_reg_offset</obj_property>
+         <obj_property name="ObjectShortName">data_save_v_reg_offset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/var_cntr_clk" type="logic">
+         <obj_property name="ElementShortName">var_cntr_clk</obj_property>
+         <obj_property name="ObjectShortName">var_cntr_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/var_cntr_init" type="logic">
+         <obj_property name="ElementShortName">var_cntr_init</obj_property>
+         <obj_property name="ObjectShortName">var_cntr_init</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/var_cntr_ce" type="logic">
+         <obj_property name="ElementShortName">var_cntr_ce</obj_property>
+         <obj_property name="ObjectShortName">var_cntr_ce</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/var_cntr_tc" type="logic">
+         <obj_property name="ElementShortName">var_cntr_tc</obj_property>
+         <obj_property name="ObjectShortName">var_cntr_tc</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/var_cntr_value" type="other">
+         <obj_property name="ElementShortName">var_cntr_value</obj_property>
+         <obj_property name="ObjectShortName">var_cntr_value</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/var_cntr_value_last" type="other">
+         <obj_property name="ElementShortName">var_cntr_value_last</obj_property>
+         <obj_property name="ObjectShortName">var_cntr_value_last</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/var_cntr_end_value" type="other">
+         <obj_property name="ElementShortName">var_cntr_end_value</obj_property>
+         <obj_property name="ObjectShortName">var_cntr_end_value</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/num_inputs" type="other">
+         <obj_property name="ElementShortName">num_inputs</obj_property>
+         <obj_property name="ObjectShortName">num_inputs</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/num_outputs" type="other">
+         <obj_property name="ElementShortName">num_outputs</obj_property>
+         <obj_property name="ObjectShortName">num_outputs</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/neuron_inout_IntWidth" type="other">
+         <obj_property name="ElementShortName">neuron_inout_IntWidth</obj_property>
+         <obj_property name="ObjectShortName">neuron_inout_IntWidth</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/neuron_inout_FracWidth" type="other">
+         <obj_property name="ElementShortName">neuron_inout_FracWidth</obj_property>
+         <obj_property name="ObjectShortName">neuron_inout_FracWidth</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/neuron_weight_IntWidth" type="other">
+         <obj_property name="ElementShortName">neuron_weight_IntWidth</obj_property>
+         <obj_property name="ObjectShortName">neuron_weight_IntWidth</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/neuron_weight_FracWidth" type="other">
+         <obj_property name="ElementShortName">neuron_weight_FracWidth</obj_property>
+         <obj_property name="ObjectShortName">neuron_weight_FracWidth</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/layer_no" type="other">
+         <obj_property name="ElementShortName">layer_no</obj_property>
+         <obj_property name="ObjectShortName">layer_no</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/act_fun_type" type="array">
+         <obj_property name="ElementShortName">act_fun_type[1:4]</obj_property>
+         <obj_property name="ObjectShortName">act_fun_type[1:4]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/sigmoid_inputdataWidth" type="other">
+         <obj_property name="ElementShortName">sigmoid_inputdataWidth</obj_property>
+         <obj_property name="ObjectShortName">sigmoid_inputdataWidth</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/sigmoid_inputdataIntWidth" type="other">
+         <obj_property name="ElementShortName">sigmoid_inputdataIntWidth</obj_property>
+         <obj_property name="ObjectShortName">sigmoid_inputdataIntWidth</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/lyr_prms_path" type="array">
+         <obj_property name="ElementShortName">lyr_prms_path[1:19]</obj_property>
+         <obj_property name="ObjectShortName">lyr_prms_path[1:19]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_nv_reg_we" type="logic">
+         <obj_property name="ElementShortName">data_rec_nv_reg_we</obj_property>
+         <obj_property name="ObjectShortName">data_rec_nv_reg_we</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_nv_reg_din" type="array">
+         <obj_property name="ElementShortName">data_rec_nv_reg_din[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_rec_nv_reg_din[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_nv_reg_start_addr" type="array">
+         <obj_property name="ElementShortName">data_rec_nv_reg_start_addr[5:0]</obj_property>
+         <obj_property name="ObjectShortName">data_rec_nv_reg_start_addr[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_v_reg_start_addr" type="array">
+         <obj_property name="ElementShortName">data_rec_v_reg_start_addr[15:0]</obj_property>
+         <obj_property name="ObjectShortName">data_rec_v_reg_start_addr[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_nv_reg_start_addr" type="array">
+         <obj_property name="ElementShortName">data_save_nv_reg_start_addr[5:0]</obj_property>
+         <obj_property name="ObjectShortName">data_save_nv_reg_start_addr[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_save_v_reg_start_addr" type="array">
+         <obj_property name="ElementShortName">data_save_v_reg_start_addr[15:0]</obj_property>
+         <obj_property name="ObjectShortName">data_save_v_reg_start_addr[15:0]</obj_property>
+      </wvobject>
+   </wvobject>
    <wvobject fp_name="group262" type="group">
       <obj_property name="label">SOFTMAX</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/soft_max_comp/data_in" type="array">
-         <obj_property name="ElementShortName">data_in[15:-16]</obj_property>
-         <obj_property name="ObjectShortName">data_in[15:-16]</obj_property>
+         <obj_property name="ElementShortName">data_in[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_in[13:-18]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">16</obj_property>
@@ -644,8 +1007,8 @@
          <obj_property name="ObjectShortName">digit_out</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/soft_max_comp/data_out" type="array">
-         <obj_property name="ElementShortName">data_out[15:-16]</obj_property>
-         <obj_property name="ObjectShortName">data_out[15:-16]</obj_property>
+         <obj_property name="ElementShortName">data_out[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out[13:-18]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">16</obj_property>
@@ -656,8 +1019,8 @@
          <obj_property name="ObjectShortName">softmax_state</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/soft_max_comp/temp_max" type="array">
-         <obj_property name="ElementShortName">temp_max[15:-16]</obj_property>
-         <obj_property name="ObjectShortName">temp_max[15:-16]</obj_property>
+         <obj_property name="ElementShortName">temp_max[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">temp_max[13:-18]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/soft_max_comp/temp_max_addr" type="other">
          <obj_property name="ElementShortName">temp_max_addr</obj_property>
@@ -668,8 +1031,8 @@
          <obj_property name="ObjectShortName">comparator_out_addr</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/soft_max_comp/comparator_out" type="array">
-         <obj_property name="ElementShortName">comparator_out[15:-16]</obj_property>
-         <obj_property name="ObjectShortName">comparator_out[15:-16]</obj_property>
+         <obj_property name="ElementShortName">comparator_out[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">comparator_out[13:-18]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">16</obj_property>
@@ -679,39 +1042,98 @@
    <wvobject fp_name="group217" type="group">
       <obj_property name="label">POWER_APPROXIMATION</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="divider" fp_name="divider243">
          <obj_property name="label">LAYER1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
       </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/I_fsm_layer_comp/pr_state" type="other">
-         <obj_property name="ElementShortName">pr_state</obj_property>
-         <obj_property name="ObjectShortName">pr_state</obj_property>
+      <wvobject fp_name="group720" type="group">
+         <obj_property name="label">PA_unit</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject fp_name="/I_DNN_tb/clk" type="logic">
+            <obj_property name="ElementShortName">clk</obj_property>
+            <obj_property name="ObjectShortName">clk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/I_fsm_layer_comp/pr_state" type="other">
+            <obj_property name="ElementShortName">pr_state</obj_property>
+            <obj_property name="ObjectShortName">pr_state</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/power_state_en_layer1" type="array">
+            <obj_property name="ElementShortName">power_state_en_layer1[3:0]</obj_property>
+            <obj_property name="ObjectShortName">power_state_en_layer1[3:0]</obj_property>
+            <obj_property name="Radix">BINARYRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/clk" type="logic">
+            <obj_property name="ElementShortName">clk</obj_property>
+            <obj_property name="ObjectShortName">clk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer1/I_fsm_layer_comp/pr_state" type="other">
+            <obj_property name="ElementShortName">pr_state</obj_property>
+            <obj_property name="ObjectShortName">pr_state</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/power_counter_val_layer1" type="array">
+            <obj_property name="ElementShortName">power_counter_val_layer1[3:0]</obj_property>
+            <obj_property name="ObjectShortName">power_counter_val_layer1[3:0]</obj_property>
+         </wvobject>
       </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/power_state_en_layer1" type="array">
-         <obj_property name="ElementShortName">power_state_en_layer1[3:0]</obj_property>
-         <obj_property name="ObjectShortName">power_state_en_layer1[3:0]</obj_property>
-         <obj_property name="Radix">BINARYRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/power_counter_val_layer1" type="array">
-         <obj_property name="ElementShortName">power_counter_val_layer1[3:0]</obj_property>
-         <obj_property name="ObjectShortName">power_counter_val_layer1[3:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/num_state_to_evaluate" type="other">
-         <obj_property name="ElementShortName">num_state_to_evaluate</obj_property>
-         <obj_property name="ObjectShortName">num_state_to_evaluate</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/start_evaluation_layer1" type="logic">
-         <obj_property name="ElementShortName">start_evaluation_layer1</obj_property>
-         <obj_property name="ObjectShortName">start_evaluation_layer1</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer3/evaluation_ready" type="logic">
-         <obj_property name="ElementShortName">evaluation_ready</obj_property>
-         <obj_property name="ObjectShortName">evaluation_ready</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_layer1" type="array">
-         <obj_property name="ElementShortName">output_data_layer1[41:0]</obj_property>
-         <obj_property name="ObjectShortName">output_data_layer1[41:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject fp_name="group721" type="group">
+         <obj_property name="label">INST_PWR_unit</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject fp_name="/I_DNN_tb/clk" type="logic">
+            <obj_property name="ElementShortName">clk</obj_property>
+            <obj_property name="ObjectShortName">clk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/start_evaluation_layer1" type="logic">
+            <obj_property name="ElementShortName">start_evaluation_layer1</obj_property>
+            <obj_property name="ObjectShortName">start_evaluation_layer1</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/evaluation_ready" type="logic">
+            <obj_property name="ElementShortName">evaluation_ready</obj_property>
+            <obj_property name="ObjectShortName">evaluation_ready</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/PWR_CONSUMPTION_VAL_ROM_comp/ROM_layer" type="array">
+            <obj_property name="ElementShortName">ROM_layer[0:3]</obj_property>
+            <obj_property name="ObjectShortName">ROM_layer[0:3]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/num_state_to_evaluate" type="other">
+            <obj_property name="ElementShortName">num_state_to_evaluate</obj_property>
+            <obj_property name="ObjectShortName">num_state_to_evaluate</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/input_counter_val" type="array">
+            <obj_property name="ElementShortName">input_counter_val[3:0]</obj_property>
+            <obj_property name="ObjectShortName">input_counter_val[3:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_layer1" type="array">
+            <obj_property name="ElementShortName">output_data_layer1[40:0]</obj_property>
+            <obj_property name="ObjectShortName">output_data_layer1[40:0]</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/instant_pwr_calc_present_state" type="other">
+            <obj_property name="ElementShortName">instant_pwr_calc_present_state</obj_property>
+            <obj_property name="ObjectShortName">instant_pwr_calc_present_state</obj_property>
+         </wvobject>
+         <wvobject fp_name="group502" type="group">
+            <obj_property name="label">multiplier</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/MULTIPLIER_0/A" type="array">
+               <obj_property name="ElementShortName">A[30:0]</obj_property>
+               <obj_property name="ObjectShortName">A[30:0]</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/MULTIPLIER_0/B" type="array">
+               <obj_property name="ElementShortName">B[9:0]</obj_property>
+               <obj_property name="ObjectShortName">B[9:0]</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/MULTIPLIER_0/P" type="array">
+               <obj_property name="ElementShortName">P[40:0]</obj_property>
+               <obj_property name="ObjectShortName">P[40:0]</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            </wvobject>
+         </wvobject>
       </wvobject>
       <wvobject type="divider" fp_name="divider244">
          <obj_property name="label">LAYER2</obj_property>
@@ -831,38 +1253,38 @@
          <obj_property name="ObjectShortName">num_state_to_evaluate_softmax</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_layer2" type="array">
-         <obj_property name="ElementShortName">output_data_layer2[41:0]</obj_property>
-         <obj_property name="ObjectShortName">output_data_layer2[41:0]</obj_property>
+         <obj_property name="ElementShortName">output_data_layer2[40:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_layer2[40:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_layer3" type="array">
-         <obj_property name="ElementShortName">output_data_layer3[41:0]</obj_property>
-         <obj_property name="ObjectShortName">output_data_layer3[41:0]</obj_property>
+         <obj_property name="ElementShortName">output_data_layer3[40:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_layer3[40:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_nvreg1" type="array">
-         <obj_property name="ElementShortName">output_data_nvreg1[41:0]</obj_property>
-         <obj_property name="ObjectShortName">output_data_nvreg1[41:0]</obj_property>
+         <obj_property name="ElementShortName">output_data_nvreg1[40:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_nvreg1[40:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_nvreg2" type="array">
-         <obj_property name="ElementShortName">output_data_nvreg2[41:0]</obj_property>
-         <obj_property name="ObjectShortName">output_data_nvreg2[41:0]</obj_property>
+         <obj_property name="ElementShortName">output_data_nvreg2[40:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_nvreg2[40:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_nvreg3" type="array">
-         <obj_property name="ElementShortName">output_data_nvreg3[41:0]</obj_property>
-         <obj_property name="ObjectShortName">output_data_nvreg3[41:0]</obj_property>
+         <obj_property name="ElementShortName">output_data_nvreg3[40:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_nvreg3[40:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/output_data_softmax" type="array">
-         <obj_property name="ElementShortName">output_data_softmax[41:0]</obj_property>
-         <obj_property name="ObjectShortName">output_data_softmax[41:0]</obj_property>
+         <obj_property name="ElementShortName">output_data_softmax[40:0]</obj_property>
+         <obj_property name="ObjectShortName">output_data_softmax[40:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/P" type="array">
-         <obj_property name="ElementShortName">P[41:0]</obj_property>
-         <obj_property name="ObjectShortName">P[41:0]</obj_property>
+         <obj_property name="ElementShortName">P[40:0]</obj_property>
+         <obj_property name="ObjectShortName">P[40:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/input_counter_val" type="array">
          <obj_property name="ElementShortName">input_counter_val[3:0]</obj_property>
@@ -874,7 +1296,7 @@
       </wvobject>
    </wvobject>
    <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_out_vect" type="array">
-      <obj_property name="ElementShortName">data_out_vect[0:9][15:-16]</obj_property>
-      <obj_property name="ObjectShortName">data_out_vect[0:9][15:-16]</obj_property>
+      <obj_property name="ElementShortName">data_out_vect[0:9][13:-18]</obj_property>
+      <obj_property name="ObjectShortName">data_out_vect[0:9][13:-18]</obj_property>
    </wvobject>
 </wave_config>

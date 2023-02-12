@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Jan 21 19:00:00 2023
+# Process ID: 1716
+# Current directory: C:/Users/miche/Github_Repositories/I-DNN/vivado
+# Command line: vivado.exe -mode tcl
+# Log file: C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado.log
+# Journal file: C:/Users/miche/Github_Repositories/I-DNN/vivado\vivado.jou
+#-----------------------------------------------------------
+set_param general.MaxThreads 4
+open_project ../../vivado/I-DNN/I-DNN.xpr
+# Update top_level tesbench
+set_property top I_DNN_multiple_images_tb [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+update_compile_order -fileset sim_1
+set_property -name {xsim.simulate.runtime} -value {0us} -objects [get_filesets sim_1]
+set fp [open ./results/DB_results.txt w]
+launch_simulation
+# Fixed time simulation start
+puts $fp "Fixed time simulation start ######################################"
+set_param general.MaxThreads 4
+open_project ../../vivado/I-DNN/I-DNN.xpr
+dir

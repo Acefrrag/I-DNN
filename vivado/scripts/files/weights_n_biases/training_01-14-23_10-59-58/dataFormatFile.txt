@@ -1,0 +1,14 @@
+DATA FORMAT BIASES AND WEIGHTS
+
+WEIGHTS FORMAT:
+
+Data Size: 32
+Integer Data Size: 2
+Fractional Data Size: 30
+
+BIASES FORMAT:
+
+Data Size: 32
+Integer Data Size: 9
+Fractional Data Size: 23
+

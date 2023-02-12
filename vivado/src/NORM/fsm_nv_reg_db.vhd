@@ -74,17 +74,32 @@ begin
         when shutdown_s =>
             future_state <= init_s;
         when init_s =>
-            future_state <= start_data_recovery_s;
+            if thresh_stats = hazard then
+                future_state <= init_s;
+            else
+                future_state <= start_data_recovery_s;
+            end if;
         when start_data_recovery_s =>
             if (task_status = '1') then
                 future_state <= recovery_s;
             end if;
         when recovery_s =>
             if (task_status = '0') then
-                future_state <= data_recovered_s;
+                if thresh_stats = hazard then
+                    future_state <= sleep_s;
+                else
+                    future_state <= data_recovered_s;
+                end if;
             end if;
         when data_recovered_s =>
-            future_state <= do_operation_s;
+            --edited Michele Fragasso. To avoid nv_reg corrusption
+                future_state <= do_operation_s;
+        when sleep_s =>
+            if (thresh_stats = hazard) then
+                future_state <= sleep_s;
+            else
+                future_state <= do_operation_s;
+            end if;
         when do_operation_s =>
             if(thresh_stats = hazard) then
                 future_state <= start_data_save_s;
@@ -98,7 +113,12 @@ begin
                 future_state <=  data_saved_s;
             end if;
         when data_saved_s =>
-            future_state <= do_operation_s;
+            --edited by Fragasso. To avoid data corruption
+            if (thresh_stats = hazard) then
+                future_state <= sleep_s;
+            else
+                future_state <= do_operation_s;
+            end if;
         when others =>
     end case;
 end process FSM_NV_REG_DB_FUTURE;

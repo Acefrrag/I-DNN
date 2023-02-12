@@ -25,19 +25,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 library std;
 use std.textio.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
 entity trace_ROM is
     generic(
         NUM_ELEMNTS_ROM : integer;
-        MAX_VAL         : integer
+        MAX_VAL         : integer;
+        voltage_trace_path  : string
     );
     port(	
 	   	clk       : in	std_logic;
@@ -51,7 +43,7 @@ end trace_ROM;
 architecture Behavioral of trace_ROM is
     type rom_type is array (0 to NUM_ELEMNTS_ROM - 1) of integer range 0 to  MAX_VAL;
 
-    function init_trace_ROM(file_name: in string) return rom_type is
+    impure function init_trace_ROM(file_name: in string) return rom_type is
         file text_header : text is in file_name;--Open the file with filename path
         variable voltage_i: integer range 0 to MAX_VAL;
         variable line_i: line;
@@ -67,7 +59,8 @@ architecture Behavioral of trace_ROM is
     
     
     --signal ROM: rom_type := init_trace_ROM("voltage_traces/I_DNN_trace_complete_4layers.txt");
-    signal ROM: rom_type := init_trace_ROM("voltage_traces/I_layer_trace_complete.txt");
+    signal ROM: rom_type := init_trace_ROM(voltage_trace_path);
+    --signal ROM: rom_type := init_trace_ROM(voltage_trace_path);
     --signal ROM: rom_type := init_trace_ROM("voltage_traces/I_DNN_trace_complete.txt");
     begin
     

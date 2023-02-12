@@ -45,22 +45,23 @@ entity pwr_consumption_val_ROM is
 end pwr_consumption_val_ROM;
 
 architecture Behavioral of pwr_consumption_val_ROM is
-    type rom_type is array (0 to 3) of integer range 0 to  MAX_VAL - 1;
+    type rom_type is array (3 downto 0) of integer range 0 to MAX_VAL-1;
+    --The INST_PWR_CONS values are expressed in uW
     signal ROM_layer: rom_type := (
+        20, --power state 3
+        20,
         100,
-        50,
-        50,
-        50
+        2 --power state 0
     );
 	signal ROM_nvreg: rom_type := (
+        0, --power state 3 unused
         100,
-        50,
-        50,
-        0--unused
+        75,
+        2 --power state 0
     );
 	signal ROM_softmax: rom_type := (
-        100,
-        50,
+        0,
+        0,
         0,
         0--unused
     );

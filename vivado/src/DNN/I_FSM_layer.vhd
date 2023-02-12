@@ -141,7 +141,7 @@ begin
 end process;
 
     out_v <= out_val;
-    state_reg: process(clk,n_power_rst)
+    state_reg: process(clk,n_power_rst) is
     begin
         if n_power_rst = '0' then
             pr_state <= power_off;
@@ -150,7 +150,7 @@ end process;
         end if;
     end process state_reg;
     
-    output: process(all)
+    output: process(all) is
     --Outputs of this FSM are:
     --mul_sel: Multiplexer Selector: to select between weighted sum or bias
     --out_v: Output Data Valid: to aknowledge the data coming out the neruon is ready
@@ -210,6 +210,11 @@ end process;
                         internal_en_rec_vect <= (others => '0');
                     when internal =>
                         output_en_rec_vect <= (others => '0');
+--                        if addra < num_outputs then
+--                            internal_en_rec_vect(addra) <= '1';
+--                        else
+--                            internal_en_rec_vect(num_outputs+1) <= '1';
+--                        end if;
                         internal_en_rec_vect(addra) <= '1';
 --                        if fsm_state_save_internal = std_logic_vector(to_unsigned(3,fsm_state_save_internal'length)) then--act_log
 --                            mul_state <= '1';
@@ -218,7 +223,12 @@ end process;
 --                        end if;
                         --if fsm_state_rec = 
                     when outputs =>
-                        output_en_rec_vect(addra) <= '1';--addr 0 to num_outputs+1
+--                        if addra < num_outputs+2 then
+--                            output_en_rec_vect(addra) <= '1';--addr 0 to num_outputs+1
+--                        else
+--                            output_en_rec_vect(num_outputs+1) <= '1';
+--                        end if;
+                        output_en_rec_vect(addra) <= '1';
                         internal_en_rec_vect <= (others => '0');
                     end case;
                     --LAYER OUTPUT RECOVERY)
@@ -227,9 +237,14 @@ end process;
                     --ena <= '1';                    
                     -- If we're recovering the
                 else
+                    addra <= 0;
                     output_en_rec_vect <= (others => '0');
                     internal_en_rec_vect <= (others => '0');                   
                 end if;
+            else
+                addra <= 0;
+                output_en_rec_vect <= (others => '0');
+                internal_en_rec_vect <= (others => '0');
             end if;
         when idle =>
             mul_sel <= '0';
@@ -276,6 +291,18 @@ end process;
             reg_en <= '0';
             sum_reg_rst <= '0';
             addr_in_gen_rst <= '0';
+        when sleep_rec =>
+            reg_en <= '0';
+            addr_in_gen_rst <= '0';
+            sum_reg_rst <= '0';
+            update_out <= '0';
+            mul_sel <= '0';
+        when sleep_save =>
+            reg_en <= '0';
+            addr_in_gen_rst <= '0';
+            sum_reg_rst <= '0';
+            update_out <= '0';
+            mul_sel <= '0';
             --default values
     end case;
     end process output;
@@ -296,6 +323,8 @@ end process;
         when recovery =>
             if fsm_nv_reg_state = data_recovered_s then
                 nx_state <= state_backup_rec; --The fsm took the state from the nv_reg
+            elsif fsm_nv_reg_state = sleep_s then
+                nx_state <= sleep_rec;
             else
                 nx_state <= recovery;
             end if;
@@ -345,6 +374,21 @@ end process;
         when data_save =>
             if fsm_nv_reg_state = do_operation_s then
                 nx_state <= state_backup_save;
+            elsif fsm_nv_reg_state = sleep_s then
+            --modified 02/01/2023 Fragasso. Added code to manage continuos hazard
+                nx_state <= sleep_save;
+            end if;
+        when sleep_rec =>
+            if fsm_nv_reg_state = do_operation_s then
+                nx_state <= state_backup_rec;
+            else
+                nx_state <= sleep_rec;
+            end if;
+        when sleep_save =>
+            if fsm_nv_reg_state = do_operation_s then
+                nx_state <= state_backup_save;
+            else
+                nx_state <= sleep_save;
             end if;
         end case;     
     end process next_state;

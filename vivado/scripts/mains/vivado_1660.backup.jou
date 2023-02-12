@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Feb  2 11:24:54 2023
+# Process ID: 1660
+# Current directory: C:/Users/miche/Github_Repositories/I-DNN/vivado/scripts/mains
+# Command line: vivado.exe -mode batch -source ./tcl/DB_setup_prms.tcl
+# Log file: C:/Users/miche/Github_Repositories/I-DNN/vivado/scripts/mains/vivado.log
+# Journal file: C:/Users/miche/Github_Repositories/I-DNN/vivado/scripts/mains\vivado.jou
+#-----------------------------------------------------------
+source ./tcl/DB_setup_prms.tcl
+source I_DNN_multiple_images_tb.tcl

@@ -57,6 +57,7 @@ package TEST_ARCHITECTURE_PACKAGE is
         start_data_recovery_s,
         recovery_s,
         data_recovered_s,
+        sleep_s,
         do_operation_s,
         start_data_save_s,
         data_save_s,
@@ -68,6 +69,8 @@ package TEST_ARCHITECTURE_PACKAGE is
     init,
     recovery,
     idle,
+    sleep_rec,
+    sleep_save,
     w_sum,
     b_sum,
     act_log,
@@ -89,9 +92,9 @@ package TEST_ARCHITECTURE_PACKAGE is
     );
 
     constant V_REG_WIDTH: INTEGER := 65536;     -- Numver of words of the volatile register for the volatile architecture
-    constant RST_EMU_THRESH: INTEGER := 135;   -- Voltage threshold at which the intemittency emulator will trigger reset_emulator
-                                                --> This value must be in the range of ones contained in trace_ROM
-
+    constant RST_EMU_THRESH: INTEGER := 2300;   -- Voltage threshold at which the intemittency emulator will trigger reset_emulator
+                   --135                             --> This value must be in the range of ones contained in trace_ROM
+    
 end package;
 package body TEST_ARCHITECTURE_PACKAGE is 
 end package body TEST_ARCHITECTURE_PACKAGE;

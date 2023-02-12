@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 05/17/2020 03:21:54 PM
+-- Create Date: 05/17/2020 03:21:54 PM 
 -- Design Name: 
--- Module Name: INTERMITTENCY_EMULATOR - Behavioral
+-- Module Name: INTERMITTENCY_EMULATOR - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -15,7 +15,8 @@
 -- Revision:
 -- Revision 0.01 - File Created
 -- Additional Comments:
--- 
+--
+--
 ----------------------------------------------------------------------------------
 
 
@@ -25,11 +26,16 @@ use IEEE.STD_LOGIC_1164.ALL;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --use IEEE.NUMERIC_STD.ALL;
+use work.INTERMITTENCY_EMULATOR_package.all;
 use work.COMMON_PACKAGE.all;
 use work.NVME_FRAMEWORK_PACKAGE.all;
+use work.INTERMITTENCY_EMULATOR_package.all;
 
 
 entity intermittency_emulator is
+    generic(
+        constant voltage_trace_path: string := "voltage_trace.txt"
+    ); 
     port(
         sys_clk             : in std_logic; 
         reset_emulator      : out std_logic; 
@@ -43,7 +49,8 @@ architecture Behavioral of intermittency_emulator is
     component trace_ROM is
         generic(
             NUM_ELEMNTS_ROM : integer;
-            MAX_VAL         : integer
+            MAX_VAL         : integer;
+            voltage_trace_path  : string
         );
         port(	
             clk       : in	std_logic;
@@ -92,7 +99,8 @@ begin
     voltage_trace_ROM : trace_ROM
         generic map(
             NUM_ELEMNTS_ROM => INTERMITTENCY_NUM_ELEMNTS_ROM,
-            MAX_VAL         => INTERMITTENCY_MAX_VAL_ROM_TRACE
+            MAX_VAL         => INTERMITTENCY_MAX_VAL_ROM_TRACE,
+            voltage_trace_path => voltage_trace_path
         )
         port map(
             clk         => sys_clk,

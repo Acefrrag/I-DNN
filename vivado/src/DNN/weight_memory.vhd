@@ -51,7 +51,7 @@ end weight_memory;
 architecture Behavioral of weight_memory is
 -- Types must be defined inside the architecture!!
 -- Weight memory
-type rom_type is array (0 to rom_depth-1) of sfixed(neuron_int_width-1 downto -neuron_frac_width);
+type rom_type is array (0 to rom_depth-1) of sfixed(rom_int_width-1 downto -rom_frac_width);
 
 function makesfixed (bit_in: in bit_vector(rom_width-1 downto 0)) return sfixed is
     variable fixedpoint_s: sfixed(rom_int_width-1 downto -rom_frac_width);

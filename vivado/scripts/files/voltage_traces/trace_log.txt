@@ -1,0 +1,3 @@
+INTERMITTENCY_NUM_ELEMNTS_ROM = 1570
+INTERMITTENCY_MAX_VAL_ROM_TRACE = 5252120
+Minimum sample distance between hazard and shutdown: 15

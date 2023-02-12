@@ -8,29 +8,26 @@
             <top_module name="I_layer_tb" />
             <top_module name="common_package" />
             <top_module name="i_dnn_package" />
+            <top_module name="intermittency_emulator_package" />
             <top_module name="nvme_framework_package" />
             <top_module name="test_architecture_package" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="59506417fs"></ZoomStartTime>
-      <ZoomEndTime time="59947918fs"></ZoomEndTime>
-      <Cursor1Time time="59580000fs"></Cursor1Time>
+      <ZoomStartTime time="129009167fs"></ZoomStartTime>
+      <ZoomEndTime time="129103168fs"></ZoomEndTime>
+      <Cursor1Time time="129300000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="318"></NameColumnWidth>
-      <ValueColumnWidth column_width="121"></ValueColumnWidth>
+      <NameColumnWidth column_width="360"></NameColumnWidth>
+      <ValueColumnWidth column_width="116"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="9" />
+   <WVObjectSize size="11" />
    <wave_markers>
-      <marker time="1300000" label="" />
-      <marker time="45460000" label="" />
-      <marker time="10060000" label="" />
-      <marker time="23980000" label="" />
-      <marker time="14380000" label="" />
-      <marker time="33900000" label="" />
-      <marker time="53100000" label="" />
+      <marker time="57980000" label="" />
+      <marker time="19260000" label="" />
+      <marker time="129140000" label="" />
    </wave_markers>
    <wvobject fp_name="group1310" type="group">
       <obj_property name="label">PORTS</obj_property>
@@ -110,40 +107,79 @@
          <obj_property name="ObjectShortName">out_v_set</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject fp_name="group1306" type="group">
-      <obj_property name="label">FSM_NV_REG</obj_property>
+   <wvobject fp_name="group754" type="group">
+      <obj_property name="label">Intermittency_emulator</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject type="divider" fp_name="divider90">
-         <obj_property name="label">VOLTAGE_TRACE</obj_property>
-         <obj_property name="DisplayName">label</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/voltage_trace_ROM/addr" type="other">
-         <obj_property name="ElementShortName">addr</obj_property>
-         <obj_property name="ObjectShortName">addr</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/ROM_data_out" type="other">
-         <obj_property name="ElementShortName">ROM_data_out</obj_property>
-         <obj_property name="ObjectShortName">ROM_data_out</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/threshold_value" type="array">
-         <obj_property name="ElementShortName">threshold_value[1:0]</obj_property>
-         <obj_property name="ObjectShortName">threshold_value[1:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/output_comparator" type="array">
-         <obj_property name="ElementShortName">output_comparator[1:0]</obj_property>
-         <obj_property name="ObjectShortName">output_comparator[1:0]</obj_property>
+      <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/sys_clk" type="logic">
+         <obj_property name="ElementShortName">sys_clk</obj_property>
+         <obj_property name="ObjectShortName">sys_clk</obj_property>
       </wvobject>
       <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/reset_emulator" type="logic">
          <obj_property name="ElementShortName">reset_emulator</obj_property>
          <obj_property name="ObjectShortName">reset_emulator</obj_property>
       </wvobject>
-      <wvobject fp_name="/I_layer_tb/resetN_emulator" type="logic">
-         <obj_property name="ElementShortName">resetN_emulator</obj_property>
-         <obj_property name="ObjectShortName">resetN_emulator</obj_property>
+      <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/threshold_value" type="array">
+         <obj_property name="ElementShortName">threshold_value[1:0]</obj_property>
+         <obj_property name="ObjectShortName">threshold_value[1:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/I_layer_tb/fsm_nv_reg_db_comp/thresh_stats" type="other">
-         <obj_property name="ElementShortName">thresh_stats</obj_property>
-         <obj_property name="ObjectShortName">thresh_stats</obj_property>
+      <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/threshold_compared" type="array">
+         <obj_property name="ElementShortName">threshold_compared[1:0]</obj_property>
+         <obj_property name="ObjectShortName">threshold_compared[1:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group972" type="group">
+      <obj_property name="label">voltage_trace_ROM</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/voltage_trace_ROM/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/voltage_trace_ROM/ROM" type="array">
+         <obj_property name="ElementShortName">ROM[0:4999]</obj_property>
+         <obj_property name="ObjectShortName">ROM[0:4999]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/INTERMITTENCY_EMULATOR_1/voltage_trace_ROM/data_out" type="other">
+         <obj_property name="ElementShortName">data_out</obj_property>
+         <obj_property name="ObjectShortName">data_out</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group1302" type="group">
+      <obj_property name="label">I_FSM</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/I_layer_tb/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/pr_state" type="other">
+         <obj_property name="ElementShortName">pr_state</obj_property>
+         <obj_property name="ObjectShortName">pr_state</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/fsm_state_save" type="array">
+         <obj_property name="ElementShortName">fsm_state_save[31:0]</obj_property>
+         <obj_property name="ObjectShortName">fsm_state_save[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/state_backup_save" type="other">
+         <obj_property name="ElementShortName">state_backup_save</obj_property>
+         <obj_property name="ObjectShortName">state_backup_save</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/reg_en" type="logic">
+         <obj_property name="ElementShortName">reg_en</obj_property>
+         <obj_property name="ObjectShortName">reg_en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/addr_TC" type="logic">
+         <obj_property name="ElementShortName">addr_TC</obj_property>
+         <obj_property name="ObjectShortName">addr_TC</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group1306" type="group">
+      <obj_property name="label">FSM_NV_REG</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/I_layer_tb/fsm_nv_reg_state" type="other">
+         <obj_property name="ElementShortName">fsm_nv_reg_state</obj_property>
+         <obj_property name="ObjectShortName">fsm_nv_reg_state</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group1300" type="group">
@@ -321,6 +357,7 @@
    <wvobject fp_name="group1205" type="group">
       <obj_property name="label">SAVE</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="divider" fp_name="divider1187">
          <obj_property name="label">SAVE</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -501,34 +538,6 @@
          <obj_property name="ObjectShortName">data_rec_offset</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject fp_name="group1302" type="group">
-      <obj_property name="label">I_FSM</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <wvobject type="divider" fp_name="divider48">
-         <obj_property name="label">I_FSM_layer</obj_property>
-         <obj_property name="DisplayName">label</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/pr_state" type="other">
-         <obj_property name="ElementShortName">pr_state</obj_property>
-         <obj_property name="ObjectShortName">pr_state</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/fsm_state_save" type="array">
-         <obj_property name="ElementShortName">fsm_state_save[31:0]</obj_property>
-         <obj_property name="ObjectShortName">fsm_state_save[31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/state_backup_save" type="other">
-         <obj_property name="ElementShortName">state_backup_save</obj_property>
-         <obj_property name="ObjectShortName">state_backup_save</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/reg_en" type="logic">
-         <obj_property name="ElementShortName">reg_en</obj_property>
-         <obj_property name="ObjectShortName">reg_en</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_layer_tb/I_layer_comp/I_fsm_layer_comp/addr_TC" type="logic">
-         <obj_property name="ElementShortName">addr_TC</obj_property>
-         <obj_property name="ObjectShortName">addr_TC</obj_property>
-      </wvobject>
-   </wvobject>
    <wvobject fp_name="group1303" type="group">
       <obj_property name="label">VAR_CNTR</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -598,16 +607,16 @@
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
          <wvobject fp_name="/I_layer_tb/I_layer_comp/\I_neurons(0)\/I_neuron_i/weight_memory_comp/ROM" type="array">
-            <obj_property name="ElementShortName">ROM[0:29][15:-16]</obj_property>
-            <obj_property name="ObjectShortName">ROM[0:29][15:-16]</obj_property>
+            <obj_property name="ElementShortName">ROM[0:29][1:-30]</obj_property>
+            <obj_property name="ObjectShortName">ROM[0:29][1:-30]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">16</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
          <wvobject fp_name="/I_layer_tb/I_layer_comp/\I_neurons(0)\/I_neuron_i/weight_out" type="array">
-            <obj_property name="ElementShortName">weight_out[15:-16]</obj_property>
-            <obj_property name="ObjectShortName">weight_out[15:-16]</obj_property>
+            <obj_property name="ElementShortName">weight_out[1:-30]</obj_property>
+            <obj_property name="ObjectShortName">weight_out[1:-30]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">16</obj_property>
@@ -640,14 +649,6 @@
          <wvobject fp_name="/I_layer_tb/I_layer_comp/\I_neurons(0)\/I_neuron_i/data_out" type="array">
             <obj_property name="ElementShortName">data_out[15:-16]</obj_property>
             <obj_property name="ObjectShortName">data_out[15:-16]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">16</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_layer_tb/I_layer_comp/\I_neurons(0)\/I_neuron_i/out_ReLU" type="array">
-            <obj_property name="ElementShortName">out_ReLU[15:-16]</obj_property>
-            <obj_property name="ObjectShortName">out_ReLU[15:-16]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">16</obj_property>
@@ -693,14 +694,6 @@
             <obj_property name="radix_fractionWidth">16</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
-         <wvobject fp_name="/I_layer_tb/I_layer_comp/\I_neurons(1)\/I_neuron_i/out_ReLU_d" type="array">
-            <obj_property name="ElementShortName">out_ReLU_d[15:-16]</obj_property>
-            <obj_property name="ObjectShortName">out_ReLU_d[15:-16]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">16</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
       </wvobject>
       <wvobject fp_name="group1309" type="group">
          <obj_property name="label">Neuron9</obj_property>
@@ -714,8 +707,8 @@
             <obj_property name="ObjectShortName">clk</obj_property>
          </wvobject>
          <wvobject fp_name="/I_layer_tb/I_layer_comp/\I_neurons(9)\/I_neuron_i/weight_memory_comp/ROM" type="array">
-            <obj_property name="ElementShortName">ROM[0:29][15:-16]</obj_property>
-            <obj_property name="ObjectShortName">ROM[0:29][15:-16]</obj_property>
+            <obj_property name="ElementShortName">ROM[0:29][1:-30]</obj_property>
+            <obj_property name="ObjectShortName">ROM[0:29][1:-30]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">16</obj_property>
@@ -735,8 +728,8 @@
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
          <wvobject fp_name="/I_layer_tb/I_layer_comp/\I_neurons(9)\/I_neuron_i/weight_out" type="array">
-            <obj_property name="ElementShortName">weight_out[15:-16]</obj_property>
-            <obj_property name="ObjectShortName">weight_out[15:-16]</obj_property>
+            <obj_property name="ElementShortName">weight_out[1:-30]</obj_property>
+            <obj_property name="ObjectShortName">weight_out[1:-30]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">16</obj_property>

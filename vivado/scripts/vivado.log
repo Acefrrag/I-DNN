@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Jan 21 19:01:33 2023
+# Process ID: 5940
+# Current directory: C:/Users/miche/Github_Repositories/I-DNN/vivado/scripts
+# Command line: vivado.exe -mode tcl
+# Log file: C:/Users/miche/Github_Repositories/I-DNN/vivado/scripts/vivado.log
+# Journal file: C:/Users/miche/Github_Repositories/I-DNN/vivado/scripts\vivado.jou
+#-----------------------------------------------------------
+Vivado% set_param general.MaxThreads 4
+4
+Vivado% exit
+INFO: [Common 17-206] Exiting Vivado at Sat Jan 21 19:01:52 2023...

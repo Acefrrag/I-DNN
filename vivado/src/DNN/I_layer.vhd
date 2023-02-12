@@ -40,9 +40,15 @@ entity I_layer is
 generic(                                                                                
     constant num_inputs: natural := 30;
     constant num_outputs: natural := 30;
+	constant neuron_inout_IntWidth: natural;
+	constant neuron_inout_FracWidth: natural;
+	constant neuron_weight_IntWidth: natural;
+	constant neuron_weight_FracWidth: natural;
     constant layer_no: natural := 1;                                                    --layer_no          :     Layer number (identifier)
-    constant act_type: string := "ReLU";                                                --act_type          :     Choose between "ReLU","Sig"
-    constant act_fun_size: natural := 10                                                --act_fun_size      :     If the user chooses an analytical activation function the number of sample have to be chosen
+    constant act_fun_type: string := "ReLU";                                                --act_type          :     Choose between "ReLU","Sig"
+    constant sigmoid_inputdataWidth: natural;
+	constant sigmoid_inputdataIntWidth: natural;
+	constant lyr_prms_path: string
     --constant en_backup: std_logic := '1'                                              --en_backup         :     '1': This layer is enabled to save its output '0': This layer is disabled from saving its output                                               
 );
 --------PORTS----------
@@ -50,11 +56,11 @@ port(
     -----ORIGINARY PINS--
     --------INPUTS-------
     clk: in std_logic;                                                                  --clk               :
-    data_in: in sfixed(input_int_width-1 downto -input_frac_width);                     --data_in           :
+    data_in: in sfixed(neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);                     --data_in           :
     data_out_sel: in std_logic_vector(0 to natural(ceil(log2(real(num_outputs))))-1);   --data_out_sel      :
     start: in std_logic;                                                                --start             :       Signal to trigger the layer and start computation
     -------OUTPUTS-------
-    data_out: out sfixed(neuron_int_width-1 downto -neuron_frac_width);                 --data_out          :       I-th neuron output
+    data_out: out sfixed(neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);                 --data_out          :       I-th neuron output
     data_in_sel: inout std_logic_vector(0 to natural(ceil(log2(real(num_inputs))))-1);  --data_in_sel       :       To select the i-th neuron output
     data_v: out std_logic;                                                              --data_v            :       Aknowledges the layer output validity. Used to save the output of the layer when a hazard occurs. Triggers the next layer                                                                                                                                                                                                                                               
     ------ADDED PINS-----                                                                                        
@@ -77,7 +83,7 @@ end I_layer;
 
 architecture Behavioral of I_layer is
 --------------------------------------TYPES DECLARATION-----------------------------------
-type data_out_type is array(0 to num_outputs-1) of sfixed(neuron_int_width-1 downto -neuron_frac_width);            --data_out_type             :This array groups the output of layer's neurons.
+type data_out_type is array(0 to num_outputs-1) of sfixed(neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);            --data_out_type             :This array groups the output of layer's neurons.
 type data_backup_output_type is array(0 to num_outputs+2) of std_logic_vector(nv_reg_width-1 downto 0);             --data_backup_output_type   :This array groups the signals to save the layer output. The number of elements used are 1(TAG at first cell) + num_outputs(one output register per neuron).
 type data_backup_internal_type is array(0 to num_outputs+2) of std_logic_vector(nv_reg_width-1 downto 0);           --data_backup_internal_type :This array groups the signals of the layer neuron's internal register(cumulative sum register, ReLU register). The number of elements used are num_outputs(an internal register per neuron)+2(layer state and LAYER_CNTR value)+1(TAG at first cell)
 -------------------------------------------------------------------------------------------
@@ -298,16 +304,25 @@ I_neurons: for i in 0 to num_outputs-1 generate
         generic(
             rom_width: natural;
             rom_depth: natural;
+			neuron_inout_IntWidth: natural;
+			neuron_inout_FracWidth: natural;
+			neuron_weight_IntWidth: natural;
+			neuron_weight_FracWidth: natural;
             weight_file: string;
-            bias_file: string);
+            bias_file: string;
+			act_fun_type: string := "ReLU";
+			sigmoid_inputdataWidth: natural := 5;
+			sigmoid_inputdataIntWidth: natural := 2;
+			Sigfilename: string := "../scripts/sigmoid/SigContent.mif"
+			);
         port(
             clk: in std_logic;
-            data_in: in sfixed (input_int_width-1 downto -input_frac_width);
+            data_in: in sfixed (neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);
             addr: in std_logic_vector (0 to natural(ceil(log2(real(rom_depth))))-1);
             mul_sel: in std_logic;
             sum_reg_rst: in std_logic;
             update_out: in std_logic;
-            data_out: out sfixed (input_int_width-1 downto -input_frac_width);
+            data_out: out sfixed (neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);
             --ADDED PINS
             --INPUT
             n_power_reset: in std_logic;
@@ -315,20 +330,28 @@ I_neurons: for i in 0 to num_outputs-1 generate
             output_en_rec: in std_logic;
             internal_en_rec: in std_logic;
             data_v: in std_logic;
-            data_out_rec: in sfixed (input_int_width-1 downto -input_frac_width);
-            state_rec: in std_logic_vector(input_int_width+neuron_int_width-1 downto 0);
+            data_out_rec: in sfixed (neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);
+            state_rec: in std_logic_vector(neuron_inout_IntWidth+neuron_inout_FracWidth-1 downto 0);
             --OUTPUT
-            wsum_save: out std_logic_vector(input_int_width+neuron_int_width-1 downto 0);        
-            ReLU_save: out std_logic_vector(input_int_width+neuron_int_width-1 downto 0)           
+            wsum_save: out std_logic_vector(neuron_inout_IntWidth+neuron_inout_FracWidth-1 downto 0);        
+            act_log_save: out std_logic_vector(neuron_inout_IntWidth+neuron_inout_FracWidth-1 downto 0)           
             );
     end component;
     begin
         I_neuron_i: I_neuron
         generic map(
-        rom_width => neuron_rom_width,
+        rom_width => neuron_inout_IntWidth+neuron_inout_FracWidth,
         rom_depth => num_inputs,
-        weight_file => "../../scripts/weights_and_bias/w_b/w_" & integer'image(layer_no)&"_"&integer'image(i)&".mif",
-        bias_file => "../../../../../../scripts/weights_and_bias/w_b/b_" & integer'image(layer_no)&"_"&integer'image(i)&".mif")
+		neuron_inout_IntWidth => neuron_inout_IntWidth,
+		neuron_inout_FracWidth => neuron_inout_FracWidth,
+		neuron_weight_IntWidth => neuron_weight_IntWidth,
+		neuron_weight_FracWidth => neuron_weight_FracWidth,
+        weight_file => "../../../../../../"&lyr_prms_path&"weights/w_" & integer'image(layer_no)&"_"&integer'image(i)&".mif",
+        bias_file => "../../../../../../"&lyr_prms_path&"biases/b_" & integer'image(layer_no)&"_"&integer'image(i)&".mif",
+        act_fun_type => act_fun_type,
+		sigmoid_inputdataWidth => sigmoid_inputdataWidth,
+		sigmoid_inputdataIntWidth => sigmoid_inputdataIntWidth,
+		Sigfilename => lyr_prms_path&"sigmoid/SigContent.mif")
         port map(
         clk => clk,
         data_in =>data_in,
@@ -345,11 +368,11 @@ I_neurons: for i in 0 to num_outputs-1 generate
         internal_en_rec => internal_en_rec_vect(i),-----Modifying this
         data_v => out_v,
         --w_rec =>w_rec_vect(i),
-        data_out_rec => to_sfixed(data_backup_vect_output_rec(i+1)(input_int_width+input_frac_width-1 downto 0) ,input_int_width-1, -input_frac_width), --use data convertion
-        state_rec => data_backup_vect_internal_rec(i+1)(input_int_width+input_frac_width-1 downto 0),
+        data_out_rec => to_sfixed(data_backup_vect_output_rec(i+1)(neuron_inout_IntWidth+neuron_inout_FracWidth-1 downto 0) ,neuron_inout_IntWidth-1, -neuron_inout_FracWidth), --use data convertion
+        state_rec => data_backup_vect_internal_rec(i+1)(neuron_inout_IntWidth+neuron_inout_FracWidth-1 downto 0),
         --OUTPUT
         wsum_save => data_backup_vect_wsum_save(i+1),
-        ReLU_save => data_backup_vect_ReLU_save(i+1)    
+        act_log_save => data_backup_vect_ReLU_save(i+1)    
         );
 end generate;
 --------------------------COMBINATORIAL OUTPUT LOGIC---------------------------                                                                                 

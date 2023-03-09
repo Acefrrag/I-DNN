@@ -1,0 +1,1 @@
+unfortunatelly, this data collected data until the 4th layer for a disantettion in the script configuration. Therefore the power consumption is lower than the real value.

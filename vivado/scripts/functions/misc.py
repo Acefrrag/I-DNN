@@ -17,6 +17,8 @@ import json
 
 dt_string = np.dtype(str)
 
+
+
 def float_to_fp_10(num,dataWidth,fracBits):
     """
     Funtion for converting a fractional number into base 10 fixed-point representation
@@ -179,44 +181,45 @@ def genWeightsAndBias(dir_path, dataWidth, weightIntWidth, inputIntWidth):
     dataFormatFile.write("Fractional Data Size: "+str(biasFracWidth)+"\n\n")
     dataFormatFile.close()
     
-def genVoltageTraceFile(trace, voltage_trace_timescale, shtdw_value=2300, wrng_value=2500):
+def genVoltageTraceFile(trace, vt_ts=160, SC_p = 40):
 
     output_voltage_trace_path = "../../src/NORM/voltage_traces/"
-    IE_package_path = "../../src/NORM/"
+    IE_pkg_path = "../../src/NORM/"
 
     x_trace = trace["samples"]
     y_trace = trace["voltages"]
-
-    shtdw_value = 2300
-    wrng_value = 2500
-
-
-
+    
+    prescaler_value = int(vt_ts/SC_p)
+    w_len = len(y_trace)
 
     
-    #Computing the minimum sample distance in the trace
-    min_sample_distance = 2000
-    #This is the minimum sample distance between hazard and shutdown values
-    c = min_sample_distance
-    for (sample) in (x_trace):
-        data = y_trace[sample]
-        if data > wrng_value:
-            c = 0
-        elif data <= wrng_value and data > shtdw_value:
-            c += 1
-        elif data <= shtdw_value:
-            distance = c
-            if distance < min_sample_distance:
-                min_sample_distance = distance
-    
+    #CREATE VHDL compatible voltage trace
     output = open(output_voltage_trace_path+"voltage_trace"+trace["trace_ID"]+".txt", "w")
     for data_trace in y_trace:
     #Code for saving data
          output.write(str(int(data_trace)) + "\n")
     output.close()
-             
-            
-
+    
+    
+    max_value =int(max(y_trace))
+    
+    #UPDATING IE_FRAMEWORK_pakcga.vhd     
+    IE_pkg_file = open(IE_pkg_path+"INTERMITTENCY_EMULATOR_package.vhd", "r+")
+    allLines = IE_pkg_file.readlines()
+    for i, line in list(enumerate(allLines)):
+        if "INTERMITTENCY_PRESCALER" in line:
+            allLines.pop(i)
+            allLines.insert(i, "constant INTERMITTENCY_PRESCALER: integer := "+str(prescaler_value)+";\n")
+        if "INTERMITTENCY_MAX_VAL" in line:
+            allLines.pop(i)
+            allLines.insert(i, "constant INTERMITTENCY_MAX_VAL_ROM_TRACE: integer := "+str(max_value)+";\n")
+        if "NUM_ELEMNTS_ROM" in line:
+            allLines.pop(i)
+            allLines.insert(i, "constant INTERMITTENCY_NUM_ELEMNTS_ROM: integer := "+str(w_len)+";\n")
+    IE_pkg_file.seek(0)
+    IE_pkg_file.truncate()
+    IE_pkg_file.writelines(allLines)
+    IE_pkg_file.close()
             
   
     
@@ -300,3 +303,27 @@ def compute_max_neuron_number(trace,system_clock_cycle_period=40, voltage_trace_
     max_backup_clock_cycles = minimum_backup_time/system_clock_cycle_period
     max_number_neurons = int((max_backup_clock_cycles - 6)/NV_REG_DELAY_FACTOR -2)
     return(max_number_neurons)
+
+
+
+# def compute_hazard(trace,system_clock_cycle_period=40, voltage_trace_timescale=80, neuron_value=10, shtdw_value=2300, NV_REG_DELAY_FACTOR=2,window_length=10000):
+
+#     max_backup_clock_cycle = (neuron_value+2)*NV_REG_DELAY_FACTOR+6
+#     min_sample_distance = 2000
+#     c = min_sample_distance
+#     for (sample) in (x_trace):
+#         data = y_trace[sample]
+#         if data > wrng_value:
+#             c = 0
+#         elif data <= wrng_value and data > shtdw_value:
+#             c += 1
+#         elif data <= shtdw_value:
+#             distance = c
+#             if distance < min_sample_distance:
+#                 min_sample_distance = distance
+#     min_hazard_threshold =     
+#     𝐶𝐿𝐾_𝐶𝑌𝐶𝐿𝐸𝑆=(𝑃+2)∗DELAY_FACTOR+6=
+# P∗DELAY_FACTOR+2∗DELAY_FACTOR+6
+    
+
+    return(0)

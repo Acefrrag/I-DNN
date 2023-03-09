@@ -16,11 +16,11 @@ import numpy as np
 #Loading the data and dividind the dataset between training and validation data.
 training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
 #Loading weights and biases
-net = network2.load("../files/weights_n_biases/training_01-17-23_00-31-56/WeightsAndBiases.txt")
+net = network2.load("../files/weights_n_biases/training_02-14-23_11-20-18/WeightsAndBiases.txt")
 validation_data = list(validation_data)
 training_data = list(training_data)
 test_data = list(test_data)
-i=1290
+i=6452
 out_0 = net.feedforward(test_data[i][0])#The target for this input is 8.
 print("The resulting number for the input with target "+ str(test_data[i][1]) +" is " + str(np.argmax(out_0)) + "\n")
 w_sum_first_layer = np.dot(net.weights[0],test_data[i][0])+net.biases[0]

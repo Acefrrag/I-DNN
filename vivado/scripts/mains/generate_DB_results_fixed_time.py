@@ -1,5 +1,5 @@
 """
-Description: This script should be run with different NV_REg_delay_factpr in ode
+Description: This script should be run with different NV_REg_delay_factor in ode
 to produce parametric plots.
 """
 
@@ -48,9 +48,11 @@ system_clock_frequency = int(1/system_clock_period*10**(9))
 voltage_trace_timescale = 160
 intermittency_prescaler = int(voltage_trace_timescale/system_clock_period)
 #Fixed Time defaults
-time_constant_us = 3000
-start_value_threshold = 4000
-end_value_threshold = 5000
+time_constant_us = 3_000
+#time_constant_us = 1
+start_value_threshold = 3_000
+end_value_threshold = 3_040
+#end_value_threshold = 4050
 threshold_step = 40
 
 #Modifying COMMON_PACKAG to update the nv_reg delay factor
@@ -100,7 +102,7 @@ ctf.close()
 
 
 common_package_path = "../../src/NORM/COMMON_PACKAGE.vhd"
-marker_master_clock_speed_hz = "MASTER_CLK_SPEED_HZ"
+marker_master_clock_speed_hz = "constant MASTER_CLK_SPEED_HZ"
 f = open(common_package_path, "r+")
 package_lines = f.readlines()
 for i, line in enumerate(package_lines):
@@ -162,8 +164,8 @@ characterization_testbench_path = "../../test/I_DNN_multiple_images_tb.vhd"
 
 
 ##---------------------------------------------------------------Testbench changes
-    ## Change testbench of top level to use the correct architecture for this 
-    ## specific test. We need architecture Behavioral_db
+## Change testbench of top level to use the correct architecture for this 
+## specific test. We need architecture Behavioral_db
 ctf = open(characterization_testbench_path, "r+")
 testbench_lines = ctf.readlines()
 
@@ -211,9 +213,9 @@ except:
 tcl_script_path = tcl_script_folder_path+"/DB_fixed_time_NVREG_DELAY_"+str(NV_REG_DELAY_FACTOR)+"_simulation_batch.tcl"
 
 threshold_signal_path = "/I_DNN_multiple_images_tb/hazard_threshold"
-executed_batches_val_sig_path = "/I_DNN_multiple_images_tb/executed_batches"
+# executed_batches_val_sig_path = "/I_DNN_multiple_images_tb/executed_batches"
 
-executed_batches = "/I_DNN_multiple_images_tb/executed_batches"
+# executed_batches = "/I_DNN_multiple_images_tb/executed_batches"
 
 db_fix_time_cmds= {
     "hazard_threshold_val"          :"[get_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold]",
@@ -392,45 +394,4 @@ print("Executing: " + str(run_line))
 # sys.stdout.flush()
 # ##subprocess.run([vivado_path, "-mode", "batch", "-source", tcl_script_path])
 
-
-
-
-
-
 os.system(run_line)
-# ##################################################################################
-##################################################################################
-
-##---------------------------------------------------------------Testbench changes
-    ## Change testbench of top level to use the correct architecture for this 
-    ## specific test. We need architecture Behavioral_db
-# ctf = open(characterization_testbench_path, "r+")
-# testbench_lines = ctf.readlines()
-
-# search_marker_start = "----##DB!!"
-# search_marker_end = "----!!DB##"
-# start = 0
-# for i,line in enumerate(testbench_lines):
-#     if search_marker_start in line:
-#         start = 1
-#     else:
-#         if start == 1: 
-#             if search_marker_end not in line:
-#                 if "--" not in line:
-#                     testbench_lines.pop(i)
-#                     testbench_lines.insert(i,"--" + line)
-#             else:
-#                 start = 0
-
-#     ## Reach beginning of file
-# ctf.seek(0)
-
-#     ## Delete contents
-# ctf.truncate()
-
-#     ## Write the cange to the file by rewriting it entirely
-# ctf.writelines(testbench_lines) 
-# ctf.close()
-##--------------------------------------------------------------------------------
-
-##-------------------------------------------------------------Remove vivado files

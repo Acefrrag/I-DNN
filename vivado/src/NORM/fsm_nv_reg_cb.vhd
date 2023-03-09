@@ -18,7 +18,6 @@
 -- 
 ----------------------------------------------------------------------------------
 
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -33,12 +32,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 use work.COMMON_PACKAGE.all;
 use work.TEST_ARCHITECTURE_PACKAGE.all;
 
-
 entity fsm_nv_reg_cb is       
     port ( 
         clk                     : in STD_LOGIC;
         resetN                  : in STD_LOGIC;
         task_status             : in STD_LOGIC;
+        thresh_stats            : in threshold_t;
         period_backup_clks      : integer range 0 to 2**31 -1; 
         fsm_state               : out fsm_nv_reg_state_t;
         fsm_state_sig           : out fsm_nv_reg_state_t --used with care (it is the future state of the machine, and it is combinatory so it is prone to glitces)
@@ -102,7 +101,7 @@ begin
     
     
     
-    FSM_NV_REG_FUTURE: process(present_state,task_status,CB_count_TC) is 
+    FSM_NV_REG_FUTURE: process(thresh_stats,present_state,task_status,CB_count_TC) is 
     begin
         future_state <= present_state; -- default do nothing
         CB_count_CE <= '0';
@@ -111,22 +110,53 @@ begin
             when shutdown_s =>
                 future_state <= init_s;
             when init_s =>
+            if thresh_stats = hazard then
+                future_state <= init_s;
+            else
                 future_state <= start_data_recovery_s;
+            end if;            
             when start_data_recovery_s =>
                 if (task_status = '1') then
                     future_state <= recovery_s;
                 end if;
             when recovery_s =>
                 if (task_status = '0') then
-                    future_state <= data_recovered_s;
+                    if thresh_stats = hazard then
+                        future_state <= sleep_s;
+                    else
+                        future_state <= data_recovered_s;
+                    end if;
                 end if;
             when data_recovered_s =>
                 future_state <= do_operation_s;
             when do_operation_s =>
                 CB_count_CE <= '1';
                 CB_count_init <= '0';
-                if(CB_count_TC = '1') then
-                    future_state <= start_data_save_s;
+                if(CB_count_TC = '1') then --Counter is full
+                    if thresh_stats = hazard then
+                    --If the system is in hazard it is not possible to save the state
+                    --without risking data corruption. So we keep on executing, we will
+                    --save data as soon voltage goes back to normal level
+                        CB_count_CE <= '0'; -- The counter must be disabled to preserve the count terminal
+                        CB_count_init <= '0';
+                        future_state <= sleep_s; 
+                        --The system will soon power off so put the device to
+                        --sleep to save power
+                    else
+                        future_state <= start_data_save_s;
+                    end if;
+                end if;
+            when sleep_s =>
+                if thresh_stats = hazard then
+                    CB_count_CE <= '0';
+                    CB_count_init <= '0';
+                    future_state <= sleep_s;
+                else --thresh_stats = nothing
+                    if CB_count_TC = '1' then--We wanted to save but we couldn't
+                        future_state <= start_data_save_s;
+                    else--We were coming from a recovery operation
+                        future_state <= do_operation_s;
+                    end if;
                 end if;
             when start_data_save_s =>
                 if(task_status = '1') then

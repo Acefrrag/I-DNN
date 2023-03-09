@@ -1,1 +1,1 @@
--wto "63630931c3274f1193fa45ad0cc3506d" --debug "typical" --relax --mt "4" -L "xil_defaultlib" -L "ieee_proposed" -L "secureip" --snapshot "I_DNN_multiple_images_tb_behav" "xil_defaultlib.I_DNN_multiple_images_tb" -log "elaborate.log" 
+-wto "63630931c3274f1193fa45ad0cc3506d" --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "ieee_proposed" -L "secureip" --snapshot "I_DNN_multiple_images_tb_behav" "xil_defaultlib.I_DNN_multiple_images_tb" -log "elaborate.log" 

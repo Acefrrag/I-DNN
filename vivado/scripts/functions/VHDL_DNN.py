@@ -12,6 +12,8 @@ Description:
 import network2
 import sys
 import TestData as genData
+import re
+import os
 
 
 def create_file(DNN_in_prms):
@@ -52,7 +54,8 @@ def train(DNN_in_prms):
     eta = DNN_in_prms["eta"]
     lmbda = DNN_in_prms["lmbda"]
     (e_c, e_a, t_c, t_a) = net.SGD(training_data, epochs=epochs, mini_batch_size=batch_size, eta=eta, lmbda=lmbda,evaluation_data=validation_data, monitor_evaluation_accuracy=True)
-
+    #net.large_weight_initializer()
+    #e_a = [0,0,0,0,0]#net.accuracy(validation_data)
     
     return(net, e_a)
 
@@ -86,10 +89,9 @@ def savelogfile(net, e_a, path,DNN_in_prms):
         f.write("Epoch:"+str(i)+" Accuracy: "+str(e_a[i])+"/"+str(len(validation_data))+"\n")
     f.close()    
 
-def makepackage(DNN_in_prms, net):
+def mkpkg(DNN_in_prms, net, path):
     
     
-    VHDL_architectures_path = DNN_in_prms["architecturepath"]
     date = DNN_in_prms["date"]
     sigmoid_inputSize = net.sigmoidinputSize
     sigmoid_inputIntSize = net.sigmoidinputIntSize
@@ -102,7 +104,7 @@ def makepackage(DNN_in_prms, net):
     num_inputs = net.sizes[:-1]
     num_outputs = net.sizes[1:]
     try:
-        f = open(VHDL_architectures_path+"/I_DNN_package.vhd", "w")
+        f = open(path+"/I_DNN_package.vhd", "w")
         f.write(
     "----------------------------------------------------------------------------------\n"
     "-- Company: \n"
@@ -146,8 +148,8 @@ def makepackage(DNN_in_prms, net):
     "	constant DNN_neuron_weight_Width: natural := "+str(neuron_weight_Width)+";\n"
     "	constant DNN_neuron_weight_IntWidth: natural := "+str(neuron_weight_IntWidth)+";\n"
     "	constant DNN_neuron_weight_FracWidth: natural := DNN_neuron_weight_Width-DNN_neuron_weight_IntWidth;\n"
-    "	constant DNN_multiple_images_prms_path: string := \"./tb_files/DNN/multiple_images/\";\n"
-    "   constant DNN_prms_path: string := \"../tb_files/DNN/tb4/\";\n"
+    "   constant DNN_testbench_input_path: string :=\"./tb_files/DNN/single_image/"+DNN_in_prms["tbfoldername"]+"/test_dataset_0910/VHDL_dataset_0910.txt\";\n"
+    "   constant DNN_prms_path: string := \"../tb_files/DNN/single_image"+DNN_in_prms["tbfoldername"]+"\";\n"
     "	constant act_fun_type: string  := \""+str(act_fun_type)+"\";\n"
     "   --TestBench for neuron entities and its subentities\n"
     "   -- Layers variables\n"
@@ -177,7 +179,6 @@ def makepackage(DNN_in_prms, net):
         string2 = string2 + str(num_outputs[num_hidden_layers-1])+");\n"
         f.write(string1 + string2) 
         f.write(
-    "   constant validation_dataset_path: string := \"../../../../../../scripts/datasets/testData/test_data.txt\";\n"
     "   constant bias_int_width: natural := 1;            \n"
     "\n"
     "\n"
@@ -235,7 +236,7 @@ def makepackage(DNN_in_prms, net):
     finally:
         f.close()
     
-def mkMIpackage(path, DNN_in_prms, net):
+def mkMIpkg(path, DNN_in_prms, net):
 
     sizes = net.sizes
     sigmoid_inputSize = net.sigmoidinputSize
@@ -248,14 +249,14 @@ def mkMIpackage(path, DNN_in_prms, net):
     num_hidden_layers = net.num_hidden_layers
     
     try:
-        f = open(path+"/I_DNN_MI_package.vhd","w")
+        f = open(path+"I_DNN_MI_package.vhd","w")
         sys.stdout = f
         print("""
 ----------------------------------------------------------------------------------
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 01/28/2023 07:02:29 PM
+-- Create Date: """+DNN_in_prms["date"]+"""
 -- Design Name: 
 -- Module Name: I_DNN_multiple_images_package - Behavioral
 -- Project Name: 
@@ -274,6 +275,12 @@ def mkMIpackage(path, DNN_in_prms, net):
 library IEEE;
 use ieee.math_real.all;
 
+library ieee_proposed;
+use ieee_proposed.fixed_pkg.all;
+
+library work;
+use work.I_DNN_package.all;
+
 
 package I_DNN_MI_package is
 -- Package Declarative Part
@@ -291,12 +298,27 @@ package I_DNN_MI_package is
 	constant MI_DNN_neuron_weight_Width: natural := """+str(neuronweightSize)+""";
 	constant MI_DNN_neuron_weight_IntWidth: natural := """+str(neuronweightIntSize)+""";
 	constant MI_DNN_neuron_weight_FracWidth: natural := MI_DNN_neuron_weight_Width-MI_DNN_neuron_weight_IntWidth;
-	constant MI_DNN_prms_path: string := "./tb_files/DNN/multiple_images/";
-	constant MI_act_fun_type: string  := """+act_fun_type+""";
+	constant MI_DNN_prms_path: string := "./tb_files/DNN/multiple_images/"""+DNN_in_prms["MItbfoldername"]+"""/";
+	constant MI_act_fun_type: string  := \" """+act_fun_type+"""\";
    --TestBench for neuron entities and its subentities
    -- Layers variables
    -- Input Layer
    constant MI_num_hidden_layers: natural :="""+str(num_hidden_layers)+""";
+
+    type datain_type is array(0 to layer_inputs(1)-1) of sfixed(MI_DNN_neuron_inout_IntWidth-1 downto -(MI_DNN_neuron_inout_FracWidth));
+    type set_images_type is array(0 to 7) of datain_type;
+    type set_digits_type is array(0 to 7) of integer range 0 to 9;
+    type filenames_type is array(0 to 7) of string(1 to 39);
+    type digit_filenames_type is array(0 to 7) of string(1 to 45);
+    type pathname_type is array(0 to 7) of string (1 to 101);
+    type digit_pathname_type is array(0 to 7) of string (1 to 107); 
+    
+    constant datasets_path: string := "../tb_files/DNN/multiple_images/"""+DNN_in_prms["MItbfoldername"]+"""/"; --(1 to 27) := "./tb_files/DNN/tb5/dataset/";
+    constant image_filenames: filenames_type := ("test_dataset_6542/VHDL_dataset_6542.txt", "test_dataset_0910/VHDL_dataset_0910.txt", "test_dataset_1000/VHDL_dataset_1000.txt","test_dataset_1160/VHDL_dataset_1160.txt","test_dataset_1549/VHDL_dataset_1549.txt","test_dataset_6542/VHDL_dataset_6542.txt","test_dataset_1570/VHDL_dataset_1570.txt","test_dataset_1290/VHDL_dataset_1290.txt");
+    constant digit_filenames: digit_filenames_type := ("test_dataset_6542/dataset_6542_classdigit.txt", "test_dataset_0910/dataset_0910_classdigit.txt", "test_dataset_1000/dataset_1000_classdigit.txt","test_dataset_1160/dataset_1160_classdigit.txt","test_dataset_1549/dataset_1549_classdigit.txt","test_dataset_6542/dataset_6542_classdigit.txt","test_dataset_1570/dataset_1570_classdigit.txt","test_dataset_1290/dataset_1290_classdigit.txt");
+    constant full_path_images: pathname_type := (datasets_path&image_filenames(0),datasets_path&image_filenames(1),datasets_path&image_filenames(2),datasets_path&image_filenames(3),datasets_path&image_filenames(4),datasets_path&image_filenames(5),datasets_path&image_filenames(6),datasets_path&image_filenames(7));
+    constant full_path_digits: digit_pathname_type := (datasets_path&digit_filenames(0),datasets_path&digit_filenames(1),datasets_path&digit_filenames(2),datasets_path&digit_filenames(3),datasets_path&digit_filenames(4),datasets_path&digit_filenames(5),datasets_path&digit_filenames(6),datasets_path&digit_filenames(7));
+    
 
 
 end package;
@@ -311,13 +333,12 @@ end package body I_DNN_MI_package;
     finally:
         sys.stdout = sys.__stdout__
         f.close()
-    
 
-def mkentity(DNN_in_prms, net):
+def mkentity(DNN_in_prms, net, path):
     
-    VHDL_architectures_path = DNN_in_prms["architecturepath"]
+    VHDL_architectures_path = path
     date = DNN_in_prms["date"]
-    num_hidden_layers = DNN_in_prms["num_hidden_layers"]
+    num_hidden_layers = net.num_hidden_layers
     
     try:
         f = open(VHDL_architectures_path+"/I_DNN.vhd",'w')
@@ -994,13 +1015,73 @@ def mkdatasets(DNN_in_prms, net,outputpath):
     [(te_data[0].append(image),te_data[1].append(digit)) for (image,digit) in test_data]
     
     
+    [genData.genTestData(dataWidth=net.neuroninputSize, IntSize=net.neuroninputIntSize, testDataNum=dataset_index, te_d = te_data,outputpath=outputpath,net_test=net) for dataset_index in image_indexes] 
     
-    [genData.genTestData(dataWidth=net.neuroninputSize, IntSize=net.neuroninputIntSize, testDataNum=dataset_index, te_d = te_data,outputpath=outputpath) for dataset_index in image_indexes] 
+def mktbfolder(path):
+    
+    filenames = os.listdir(path)
+    max_num = 0
+    for filename in filenames:
+        match = re.search(r'\d+', filename)
+        if match:
+            numbers_tb= int(match.group())
+            if numbers_tb > max_num:
+                max_num = numbers_tb
+    tb_num = max_num +1
+    tbfoldername = "tb"+tb_num+"/"
+    tbfolderpath = path + tbfoldername
+    os.mkdir(path+tbfoldername)
+    return(tbfoldername, tbfolderpath)
+    
+def mkNVME_pkg(DNN_in_prms,path):
+    
+    max_no_neurons = max(DNN_in_prms["sizes"][1:])
+    try:
+        f = open(path+"NVME_FRAMEWORK_PACKAGE.vhd","w")
+        sys.stdout = f
+        print(
+"""----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date: 06/14/2020 05:43:53 PM
+-- Design Name: 
+-- Module Name: NVME_FRAMEWORK_PACKAGE - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision: Michele Pio Fragasso
+-- Revision 0.02 - File Created
+-- Additional Comments:
+-- 1) changed constant value NV_REG_WIDTH from 16 to 32
+----------------------------------------------------------------------------------
 
-    
-    
-    
-    
-    return
-    
-    
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.math_real.all;
+
+library work;
+use work.I_DNN_package.all;
+
+package NVME_FRAMEWORK_PACKAGE is
+
+    constant NUM_PWR_STATES                     : integer := 3;     -- The sum of all power states entities that are connected to a power approximator have.
+    constant PWR_CONSUMPTION_ROM_BITS           : integer := 10;    -- The bit length of a word for the pwr_consumption_val_ROM
+    constant PWR_APPROX_COUNTER_NUM_BITS        : integer := 31;    -- The register size (in bits) of all power approximators (if the pa is used a lot bigger values are suggested)
+    constant INTERMITTENCY_NUM_THRESHOLDS       : integer := 2;     -- The number of voltage thsholds the intermittency emulator will track (at least one, i.e. the shutdown threshold)
+    constant NV_REG_WIDTH                       : INTEGER := DNN_neuron_inout_Width;    -- The word size in bits of all non volatile registers
+    constant nv_reg_depth                       : integer := """+str(max_no_neurons+5)+""";
+    constant bram_addr_width_bit : INTEGER := integer(ceil(log2(real(NV_REG_depth))));
+                                                                ---> !!!!! This value must be kept in sync with the one used inside the bram ip for all nv_reg !!!!!
+   
+end package NVME_FRAMEWORK_PACKAGE;"""
+)
+    finally:
+        
+        sys.stdout = sys.__stdout__
+        f.close()

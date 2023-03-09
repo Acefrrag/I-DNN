@@ -1,4 +1,5 @@
 """
+
 network2.py
 ~~~~~~~~~~~~~~
 
@@ -11,8 +12,8 @@ easily modifiable.  It is not optimized, and omits many desirable
 features.
 
 Revision: Michele Pio Fragasso
-Added method to compute the minimum integer part size to successfully compute
-the output of the DNN without overflow.
+Added method to compute the minimum integer part size to compute
+the output of the DNN without overflow in the VHDL architecture.
 
 """
 
@@ -162,6 +163,7 @@ class Network(object):
             else: #Sigmoid
                 a = sigmoid(np.dot(w, a)+b)
         return a
+        
 
     def SGD(self, training_data, epochs, mini_batch_size, eta,
             lmbda = 0.0,
@@ -370,7 +372,7 @@ class Network(object):
         json.dump(data, f)
         f.close()
         
-    def compute_DataFormat(self, validation_data):
+    def compute_DataFormat(self, validation_data, skip=False):
         """
         Method that computes the best size for the neuron input and weights
         to compute the DNN output without overflow.
@@ -388,40 +390,48 @@ class Network(object):
 
         """
         #Computing integer part of the weight
-        max_weight = 0
-        min_weight = 1000
-        for w in zip(self.weights):
-            w_max = np.amax(w)
-            w_min = np.amin(w)
-            if w_max > max_weight:
-                max_weight = w_max
-            if w_min < min_weight:
-                min_weight = w_min
-        neuron_weight_IntWidth = int(math.ceil(max(math.log(abs(max_weight),2),math.log(abs(min_weight),2))))+1#+1 is to be safer + 1 is for the sign.
-        max_sum = 0
-        min_sum = 1000
-        #Computing integer part of the neuron input
-        for dataset_index in range(len(validation_data)):
-            inputs = validation_data[dataset_index][0]
-            for (b, w) in zip(self.biases, self.weights):
-                w_sums = np.dot(w,inputs)+b
-                for sums in w_sums:
-                    if sums > max_sum:
-                        max_sum = sums
-                    if sums < min_sum:
-                        min_sum = sums
-                if self.act_fun_type == "ReLU":
-                    inputs = relu(w_sums)
-                else:
-                    inputs = sigmoid(w_sums)
-        neuron_input_IntWidth = int(math.ceil(max(math.log(abs(max_sum),2),math.log(abs(min_sum),2))))+2#+ 1 is for the sign.
-        
-        self.neuroninputSize = 32
-        self.neuroninputIntSize = neuron_input_IntWidth
-        self.neuroninputFracSize = self.neuroninputSize - self.neuroninputIntSize
-        self.neuronweightSize = 32
-        self.neuronweightIntSize = neuron_weight_IntWidth
-        self.neuronweightFracSize = self.neuronweightSize - self.neuronweightIntSize 
+        if skip==False:
+            max_weight = 0
+            min_weight = 1000
+            for w in zip(self.weights):
+                w_max = np.amax(w)
+                w_min = np.amin(w)
+                if w_max > max_weight:
+                    max_weight = w_max
+                if w_min < min_weight:
+                    min_weight = w_min
+            neuron_weight_IntWidth = int(math.ceil(max(math.log(abs(max_weight),2),math.log(abs(min_weight),2))))+1#+1 is to be safer + 1 is for the sign.
+            max_sum = 0
+            min_sum = 1000
+            #Computing integer part of the neuron input
+            for dataset_index in range(len(validation_data)):
+                inputs = validation_data[dataset_index][0]
+                for (b, w) in zip(self.biases, self.weights):
+                    w_sums = np.dot(w,inputs)+b
+                    for sums in w_sums:
+                        if sums > max_sum:
+                            max_sum = sums
+                        if sums < min_sum:
+                            min_sum = sums
+                    if self.act_fun_type == "ReLU":
+                        inputs = relu(w_sums)
+                    else:
+                        inputs = sigmoid(w_sums)
+            neuron_input_IntWidth = int(math.ceil(max(math.log(abs(max_sum),2),math.log(abs(min_sum),2))))+2#+ 1 is for the sign.
+            
+            self.neuroninputSize = 32
+            self.neuroninputIntSize = neuron_input_IntWidth
+            self.neuroninputFracSize = self.neuroninputSize - self.neuroninputIntSize
+            self.neuronweightSize = 32
+            self.neuronweightIntSize = neuron_weight_IntWidth
+            self.neuronweightFracSize = self.neuronweightSize - self.neuronweightIntSize
+        else:
+            self.neuroninputSize = 32
+            self.neuroninputIntSize = 14
+            self.neuroninputFracSize = self.neuroninputSize - self.neuroninputIntSize
+            self.neuronweightSize = 32
+            self.neuronweightIntSize = 4
+            self.neuronweightFracSize = self.neuronweightSize - self.neuronweightIntSize
 
     def assignSigSize(self, sigmoid_inputSize, sigmoid_inputIntSize):
         self.sigmoidinputSize = sigmoid_inputSize

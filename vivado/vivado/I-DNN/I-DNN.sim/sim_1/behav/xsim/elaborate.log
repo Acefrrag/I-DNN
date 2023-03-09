@@ -1,7 +1,7 @@
 Vivado Simulator 2020.2
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 63630931c3274f1193fa45ad0cc3506d --debug typical --relax --mt 4 -L xil_defaultlib -L ieee_proposed -L secureip --snapshot I_DNN_multiple_images_tb_behav xil_defaultlib.I_DNN_multiple_images_tb -log elaborate.log 
-Using 4 slave threads.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 63630931c3274f1193fa45ad0cc3506d --debug typical --relax --mt 2 -L xil_defaultlib -L ieee_proposed -L secureip --snapshot I_DNN_multiple_images_tb_behav xil_defaultlib.I_DNN_multiple_images_tb -log elaborate.log 
+Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
 Starting simulation data flow analysis
@@ -22,15 +22,15 @@ Compiling package xil_defaultlib.common_package
 Compiling package xil_defaultlib.intermittency_emulator_package
 Compiling package synopsys.attributes
 Compiling package ieee.std_logic_misc
-Compiling architecture behavioral of entity xil_defaultlib.trace_ROM [\trace_ROM(num_elemnts_rom=10000...]
+Compiling architecture behavioral of entity xil_defaultlib.trace_ROM [\trace_ROM(num_elemnts_rom=18750...]
 Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=1,init_value=0,incr...]
 Compiling architecture behavioral of entity xil_defaultlib.scaler [\scaler(prescaler=4)\]
-Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=9999,init_value=0,i...]
+Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=18749,init_value=0,...]
 Compiling architecture behavioral of entity xil_defaultlib.intermittency_emulator [\intermittency_emulator(voltage_...]
 Compiling architecture behavioral of entity xil_defaultlib.fsm_nv_reg_db [fsm_nv_reg_db_default]
 Compiling architecture syn of entity xil_defaultlib.rams_sp_rf [\rams_sp_rf(ram_depth=35,ram_wid...]
-Compiling architecture behavioral of entity xil_defaultlib.nv_reg_emu [\nv_reg_emu(max_delay_ns=80)\]
-Compiling architecture behavioral of entity xil_defaultlib.nv_reg [\nv_reg(max_delay_ns=80,nv_reg_w...]
+Compiling architecture behavioral of entity xil_defaultlib.nv_reg_emu [\nv_reg_emu(max_delay_ns=200)\]
+Compiling architecture behavioral of entity xil_defaultlib.nv_reg [\nv_reg(max_delay_ns=200,nv_reg_...]
 Compiling architecture unary_or of entity xil_defaultlib.unary_OR [\unary_OR(n=1)\]
 Compiling architecture behavioral of entity xil_defaultlib.ReLU [\ReLU(data_width=32,relu_in_intw...]
 Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
@@ -217,6 +217,6 @@ Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_R
 Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(type_device="n...]
 Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_ROM [\pwr_consumption_val_ROM(num_ele...]
 Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(pwr_states_num...]
-Compiling architecture behavioral of entity xil_defaultlib.I_DNN [\I_DNN(neuron_inout_intwidth=13,...]
+Compiling architecture behavioral of entity xil_defaultlib.I_DNN [\I_DNN(neuron_inout_intwidth=14,...]
 Compiling architecture behavioral of entity xil_defaultlib.i_dnn_multiple_images_tb
 Built simulation snapshot I_DNN_multiple_images_tb_behav

@@ -93,7 +93,7 @@ begin
             end if;
         when data_recovered_s =>
             --edited Michele Fragasso. To avoid nv_reg corrusption
-                future_state <= do_operation_s;
+            future_state <= do_operation_s;
         when sleep_s =>
             if (thresh_stats = hazard) then
                 future_state <= sleep_s;

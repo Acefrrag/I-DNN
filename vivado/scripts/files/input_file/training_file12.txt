@@ -1,0 +1,9 @@
+num_hidden_layers,12
+act_fun_type,ReLU
+eta,10
+batch_size,100
+epochs,5
+lmbda,0
+sigmoid_inputSize,5
+sigmoid_inputIntSize,2
+sizes,(100;40;40;35;35;30;30;25;20;15;15;10)

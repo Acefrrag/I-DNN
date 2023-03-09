@@ -95,7 +95,7 @@ def load_data():
     f.close()
     return (training_data, validation_data, test_data)
 
-def genTestData(dataWidth,IntSize,testDataNum,te_d,outputpath):
+def genTestData(dataWidth,IntSize,testDataNum,te_d,outputpath,net_test):
     """
     This function:
         1. Creates a file "test_data.txt"containing the fixed point representation of the pixels of a greyscale handwritten number from the test dataset;
@@ -109,6 +109,8 @@ def genTestData(dataWidth,IntSize,testDataNum,te_d,outputpath):
             
             -int result=<corresponding digit to the greyscale handwritten number>
         5. Create a log genData.log containing information about the data format
+        6. Creates a dataset_<num>_digitout.txt containing the class to which the image corresponds to
+        7. Creates a file dataset_<num>_classdigit.txt contaning the digit classfied by using the corresponding neural network.
     Parameters
     ----------
     dataWidth : int
@@ -194,8 +196,13 @@ def genTestData(dataWidth,IntSize,testDataNum,te_d,outputpath):
     a.write(str(te_d[1][testDataNum]))
     a.close()
     
-
-        
+    filename = "dataset_"+ext+"_classdigit.txt"
+    out_DNN = net_test.feedforward(te_d[0][testDataNum])#The target for this input is 8.
+    out_DNN_digit = str(np.argmax(out_DNN))
+    a = open(folderpath+"/"+filename,"w")
+    a.write(str(out_DNN_digit))
+    a.close()
+    
 def gensetofTestData(dataWidth,IntSize,number_set,te_d):
     """
     This function creates the fixed-point images from every element of the test data set within the MNIST package.

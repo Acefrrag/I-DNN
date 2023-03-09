@@ -1,0 +1,16 @@
+TRAINING REPORT - 02-12-23_17-10-59
+ 
+Number of layers: 5
+Neurons per layer: [784, 30, 25, 15, 10]
+Activation function: ReLUTraining data size: 50000
+Training epochs: 5
+Training batch size:100
+Training learning rate: eta =0.4
+Training regularitation value: lambda =5
+Evaluation data size: 10000
+Evaluation Accuracies per epoch: 
+Epoch:0 Accuracy: 2195/10000
+Epoch:1 Accuracy: 3906/10000
+Epoch:2 Accuracy: 5084/10000
+Epoch:3 Accuracy: 4695/10000
+Epoch:4 Accuracy: 4032/10000

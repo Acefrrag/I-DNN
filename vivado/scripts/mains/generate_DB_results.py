@@ -146,11 +146,13 @@ except:
 characterization_testbench_path = "../../test/I_DNN_multiple_images_tb.vhd"
 
 time_constant_us = 1500
+time_constant_us = 1
 
 executed_batches_target = 4
 
 start_value_threshold = 2500
 end_value_threshold = 3000
+end_value_threshold = 2600
 threshold_step = 80
 ##--------------------------------------------------------------------------------
 
@@ -206,8 +208,6 @@ tcl_script_path = tcl_script_folder_path+"/DB_simulation_batch.tcl"
 
 threshold_signal_path = "/I_DNN_multiple_images_tb/hazard_threshold"
 executed_batches_val_sig_path = "/I_DNN_multiple_images_tb/executed_batches"
-
-executed_batches = "/I_DNN_multiple_images_tb/executed_batches"
 
 db_fix_time_cmds= {
     "hazard_threshold_val"          :"[get_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold]",

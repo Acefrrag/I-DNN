@@ -44,13 +44,7 @@ end I_DNN_multiple_images_tb;
 
 architecture Behavioral of I_DNN_multiple_images_tb is
 
-type datain_type is array(0 to layer_inputs(1)-1) of sfixed(MI_DNN_neuron_inout_IntWidth-1 downto -(MI_DNN_neuron_inout_FracWidth));
-type set_images_type is array(0 to 7) of datain_type;
-type set_digits_type is array(0 to 7) of integer range 0 to 9;
-type filenames_type is array(0 to 7) of string(1 to 16);
-type digit_filenames_type is array(0 to 7) of string(1 to 25);
-type pathname_type is array(0 to 7) of string (1 to 56);
-type digit_pathname_type is array(0 to 7) of string (1 to 65); 
+
 function makesfixed (bit_in: in bit_vector(MI_DNN_neuron_inout_Width-1 downto 0)) return sfixed is
     variable fixedpoint_s: sfixed(MI_DNN_neuron_inout_IntWidth-1 downto -MI_DNN_neuron_inout_FracWidth);
     --variable a: std_logic := 0;
@@ -118,12 +112,7 @@ return(digits_content);
 end function;
 
       
-signal hazard_threshold : integer := 2500;
-constant datasets_path: string := "../tb_files/DNN/multiple_images/dataset/"; --(1 to 27) := "./tb_files/DNN/tb5/dataset/";
-constant image_filenames: filenames_type := ("dataset_6542.txt", "dataset_0910.txt", "dataset_1000.txt","dataset_1160.txt","dataset_1549.txt","dataset_6542.txt","dataset_1570.txt","dataset_1290.txt");
-constant digit_filenames: digit_filenames_type := ("dataset_6542_digitout.txt", "dataset_0910_digitout.txt", "dataset_1000_digitout.txt","dataset_1160_digitout.txt","dataset_1549_digitout.txt","dataset_6542_digitout.txt","dataset_1570_digitout.txt","dataset_1290_digitout.txt");
-constant full_path_images: pathname_type := (datasets_path&image_filenames(0),datasets_path&image_filenames(1),datasets_path&image_filenames(2),datasets_path&image_filenames(3),datasets_path&image_filenames(4),datasets_path&image_filenames(5),datasets_path&image_filenames(6),datasets_path&image_filenames(7));
-constant full_path_digits: digit_pathname_type := (datasets_path&digit_filenames(0),datasets_path&digit_filenames(1),datasets_path&digit_filenames(2),datasets_path&digit_filenames(3),datasets_path&digit_filenames(4),datasets_path&digit_filenames(5),datasets_path&digit_filenames(6),datasets_path&digit_filenames(7));
+signal hazard_threshold : integer := 2650;
 signal input_reg: datain_type := (others => (others => '0'));
 signal images: set_images_type := load_images(full_path_images);
 signal digits: set_digits_type := load_digits(full_path_digits);
@@ -132,7 +121,6 @@ signal start: std_logic := '1';
 signal clk: std_logic := '0';
 signal data_out: sfixed (MI_DNN_neuron_inout_IntWidth-1 downto -MI_DNN_neuron_inout_FracWidth) := (others => '0');
 signal addr_in: std_logic_vector(0 to natural(ceil(log2(real(layer_inputs(1)))))-1) := (others => '0');
-signal addr_out: std_logic_vector(0 to natural(ceil(log2(real(layer_outputs(3)))))-1) := (others => '0');
 signal data_v: std_logic;
 signal n_power_reset: std_logic;
 --Intermittency emulator
@@ -145,7 +133,7 @@ signal thresh_stats         : threshold_t;
 signal data_sampled         : std_logic:='0';
 --signal voltage_trace_path   : string := "voltage_traces/I_layer_trace_complete.txt";
 --signal voltage_trace_path   : string(1 to 47) := "voltage_traces/I_DNN_trace_complete_4layers.txt";
-constant voltage_trace_path: string(1 to 33) := "voltage_traces/voltage_trace2.txt";
+constant voltage_trace_path: string(1 to 33) := "voltage_traces/voltage_trace6.txt";
 signal image_no: integer := 0;
 signal shtdwn_counter, clk_counter: integer := 0;
 signal executed_batches: integer := 0;

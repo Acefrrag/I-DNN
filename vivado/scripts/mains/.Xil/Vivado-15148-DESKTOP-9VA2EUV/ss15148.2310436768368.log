@@ -1,0 +1,218 @@
+srcscan starts
+=============== Using vdb files for VHDL std libs ===========
+INFO: The vhdl library search path for library "std" is now "C:/Xilinx/Vivado/2020.2/data/precomp_hsv/vhdl/std_2008" (VHDL-1505)
+INFO: The vhdl library search path for library "synopsys" is now "C:/Xilinx/Vivado/2020.2/data/precomp_hsv/vhdl/synopsys_2008" (VHDL-1505)
+INFO: The vhdl library search path for library "ieee" is now "C:/Xilinx/Vivado/2020.2/data/precomp_hsv/vhdl/ieee_2008" (VHDL-1505)
+INFO: The vhdl library search path for library "unimacro" is now "C:/Xilinx/Vivado/2020.2/data/precomp_hsv/vhdl/unimacro_2008" (VHDL-1505)
+INFO: The vhdl library search path for library "unisim" is now "C:/Xilinx/Vivado/2020.2/data/precomp_hsv/vhdl/unisim_2008" (VHDL-1505)
+INFO: The vhdl library search path for library "vl" is now "C:/Xilinx/Vivado/2020.2/data/precomp_hsv/vhdl/vl_2008" (VHDL-1505)
+INFO: The vhdl library search path for library "xpm" is now "C:/Xilinx/Vivado/2020.2/data/precomp_hsv/vhdl/xpm_2008" (VHDL-1505)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/fixed_pkg_2008.vhd" into library ieee_proposed (VHDL-9003)
+INFO: analyzing package 'fixed_pkg'
+
+INFO: analyzing package body 'fixed_pkg'
+
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/I_DNN_package.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing package 'I_DNN_package'
+
+INFO: analyzing package body 'I_DNN_package'
+
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/TEST_ARCHITECTURE_PACKAGE.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing package 'TEST_ARCHITECTURE_PACKAGE'
+
+INFO: analyzing package body 'TEST_ARCHITECTURE_PACKAGE'
+
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/NVME_FRAMEWORK_PACKAGE.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing package 'NVME_FRAMEWORK_PACKAGE'
+
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/COMMON_PACKAGE.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+INFO: analyzing package 'COMMON_PACKAGE'
+
+INFO: analyzing package body 'COMMON_PACKAGE'
+
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/instant_pwr_calc.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'instant_pwr_calc' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'instant_pwr_calc' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/mult.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'mult' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'mult' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/mult_tb.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'mult_tb' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'mult_tb' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/power_approximation.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'power_approximation' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'power_approximation' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/pwr_consumption_val_ROM.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'pwr_consumption_val_ROM' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'pwr_consumption_val_rom' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/rams_sp_rf.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'rams_sp_rf' (VHDL-1012)
+INFO: analyzing architecture 'syn' of entity 'rams_sp_rf' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/INTERMITTENCY_EMULATOR_package.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing package 'INTERMITTENCY_EMULATOR_package'
+
+INFO: analyzing package body 'INTERMITTENCY_EMULATOR_package'
+
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/I_DNN.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'I_DNN' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'i_dnn' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/I_DNN_MI_package.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing package 'I_DNN_MI_package'
+
+INFO: analyzing package body 'I_DNN_MI_package'
+
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_DNN_multiple_images_tb.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'I_DNN_multiple_images_tb' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'i_dnn_multiple_images_tb' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_DNN_tb.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'I_DNN_tb' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'i_dnn_tb' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/I_FSM_layer.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'I_FSM_layer' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'i_fsm_layer' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/I_layer.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'I_layer' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'i_layer' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_layer_tb.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'I_layer_tb' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'i_layer_tb' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_layer_tb_hazard_scenarios.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'I_layer_tb_hazard_scenarios' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'i_layer_tb_hazard_scenarios' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/I_neuron.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'I_neuron' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'i_neuron' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/ReLU.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'ReLU' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'relu' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/SOFT_MAX.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'SOFT_MAX' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'soft_max' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/Sigmoid.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'Sigmoid' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'sigmoid' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/VAR_CNTR_PROCESS.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'VAR_CNTR_PROCESS' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'var_cntr_process' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/counter.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'counter' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'counter' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/fsm_nv_reg_cb.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'fsm_nv_reg_cb' (VHDL-1012)
+C:/Users/miche/git/I-DNN/vivado/src/NORM/fsm_nv_reg_cb.vhd(42): INFO: The direction of input port <period_backup_clks> is not explicitly declared. This is valid but affects code readability (VHDL-9018)
+INFO: analyzing architecture 'Behavioral' of entity 'fsm_nv_reg_cb' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/fsm_nv_reg_db.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'fsm_nv_reg_db' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'fsm_nv_reg_db' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/intermittency_emulator.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'intermittency_emulator' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'intermittency_emulator' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/nv_reg.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'nv_reg' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'nv_reg' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/nv_reg_emu.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'nv_reg_emu' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'nv_reg_emu' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/scaler.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'scaler' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'scaler' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/test_sfixed.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'test_sfixed' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'test_sfixed' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/trace_ROM.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'trace_ROM' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'trace_rom' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/unary_or.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'unary_OR' (VHDL-1012)
+INFO: analyzing architecture 'unary_OR' of entity 'unary_or' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/var_counter.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'var_counter' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'var_counter' (VHDL-9006)
+-- Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/weight_memory.vhd" into library xil_defaultlib (VHDL-9003)
+INFO: analyzing entity 'weight_memory' (VHDL-1012)
+INFO: analyzing architecture 'Behavioral' of entity 'weight_memory' (VHDL-9006)
+Listing tops:
+VHDLTop: library:xil_defaultlib entity:mult_tb arch:
+VHDLTop: library:xil_defaultlib entity:mult_tb arch:
+VHDLTop: library:xil_defaultlib entity:i_dnn_multiple_images_tb arch:
+VHDLTop: library:xil_defaultlib entity:i_dnn_multiple_images_tb arch:
+VHDLTop: library:xil_defaultlib entity:i_dnn_tb arch:
+VHDLTop: library:xil_defaultlib entity:i_dnn_tb arch:
+VHDLTop: library:xil_defaultlib entity:i_layer_tb arch:
+VHDLTop: library:xil_defaultlib entity:i_layer_tb arch:
+VHDLTop: library:xil_defaultlib entity:i_layer_tb_hazard_scenarios arch:
+VHDLTop: library:xil_defaultlib entity:i_layer_tb_hazard_scenarios arch:
+VHDLTop: library:xil_defaultlib entity:var_cntr_process arch:
+VHDLTop: library:xil_defaultlib entity:var_cntr_process arch:
+VHDLTop: library:xil_defaultlib entity:fsm_nv_reg_cb arch:
+VHDLTop: library:xil_defaultlib entity:fsm_nv_reg_cb arch:
+VHDLTop: library:xil_defaultlib entity:test_sfixed arch:
+VHDLTop: library:xil_defaultlib entity:test_sfixed arch:
+END of tops
+C:/Users/miche/git/I-DNN/vivado/src/DNN/fixed_pkg_2008.vhd(1282): WARNING: range is empty (null range) (VHDL-1200)
+C:/Users/miche/git/I-DNN/vivado/src/DNN/fixed_pkg_2008.vhd(1283): WARNING: range is empty (null range) (VHDL-1200)
+C:/Users/miche/git/I-DNN/vivado/src/DNN/fixed_pkg_2008.vhd(1284): WARNING: range is empty (null range) (VHDL-1200)
+C:/Users/miche/git/I-DNN/vivado/src/DNN/fixed_pkg_2008.vhd(6239): WARNING: range is empty (null range) (VHDL-1200)
+C:/Users/miche/git/I-DNN/vivado/test/mult_tb.vhd(41): INFO: executing 'mult_tb_default(Behavioral)' (VHDL-1067)
+C:/Users/miche/git/I-DNN/vivado/src/NORM/mult.vhd(41): INFO: executing 'mult_default(Behavioral)' (VHDL-1067)
+C:/Users/miche/git/I-DNN/vivado/test/I_DNN_multiple_images_tb.vhd(41): INFO: executing 'I_DNN_multiple_images_tb_default(Behavioral)' (VHDL-1067)

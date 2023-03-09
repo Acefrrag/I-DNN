@@ -10,14 +10,18 @@ import network2
 
 results_plots_path = "./plots/DB_results_plots/"
 DB_result_log_path = "./results/DB_result_log.txt"
+voltage_trace_namefile = "voltage_trace2"
+enable_plot_save = False
 try:
     os.mkdir(results_plots_path)
 except:
     pass
 NV_REG_FACTORS = [2,5,8,11]
+NV_REG_FACTORS = [2]
+NV_REG_FACTOR_test = 2
 results_path_list = []
 for NV_REG_FACTOR in NV_REG_FACTORS:
-    results_path_list.append("./results/Simulation5/DB_results_fixedtime_NVREG_DELAY_FACTOR"+str(NV_REG_FACTOR)+".txt")
+    results_path_list.append("./results/4layer/"+voltage_trace_namefile+"/DB_results_fixedtime_NVREG_DELAY_FACTOR"+str(NV_REG_FACTOR)+".txt")
 results_name = "DB"
 
 ##----------------------------------------------------------------------- Defaults
@@ -44,7 +48,7 @@ end_data_fixed_time_simulations = []
 
 
     
-net = network2.load("../files/weights_n_biases/training_01-17-23_00-31-56/WeightsAndBiases.txt")
+net = network2.load("../files/weights_n_biases/training_02-14-23_09-39-56/WeightsAndBiases.txt")
 number_neurons = net.sizes[1:]
 num_hidden_layers = len(number_neurons)
 
@@ -109,7 +113,7 @@ for results_path in results_path_list:
             else:
                 None
             key = names_fixed_time[j]
-            item = int(re.sub("[^0-9]", "",item))
+            item = int(re.sub(r"[^0-9]", "",item))
             end_data_fixed_time[key].append(item*divide)
             
 
@@ -235,58 +239,71 @@ for NV_REG_FACTOR in NV_REG_FACTORS:
     end_data_fixed_time_simulations[test_no]["throughput_pwr_csmpt_W"] = [end_data_fixed_time_simulations[test_no]["throughput"][k]/end_data_fixed_time_simulations[test_no]["total_power_consumption"][k]*1000 for k in range(len(end_data_fixed_time["hazard_threshold_val"]))]
     test_no += 1
     #Computing Throughput
-               
+
+test_no = 0
+for NV_REG_FACTOR in NV_REG_FACTORS:
+    names_fixed_time = list(end_data_fixed_time_simulations[test_no].keys())
+    test_no += 1
         
 number_objects = len(end_data_fixed_time_simulations[0])
 
 
-for i in range(number_objects):
-    result_figures_list.append(plt.figure())
-test_no = 0
-#ax = []
-for NV_REG_FACTOR in NV_REG_FACTORS:
-    names_fixed_time = list(end_data_fixed_time_simulations[test_no].keys())
-    end_data_fixed_time = end_data_fixed_time_simulations[test_no]
-    for i in range(number_objects):
-        key_xaxis = "hazard_threshold_val"
-        key_yaxis = names_fixed_time[i]
-        #ax.append(result_figures_list[i].gca())
-        ax = result_figures_list[i].gca()
-        title = "Fixed Time Results - Hazard Threshold vs."+names_fixed_time[i]
-        xlabel = "Hazard Threshold [mV]"
-        ylabel = names_fixed_time[i]
-        if "inst_pwr" in title:
-            ylabel += " [mW]"
-        if "apprx_values" in title:
-            ylabel += " [No. Cycles]"
-        if "total" in title:
-            ylabel += " [mW]"
-        if "throughput" in title and "throughput_pwr" not in title:
-            ylabel += "[Op/s]"
-        if "throughput_pwr"  in title:
-            ylabel += "[Op/s/mW]"
-        ax.set_title(title)
-        ax.set_xlabel(xlabel)
-        ax.set_ylabel(ylabel)
-        ax.plot(end_data_fixed_time[key_xaxis],end_data_fixed_time[key_yaxis], label="NVREG_FACTOR="+str(NV_REG_FACTOR))
-        ax.legend()
-        ax.grid(True)
-    test_no += 1
-plt.show()
+# #Plotting Power Consumption over threshold
+# i = -1
+# fig = plt.figure()
+# key_xaxis = "hazard_threshold_val"
+# key
 
 
-#PLOTTING AND SAVING PLOT FOR FINDING OPTIMAL VALUE
-#THORUGHPUT OF NVREG _FACTOR = 2
-NV_REG_FACTOR = 2
+# for i in range(number_objects):
+#     result_figures_list.append(plt.figure())
+# test_no = 0
+# #ax = []
+# for NV_REG_FACTOR in NV_REG_FACTORS:
+#     names_fixed_time = list(end_data_fixed_time_simulations[test_no].keys())
+#     end_data_fixed_time = end_data_fixed_time_simulations[test_no]
+#     for i in range(number_objects):
+#         key_xaxis = "hazard_threshold_val"
+#         key_yaxis = names_fixed_time[i]
+#         #ax.append(result_figures_list[i].gca())
+#         ax = result_figures_list[i].gca()
+#         title = "Fixed Time Results - Hazard Threshold vs."+names_fixed_time[i]
+#         xlabel = "Hazard Threshold [mV]"
+#         ylabel = names_fixed_time[i]
+#         if "inst_pwr" in title:
+#             ylabel += " [mW]"
+#         if "apprx_values" in title:
+#             ylabel += " [No. Cycles]"
+#         if "total" in title:
+#             ylabel += " [mW]"
+#         if "throughput" in title and "throughput_pwr" not in title:
+#             ylabel += "[Op/s]"
+#         if "throughput_pwr"  in title:
+#             ylabel += "[Op/s/mW]"
+#         ax.set_title(title)
+#         ax.set_xlabel(xlabel)
+#         ax.set_ylabel(ylabel)
+#         ax.plot(end_data_fixed_time[key_xaxis],end_data_fixed_time[key_yaxis], label="NVREG_FACTOR="+str(NV_REG_FACTOR))
+#         ax.legend()
+#         ax.grid(True)
+#     test_no += 1
+# plt.show()
+
+
+# #PLOTTING AND SAVING PLOT FOR FINDING OPTIMAL VALUE
+# #THORUGHPUT OF NVREG _FACTOR = 2
+NV_REG_FACTOR = NV_REG_FACTOR_test
 index = [index for index,value in list(enumerate(NV_REG_FACTORS)) if NV_REG_FACTORS[index] == NV_REG_FACTOR][0]
 end_data_fixed_time = end_data_fixed_time_simulations[index]
 
-#OPTIMAL VALUE GIVEN NUMBER NEURONS
-#Plotting the optimal value starting from the target hazard threshold
+# #OPTIMAL VALUE GIVEN NUMBER NEURONS
+# #Plotting the optimal value starting from the target hazard threshold
 hazard_target = 2480 #Valur found from singl trace analysis
 #Searching for the maximum in the right neighbourhood
 indexes = [index for index, value in list(enumerate(end_data_fixed_time[names_fixed_time[0]])) if value > hazard_target]
 index = min(indexes)
+hazard_rounded = end_data_fixed_time[names_fixed_time[0]][index]
+throughput_rounded = end_data_fixed_time[names_fixed_time[-1]][index]
 section_throughput = end_data_fixed_time[names_fixed_time[-1]][index:]
 index_opt = section_throughput.index(max(section_throughput))
 opt_throughput = section_throughput[index_opt]
@@ -299,7 +316,7 @@ fig = plt.figure()
 axis = fig.gca()
 title = "Fixed Time Results - Hazard Threshold vs."+names_fixed_time[-1]
 xlabel = "Hazard Threshold [mV]"
-ylabel = names_fixed_time[i]
+ylabel = names_fixed_time[-1]
 if "inst_pwr" in title:
     ylabel += " [mW]"
 if "apprx_values" in title:
@@ -316,18 +333,23 @@ axis.set_ylabel(ylabel)
 axis.plot(end_data_fixed_time[key_xaxis],end_data_fixed_time[key_yaxis], color="crimson",label="NVREG_FACTOR="+str(NV_REG_FACTOR))
 axis.legend()
 axis.grid(True)
-#Computing Throughput, Normalized 
+#Computing Throughput, Normalized
+#Starting point
+axis.plot(hazard_rounded, throughput_rounded, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
+axis.text(hazard_rounded+100, throughput_rounded-2000, "Starting Point: ("+ str(int(hazard_rounded))+" mV ,"+str(int(throughput_rounded))+" OP/s/mW )",bbox = dict(facecolor='blue', alpha=0.5))
+#Optimal 
 axis.plot(opt_threshold, opt_throughput, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
 axis.text(opt_threshold+100, opt_throughput+1000, "Optimal Value: ("+ str(int(opt_threshold))+" mV ,"+str(int(opt_throughput))+" OP/s/mW )",bbox = dict(facecolor='blue', alpha=0.5))
 fig.savefig(results_plots_path+optimal_value_neurons_plot,dpi=1260)
 
-#OPTIMAL VALUE GIVEN THROUGHPUT SPECIFICATION
-#TARGET THROGUHTPUT VALUE
+# #OPTIMAL VALUE GIVEN THROUGHPUT SPECIFICATION
+# #TARGET THROGUHTPUT VALUE
 throughput_target_figname = "throughput_target"
 throughput_target = 10_000
 indexes = [index for index, value in list(enumerate(end_data_fixed_time[names_fixed_time[-2]])) if value <= throughput_target]
 index = min(indexes)
 throughput_rounded = end_data_fixed_time[names_fixed_time[-2]][index]
+throughput_W_rounded = end_data_fixed_time[names_fixed_time[-1]][index]
 hazard_target = end_data_fixed_time[names_fixed_time[0]][index]
 #Plotting data of throughput figure
 key_xaxis = "hazard_threshold_val"
@@ -337,7 +359,7 @@ fig = plt.figure()
 axis = fig.gca()
 title = "Fixed Time Results - Hazard Threshold vs."+names_fixed_time[-2]
 xlabel = "Hazard Threshold [mV]"
-ylabel = names_fixed_time[i]
+ylabel = names_fixed_time[-2]
 if "inst_pwr" in title:
     ylabel += " [mW]"
 if "apprx_values" in title:
@@ -355,13 +377,14 @@ axis.plot(end_data_fixed_time[key_xaxis],end_data_fixed_time[key_yaxis], color="
 axis.legend()
 axis.grid(True)
 axis.axhline(throughput_target)
+#Start ingPoint
 axis.plot(hazard_target, throughput_rounded, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
-axis.text(hazard_target+100, throughput_rounded+1000, "Target: "+str(int(hazard_target))+" mV , "+str(int(throughput_target))+" Op/s", bbox = dict(facecolor='blue', alpha=0.5))
+axis.text(hazard_target+100, throughput_rounded+1000, "Starting Point: "+str(int(hazard_target))+" mV , "+str(int(throughput_target))+" Op/s", bbox = dict(facecolor='blue', alpha=0.5))
 fig.savefig(results_plots_path+throughput_target_figname+"",dpi=1060)
 
 
-#OPTIMAL HAZARD THRESHOLD
-#Finding optimal Hazard threshold
+# #OPTIMAL HAZARD THRESHOLD
+# #Finding optimal Hazard threshold
 optimal_threshold_throughput_figname = "optimal_threshold_throughput"
 section_throughput = end_data_fixed_time[names_fixed_time[-1]][index:]
 index_opt = section_throughput.index(max(section_throughput))
@@ -375,7 +398,7 @@ fig = plt.figure()
 axis = fig.gca()
 title = "Fixed Time Results - Hazard Threshold vs."+names_fixed_time[-1]
 xlabel = "Hazard Threshold [mV]"
-ylabel = names_fixed_time[i]
+ylabel = names_fixed_time[-1]
 if "inst_pwr" in title:
     ylabel += " [mW]"
 if "apprx_values" in title:
@@ -392,17 +415,60 @@ axis.set_ylabel(ylabel)
 axis.plot(end_data_fixed_time[key_xaxis],end_data_fixed_time[key_yaxis], color="crimson",label="NVREG_FACTOR="+str(NV_REG_FACTOR))
 axis.legend()
 axis.grid(True)
+#Start Point
+axis.plot(hazard_target, throughput_W_rounded, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
+axis.text(hazard_target+100, throughput_W_rounded-2000, "Starting Point: "+str(int(hazard_target))+" mV , "+str(int(throughput_W_rounded))+" Op/s/mW", bbox = dict(facecolor='blue', alpha=0.5))
+
 #Computing Throughput, Normalized 
 axis.plot(opt_threshold, opt_throughput, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
 axis.text(opt_threshold+100, opt_throughput+1000, "Optimal Value: ("+ str(int(opt_threshold))+" mV ,"+str(int(opt_throughput))+" OP/s/mW )",bbox = dict(facecolor='blue', alpha=0.5))
 fig.savefig(results_plots_path+optimal_threshold_throughput_figname+"",dpi=1260)
         
+test_no = 0
+wrng_values = end_data_fixed_time_simulations[test_no]["hazard_threshold_val"][0:50]
+power_consumption = end_data_fixed_time_simulations[test_no]["total_power_consumption"][0:50]
+I_layer1_cycle_save_state = end_data_fixed_time_simulations[test_no]["I_layer1_pwr_apprx_values_save_state"][0:50]
+throughput_per_power = end_data_fixed_time_simulations[test_no]["throughput_pwr_csmpt_W"][0:50]
+#Loading voltage trace
+vt_path = "../../src/NORM/voltage_traces/"+voltage_trace_namefile+".txt"
+vt_file = open(vt_path,"r")
+allLines = vt_file.readlines()
+vt_file.close()
+vt_voltages_original = [int(line) for line in allLines]
+#vt_voltages = vt_voltages_original
+vt_voltages = vt_voltages_original[0:10000]
+vt_voltages += vt_voltages_original[0:8750]
+#Computing number of oscillations
+oscs = []
+for wrng_value in wrng_values:
+    osc = 0
+    for i in range(len(vt_voltages)-1):
+        if vt_voltages[i] > wrng_value and vt_voltages[i+1] < wrng_value:
+            osc += 1
+    oscs.append(osc)
+
+fig = plt.figure()
+ax1 = fig.gca()
+ax1.plot(wrng_values, oscs, color="blue")
+ax1.set_ylabel('Number of oscillations', color='blue')
+
+
+ax2 = ax1.twinx()
+ax2.plot(wrng_values, power_consumption, color="red")
+ax2.set_ylabel('Power Consumption', color='red')
+ax2.grid(True)
+plt.show()
+
+
+#Comparing power consumption versus number of oscillations as function of hazard threshold
+
 
 #SAVING PLOT
-print("Saving Plots...")
-for i in range(number_objects):
-    fig = result_figures_list[i]
-    key_yaxis = names_fixed_time[i]
-    fig.savefig(results_plots_path+key_yaxis,dpi=1060)
-print("Finished Saving!")
+if enable_plot_save == True:
+    print("Saving Plots...")
+    for i in range(number_objects):
+        fig = result_figures_list[i]
+        key_yaxis = names_fixed_time[i]
+        fig.savefig(results_plots_path+key_yaxis,dpi=1060)
+    print("Finished Saving!")
 

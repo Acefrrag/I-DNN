@@ -15,13 +15,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="299039250fs"></ZoomStartTime>
-      <ZoomEndTime time="299403751fs"></ZoomEndTime>
-      <Cursor1Time time="299260000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="66231975fs"></ZoomEndTime>
+      <Cursor1Time time="62740000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="398"></NameColumnWidth>
-      <ValueColumnWidth column_width="195"></ValueColumnWidth>
+      <NameColumnWidth column_width="472"></NameColumnWidth>
+      <ValueColumnWidth column_width="232"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="18" />
    <wvobject type="divider" fp_name="divider4150">
@@ -69,6 +69,7 @@
    <wvobject fp_name="group352" type="group">
       <obj_property name="label">INTERMITTENCY_EMULATOR</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="divider" fp_name="divider933">
          <obj_property name="label">INTERMITTENCY EMULATOR</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -80,6 +81,8 @@
       <wvobject fp_name="/I_DNN_tb/intermittency_emulator_cmp/ROM_data_out" type="other">
          <obj_property name="ElementShortName">ROM_data_out</obj_property>
          <obj_property name="ObjectShortName">ROM_data_out</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+         <obj_property name="CellHeight">100</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/intermittency_emulator_cmp/reset_emulator" type="logic">
          <obj_property name="ElementShortName">reset_emulator</obj_property>
@@ -133,6 +136,7 @@
    <wvobject fp_name="group302" type="group">
       <obj_property name="label">LAYER1</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="divider" fp_name="divider4152">
          <obj_property name="label">LAYER1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -610,6 +614,7 @@
    <wvobject fp_name="group295" type="group">
       <obj_property name="label">LAYER4</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/clk" type="logic">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
@@ -959,8 +964,8 @@
          <obj_property name="ObjectShortName">sigmoid_inputdataIntWidth</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/lyr_prms_path" type="array">
-         <obj_property name="ElementShortName">lyr_prms_path[1:19]</obj_property>
-         <obj_property name="ObjectShortName">lyr_prms_path[1:19]</obj_property>
+         <obj_property name="ElementShortName">lyr_prms_path[1:58]</obj_property>
+         <obj_property name="ObjectShortName">lyr_prms_path[1:58]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/I_layer4/data_rec_nv_reg_we" type="logic">
          <obj_property name="ElementShortName">data_rec_nv_reg_we</obj_property>
@@ -990,6 +995,7 @@
    <wvobject fp_name="group262" type="group">
       <obj_property name="label">SOFTMAX</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/soft_max_comp/data_in" type="array">
          <obj_property name="ElementShortName">data_in[13:-18]</obj_property>
          <obj_property name="ObjectShortName">data_in[13:-18]</obj_property>
@@ -1042,7 +1048,6 @@
    <wvobject fp_name="group217" type="group">
       <obj_property name="label">POWER_APPROXIMATION</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject type="divider" fp_name="divider243">
          <obj_property name="label">LAYER1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -1050,7 +1055,6 @@
       <wvobject fp_name="group720" type="group">
          <obj_property name="label">PA_unit</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/I_DNN_tb/clk" type="logic">
             <obj_property name="ElementShortName">clk</obj_property>
             <obj_property name="ObjectShortName">clk</obj_property>
@@ -1094,8 +1098,8 @@
             <obj_property name="ObjectShortName">evaluation_ready</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/PWR_CONSUMPTION_VAL_ROM_comp/ROM_layer" type="array">
-            <obj_property name="ElementShortName">ROM_layer[0:3]</obj_property>
-            <obj_property name="ObjectShortName">ROM_layer[0:3]</obj_property>
+            <obj_property name="ElementShortName">ROM_layer[3:0]</obj_property>
+            <obj_property name="ObjectShortName">ROM_layer[3:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_tb/I_DNN_cmp/inst_pwr_calc_comp_layer1/num_state_to_evaluate" type="other">
             <obj_property name="ElementShortName">num_state_to_evaluate</obj_property>

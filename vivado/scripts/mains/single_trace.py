@@ -27,12 +27,12 @@ except:
 
 #Loading all voltage traces and plotting them
 traces_path = "../files/voltage_traces/"
-i=2
+i=7
 trace_name = "voltage_trace"+str(i)+".txt"
 filename = [traces_path+trace_name]
 lines = np.loadtxt(filename,ndmin=1,dtype=np.dtype(float))
 trace = [{"trace_ID": str(i),\
-           "voltages": [line[1]*1000 for line in lines,\
+           "voltages": [line[1]*1000 for line in lines],\
            "samples": [x[0] for x in list(enumerate(lines))]}]
 
 #Plotting data

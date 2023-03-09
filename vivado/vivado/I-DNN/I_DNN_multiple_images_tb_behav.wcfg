@@ -16,19 +16,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="290901844fs"></ZoomStartTime>
-      <ZoomEndTime time="305731632fs"></ZoomEndTime>
-      <Cursor1Time time="303260000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="94000001fs"></ZoomEndTime>
+      <Cursor1Time time="27060000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="336"></NameColumnWidth>
-      <ValueColumnWidth column_width="136"></ValueColumnWidth>
+      <NameColumnWidth column_width="240"></NameColumnWidth>
+      <ValueColumnWidth column_width="128"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="36" />
-   <wvobject fp_name="/I_DNN_multiple_images_tb/image_filenames" type="array">
-      <obj_property name="ElementShortName">image_filenames[0:7][1:16]</obj_property>
-      <obj_property name="ObjectShortName">image_filenames[0:7][1:16]</obj_property>
-   </wvobject>
+   <WVObjectSize size="33" />
    <wvobject fp_name="/I_DNN_multiple_images_tb/image_no" type="other">
       <obj_property name="ElementShortName">image_no</obj_property>
       <obj_property name="ObjectShortName">image_no</obj_property>
@@ -57,8 +53,8 @@
       <obj_property name="label">I_DNN</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/data_in" type="array">
-         <obj_property name="ElementShortName">data_in[12:-19]</obj_property>
-         <obj_property name="ObjectShortName">data_in[12:-19]</obj_property>
+         <obj_property name="ElementShortName">data_in[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_in[13:-18]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">19</obj_property>
@@ -73,8 +69,8 @@
          <obj_property name="ObjectShortName">clk</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/data_out" type="array">
-         <obj_property name="ElementShortName">data_out[12:-19]</obj_property>
-         <obj_property name="ObjectShortName">data_out[12:-19]</obj_property>
+         <obj_property name="ElementShortName">data_out[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out[13:-18]</obj_property>
          <obj_property name="Radix">REALRADIX</obj_property>
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">18</obj_property>
@@ -108,6 +104,7 @@
       <wvobject fp_name="/I_DNN_multiple_images_tb/intermittency_emulator_cmp/threshold_compared" type="array">
          <obj_property name="ElementShortName">threshold_compared[1:0]</obj_property>
          <obj_property name="ObjectShortName">threshold_compared[1:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/intermittency_emulator_cmp/select_threshold" type="other">
          <obj_property name="ElementShortName">select_threshold</obj_property>
@@ -122,6 +119,12 @@
          <obj_property name="ObjectShortName">ROM_data_out</obj_property>
          <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
          <obj_property name="CellHeight">100</obj_property>
+         <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+         <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+         <obj_property name="AnalogYRRangeMax">5000.000000</obj_property>
+         <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_LINEAR</obj_property>
+         <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+         <obj_property name="AnalogHorizLine">0.000000</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/intermittency_emulator_cmp/prescaler_clk" type="logic">
          <obj_property name="ElementShortName">prescaler_clk</obj_property>
@@ -164,8 +167,8 @@
          <obj_property name="ObjectShortName">data_out</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/intermittency_emulator_cmp/voltage_trace_ROM/ROM" type="array">
-         <obj_property name="ElementShortName">ROM[0:9999]</obj_property>
-         <obj_property name="ObjectShortName">ROM[0:9999]</obj_property>
+         <obj_property name="ElementShortName">ROM[0:18749]</obj_property>
+         <obj_property name="ObjectShortName">ROM[0:18749]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/intermittency_emulator_cmp/voltage_trace_ROM/NUM_ELEMNTS_ROM" type="other">
          <obj_property name="ElementShortName">NUM_ELEMNTS_ROM</obj_property>
@@ -185,8 +188,8 @@
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/I_DNN_multiple_images_tb/input_reg" type="array">
-         <obj_property name="ElementShortName">input_reg[0:783][12:-19]</obj_property>
-         <obj_property name="ObjectShortName">input_reg[0:783][12:-19]</obj_property>
+         <obj_property name="ElementShortName">input_reg[0:783][13:-18]</obj_property>
+         <obj_property name="ObjectShortName">input_reg[0:783][13:-18]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_in_sel" type="array">
          <obj_property name="ElementShortName">data_in_sel[0:9]</obj_property>
@@ -202,380 +205,20 @@
          <obj_property name="ObjectShortName">clk</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_in" type="array">
-         <obj_property name="ElementShortName">data_in[12:-19]</obj_property>
-         <obj_property name="ObjectShortName">data_in[12:-19]</obj_property>
+         <obj_property name="ElementShortName">data_in[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_in[13:-18]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/start" type="logic">
          <obj_property name="ElementShortName">start</obj_property>
          <obj_property name="ObjectShortName">start</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out" type="array">
-         <obj_property name="ElementShortName">data_out[12:-19]</obj_property>
-         <obj_property name="ObjectShortName">data_out[12:-19]</obj_property>
+         <obj_property name="ElementShortName">data_out[13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out[13:-18]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect" type="array">
-         <obj_property name="ElementShortName">data_out_vect[0:29][12:-19]</obj_property>
-         <obj_property name="ObjectShortName">data_out_vect[0:29][12:-19]</obj_property>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[0]" type="array">
-            <obj_property name="ElementShortName">[0][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[0][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[1]" type="array">
-            <obj_property name="ElementShortName">[1][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[1][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[2]" type="array">
-            <obj_property name="ElementShortName">[2][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[2][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[3]" type="array">
-            <obj_property name="ElementShortName">[3][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[3][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[4]" type="array">
-            <obj_property name="ElementShortName">[4][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[4][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[5]" type="array">
-            <obj_property name="ElementShortName">[5][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[5][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[6]" type="array">
-            <obj_property name="ElementShortName">[6][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[6][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[7]" type="array">
-            <obj_property name="ElementShortName">[7][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[7][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[8]" type="array">
-            <obj_property name="ElementShortName">[8][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[8][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[9]" type="array">
-            <obj_property name="ElementShortName">[9][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[9][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[10]" type="array">
-            <obj_property name="ElementShortName">[10][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[10][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[11]" type="array">
-            <obj_property name="ElementShortName">[11][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[11][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[12]" type="array">
-            <obj_property name="ElementShortName">[12][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[12][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[13]" type="array">
-            <obj_property name="ElementShortName">[13][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[13][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[14]" type="array">
-            <obj_property name="ElementShortName">[14][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[14][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[15]" type="array">
-            <obj_property name="ElementShortName">[15][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[15][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[16]" type="array">
-            <obj_property name="ElementShortName">[16][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[16][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[17]" type="array">
-            <obj_property name="ElementShortName">[17][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[17][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[18]" type="array">
-            <obj_property name="ElementShortName">[18][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[18][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[19]" type="array">
-            <obj_property name="ElementShortName">[19][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[19][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[20]" type="array">
-            <obj_property name="ElementShortName">[20][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[20][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[21]" type="array">
-            <obj_property name="ElementShortName">[21][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[21][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[22]" type="array">
-            <obj_property name="ElementShortName">[22][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[22][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[23]" type="array">
-            <obj_property name="ElementShortName">[23][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[23][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[24]" type="array">
-            <obj_property name="ElementShortName">[24][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[24][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[25]" type="array">
-            <obj_property name="ElementShortName">[25][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[25][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[26]" type="array">
-            <obj_property name="ElementShortName">[26][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[26][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[27]" type="array">
-            <obj_property name="ElementShortName">[27][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[27][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[28]" type="array">
-            <obj_property name="ElementShortName">[28][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[28][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[29]" type="array">
-            <obj_property name="ElementShortName">[29][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[29][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[0]" type="array">
-            <obj_property name="ElementShortName">[0][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[0][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[1]" type="array">
-            <obj_property name="ElementShortName">[1][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[1][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[2]" type="array">
-            <obj_property name="ElementShortName">[2][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[2][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[3]" type="array">
-            <obj_property name="ElementShortName">[3][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[3][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[4]" type="array">
-            <obj_property name="ElementShortName">[4][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[4][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[5]" type="array">
-            <obj_property name="ElementShortName">[5][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[5][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[6]" type="array">
-            <obj_property name="ElementShortName">[6][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[6][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[7]" type="array">
-            <obj_property name="ElementShortName">[7][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[7][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[8]" type="array">
-            <obj_property name="ElementShortName">[8][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[8][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[9]" type="array">
-            <obj_property name="ElementShortName">[9][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[9][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[10]" type="array">
-            <obj_property name="ElementShortName">[10][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[10][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[11]" type="array">
-            <obj_property name="ElementShortName">[11][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[11][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[12]" type="array">
-            <obj_property name="ElementShortName">[12][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[12][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[13]" type="array">
-            <obj_property name="ElementShortName">[13][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[13][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[14]" type="array">
-            <obj_property name="ElementShortName">[14][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[14][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[15]" type="array">
-            <obj_property name="ElementShortName">[15][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[15][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[16]" type="array">
-            <obj_property name="ElementShortName">[16][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[16][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[17]" type="array">
-            <obj_property name="ElementShortName">[17][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[17][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[18]" type="array">
-            <obj_property name="ElementShortName">[18][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[18][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[19]" type="array">
-            <obj_property name="ElementShortName">[19][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[19][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[20]" type="array">
-            <obj_property name="ElementShortName">[20][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[20][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[21]" type="array">
-            <obj_property name="ElementShortName">[21][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[21][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[22]" type="array">
-            <obj_property name="ElementShortName">[22][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[22][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[23]" type="array">
-            <obj_property name="ElementShortName">[23][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[23][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[24]" type="array">
-            <obj_property name="ElementShortName">[24][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[24][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[25]" type="array">
-            <obj_property name="ElementShortName">[25][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[25][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[26]" type="array">
-            <obj_property name="ElementShortName">[26][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[26][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[27]" type="array">
-            <obj_property name="ElementShortName">[27][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[27][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[28]" type="array">
-            <obj_property name="ElementShortName">[28][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[28][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/data_out_vect[29]" type="array">
-            <obj_property name="ElementShortName">[29][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[29][12:-19]</obj_property>
-         </wvobject>
+         <obj_property name="ElementShortName">data_out_vect[0:29][13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out_vect[0:29][13:-18]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/I_fsm_layer_comp/pr_state" type="other">
          <obj_property name="ElementShortName">pr_state</obj_property>
@@ -597,8 +240,8 @@
             <obj_property name="ObjectShortName">ROM[0:783][3:-28]</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/data_in" type="array">
-            <obj_property name="ElementShortName">data_in[12:-19]</obj_property>
-            <obj_property name="ObjectShortName">data_in[12:-19]</obj_property>
+            <obj_property name="ElementShortName">data_in[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">data_in[13:-18]</obj_property>
             <obj_property name="Radix">BINARYRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/addr" type="array">
@@ -607,8 +250,8 @@
             <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/data_out" type="array">
-            <obj_property name="ElementShortName">data_out[12:-19]</obj_property>
-            <obj_property name="ObjectShortName">data_out[12:-19]</obj_property>
+            <obj_property name="ElementShortName">data_out[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">data_out[13:-18]</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/wsum_save" type="array">
             <obj_property name="ElementShortName">wsum_save[31:0]</obj_property>
@@ -619,28 +262,28 @@
             <obj_property name="ObjectShortName">weight_out[3:-28]</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/sum_reg_out" type="array">
-            <obj_property name="ElementShortName">sum_reg_out[12:-19]</obj_property>
-            <obj_property name="ObjectShortName">sum_reg_out[12:-19]</obj_property>
+            <obj_property name="ElementShortName">sum_reg_out[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">sum_reg_out[13:-18]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">19</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/mul_out" type="array">
-            <obj_property name="ElementShortName">mul_out[12:-19]</obj_property>
-            <obj_property name="ObjectShortName">mul_out[12:-19]</obj_property>
+            <obj_property name="ElementShortName">mul_out[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">mul_out[13:-18]</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/weight_prod" type="array">
-            <obj_property name="ElementShortName">weight_prod[12:-19]</obj_property>
-            <obj_property name="ObjectShortName">weight_prod[12:-19]</obj_property>
+            <obj_property name="ElementShortName">weight_prod[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">weight_prod[13:-18]</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/act_log_out" type="array">
-            <obj_property name="ElementShortName">act_log_out[12:-19]</obj_property>
-            <obj_property name="ObjectShortName">act_log_out[12:-19]</obj_property>
+            <obj_property name="ElementShortName">act_log_out[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">act_log_out[13:-18]</obj_property>
          </wvobject>
          <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/\I_neurons(0)\/I_neuron_i/act_log_out_d" type="array">
-            <obj_property name="ElementShortName">act_log_out_d[12:-19]</obj_property>
-            <obj_property name="ObjectShortName">act_log_out_d[12:-19]</obj_property>
+            <obj_property name="ElementShortName">act_log_out_d[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">act_log_out_d[13:-18]</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer1/internal_en_rec_vect" type="array">
@@ -655,7 +298,6 @@
    <wvobject fp_name="group2949" type="group">
       <obj_property name="label">layer2</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/clk" type="logic">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
@@ -665,308 +307,8 @@
          <obj_property name="ObjectShortName">pr_state</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect" type="array">
-         <obj_property name="ElementShortName">data_out_vect[0:24][12:-19]</obj_property>
-         <obj_property name="ObjectShortName">data_out_vect[0:24][12:-19]</obj_property>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[0]" type="array">
-            <obj_property name="ElementShortName">[0][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[0][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[1]" type="array">
-            <obj_property name="ElementShortName">[1][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[1][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[2]" type="array">
-            <obj_property name="ElementShortName">[2][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[2][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[3]" type="array">
-            <obj_property name="ElementShortName">[3][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[3][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[4]" type="array">
-            <obj_property name="ElementShortName">[4][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[4][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[5]" type="array">
-            <obj_property name="ElementShortName">[5][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[5][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[6]" type="array">
-            <obj_property name="ElementShortName">[6][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[6][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[7]" type="array">
-            <obj_property name="ElementShortName">[7][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[7][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[8]" type="array">
-            <obj_property name="ElementShortName">[8][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[8][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[9]" type="array">
-            <obj_property name="ElementShortName">[9][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[9][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[10]" type="array">
-            <obj_property name="ElementShortName">[10][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[10][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[11]" type="array">
-            <obj_property name="ElementShortName">[11][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[11][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[12]" type="array">
-            <obj_property name="ElementShortName">[12][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[12][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[13]" type="array">
-            <obj_property name="ElementShortName">[13][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[13][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[14]" type="array">
-            <obj_property name="ElementShortName">[14][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[14][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[15]" type="array">
-            <obj_property name="ElementShortName">[15][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[15][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[16]" type="array">
-            <obj_property name="ElementShortName">[16][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[16][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[17]" type="array">
-            <obj_property name="ElementShortName">[17][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[17][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[18]" type="array">
-            <obj_property name="ElementShortName">[18][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[18][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[19]" type="array">
-            <obj_property name="ElementShortName">[19][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[19][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[20]" type="array">
-            <obj_property name="ElementShortName">[20][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[20][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[21]" type="array">
-            <obj_property name="ElementShortName">[21][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[21][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[22]" type="array">
-            <obj_property name="ElementShortName">[22][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[22][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[23]" type="array">
-            <obj_property name="ElementShortName">[23][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[23][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[24]" type="array">
-            <obj_property name="ElementShortName">[24][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[24][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[0]" type="array">
-            <obj_property name="ElementShortName">[0][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[0][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[1]" type="array">
-            <obj_property name="ElementShortName">[1][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[1][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[2]" type="array">
-            <obj_property name="ElementShortName">[2][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[2][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[3]" type="array">
-            <obj_property name="ElementShortName">[3][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[3][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[4]" type="array">
-            <obj_property name="ElementShortName">[4][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[4][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[5]" type="array">
-            <obj_property name="ElementShortName">[5][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[5][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[6]" type="array">
-            <obj_property name="ElementShortName">[6][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[6][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[7]" type="array">
-            <obj_property name="ElementShortName">[7][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[7][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[8]" type="array">
-            <obj_property name="ElementShortName">[8][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[8][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[9]" type="array">
-            <obj_property name="ElementShortName">[9][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[9][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[10]" type="array">
-            <obj_property name="ElementShortName">[10][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[10][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[11]" type="array">
-            <obj_property name="ElementShortName">[11][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[11][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[12]" type="array">
-            <obj_property name="ElementShortName">[12][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[12][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[13]" type="array">
-            <obj_property name="ElementShortName">[13][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[13][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[14]" type="array">
-            <obj_property name="ElementShortName">[14][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[14][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[15]" type="array">
-            <obj_property name="ElementShortName">[15][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[15][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[16]" type="array">
-            <obj_property name="ElementShortName">[16][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[16][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[17]" type="array">
-            <obj_property name="ElementShortName">[17][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[17][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[18]" type="array">
-            <obj_property name="ElementShortName">[18][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[18][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[19]" type="array">
-            <obj_property name="ElementShortName">[19][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[19][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[20]" type="array">
-            <obj_property name="ElementShortName">[20][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[20][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[21]" type="array">
-            <obj_property name="ElementShortName">[21][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[21][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[22]" type="array">
-            <obj_property name="ElementShortName">[22][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[22][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[23]" type="array">
-            <obj_property name="ElementShortName">[23][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[23][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_out_vect[24]" type="array">
-            <obj_property name="ElementShortName">[24][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[24][12:-19]</obj_property>
-         </wvobject>
+         <obj_property name="ElementShortName">data_out_vect[0:24][13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out_vect[0:24][13:-18]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer2/data_v" type="logic">
          <obj_property name="ElementShortName">data_v</obj_property>
@@ -976,190 +318,9 @@
    <wvobject fp_name="group245" type="group">
       <obj_property name="label">layer3</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect" type="array">
-         <obj_property name="ElementShortName">data_out_vect[0:14][12:-19]</obj_property>
-         <obj_property name="ObjectShortName">data_out_vect[0:14][12:-19]</obj_property>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[0]" type="array">
-            <obj_property name="ElementShortName">[0][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[0][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[1]" type="array">
-            <obj_property name="ElementShortName">[1][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[1][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[2]" type="array">
-            <obj_property name="ElementShortName">[2][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[2][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[3]" type="array">
-            <obj_property name="ElementShortName">[3][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[3][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[4]" type="array">
-            <obj_property name="ElementShortName">[4][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[4][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[5]" type="array">
-            <obj_property name="ElementShortName">[5][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[5][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[6]" type="array">
-            <obj_property name="ElementShortName">[6][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[6][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[7]" type="array">
-            <obj_property name="ElementShortName">[7][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[7][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[8]" type="array">
-            <obj_property name="ElementShortName">[8][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[8][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[9]" type="array">
-            <obj_property name="ElementShortName">[9][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[9][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[10]" type="array">
-            <obj_property name="ElementShortName">[10][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[10][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[11]" type="array">
-            <obj_property name="ElementShortName">[11][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[11][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[12]" type="array">
-            <obj_property name="ElementShortName">[12][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[12][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[13]" type="array">
-            <obj_property name="ElementShortName">[13][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[13][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[14]" type="array">
-            <obj_property name="ElementShortName">[14][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[14][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[0]" type="array">
-            <obj_property name="ElementShortName">[0][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[0][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[1]" type="array">
-            <obj_property name="ElementShortName">[1][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[1][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[2]" type="array">
-            <obj_property name="ElementShortName">[2][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[2][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[3]" type="array">
-            <obj_property name="ElementShortName">[3][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[3][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[4]" type="array">
-            <obj_property name="ElementShortName">[4][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[4][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[5]" type="array">
-            <obj_property name="ElementShortName">[5][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[5][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[6]" type="array">
-            <obj_property name="ElementShortName">[6][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[6][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[7]" type="array">
-            <obj_property name="ElementShortName">[7][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[7][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[8]" type="array">
-            <obj_property name="ElementShortName">[8][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[8][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[9]" type="array">
-            <obj_property name="ElementShortName">[9][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[9][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[10]" type="array">
-            <obj_property name="ElementShortName">[10][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[10][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[11]" type="array">
-            <obj_property name="ElementShortName">[11][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[11][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[12]" type="array">
-            <obj_property name="ElementShortName">[12][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[12][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[13]" type="array">
-            <obj_property name="ElementShortName">[13][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[13][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_out_vect[14]" type="array">
-            <obj_property name="ElementShortName">[14][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[14][12:-19]</obj_property>
-         </wvobject>
+         <obj_property name="ElementShortName">data_out_vect[0:14][13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out_vect[0:14][13:-18]</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer3/data_v" type="logic">
          <obj_property name="ElementShortName">data_v</obj_property>
@@ -1169,7 +330,6 @@
    <wvobject fp_name="group453" type="group">
       <obj_property name="label">layer4</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_in_sel" type="array">
          <obj_property name="ElementShortName">data_in_sel[0:3]</obj_property>
          <obj_property name="ObjectShortName">data_in_sel[0:3]</obj_property>
@@ -1192,128 +352,8 @@
          <obj_property name="ObjectShortName">out_v_set</obj_property>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect" type="array">
-         <obj_property name="ElementShortName">data_out_vect[0:9][12:-19]</obj_property>
-         <obj_property name="ObjectShortName">data_out_vect[0:9][12:-19]</obj_property>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[0]" type="array">
-            <obj_property name="ElementShortName">[0][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[0][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[1]" type="array">
-            <obj_property name="ElementShortName">[1][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[1][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[2]" type="array">
-            <obj_property name="ElementShortName">[2][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[2][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[3]" type="array">
-            <obj_property name="ElementShortName">[3][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[3][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[4]" type="array">
-            <obj_property name="ElementShortName">[4][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[4][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[5]" type="array">
-            <obj_property name="ElementShortName">[5][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[5][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[6]" type="array">
-            <obj_property name="ElementShortName">[6][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[6][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[7]" type="array">
-            <obj_property name="ElementShortName">[7][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[7][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[8]" type="array">
-            <obj_property name="ElementShortName">[8][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[8][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[9]" type="array">
-            <obj_property name="ElementShortName">[9][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[9][12:-19]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[0]" type="array">
-            <obj_property name="ElementShortName">[0][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[0][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[1]" type="array">
-            <obj_property name="ElementShortName">[1][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[1][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[2]" type="array">
-            <obj_property name="ElementShortName">[2][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[2][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[3]" type="array">
-            <obj_property name="ElementShortName">[3][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[3][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[4]" type="array">
-            <obj_property name="ElementShortName">[4][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[4][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[5]" type="array">
-            <obj_property name="ElementShortName">[5][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[5][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[6]" type="array">
-            <obj_property name="ElementShortName">[6][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[6][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[7]" type="array">
-            <obj_property name="ElementShortName">[7][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[7][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[8]" type="array">
-            <obj_property name="ElementShortName">[8][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[8][12:-19]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_out_vect[9]" type="array">
-            <obj_property name="ElementShortName">[9][12:-19]</obj_property>
-            <obj_property name="ObjectShortName">[9][12:-19]</obj_property>
-         </wvobject>
+         <obj_property name="ElementShortName">data_out_vect[0:9][13:-18]</obj_property>
+         <obj_property name="ObjectShortName">data_out_vect[0:9][13:-18]</obj_property>
       </wvobject>
       <wvobject fp_name="group357" type="group">
          <obj_property name="label">Neurons</obj_property>
@@ -1321,8 +361,8 @@
          <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/\I_neurons(2)\/I_neuron_i/sum_reg_out" type="array">
             <obj_property name="DisplayName">label</obj_property>
-            <obj_property name="ElementShortName">sum_reg_out[12:-19]</obj_property>
-            <obj_property name="ObjectShortName">sum_reg_out[12:-19]</obj_property>
+            <obj_property name="ElementShortName">sum_reg_out[13:-18]</obj_property>
+            <obj_property name="ObjectShortName">sum_reg_out[13:-18]</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
             <obj_property name="radix_fractionWidth">19</obj_property>
@@ -1350,152 +390,6 @@
    <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec" type="array">
       <obj_property name="ElementShortName">data_backup_vect_internal_rec[0:12][31:0]</obj_property>
       <obj_property name="ObjectShortName">data_backup_vect_internal_rec[0:12][31:0]</obj_property>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[0]" type="array">
-         <obj_property name="ElementShortName">[0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[0][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[1]" type="array">
-         <obj_property name="ElementShortName">[1][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[1][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">19</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[2]" type="array">
-         <obj_property name="ElementShortName">[2][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[2][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">19</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[3]" type="array">
-         <obj_property name="ElementShortName">[3][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[3][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">19</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[4]" type="array">
-         <obj_property name="ElementShortName">[4][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[4][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">19</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[5]" type="array">
-         <obj_property name="ElementShortName">[5][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[5][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">19</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[6]" type="array">
-         <obj_property name="ElementShortName">[6][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[6][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">19</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[7]" type="array">
-         <obj_property name="ElementShortName">[7][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[7][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">19</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[8]" type="array">
-         <obj_property name="ElementShortName">[8][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[8][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">19</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[9]" type="array">
-         <obj_property name="ElementShortName">[9][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[9][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">19</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[10]" type="array">
-         <obj_property name="ElementShortName">[10][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[10][31:0]</obj_property>
-         <obj_property name="Radix">REALRADIX</obj_property>
-         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-         <obj_property name="radix_fractionWidth">19</obj_property>
-         <obj_property name="radix_otherWidth">0</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[11]" type="array">
-         <obj_property name="ElementShortName">[11][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[11][31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[12]" type="array">
-         <obj_property name="ElementShortName">[12][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[12][31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[0]" type="array">
-         <obj_property name="ElementShortName">[0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[0][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[1]" type="array">
-         <obj_property name="ElementShortName">[1][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[1][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[2]" type="array">
-         <obj_property name="ElementShortName">[2][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[2][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[3]" type="array">
-         <obj_property name="ElementShortName">[3][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[3][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[4]" type="array">
-         <obj_property name="ElementShortName">[4][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[4][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[5]" type="array">
-         <obj_property name="ElementShortName">[5][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[5][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[6]" type="array">
-         <obj_property name="ElementShortName">[6][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[6][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[7]" type="array">
-         <obj_property name="ElementShortName">[7][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[7][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[8]" type="array">
-         <obj_property name="ElementShortName">[8][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[8][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[9]" type="array">
-         <obj_property name="ElementShortName">[9][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[9][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[10]" type="array">
-         <obj_property name="ElementShortName">[10][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[10][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[11]" type="array">
-         <obj_property name="ElementShortName">[11][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[11][31:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/I_layer4/data_backup_vect_internal_rec[12]" type="array">
-         <obj_property name="ElementShortName">[12][31:0]</obj_property>
-         <obj_property name="ObjectShortName">[12][31:0]</obj_property>
-      </wvobject>
    </wvobject>
    <wvobject fp_name="group282" type="group">
       <obj_property name="label">nvreg4</obj_property>
@@ -1503,415 +397,6 @@
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM" type="array">
          <obj_property name="ElementShortName">RAM[0:35][31:0]</obj_property>
          <obj_property name="ObjectShortName">RAM[0:35][31:0]</obj_property>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[0]" type="array">
-            <obj_property name="ElementShortName">[0][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[0][31:0]</obj_property>
-            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[1]" type="array">
-            <obj_property name="ElementShortName">[1][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[1][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[2]" type="array">
-            <obj_property name="ElementShortName">[2][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[2][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[3]" type="array">
-            <obj_property name="ElementShortName">[3][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[3][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[4]" type="array">
-            <obj_property name="ElementShortName">[4][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[4][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[5]" type="array">
-            <obj_property name="ElementShortName">[5][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[5][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[6]" type="array">
-            <obj_property name="ElementShortName">[6][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[6][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[7]" type="array">
-            <obj_property name="ElementShortName">[7][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[7][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[8]" type="array">
-            <obj_property name="ElementShortName">[8][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[8][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[9]" type="array">
-            <obj_property name="ElementShortName">[9][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[9][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[10]" type="array">
-            <obj_property name="ElementShortName">[10][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[10][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[11]" type="array">
-            <obj_property name="ElementShortName">[11][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[11][31:0]</obj_property>
-            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[12]" type="array">
-            <obj_property name="ElementShortName">[12][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[12][31:0]</obj_property>
-            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[13]" type="array">
-            <obj_property name="ElementShortName">[13][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[13][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[14]" type="array">
-            <obj_property name="ElementShortName">[14][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[14][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[15]" type="array">
-            <obj_property name="ElementShortName">[15][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[15][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[16]" type="array">
-            <obj_property name="ElementShortName">[16][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[16][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[17]" type="array">
-            <obj_property name="ElementShortName">[17][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[17][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[18]" type="array">
-            <obj_property name="ElementShortName">[18][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[18][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[19]" type="array">
-            <obj_property name="ElementShortName">[19][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[19][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[20]" type="array">
-            <obj_property name="ElementShortName">[20][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[20][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[21]" type="array">
-            <obj_property name="ElementShortName">[21][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[21][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[22]" type="array">
-            <obj_property name="ElementShortName">[22][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[22][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[23]" type="array">
-            <obj_property name="ElementShortName">[23][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[23][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[24]" type="array">
-            <obj_property name="ElementShortName">[24][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[24][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[25]" type="array">
-            <obj_property name="ElementShortName">[25][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[25][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[26]" type="array">
-            <obj_property name="ElementShortName">[26][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[26][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[27]" type="array">
-            <obj_property name="ElementShortName">[27][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[27][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[28]" type="array">
-            <obj_property name="ElementShortName">[28][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[28][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[29]" type="array">
-            <obj_property name="ElementShortName">[29][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[29][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[30]" type="array">
-            <obj_property name="ElementShortName">[30][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[30][31:0]</obj_property>
-            <obj_property name="Radix">REALRADIX</obj_property>
-            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">19</obj_property>
-            <obj_property name="radix_otherWidth">0</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[31]" type="array">
-            <obj_property name="ElementShortName">[31][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[31][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[32]" type="array">
-            <obj_property name="ElementShortName">[32][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[32][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[33]" type="array">
-            <obj_property name="ElementShortName">[33][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[33][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[34]" type="array">
-            <obj_property name="ElementShortName">[34][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[34][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[35]" type="array">
-            <obj_property name="ElementShortName">[35][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[35][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[0]" type="array">
-            <obj_property name="ElementShortName">[0][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[0][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[1]" type="array">
-            <obj_property name="ElementShortName">[1][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[1][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[2]" type="array">
-            <obj_property name="ElementShortName">[2][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[2][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[3]" type="array">
-            <obj_property name="ElementShortName">[3][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[3][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[4]" type="array">
-            <obj_property name="ElementShortName">[4][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[4][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[5]" type="array">
-            <obj_property name="ElementShortName">[5][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[5][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[6]" type="array">
-            <obj_property name="ElementShortName">[6][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[6][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[7]" type="array">
-            <obj_property name="ElementShortName">[7][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[7][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[8]" type="array">
-            <obj_property name="ElementShortName">[8][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[8][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[9]" type="array">
-            <obj_property name="ElementShortName">[9][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[9][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[10]" type="array">
-            <obj_property name="ElementShortName">[10][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[10][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[11]" type="array">
-            <obj_property name="ElementShortName">[11][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[11][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[12]" type="array">
-            <obj_property name="ElementShortName">[12][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[12][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[13]" type="array">
-            <obj_property name="ElementShortName">[13][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[13][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[14]" type="array">
-            <obj_property name="ElementShortName">[14][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[14][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[15]" type="array">
-            <obj_property name="ElementShortName">[15][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[15][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[16]" type="array">
-            <obj_property name="ElementShortName">[16][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[16][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[17]" type="array">
-            <obj_property name="ElementShortName">[17][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[17][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[18]" type="array">
-            <obj_property name="ElementShortName">[18][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[18][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[19]" type="array">
-            <obj_property name="ElementShortName">[19][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[19][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[20]" type="array">
-            <obj_property name="ElementShortName">[20][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[20][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[21]" type="array">
-            <obj_property name="ElementShortName">[21][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[21][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[22]" type="array">
-            <obj_property name="ElementShortName">[22][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[22][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[23]" type="array">
-            <obj_property name="ElementShortName">[23][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[23][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[24]" type="array">
-            <obj_property name="ElementShortName">[24][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[24][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[25]" type="array">
-            <obj_property name="ElementShortName">[25][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[25][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[26]" type="array">
-            <obj_property name="ElementShortName">[26][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[26][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[27]" type="array">
-            <obj_property name="ElementShortName">[27][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[27][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[28]" type="array">
-            <obj_property name="ElementShortName">[28][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[28][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[29]" type="array">
-            <obj_property name="ElementShortName">[29][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[29][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[30]" type="array">
-            <obj_property name="ElementShortName">[30][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[30][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[31]" type="array">
-            <obj_property name="ElementShortName">[31][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[31][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[32]" type="array">
-            <obj_property name="ElementShortName">[32][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[32][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[33]" type="array">
-            <obj_property name="ElementShortName">[33][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[33][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[34]" type="array">
-            <obj_property name="ElementShortName">[34][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[34][31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/BRAM/RAM[35]" type="array">
-            <obj_property name="ElementShortName">[35][31:0]</obj_property>
-            <obj_property name="ObjectShortName">[35][31:0]</obj_property>
-         </wvobject>
       </wvobject>
       <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/nv_reg_comp4/addr" type="array">
          <obj_property name="ElementShortName">addr[5:0]</obj_property>
@@ -1998,21 +483,9 @@
       <obj_property name="ObjectShortName">addr_in[0:9]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/fsm_nv_reg_db_comp/task_status" type="logic">
-      <obj_property name="ElementShortName">task_status</obj_property>
-      <obj_property name="ObjectShortName">task_status</obj_property>
-   </wvobject>
-   <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/fsm_nv_reg_db_comp/present_state" type="other">
-      <obj_property name="ElementShortName">present_state</obj_property>
-      <obj_property name="ObjectShortName">present_state</obj_property>
-   </wvobject>
    <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/thresh_stats" type="other">
       <obj_property name="ElementShortName">thresh_stats</obj_property>
       <obj_property name="ObjectShortName">thresh_stats</obj_property>
-   </wvobject>
-   <wvobject fp_name="/I_DNN_multiple_images_tb/I_DNN_cmp/fsm_nv_reg_db_comp/future_state" type="other">
-      <obj_property name="ElementShortName">future_state</obj_property>
-      <obj_property name="ObjectShortName">future_state</obj_property>
    </wvobject>
    <wvobject fp_name="group2822" type="group">
       <obj_property name="label">pwr_apprx_nvreg2</obj_property>
@@ -2183,5 +656,10 @@
       <obj_property name="ElementShortName">internal_en_rec_vect[0:11]</obj_property>
       <obj_property name="ObjectShortName">internal_en_rec_vect[0:11]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="group190" type="group">
+      <obj_property name="label">fsm_nv_reg_cb</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
 </wave_config>

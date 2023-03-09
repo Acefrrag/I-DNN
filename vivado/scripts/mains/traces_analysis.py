@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import misc
 import os
+import VTP #Librabry to process the voltage traces
 
 #Make plots directory
 try:
@@ -31,35 +32,44 @@ except:
 traces_path = "../files/voltage_traces/"
 filenames = [traces_path+str(i)+".txt" for i in range(1,11)]
 lines = [np.loadtxt(filenames[i-1],ndmin=1,dtype=np.dtype(float)) for i in range(1,11)]
-traces = [{"trace_ID": str(i),\
+vt_full = [{"trace_ID": str(i),\
            "voltages": [line[1]*1000 for line in lines[i-1]],\
            "samples": [x[0] for x in list(enumerate(lines[i-1]))]} for i in range(1, 11)]
 #constants
-voltage_trace_timescale = 160
+vt_ts = 160 #voltage timescale in ns
 #Plotting data
 shtdw_value = 2300
-hazard_threshold_sample = 2600
-full_trace_fig_path = "./plots/full_voltage_trace/"
-enable_plots_save = True
-try:
-    os.mkdir(full_trace_fig_path)
-except:
-    pass
-for trace in traces:
-    plt.figure()
-    plt.title("Data Trace "+trace["trace_ID"])
-    plt.xlabel("Sample")
-    plt.ylabel("Voltage[mV]")
-    plt.plot(trace["samples"],trace["voltages"],color ="blue")
-    plt.axhline(shtdw_value, color="red",label="Shutdown Threshold")
-    plt.axhline(hazard_threshold_sample, color="green",label="Hazard Threshold")
-    plt.legend()
-    plt.grid()
-    if enable_plots_save == True:
-        plt.savefig(fname=full_trace_fig_path+"trace_"+trace["trace_ID"],dpi=1060)
-    plt.show()
+hazard_threshold_display = 2600
+
+enable_plots_save = False
+
+sim_time = 3_000#Simulation time in us
+wlen = int(sim_time/(vt_ts/1_000))
 
 
+
+
+#Plotting and saving all voltage traces
+# full_trace_fig_path = "./plots/full_voltage_trace/"
+# try:
+#     os.mkdir(full_trace_fig_path)
+# except:
+#     pass
+# for trace in traces:
+#     plt.figure()
+#     plt.title("Data Trace "+trace["trace_ID"])
+#     plt.xlabel("Sample")
+#     plt.ylabel("Voltage[mV]")
+#     plt.plot(trace["samples"],trace["voltages"],color ="blue")
+#     plt.axhline(shtdw_value, color="red",label="Shutdown Threshold")
+#     plt.axhline(hazard_threshold_display, color="green",label="Hazard Threshold")
+#     plt.legend()
+#     plt.grid()
+# if enable_plots_save == True:
+#     plt.savefig(fname=full_trace_fig_path+"trace_"+trace["trace_ID"],dpi=1060)
+#plt.show()
+
+#Windowing the voltage trace
 
 #Maximum number of neurons analysis
 for trace in traces:

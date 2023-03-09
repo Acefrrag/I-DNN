@@ -71,7 +71,6 @@ variable dataset_content: datain_type;
 end function;
 
 constant hazard_threshold : integer := 155;
-constant DNN_testbench_input_path: string :="./tb_files/DNN/tb5/dataset/test_data.txt";
 
 
 signal input_reg: datain_type := gen_datain("../"&DNN_testbench_input_path);

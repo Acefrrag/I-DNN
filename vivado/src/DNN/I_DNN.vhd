@@ -2,7 +2,7 @@
 -- Company: 
 -- Engineer: Michele Pio Fragasso
 -- 
--- Create Date: 01-26-23_10-15-11 
+-- Create Date: 02-14-23_09-39-56 
 -- Design Name: 
 -- Module Name: DNN - Behavioral
 -- Project Name: 
@@ -100,6 +100,7 @@ signal threshold_compared   : std_logic_vector(INTERMITTENCY_NUM_THRESHOLDS - 1 
 signal select_threshold     : integer range 0 to INTERMITTENCY_NUM_THRESHOLDS -1; --This is used to select the threshold for power failure
 signal task_status          : std_logic;
 signal fsm_nv_reg_state, fsm_state_sig: fsm_nv_reg_state_t:=shutdown_s;
+signal period_backup_clks: integer range 0 to 2**31 -1 := 2**10; 
 --NV_REG_SIGNALS
 --NV_REG1
 signal nv_reg_busy1:std_logic:='0';
@@ -276,7 +277,7 @@ port(
     -------Outputs-------
     data_out: out sfixed(neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);                 
     data_in_sel: inout std_logic_vector(0 to natural(ceil(log2(real(num_inputs))))-1);  
-    data_v: out std_logic;                                                          
+    data_v: out std_logic;                                                              
     --ADDED PINS---------                                                               
     --------Inputs-------
     n_power_reset: in std_logic;                                                        
@@ -304,6 +305,17 @@ component fsm_nv_reg_db is
         fsm_state               : out fsm_nv_reg_state_t;
         fsm_state_sig           : out fsm_nv_reg_state_t 
         );
+end component;
+component fsm_nv_reg_cb is
+    port ( 
+        clk                     : in STD_LOGIC;
+        resetN                  : in STD_LOGIC;
+        task_status             : in STD_LOGIC;
+        thresh_stats            : in threshold_t;
+        period_backup_clks      : integer range 0 to 2**31 -1; 
+        fsm_state               : out fsm_nv_reg_state_t;
+        fsm_state_sig           : out fsm_nv_reg_state_t --used with care (it is the future state of the machine, and it is combinatory so it is prone to glitces)
+    );
 end component;
 --NV_REG
 component nv_reg is
@@ -437,6 +449,22 @@ fsm_nv_reg_db_comp: fsm_nv_reg_db
         fsm_state       => fsm_nv_reg_state,
         fsm_state_sig   => fsm_state_sig
     );
+    
+--##CB##Start
+----FSM_NV_REG_CB_COMP
+--fsm_nv_reg_cb_comp: fsm_nv_reg_cb
+--    port map(
+--        clk             => clk,
+--        resetN          => resetN_emulator,
+--        thresh_stats    => thresh_stats,
+--        task_status     => task_status,
+--        period_backup_clks => period_backup_clks,
+--        fsm_state       => fsm_nv_reg_state,
+--        fsm_state_sig   => fsm_state_sig
+--    );
+
+
+--#CB##End
 --LAYER1
 --NVREG
 nv_reg_comp1: nv_reg
@@ -459,6 +487,8 @@ nv_reg_comp1: nv_reg
         dout            => nv_reg_dout1
         -------------chage to here----------------
         );
+
+
 --LAYER
 I_layer1: I_layer
     generic map(
@@ -659,15 +689,15 @@ I_layer4: I_layer
     generic map(
     num_inputs => layer_inputs(4),
     num_outputs => layer_outputs(4),
-    neuron_inout_IntWidth => neuron_inout_IntWidth,
-    neuron_inout_FracWidth => neuron_inout_FracWidth,
-    neuron_weight_IntWidth => neuron_weight_IntWidth,
-    neuron_weight_FracWidth => neuron_weight_FracWidth,
+neuron_inout_IntWidth => neuron_inout_IntWidth,
+neuron_inout_FracWidth => neuron_inout_FracWidth,
+neuron_weight_IntWidth => neuron_weight_IntWidth,
+neuron_weight_FracWidth => neuron_weight_FracWidth,
     layer_no => 4,
     act_fun_type => "ReLU",
-    sigmoid_inputdataWidth=> 5,
-    sigmoid_inputdataIntWidth=> 2,
-    lyr_prms_path => DNN_prms_path
+sigmoid_inputdataWidth=> 5,
+sigmoid_inputdataIntWidth=> 2,
+lyr_prms_path => DNN_prms_path
     )
     port map(
     --ORIGINARY PINS
@@ -942,7 +972,7 @@ begin
 ----------LAYER1------------
 if pr_state_layer1 = power_off then
     power_state_en_layer1 <= (others => '0');
-elsif pr_state_layer1 = idle or pr_state_layer1 = init or pr_state_layer1 = data_save_init or pr_state_layer1 = data_save_init_cmpl or pr_state_layer1 = sleep_save or pr_state_layer1 = sleep_rec then
+elsif pr_state_layer1 = idle or pr_state_layer1 = init or pr_state_layer1 = data_save_init or pr_state_layer1 = data_save_init_cmpl then
     power_state_en_layer1 <= (others => '0');
     power_state_en_layer1(0) <= '1';
 elsif pr_state_layer1 = w_sum or pr_state_layer1 = b_sum or pr_state_layer1 = act_log or pr_state_layer1 = finished then
@@ -974,7 +1004,7 @@ end if;
 ----------LAYER2------------
 if pr_state_layer2 = power_off then
     power_state_en_layer2 <= (others => '0');
-elsif pr_state_layer2 = idle or pr_state_layer2 = init or pr_state_layer2 = data_save_init or pr_state_layer2 = data_save_init_cmpl or pr_state_layer2 = sleep_save or pr_state_layer2 = sleep_rec then
+elsif pr_state_layer2 = idle or pr_state_layer2 = init or pr_state_layer2 = data_save_init or pr_state_layer2 = data_save_init_cmpl then
     power_state_en_layer2 <= (others => '0');
     power_state_en_layer2(0) <= '1';
 elsif pr_state_layer2 = w_sum or pr_state_layer2 = b_sum or pr_state_layer2 = act_log or pr_state_layer2 = finished then
@@ -1006,7 +1036,7 @@ end if;
 ----------LAYER3------------
 if pr_state_layer3 = power_off then
     power_state_en_layer3 <= (others => '0');
-elsif pr_state_layer3 = idle or pr_state_layer3 = init or pr_state_layer3 = data_save_init or pr_state_layer3 = data_save_init_cmpl or pr_state_layer3 = sleep_save or pr_state_layer3 = sleep_rec then
+elsif pr_state_layer3 = idle or pr_state_layer3 = init or pr_state_layer3 = data_save_init or pr_state_layer3 = data_save_init_cmpl then
     power_state_en_layer3 <= (others => '0');
     power_state_en_layer3(0) <= '1';
 elsif pr_state_layer3 = w_sum or pr_state_layer3 = b_sum or pr_state_layer3 = act_log or pr_state_layer3 = finished then
@@ -1038,7 +1068,7 @@ end if;
 ----------LAYER4------------
 if pr_state_layer4 = power_off then
     power_state_en_layer4 <= (others => '0');
-elsif pr_state_layer4 = idle or pr_state_layer4 = init or pr_state_layer4 = data_save_init or pr_state_layer4 = data_save_init_cmpl or pr_state_layer4 = sleep_save or pr_state_layer4 = sleep_rec  then
+elsif pr_state_layer4 = idle or pr_state_layer4 = init or pr_state_layer4 = data_save_init or pr_state_layer4 = data_save_init_cmpl then
     power_state_en_layer4 <= (others => '0');
     power_state_en_layer4(0) <= '1';
 elsif pr_state_layer4 = w_sum or pr_state_layer4 = b_sum or pr_state_layer4 = act_log or pr_state_layer4 = finished then

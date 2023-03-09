@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
+                    # -*- coding: utf-8 -*-
 """
 Created on Wed Feb  1 21:55:00 2023
 
 Engineer: Michele Pio Fragasso
-
 
 Description:
     --File description
@@ -13,7 +12,9 @@ import sys
 sys.path.insert(0, "../functions/")
 
 import matplotlib.pyplot as plt
+import matplotlib.patches as ptch
 import matplotlib as mtplt
+mtplt.rcParams['text.usetex'] = True
 import numpy as np
 import misc
 import os
@@ -25,10 +26,9 @@ except:
     pass
 
 
-
 #Loading all voltage traces and plotting them
 traces_path = "../files/voltage_traces/"
-i=1#Trace number
+i=5#Trace number
 filenames = [traces_path+str(i)+".txt" for i in range(1,11)]
 lines = [np.loadtxt(filenames[i-1],ndmin=1,dtype=np.dtype(float)) for i in range(1,11)]
 traces = [{"trace_ID": str(i),\
@@ -37,12 +37,18 @@ traces = [{"trace_ID": str(i),\
 trace = traces[i]
 voltage_trace_timescale_ns = 160
 simulation_time_us = 3_000
-window_length = int(simulation_time_us/(voltage_trace_timescale_ns/1000))
+wlen = int(simulation_time_us/(voltage_trace_timescale_ns/1000))
 #Plotting data
 shtdw_value = 2300
 hazard_threshold_sample = 2600
 full_trace_fig_path = "./plots/full_voltage_trace/"
 enable_plots_save = True
+plt_show = True
+wrng_start = 2_300
+wrng_final = 4_500
+wrng_step = 50
+DNN_max_size = 30
+wrng_values = [x for x in range(wrng_start, wrng_final, wrng_step)]
 try:
     os.mkdir(full_trace_fig_path)
 except:
@@ -63,14 +69,14 @@ plt.show()
 
 #Maximum number of neurons analysis
 trace["neurons"] = {}
-wrng_value_step = 30
-wrng_values = [x for x in range(2300, 3000, wrng_value_step)]
+
 for NV_REG_DELAY_FACTOR in range(2, 12):
     key = "NV_REG_DELAY_FACTOR_"+str(NV_REG_DELAY_FACTOR)
     trace["neurons"][key] = [misc.compute_max_neuron_number(trace,voltage_trace_timescale=voltage_trace_timescale_ns,wrng_value=wrng_value, shtdw_value=shtdw_value,NV_REG_DELAY_FACTOR=NV_REG_DELAY_FACTOR) for wrng_value in wrng_values]
 #Plotting and saving results
 max_number_neurons_fig_path = "./plots/max_number_neurons/"
 
+                                
 try:
     os.mkdir(max_number_neurons_fig_path)
 except:
@@ -90,15 +96,26 @@ if enable_plots_save == True:
     plt.savefig(fname=max_number_neurons_fig_path+"trace_"+trace["trace_ID"],dpi=1060)
 plt.show()
 
+#Minimum Hazard threshold vs MAX DNN Size for different DELAYS
+#We do this for NV_REG_FACTORS
+DELAYS = range(2,12)
+keys = ["NV_REG_DELAY_FACTOR_"+str(DELAY) for DELAY in DELAYS]
+min_hzrds= []
+rnd_neurons = []
+for key in keys:
+    #A target neuron number is selected
+    neuron_target = DNN_max_size
+    neurons = trace["neurons"][key]
+    indexes = [index for index, value in list(enumerate(wrng_values)) if neurons[index] >= neuron_target]
+    index = min(indexes)
+    hazard_target = wrng_values[index]
+    neuron_target_rounded = neurons[index]
+    min_hzrds.append(hazard_target)
+    #list of rounded neurons
+    rnd_neurons.append(neuron_target_rounded)
 
-key = "NV_REG_DELAY_FACTOR_2"
-#A target neuron number is selected
-neuron_target = 30
-neurons = trace["neurons"][key]
-indexes = [index for index, value in list(enumerate(wrng_values)) if neurons[index] >= neuron_target]
-index = min(indexes)
-hazard_target = wrng_values[index]
-neuron_target_rounded = neurons[index]
+trace["min_hazards"] = min_hzrds
+    
 thresholds_vs_neurons_fig_path =  "./plots/threshold_vs_neurons_path/"
 try:
     os.mkdir(thresholds_vs_neurons_fig_path)
@@ -109,9 +126,11 @@ plt.title("Hazard thresholds vs Maximum number of neurons - Trace no. "+str(trac
 plt.xlabel("Maximum number of neurons within the DNN")
 plt.ylabel("Hazard threshold [mV]")
 #plt.text(neuron_target,hazard_target,'Neuron Target value'+str(neuron_target))
-plt.plot(neuron_target_rounded, hazard_target, marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green")
-plt.axvline(neuron_target_rounded)
-txt = plt.text(neuron_target_rounded+10, hazard_target+100, "Target: ("+str(neuron_target_rounded)+" ,"+ str(hazard_target)+" mV )", bbox=dict(facecolor='blue', alpha=0.5))
+[plt.plot(rnd_neurons[k], min_hzrds[k], marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green") for k in range(4)]
+plt.axvline(neuron_target)
+# arrowstyle = ptch.ArrowStyle.CurveA()
+# arrowprops = dict(facecolor='black', arrowstyle=arrowstyle)
+# [plt.annotate("Target: ("+str(rnd_neurons[k])+" ,"+ str(min_hzrds[k])+" mV )",xy = (rnd_neurons[k], min_hzrds[k]),xytext=(neuron_target_rounded+100, hazard_target+k*100) , arrowprops=arrowprops, bbox=dict(facecolor='blue', alpha=0.5)) for k in range(4)]
                 
 i = 2
 for key in trace["neurons"].keys():
@@ -190,10 +209,13 @@ try:
 except:
     pass
 y_trace = trace["voltages"]
-indexes = [index for index, value in list(enumerate(y_trace)) if y_trace[index] < shtdw_value]
+start_hzrd_value = shtdw_value + 200
+indexes = [index for index, value in list(enumerate(y_trace)) if y_trace[index] < start_hzrd_value]
 start_index = min([i-1 for i, index in list(enumerate(indexes)) if indexes[i]-indexes[i-1]>1])-5
 trace["cut_v"] = y_trace[start_index:-1]
 trace["cut_v_samples"] = [int(x[0]) for x in list(enumerate(trace["cut_v"]))]
+
+
 #Plotting
 plt.plot(trace["cut_v_samples"], trace["cut_v"], color="blue")
 plt.grid()
@@ -210,16 +232,15 @@ plt.show()
 
 
 #Traces extract the first windows_length samples to test the architecture with a subset of the trace
-
 vt_w_path = "./plots/vt_window/"
 try:
     os.mkdir(vt_w_path)
 except:
     pass
-trace["extract_v"]= trace["cut_v"][0:window_length]
-trace["extract_v_samples"]= [int(x[0]) for x in list(enumerate(trace["extract_v"]))]
-trace["time"] = [float(x*voltage_trace_timescale_ns/1000) for x in trace["extract_v_samples"]]
-plt.plot(trace["time"], trace["extract_v"], color="blue")
+trace["windowed_v"]= trace["cut_v"][0:wlen]
+trace["windowed_v_samples"]= [int(x[0]) for x in list(enumerate(trace["windowed_v"]))]
+trace["time"] = [float(x*voltage_trace_timescale_ns/1000) for x in trace["windowed_v_samples"]]
+plt.plot(trace["time"], trace["windowed_v"], color="blue")
 plt.title("Voltage Trace no."+trace["trace_ID"]+" - Voltage versus Time")
 plt.xlabel("Time [us]")
 plt.ylabel("Voltage [mV]")
@@ -232,22 +253,45 @@ if enable_plots_save == True:
 plt.show()
     
 
+#Plot max number of neurons and percentage of power on value wrt total samples
 
-# #Compute number of oscillation around the hazard threshold
-# #An oscillation is counted when we go from a lower to higher value than the hazard threshold 
-# trace["osc_count"] = []
-# k = 0
-# for wrng_value in wrng_values:
-#     osc_count = 0
-#     for i in range(len(trace["extract_v"])-1):
-#         if trace["extract_v"][i+1] < wrng_value and trace["extract_v"][i] > wrng_value:
-#             osc_count += 1
-#     trace["osc_count"].append(osc_count)
-#     k += 1
+trace["active_perc"] = []
+for wrng_value in wrng_values:
+    active_perc = 0
+    for voltage in trace["windowed_v"]:
+        if voltage > wrng_value:
+            active_perc += 1
+    active_perc = active_perc/len(trace["windowed_v"])*100
+    trace["active_perc"].append(active_perc)
 
-# plt.plot(wrng_values, trace["osc_count"])
-# plt.grid()
-# plt.show()
+fig = plt.figure()
+# Plot the first set of data on the primary y-axis
+ax1 = fig.gca()
+ax1.plot(wrng_values, trace["neurons"]["NV_REG_DELAY_FACTOR_2"], color='blue', label="NV_REG_FACTOR2")
+ax1.set_ylabel('Max Number of neurons', color='blue')
+ax1.set_xlabel("Hazard Threshold [mV]")
+#ax1.xlabel("Hazard Threshold [mV]")
+ax1.tick_params(axis='y', labelcolor='blue')
+
+# Create a second y-axis and plot the second set of data
+ax2 = ax1.twinx()
+ax2.plot(wrng_values, trace["active_perc"], color='red')
+ax2.set_ylabel(r'Active Percentage [$\frac{Active samples}{Total Samples}$ \%]', color='red')
+ax2.tick_params(axis='y', labelcolor='red')
+
+# Set the title and show the plot
+ax1.set_title('Max Number of neurons and active percentage')
+ax1.grid(True)
+
+if plt_show == True:
+    if enable_plots_save == True:
+        fig.savefig("ActivePerc", dpi=1080)
+        plt.show()
+
 
     
-    
+print(min_hzrds)
+#I found a really interesting pattern the two graph increases and decreases together almost
+#Unfortunatelly this pattern does not repeat for different DELAY FACTORS
+#[$\frac{Samples above hzrd}{Total Samples}$]
+

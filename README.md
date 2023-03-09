@@ -1,6 +1,13 @@
 # I-DNN
 Intermittent Deep Neural Network exploiting NORM Framework
 
+This repository contains the implementation of an emulated hardware-based intermittent inference application using HDL. This repository results from the integration of this [DNN] with [NORM emulation framework].
+
+#Motivation
+
+This emulated hardware-based intermittent inference device is meant to prove NORM capabilities of evaluation of user-defined architectures under different backup policies.
+
+
 
 ## Bugs
 

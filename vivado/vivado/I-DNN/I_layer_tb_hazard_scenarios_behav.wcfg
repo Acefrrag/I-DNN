@@ -15,18 +15,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="113158333fs"></ZoomStartTime>
-      <ZoomEndTime time="121368334fs"></ZoomEndTime>
-      <Cursor1Time time="120000000fs"></Cursor1Time>
+      <ZoomStartTime time="3435000fs"></ZoomStartTime>
+      <ZoomEndTime time="5127001fs"></ZoomEndTime>
+      <Cursor1Time time="7306000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="336"></NameColumnWidth>
-      <ValueColumnWidth column_width="165"></ValueColumnWidth>
+      <ValueColumnWidth column_width="140"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="26" />
-   <wave_markers>
-      <marker time="1260000" label="" />
-   </wave_markers>
    <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/I_fsm_layer_comp/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -46,7 +43,6 @@
    <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect" type="array">
       <obj_property name="ElementShortName">data_out_vect[0:29][15:-16]</obj_property>
       <obj_property name="ObjectShortName">data_out_vect[0:29][15:-16]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_in_sel" type="array">
       <obj_property name="ElementShortName">data_in_sel[0:4]</obj_property>

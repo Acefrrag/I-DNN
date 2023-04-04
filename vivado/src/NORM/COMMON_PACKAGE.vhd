@@ -46,7 +46,7 @@ constant MASTER_CLK_SPEED_HZ: INTEGER := 25000000;
                                                                          -- This is the period of the var_counter clock. Which is always twice as slow as the master clock.
     constant MASTER_CLK_PERIOD_NS               : INTEGER := (1e9/MASTER_CLK_SPEED_HZ); -- Master clk period, this value is autocomputed.
     
-    constant FRAM_MAX_DELAY_NS                  : INTEGER := MASTER_CLK_PERIOD_NS*5;
+    constant FRAM_MAX_DELAY_NS                  : INTEGER := MASTER_CLK_PERIOD_NS*2;
                                                                                         -- !!!!! By changing this value the behaviour of non volatile registers changes too !!!!!
 
     pure function get_busy_counter_end_value(

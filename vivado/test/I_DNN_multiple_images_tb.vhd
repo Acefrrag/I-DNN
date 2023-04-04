@@ -9,7 +9,7 @@
 -- Target Devices: 
 -- Tool Versions: 
 -- Description: This testbench tests the intermittent neural
--- network with multiple images
+-- network with multiple images (8 total images).
 -- 
 -- Dependencies: 
 -- 
@@ -133,7 +133,7 @@ signal thresh_stats         : threshold_t;
 signal data_sampled         : std_logic:='0';
 --signal voltage_trace_path   : string := "voltage_traces/I_layer_trace_complete.txt";
 --signal voltage_trace_path   : string(1 to 47) := "voltage_traces/I_DNN_trace_complete_4layers.txt";
-constant voltage_trace_path: string(1 to 33) := "voltage_traces/voltage_trace6.txt";
+constant voltage_trace_path: string(1 to 34) := "voltage_traces/voltage_trace10.txt";
 signal image_no: integer := 0;
 signal shtdwn_counter, clk_counter: integer := 0;
 signal executed_batches: integer := 0;

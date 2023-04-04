@@ -2,7 +2,7 @@
 -- Company: 
 -- Engineer: Michele Pio Fragasso
 -- 
--- Create Date: 02-14-23_09-39-56 
+-- Create Date: 04-03-23_09-03-13 
 -- Design Name: 
 -- Module Name: DNN - Behavioral
 -- Project Name: 
@@ -71,6 +71,7 @@ architecture Behavioral of I_DNN is
 type data_vect_type is array(1 to num_hidden_layers) of sfixed(neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);
 type out_v_set_vect_t is array(1 to num_hidden_layers) of integer range 0 to 3;
 --LAYER SIGNALS-----------------------------------------
+signal period_backup_clks: integer range 0 to 2**31 -1:=2**10;
 signal out_v_set_vect: out_v_set_vect_t;
 signal data_out_vect, data_in_vect: data_vect_type;
 signal start_vect: std_logic_vector(1 to num_hidden_layers);
@@ -100,7 +101,6 @@ signal threshold_compared   : std_logic_vector(INTERMITTENCY_NUM_THRESHOLDS - 1 
 signal select_threshold     : integer range 0 to INTERMITTENCY_NUM_THRESHOLDS -1; --This is used to select the threshold for power failure
 signal task_status          : std_logic;
 signal fsm_nv_reg_state, fsm_state_sig: fsm_nv_reg_state_t:=shutdown_s;
-signal period_backup_clks: integer range 0 to 2**31 -1 := 2**10; 
 --NV_REG_SIGNALS
 --NV_REG1
 signal nv_reg_busy1:std_logic:='0';
@@ -307,15 +307,15 @@ component fsm_nv_reg_db is
         );
 end component;
 component fsm_nv_reg_cb is
-    port ( 
-        clk                     : in STD_LOGIC;
-        resetN                  : in STD_LOGIC;
-        task_status             : in STD_LOGIC;
-        thresh_stats            : in threshold_t;
-        period_backup_clks      : integer range 0 to 2**31 -1; 
-        fsm_state               : out fsm_nv_reg_state_t;
-        fsm_state_sig           : out fsm_nv_reg_state_t --used with care (it is the future state of the machine, and it is combinatory so it is prone to glitces)
-    );
+port ( 
+clk                     : in STD_LOGIC;
+resetN                  : in STD_LOGIC;
+task_status             : in STD_LOGIC;
+thresh_stats            : in threshold_t;
+period_backup_clks      : integer range 0 to 2**31 -1;
+fsm_state               : out fsm_nv_reg_state_t;
+fsm_state_sig           : out fsm_nv_reg_state_t --used with care (it is the future state of the machine, and it is combinatory so it is prone to glitces)
+);
 end component;
 --NV_REG
 component nv_reg is
@@ -449,22 +449,19 @@ fsm_nv_reg_db_comp: fsm_nv_reg_db
         fsm_state       => fsm_nv_reg_state,
         fsm_state_sig   => fsm_state_sig
     );
-    
 --##CB##Start
-----FSM_NV_REG_CB_COMP
+-----
 --fsm_nv_reg_cb_comp: fsm_nv_reg_cb
---    port map(
---        clk             => clk,
---        resetN          => resetN_emulator,
---        thresh_stats    => thresh_stats,
---        task_status     => task_status,
---        period_backup_clks => period_backup_clks,
---        fsm_state       => fsm_nv_reg_state,
---        fsm_state_sig   => fsm_state_sig
---    );
-
-
---#CB##End
+--port map(
+--        clk                     => clk,
+--        resetN                  => resetN_emulator,
+--        task_status             => task_status,
+--        thresh_stats            => thresh_stats,
+--        period_backup_clks      => period_backup_clks,
+--        fsm_state               => fsm_nv_reg_state,
+--        fsm_state_sig           => fsm_state_sig 
+--);
+--##CB##End
 --LAYER1
 --NVREG
 nv_reg_comp1: nv_reg
@@ -487,8 +484,6 @@ nv_reg_comp1: nv_reg
         dout            => nv_reg_dout1
         -------------chage to here----------------
         );
-
-
 --LAYER
 I_layer1: I_layer
     generic map(

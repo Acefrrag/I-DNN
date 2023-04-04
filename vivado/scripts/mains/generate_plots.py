@@ -21,7 +21,7 @@ NV_REG_FACTORS = [2]
 NV_REG_FACTOR_test = 2
 results_path_list = []
 for NV_REG_FACTOR in NV_REG_FACTORS:
-    results_path_list.append("./results/4layer/"+voltage_trace_namefile+"/DB_results_fixedtime_NVREG_DELAY_FACTOR"+str(NV_REG_FACTOR)+".txt")
+    results_path_list.append("./results/DB_results/4layer_80/"+voltage_trace_namefile+"/DB_results_fixedtime_NVREG_DELAY_FACTOR"+str(NV_REG_FACTOR)+".txt")
 results_name = "DB"
 
 ##----------------------------------------------------------------------- Defaults

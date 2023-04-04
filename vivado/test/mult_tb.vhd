@@ -8,7 +8,7 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
--- Description: 
+-- Description: Multiplier (used in the instant power approximation unit)
 -- 
 -- Dependencies: 
 -- 

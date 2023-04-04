@@ -13,7 +13,11 @@
 -- After the output is computed, the output is invalidated by manually overwriting 0s to the nv_reg to reset it.
 -- The layer is then powered off and powered on again so that all zeros are retrieved from the NV_REG.
 -- For every hazard scenario, the data fed into the layer is always the same, in order to compare the output with each other.
--- Usage: Before starting the simulation, make sure that the line of code that initializes the ROM with the testing I-layer voltage trace inside the trace_ROM entity is uncommented
+-- GOAL: To understand if the layer works just compare the 
+
+--Usage: Before starting the simulation, make sure that the line of code
+-- that initializes the ROM with the testing I-layer voltage trace inside
+-- the trace_ROM entity is uncommented
 --      (remember to comment the line of code used in I-DNN testbench.
 -- Testbench overview: The architecture samples an hazard at the rising edge of the clock and starts the recovery procedure at the next clock cycle.
 -- Therefore the fsm of the layer evolves for one more clock cycle before starting backing up the data.
@@ -25,6 +29,7 @@
 -- System Clock Frequency   : 25 MHz
 -- System Clock Period      : 40 ns 
 -- INTERMITTENCY PRESCALER  : 8 Inside INTERMITTENCY_EMULATOR_package.vhd
+-- Simulation time          : 60000ns=60us
 -- Hazard scenarios:
 --      1) In the middle of w_sum;
 --      2) No Hazard;
@@ -40,7 +45,7 @@
 --      4) b_sum:                       Hazard occurs at 23980 ns. Data starts to be saved before state b_sum.
 --      6) finished:                    Hazard occurs at 33900 ns. Data starts to be saved before state finished.
 --      7) After computing output:      Hazard occurs at 45460 ns. Data starts to be saved after ouput is computed.
---      5) act_log                      Hazard occurs at 53100 ns. Data starts to be saved before state act_log.
+--      5) act_log                      Hazard occurs at 53100 ns. Data startss to be saved before state act_log.
 -- It takes 1320 ns to compute the output of the layer(30 inputs)
 ----------------------------------------------------------------------------------
 
@@ -423,7 +428,7 @@ data_in <= input_reg(to_integer(unsigned(data_in_sel)));
 resetN_emulator <= not(reset_emulator);
 thresh_stats <= hazard when threshold_compared(1) = '1' else nothing;
 -- sets reset_emulator threshold
-threshold_value(0) <= RST_EMU_THRESH;
+threshold_value(0) <= RST_EMU_THRESH_I_layer_tb;
 -- sets the value for the hazard threshold, used by fsm_nv_reg_db
 threshold_value(1) <= hazard_threshold;
 

@@ -2,7 +2,7 @@
 -- Company: 
 -- Engineer: Michele Pio Fragasso 
 -- 
--- Create Date: 02-14-23_09-39-56
+-- Create Date: 04-03-23_09-03-13
 -- Design Name: 
 -- Module Name: DNN - Behavioral 
 -- Project Name: 
@@ -39,8 +39,8 @@ use ieee.math_real.all;
 	constant DNN_neuron_weight_Width: natural := 32;
 	constant DNN_neuron_weight_IntWidth: natural := 4;
 	constant DNN_neuron_weight_FracWidth: natural := DNN_neuron_weight_Width-DNN_neuron_weight_IntWidth;
-   constant DNN_testbench_input_path: string :="./tb_files/DNN/single_image/tb_training_02-14-23_09-39-56/test_dataset_0910/VHDL_dataset_0910.txt";
-   constant DNN_prms_path: string := "../tb_files/DNN/single_imagetb_training_02-14-23_09-39-56";
+    constant DNN_testbench_input_path: string :="./tb_files/DNN/single_image/tb_training_04-03-23_09-03-13/test_dataset_0910/VHDL_dataset_0910.txt";
+    constant DNN_prms_path: string := "./tb_files/DNN/single_image/tb_training_04-03-23_09-03-13/";
 	constant act_fun_type: string  := "ReLU";
    --TestBench for neuron entities and its subentities
    -- Layers variables

@@ -2,11 +2,14 @@
 """
 Created on Fri Feb 10 23:01:26 2023
 
+Revision 02-04-2023
+
 Engineer: Michele Pio Fragasso
 
 
 Description:
-    --File description
+    --These python libraries contains the code for VHDL NORM compatible I-DNN
+    reconfiguration
 """
 
 import network2
@@ -14,12 +17,36 @@ import sys
 import TestData as genData
 import re
 import os
+import random
 
-
-def create_file(DNN_in_prms):
-    return()
 
 def extract_input(training_file):
+    """
+    This function 
+
+    Parameters
+    ----------
+    training_file : string
+        The training filename containing the input DNN parameters
+        
+        The training file of the input DNN parameters has this format
+        <field>, <field_value>
+        fields:
+            num_hidden_layers:      number of hidden layers, it does not include the
+                                    input and output layer
+            act_fun_type:           activation function type: ReLU or Sig
+            epochs:                 number of training epochs
+            eta:                    learning rate
+            batch_size:             mini batch size, that is the batch size the training
+                                    is performed over.
+            lmbda:                  regularitazion parameter
+            sigmoid_inputSize:      Size in bit of the input to the sigmoid
+            sigmoid_inputIntSize:   Size in bit of the integer part
+    Returns
+    -------
+    DNN_in_prms: dictionary
+        Dictionary containing the DNN input parameters to train the DNN model
+    """
     num_inputs_DNN = 784
     
     f = open(training_file, "r")
@@ -43,6 +70,21 @@ def extract_input(training_file):
     return(DNN_in_prms)
 
 def train(DNN_in_prms):
+    """
+    Description: This function trains the DNN model y using the network2.py package
+    developed by Vipin Kizhepatt. 
+
+    Parameters
+    ----------
+    DNN_in_prms : dictionary
+        DNN input paramters
+    Returns
+    -------
+    net: DNN model object
+        contain the DNN model (weights, biases, etc...)
+    e_a: list
+         evaluaction accuracies at every epoch
+    """
     
     training_data, validation_data, test_data = DNN_in_prms["datasets"]
     
@@ -60,11 +102,43 @@ def train(DNN_in_prms):
     return(net, e_a)
 
 def savenet(net, path):
+    """
+    Save the DNN model(real weights and biases ect..) into a file.
+
+    Parameters
+    ----------
+    net : DNN model object
+        DESCRIPTION.
+    path : string
+        relative path including the filename
+    Returns
+    -------
+    None.
+
+    """
     net.save(path)
 
-def savelogfile(net, e_a, path,DNN_in_prms):
+def savelogfile(net, e_a, DNN_in_prms, path):
+    """
+    Creates and save a training report containing information about the training
+
+    Parameters
+    ----------
+    net : DNN model object
+        DESCRIPTION.
+    e_a : list
+        DESCRIPTION.
+    path : string
+        Relative path including the filename
+    DNN_in_prms : DNN model object
+        DNN input parameters
+
+    Returns
+    -------
+    None.
+
+    """
     #SAVING TRAINING REPORT
-   
     f = open(path, 'w')
     
     training_data,validation_data, test_data = DNN_in_prms["datasets"]
@@ -90,7 +164,24 @@ def savelogfile(net, e_a, path,DNN_in_prms):
     f.close()    
 
 def mkpkg(DNN_in_prms, net, path):
-    
+    """
+    This function creates the DNN_package.vhd, containing the DNN parameters 
+    such as the number of layers, number of neurons per layers, data formats
+
+    Parameters
+    ----------
+    DNN_in_prms : dictionary
+        DNN input parameters
+    net : DNN model object
+        
+    path : string
+        destination relative path
+
+    Returns
+    -------
+    None.
+
+    """
     
     date = DNN_in_prms["date"]
     sigmoid_inputSize = net.sigmoidinputSize
@@ -149,7 +240,7 @@ def mkpkg(DNN_in_prms, net, path):
     "	constant DNN_neuron_weight_IntWidth: natural := "+str(neuron_weight_IntWidth)+";\n"
     "	constant DNN_neuron_weight_FracWidth: natural := DNN_neuron_weight_Width-DNN_neuron_weight_IntWidth;\n"
     "   constant DNN_testbench_input_path: string :=\"./tb_files/DNN/single_image/"+DNN_in_prms["tbfoldername"]+"/test_dataset_0910/VHDL_dataset_0910.txt\";\n"
-    "   constant DNN_prms_path: string := \"../tb_files/DNN/single_image"+DNN_in_prms["tbfoldername"]+"\";\n"
+    "   constant DNN_prms_path: string := \"../tb_files/DNN/single_image/"+DNN_in_prms["tbfoldername"]+"/\";\n"
     "	constant act_fun_type: string  := \""+str(act_fun_type)+"\";\n"
     "   --TestBench for neuron entities and its subentities\n"
     "   -- Layers variables\n"
@@ -236,7 +327,25 @@ def mkpkg(DNN_in_prms, net, path):
     finally:
         f.close()
     
-def mkMIpkg(path, DNN_in_prms, net):
+def mkMIpkg(DNN_in_prms, net,path):
+    """
+    This function creates MI_DNN_package.vhd, containing information on how to
+    run the testbench MI_DNN_tb.vhd
+
+    Parameters
+    ----------
+    path : string
+        DESCRIPTION.
+    DNN_in_prms : 
+        DESCRIPTION.
+    net : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    None.
+
+    """
 
     sizes = net.sizes
     sigmoid_inputSize = net.sigmoidinputSize
@@ -423,6 +532,7 @@ def mkentity(DNN_in_prms, net, path):
         "type out_v_set_vect_t is array(1 to num_hidden_layers) of integer range 0 to 3;\n"
         #Layer Signals
         "--LAYER SIGNALS-----------------------------------------\n"
+        "signal period_backup_clks: integer range 0 to 2**31 -1:=2**10;\n"
         "signal out_v_set_vect: out_v_set_vect_t;\n"
         "signal data_out_vect, data_in_vect: data_vect_type;\n"
         "signal start_vect: std_logic_vector(1 to num_hidden_layers);\n"
@@ -573,6 +683,17 @@ def mkentity(DNN_in_prms, net, path):
         "        fsm_state_sig           : out fsm_nv_reg_state_t \n"
         "        );\n"
         "end component;\n"
+        "component fsm_nv_reg_cb is\n"
+        "port ( \n"
+        "clk                     : in STD_LOGIC;\n"
+        "resetN                  : in STD_LOGIC;\n"
+        "task_status             : in STD_LOGIC;\n"
+        "thresh_stats            : in threshold_t;\n"
+        "period_backup_clks      : integer range 0 to 2**31 -1;\n"
+        "fsm_state               : out fsm_nv_reg_state_t;\n"
+        "fsm_state_sig           : out fsm_nv_reg_state_t --used with care (it is the future state of the machine, and it is combinatory so it is prone to glitces)\n"
+        ");\n"
+        "end component;\n"
         "--NV_REG\n"
         "component nv_reg is\n"
         "    Generic(\n"
@@ -711,15 +832,28 @@ def mkentity(DNN_in_prms, net, path):
         "end process out_v_set_val;\n"
         "--COMPONENT INSTANTIATION\n"
         "--FMS_NV_REG_DB_COMP\n"
-        "fsm_nv_reg_db_comp: fsm_nv_reg_db\n"
-        "    port map(\n"
-        "        clk             => clk,\n"
-        "        resetN          => resetN_emulator,\n"
-        "        thresh_stats    => thresh_stats,\n"
-        "        task_status     => task_status,\n"
-        "        fsm_state       => fsm_nv_reg_state,\n"
-        "        fsm_state_sig   => fsm_state_sig\n"
-        "    );\n")
+        "--fsm_nv_reg_db_comp: fsm_nv_reg_db\n"
+        "--    port map(\n"
+        "--        clk             => clk,\n"
+        "--        resetN          => resetN_emulator,\n"
+        "--        thresh_stats    => thresh_stats,\n"
+        "--        task_status     => task_status,\n"
+        "--        fsm_state       => fsm_nv_reg_state,\n"
+        "--        fsm_state_sig   => fsm_state_sig\n"
+        "--    );\n"
+        "--##CB##Start\n"
+        "-----\n"
+        "--fsm_nv_reg_cb_comp: fsm_nv_reg_cb\n"
+        "--port map(\n"
+        "--        clk                     => clk,\n"
+        "--        resetN                  => resetN_emulator,\n"
+        "--        task_status             => task_status,\n"
+        "--        thresh_stats            => thresh_stats,\n"
+        "--        period_backup_clks      => period_backup_clks,\n"
+        "--        fsm_state               => fsm_nv_reg_state,\n"
+        "--        fsm_state_sig           => fsm_state_sig \n"
+        "--);\n"
+        "--##CB##End\n")
         #NV_REG_COMP
         for i in range(num_hidden_layers):
             block = []
@@ -1006,8 +1140,26 @@ def mkentity(DNN_in_prms, net, path):
         "end Behavioral;\n")
     finally:
         f.close()
+        
 
-def mkdatasets(DNN_in_prms, net,outputpath):
+def mk_MI_datasets(DNN_in_prms, net,path):
+    """
+    This function generate 8 MNIST samples to be loaded by the MI_DNN_tb.vhd
+
+    Parameters
+    ----------
+    DNN_in_prms : list
+        DNN input parameters
+    net : python object
+        DNN model object
+    path : string
+        Destination path for the MI_datasets
+
+    Returns
+    -------
+    None.
+
+    """
     
     image_indexes = [6542, 910, 1000, 1160, 1549, 6542, 1570, 1290]
     test_data = DNN_in_prms["datasets"][2]
@@ -1015,7 +1167,18 @@ def mkdatasets(DNN_in_prms, net,outputpath):
     [(te_data[0].append(image),te_data[1].append(digit)) for (image,digit) in test_data]
     
     
-    [genData.genTestData(dataWidth=net.neuroninputSize, IntSize=net.neuroninputIntSize, testDataNum=dataset_index, te_d = te_data,outputpath=outputpath,net_test=net) for dataset_index in image_indexes] 
+    [genData.genTestData(dataWidth=net.neuroninputSize, IntSize=net.neuroninputIntSize, testDataNum=dataset_index, te_d = te_data,outputpath=path,net_test=net) for dataset_index in image_indexes] 
+    
+def mk_SI_datasets(DNN_in_prms, net,path):
+    
+    image_indexes = [6542, 910, 1000, 1160, 1549, 6542, 1570, 1290]
+    test_data = DNN_in_prms["datasets"][2]
+    te_data = [[],[]]
+    [(te_data[0].append(image),te_data[1].append(digit)) for (image,digit) in test_data]
+    
+    
+    [genData.genTestData(dataWidth=net.neuroninputSize, IntSize=net.neuroninputIntSize, testDataNum=dataset_index, te_d = te_data,outputpath=path,net_test=net) for dataset_index in image_indexes] 
+    
     
 def mktbfolder(path):
     

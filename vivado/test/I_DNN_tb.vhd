@@ -8,8 +8,10 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
--- Description: 
--- 
+-- Description: This testbench is used to test the I-DNN with only
+-- one input MNIST sample. The image is taken from the MNIST package
+-- validation data and it corresponds the sample number 0910 which
+-- is the handwritten number 4. 
 -- Dependencies: 
 -- 
 -- Revision: 
@@ -70,7 +72,7 @@ variable dataset_content: datain_type;
     return dataset_content;
 end function;
 
-constant hazard_threshold : integer := 155;
+constant hazard_threshold : integer := 2600;
 
 
 signal input_reg: datain_type := gen_datain("../"&DNN_testbench_input_path);
@@ -93,7 +95,8 @@ signal thresh_stats         : threshold_t;
 signal data_sampled         : std_logic:='0';
 --
 --constant voltage_trace_path   : string := "voltage_traces/I_layer_trace_complete.txt";
-constant voltage_trace_path   : string(1 to 47) := "voltage_traces/I_DNN_trace_complete_4layers.txt";
+--This voltage trace 
+constant voltage_trace_path   : string(1 to 33) := "voltage_traces/voltage_trace6.txt";
 
 
 component I_DNN is
@@ -191,11 +194,25 @@ n_power_reset <= not(reset_emulator);
 
 
 
-start_gen: process is
+start_gen: process(reset_emulator) is
 begin
-wait for 800 ns;
-start <= '0';
+if reset_emulator = '1' then
+    start <= '0';
+else
+    start <= '1';
+end if;
 end process start_gen;
+
+data_sampled_gen: process(data_v) is
+
+begin
+if data_v = '1' then
+    data_sampled <= '1';
+else    
+    data_sampled <= '0';
+end if;
+
+end process;
 
 
 

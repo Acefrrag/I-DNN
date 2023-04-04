@@ -1,7 +1,0 @@
-Running: xsim.dir/I_DNN_multiple_images_tb_behav/xsimk.exe -simmode gui -wdb I_DNN_multiple_images_tb_behav.wdb -simrunnum 0 -socket 58813
-Design successfully loaded
-Design Loading Memory Usage: 9540 KB (Peak: 9540 KB)
-Design Loading CPU Usage: 30 ms
-Simulation completed
-Simulation Memory Usage: 21396 KB (Peak: 21396 KB)
-Simulation CPU Usage: 327 ms

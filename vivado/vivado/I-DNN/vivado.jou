@@ -2,11 +2,17 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Thu Feb  2 11:02:42 2023
-# Process ID: 6160
-# Current directory: C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN
-# Command line: vivado.exe -mode batch -source ./tcl/DB_setup_prms.tcl
-# Log file: C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN/vivado.log
-# Journal file: C:/Users/miche/Github_Repositories/I-DNN/vivado/vivado/I-DNN\vivado.jou
+# Start of session at: Tue Apr  4 17:05:47 2023
+# Process ID: 10172
+# Current directory: C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13700 C:\Users\miche\git\I-DNN\vivado\vivado\I-DNN\I-DNN.xpr
+# Log file: C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN/vivado.log
+# Journal file: C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN\vivado.jou
 #-----------------------------------------------------------
-source ./tcl/DB_setup_prms.tcl
+start_gui
+open_project C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN/I-DNN.xpr
+set_property top I_DNN_tb [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+launch_simulation
+source I_DNN_tb.tcl
+close_sim

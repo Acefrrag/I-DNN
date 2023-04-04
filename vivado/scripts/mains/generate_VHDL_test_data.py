@@ -21,9 +21,9 @@ sys.path.insert(0, "../functions/")
 import TestData as genData
 
 dataWidth = 32
-IntSize = 13
+IntSize = 14
 dataset_index = 1570
 
 tr_d, va_d, te_data = genData.load_data()
-#genData.gensetofTestData(dataWidth, IntSize,1,te_data)
-genData.genTestData(dataWidth=dataWidth, IntSize=IntSize,testDataNum=dataset_index,te_d = te_data)
+genData.gensetofTestData(dataWidth, IntSize,10,te_data)
+#genData.genTestData(dataWidth=dataWidth, IntSize=IntSize,testDataNum=dataset_index,te_d = te_data)

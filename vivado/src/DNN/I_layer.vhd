@@ -19,7 +19,11 @@
 ----------------------------------------------------------------------------------
 
 --Observations:
---1) The amount of time to save data in the nv_reg is higher than what it takes to compute the layer output. In general it is not convenient to save the output of the layer whenver there is a hazard, but to enable only a certain amount of layer to save their state?
+--1) The amount of time to save data in the nv_reg is higher than what it takes to
+--compute the layer output. In general it is not convenient to save the output of
+--the layer whenver there is a hazard, but to enable only a certain amount of layer
+-- to save their state?
+
 library ieee_proposed;
 use ieee_proposed.fixed_pkg.all;
 

@@ -9,5 +9,5 @@ Sigmoid input fractional part size: 3
 OUTPUT DATA FORMAT 
 
 Sigmoid output size: 32
-Sigmoid output fractional part size: 28
-Sigmoid output integer part size: 4
+Sigmoid output fractional part size: 18
+Sigmoid output integer part size: 14

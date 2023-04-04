@@ -163,11 +163,11 @@ end process;
     addra <= 0;
     mul_sel <= '0';
     --The default value of out_val depends on out_v_set
-    if out_v_set = 1 then
-        out_val <= '0';
-    elsif out_v_set = 2 then
+    if out_v_set = 1 then -- out_v is cleared
+        out_val <= '0'; 
+    elsif out_v_set = 2 then--out_v is uncanged
         out_val <= out_val and n_power_rst;
-    elsif out_v_set = 3 then 
+    elsif out_v_set = 3 then --Out_v is set
         out_val <= '1' and n_power_rst;
     else
         out_val <= out_val and n_power_rst;

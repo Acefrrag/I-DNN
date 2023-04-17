@@ -16,17 +16,29 @@ The design of hardware-based intermittent devices takes place in the codesign pl
   <img src="https://user-images.githubusercontent.com/59066474/232531939-2735f492-c7c6-401d-8aeb-63f4db2d42e6.png">
 </p>
 
-`I-DNN` is composed of `I-layers` connected in cascade in the same fashion of DNN. Each layer is assigned with a `NVR` from the NORM framework. The layer interface is extended to interface with the non-volatile memory as well as the `BACKUP_LOGIC` to receive the imperative commands. Depending on the state of the layer different data is backed up into the `NVR` (either the internal state, the output of `I-layer` or nothing in case the layer is idle). The `POWER APPROXIMATORS` compute the power cycles every`I-DNN` component
+`I-DNN` is composed of `I-layers` connected in cascade in the same fashion of DNN. Each layer is assigned with a `NVR` from the NORM framework. The layer interface is extended to interface with the non-volatile memory as well as the `BACKUP_LOGIC` to receive the imperative commands. Depending on the state of the layer different data is backed up into the `NVR` (either the internal state, the output of `I-layer` or nothing in case the layer is idle). The `POWER APPROXIMATION UNITS` compute the power cycles every`I-DNN` component was in a specific `POWER_STATE`.
 
 ## Backup Policies
 
-### Dynamic Backup Policy
+### Dynamic Backup Policy (DB)
 
 <p align="center">
   <img width="45%" height="45%" src="https://user-images.githubusercontent.com/59066474/232573766-2e358564-02b8-404f-9b5a-020f985bd3f0.png">
 </p>
 
-The dynamic backup policy sends a backup command to the I-layer every time the input voltage goes below the hazard threshold
+The dynamic backup policy sends a backup command to the I-layer every time the input voltage goes below the hazard threshold. If the voltage is still below the hazard threshold the system is put asleep to avoid performing useless progress or power consuming data save operation. 
+
+On power-up, data is recovered only if the voltage goes above safety level to avoid performing power consuming `NV_REG` accesses in case the system powers off again.
+
+The main assumption of this policy is that data corruption never occurs. This is ensured by performing a voltage trace analysis and setting up offline a safe hazard threshold.
+
+### Constant Backup Policy (CB)
+
+The constant backup policy commands a backup when the backup counter reaches the `backup_period_clks`. A terminal counter `TC` is set and the backup command is generated. The backup command is not generated if the architecture is already below the hazard threshold, to avoid NVR data corruption.
+
+### No Backup Policy
+
+In this case the system blindly keep on executing. There is no backup, so if during an inference the system shuts down, the inference must restart from scratch.
 
 ## Reconfiguration
 
@@ -34,6 +46,7 @@ The dynamic backup policy sends a backup command to the I-layer every time the i
   <img width="30%" height="30%" src="https://user-images.githubusercontent.com/59066474/232528893-ec241a78-d449-4435-bb6a-217582a46247.png">
 </p>
 
+Reconfiguration is imiplemented by using **IZyneT (Intermittent Zynet Toolchain)** which is based on the Zynet package for reconfiguration of intermittent feed forward fully connected deep neural network. The reconfiguration flow takes the MNIST dataset and the input parameters (DNN input parameters such as `num_hidden_layers`, `size` per laye etc... and the training hyperparameters such as `learning rate`, `regularization parameters` etc..) to generate the DNN model. It then generate the VHDL NORM compatible entities and VHDL compatible data format (fixed point sizes) and upload the vivado project.
 
 
 

@@ -91,8 +91,6 @@ def sigmoid_extract_size(sigmoid_data_path):
     
 def genWeightsAndBias(dir_path, dataWidth, weightIntWidth, inputIntWidth):
     """
-        
-
     Parameters
     ----------
     dir_path : TYPE
@@ -224,27 +222,29 @@ def genVoltageTraceFile(trace, vt_ts=160, SC_p = 40):
   
     
     
-def compute_max_neuron_number(trace,system_clock_cycle_period=40, voltage_trace_timescale=80, wrng_value=2500, shtdw_value=2300, NV_REG_DELAY_FACTOR=2,window_length=10000):
+def compute_max_neuron_number(trace,system_clock_cycle_period=40, vt_ts=80, wrng_value=2500, shtdw_value=2300, NV_REG_DELAY_FACTOR=2,sim_time=3_000):
     """
-    This function computes the maximum number of neurons the DNN can have per layer.
+    This function computes the maximum number of neurons the DNN can have per
+    layer.
 
 
     By default is assumed that the voltage trace timescale is twice the 
     system clock. 
     Parameters
     ----------
-    trace : dictionary including trace info
+    trace : dictionary including voltage trace info
     trace must have two entries:
             "samples": list of integer identifying the number of sample
             "voltage": list of floats containing the trace voltage value
-    system_clock_cycle_period : integer, optional
+    system_clock_cycle_period   : integer, optional
         DNN clock cycle period in nanoseconds. The default is 40.
-    voltage_trace_timescale : integer, optional
+    voltage_trace_timescale     : integer, optional
         Shutdown threshold in millivolts. The default is 2200.
-    NV_REG_DELAY_FACTOR: integer
+    NV_REG_DELAY_FACTOR         : integer
         Factor which defines the delay of the nv_reg w.r.t. the
         master system clock (1,2,3,4...)
-
+    sim_time                    : integer,
+        Simulation time in ms
     Returns
         Voltage trace timescale in nanoseconds. The default is 80.
     wrng_value : TYPE, optional
@@ -272,15 +272,16 @@ def compute_max_neuron_number(trace,system_clock_cycle_period=40, voltage_trace_
 
     x_trace = trace["samples"]
     y_trace = trace["voltages"]
-
+    wlen = int(sim_time/(vt_ts/1000))
+    #wlen = 10000
     #Trace neglecting the initial power off
     start_sample_value = shtdw_value+300
     indexes = [index for index, value in list(enumerate(y_trace)) if y_trace[index] < start_sample_value]
     start_index = min([i-1 for i, index in list(enumerate(indexes)) if indexes[i]-indexes[i-1]>1])-5
     y_trace = y_trace[start_index:-1]
     x_trace = [int(x[0]) for x in list(enumerate(y_trace))]
-    #Trace with the first window_length samples
-    y_trace = y_trace[0:window_length]
+    #Trace with the first window length samples
+    y_trace = y_trace[0:wlen]
     x_trace = [int(x[0]) for x in list(enumerate(y_trace))]
     #Computing the minimum sample distance in the trace between the hazard and
     #the shutdown threshold.
@@ -299,31 +300,11 @@ def compute_max_neuron_number(trace,system_clock_cycle_period=40, voltage_trace_
         
     
     #Time the device has to correctly save the data
-    minimum_backup_time = min_sample_distance*voltage_trace_timescale
+    minimum_backup_time = min_sample_distance*vt_ts
     max_backup_clock_cycles = minimum_backup_time/system_clock_cycle_period
     max_number_neurons = int((max_backup_clock_cycles - 6)/NV_REG_DELAY_FACTOR -2)
     return(max_number_neurons)
 
 
 
-# def compute_hazard(trace,system_clock_cycle_period=40, voltage_trace_timescale=80, neuron_value=10, shtdw_value=2300, NV_REG_DELAY_FACTOR=2,window_length=10000):
-
-#     max_backup_clock_cycle = (neuron_value+2)*NV_REG_DELAY_FACTOR+6
-#     min_sample_distance = 2000
-#     c = min_sample_distance
-#     for (sample) in (x_trace):
-#         data = y_trace[sample]
-#         if data > wrng_value:
-#             c = 0
-#         elif data <= wrng_value and data > shtdw_value:
-#             c += 1
-#         elif data <= shtdw_value:
-#             distance = c
-#             if distance < min_sample_distance:
-#                 min_sample_distance = distance
-#     min_hazard_threshold =     
-#     𝐶𝐿𝐾_𝐶𝑌𝐶𝐿𝐸𝑆=(𝑃+2)∗DELAY_FACTOR+6=
-# P∗DELAY_FACTOR+2∗DELAY_FACTOR+6
     
-
-    return(0)

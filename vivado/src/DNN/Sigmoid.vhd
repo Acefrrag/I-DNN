@@ -30,7 +30,7 @@ end Sigmoid;
 Architecture Behavioral of Sigmoid is
 
 
-type rom_type is array (0 to 2**inputdataWidth-1) of sfixed(outputdataIntWidth-1 downto -(outputdataWidth-outputdataIntWidth));
+type rom_type is array (0 to 2**DNN_sigmoid_inputdata_Width-1) of sfixed(outputdataIntWidth-1 downto -(outputdataWidth-outputdataIntWidth));
 
 
 impure function makesfixed (bit_in: in bit_vector(outputdataWidth-1 downto 0)) return sfixed is

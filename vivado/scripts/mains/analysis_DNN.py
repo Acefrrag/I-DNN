@@ -6,15 +6,20 @@ Engineer: Michele Pio Fragasso
 
 
 Description:
-    --This script perform test to analyze the throughput of test with different
-    --dimensions
+    This script perform tests to analyze the throughput for DNN with different
+    dimensions
     
     The key findings of this analysis are:
         1) DNN no of MACs affect throguhput (only amplitude of throuput)
         2) The trhoutput decay factor is still higly dependent on the voltage trace, which is barely affect by the DNN dimension.
         3) The correlation was also not affected. So it makes sense to use the correlation as a characterization of voltage profiles, given that we don't modify the latency of the NV_REG'
     
+    You can find the plots @ "./plots/DNN_analysis_plots"
     
+    This script is intended to be used for a given set of DNN architectures.
+    The user should not really modify this file.
+    
+   
 """
 
 import re
@@ -22,7 +27,24 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 from scipy.stats import pearsonr
 import numpy as np
-import math
+import os
+
+"""LAYER"""
+num_hidden_layers = 4
+sizes = [30, 25, 15, 10]
+PWR_STATE_LAYER_IDLE = 1/1_000_000
+PWR_STATE_LAYER_COMP_DEF = 100/1_000_000
+BASE_NEURONS = 30 #Number of neurons for which the layer uses PWR_COMP_DEF during computation
+PWR_STATE_LAYER_SAVE = 20/1_000_000
+PWR_STATE_LAYER_REC = 20/1_000_000
+"""NV_REG"""
+PWR_NVREG_POWERON = 1/1_000000
+BASE_DELAY_FACTOR = 2
+PWR_NVREG_RECOVERY_DEF = 10_000/1_000_000
+PWR_NVREG_SAVE_DEF = 10_000/1_000_000
+
+enable_plot_save = True
+
 
 def compute_noMAC_layer(input_size, output_size):
     no_MACs = input_size*output_size
@@ -33,7 +55,7 @@ def compute_noMACs_DNN(DNN_architecture_filename):
     f = open(DNN_architecture_filename, "r")
     allLines = f.readlines()
     f.close()
-    sizes_str = allLines[0][1:-1].split(";")
+    sizes_str = allLines[0][1:-1].split(";")#The parathesis are elimnated
     sizes = [int(x) for x in sizes_str]
     
     #Computing MAC operation given the sizes
@@ -43,8 +65,6 @@ def compute_noMACs_DNN(DNN_architecture_filename):
         input_size = sizes[i]
         output_size = sizes[i+1]
         no_MACs+=compute_noMAC_layer(input_size, output_size)
-
-
     return(no_MACs)
 
 def data_from_lines(allLines):
@@ -53,7 +73,6 @@ def data_from_lines(allLines):
     for i, line in enumerate(allLines):
         if "voltage_trace" in line:
             vt_line = line
-            voltage_trace_name = vt_line.rstrip(vt_line[-1])
         if "Fixed time simulation start" in line:
             start_fix_time = 1
         else:
@@ -93,19 +112,10 @@ def data_from_lines(allLines):
     
 def overall_data(end_data_fixed_time, NV_REG_FACTOR):
     
-    num_hidden_layers = 4
-    sizes = [30, 25, 15, 10]
-    PWR_STATE_LAYER_IDLE = 1/1_000_000
-    PWR_STATE_LAYER_COMP_DEF = 100/1_000_000
-    BASE_NEURONS = 30 #Number of neurons for which the layer uses PWR_COMP_DEF during computation
     PWR_STATE_LAYER_COMP =  [neurons*PWR_STATE_LAYER_COMP_DEF/BASE_NEURONS for neurons in sizes]
-    PWR_STATE_LAYER_SAVE = 20/1_000_000
-    PWR_STATE_LAYER_REC = 20/1_000_000
+
     #INSTANTANEUOS POWER CONSUMPTION NVREG
-    PWR_NVREG_POWERON = 1/1_000000
-    BASE_DELAY_FACTOR = 2
-    PWR_NVREG_RECOVERY_DEF = 10000/1_000_000
-    PWR_NVREG_SAVE_DEF = 10000/1_000_000
+
     PWR_NVREG_RECOVERY = ((BASE_DELAY_FACTOR/NV_REG_FACTOR)**1)*PWR_NVREG_RECOVERY_DEF
     PWR_NVREG_SAVE = ((BASE_DELAY_FACTOR/NV_REG_FACTOR)**1)*PWR_NVREG_SAVE_DEF
 
@@ -196,10 +206,10 @@ def compute_fit_param(voltage_trace_name, test, sim_results, plt_show=False):
     #vt_voltages = vt_voltages_original
     vt_voltages = vt_voltages_original
     
+    
+    print("\n\n\nDNN Architecture: " + test+"\n")
     #Computing decay factor for throughput
     
-    if voltage_trace_name == "voltage_trace3":
-        print("ciao")
     throughput = sim_results[test]["throughput"]
     pwr_cmpt = sim_results[test]["total_power_consumption"]
     hzrd_th = sim_results[test]["hazard_threshold_val"]
@@ -219,6 +229,7 @@ def compute_fit_param(voltage_trace_name, test, sim_results, plt_show=False):
             if vt_voltages[i] > wrng_value and vt_voltages[i+1] < wrng_value:
                 osc += 1
         oscs.append(osc)
+        
     
     #Plot power consumption versus hazard threshold
     if plt_show == True:
@@ -239,20 +250,17 @@ def compute_fit_param(voltage_trace_name, test, sim_results, plt_show=False):
                 fig.savefig("./TOTAL_POWER_CONSUMPTION", dpi=1080)
         plt.show()
         
-    # if voltage_trace_name=="voltage_trace6":
-    #     fig = plt.figure()
-    #     ax = fig.gca()
-    #     ax.grid(True)
-    #     ax.set_title("Voltage Trace"+(re.search(r"\d",voltage_trace_name).group()))
-    #     ax.plot(hzrd_th, throughput)
-    #     plt.show()
         
     #Fitting Throughput
     p0 = [throughput[0],0.001,hzrd_th[0]]
-    print(voltage_trace_name)
     parameters, covariance = curve_fit(exp, hzrd_th, throughput,p0=p0,maxfev=100000)
     A, lmbda,x0 = parameters
     throughput_fit = [exp(v,A,lmbda,x0) for v in hzrd_th]
+    print("Covariance Matrix:")
+    print(covariance)
+    print("")
+    print("Fit Parameters (Maximum thorughput, Decay Factor and initial threshold):")
+    print(A, lmbda, x0)
     
     if plt_show == True:
         fig = plt.figure()
@@ -282,18 +290,25 @@ def compute_fit_param(voltage_trace_name, test, sim_results, plt_show=False):
 
 if __name__ == "__main__":
     #ANALYSIS OF DIFFERENT DNNs
-    tests=["4layer_80", "8layer_150", "12layer_395", "8layer_470"]
-    DNN_architecture_filenames = ["architecture_"+tests[i]+".txt" for i in range(len(tests))]
+    output_path = "./plots/DB_analysis_DNN_plots/"
+    try:
+        os.mkdir(output_path)
+    except:
+        pass
+    
+    tests=["4layer_80", "8layer_240", "12layer_395", "8layer_470"]
+    DNN_architecture_filenames = ["./DNN_architectures/architecture_"+tests[i]+".txt" for i in range(len(tests))]
     nos_MACs=[compute_noMACs_DNN(DNN_architecture_filename) for DNN_architecture_filename in DNN_architecture_filenames]
-    labels=["4 layer \n80 neurons", "8-layer\n150 neurons","12-layer\n395 neurons","8-layer \n470 neurons"]#Contains the labels to put on bar charts
+    labels=["4 layer \n80 neurons", "8-layer\n240 neurons","12-layer\n395 neurons","8-layer \n470 neurons"]#Contains the labels to put on bar charts
     x_labels=[str(nos_MACs[i]) +" MACs" for i in range(len(nos_MACs))]
     colors=["red", "blue", "green", "yellow"]
     pattern=["+","*","|","O"]
     voltage_tracename = "voltage_trace2"
+    print("DNN analysis. Voltage trace: "+voltage_tracename)
     NV_REG_FACTOR = 2
-    enable_plot_save = True
+    
     results_filename = "DB_results_fixedtime_NVREG_DELAY_FACTOR"+str(NV_REG_FACTOR)+".txt"
-    DB_resultspaths = ["./results/"+tests[i]+"/"+voltage_tracename+"/"+results_filename for i in range(4)]    
+    DB_resultspaths = ["./results/DB_results/"+tests[i]+"/"+voltage_tracename+"/"+results_filename for i in range(4)]    
     DB_results_files = [open(path,"r") for path in DB_resultspaths]
     DB_results_allLines = [file.readlines() for file in DB_results_files]
     sim_results = {}
@@ -324,7 +339,7 @@ if __name__ == "__main__":
     ax.set_ylabel("Decay factor $\lambda$")
     ax.grid(True)
     
-    plt.savefig("./DNN_DECAY_FACTOR", dpi=1080)
+    plt.savefig(output_path+"DNN_DECAY_FACTOR", dpi=1080)
     
     fig = plt.figure(2)
     ax = fig.gca()
@@ -335,7 +350,7 @@ if __name__ == "__main__":
     ax.set_xlabel("DNN")
     ax.set_ylabel("Maximum THROUGHPUT [Op/s]")
     ax.grid(True)
-    plt.savefig("./MAX_THROUGHPUT", dpi=1080)
+    plt.savefig(output_path+"MAX_THROUGHPUT", dpi=1080)
     
     
     fig = plt.figure(3)
@@ -350,9 +365,7 @@ if __name__ == "__main__":
     ax.grid(True)
     
     
-    
-    # if enable_plot_save==True:
     #     fig_corr.savefig("./CORRELATION", dpi=1080)
-    plt.savefig("./CORRELATION", dpi=1080)
+    plt.savefig(output_path+"CORRELATION", dpi=1080)
     plt.show()
     

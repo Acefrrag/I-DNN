@@ -6,16 +6,17 @@ Engineer: Michele Pio Fragasso
 
 
 Description:
-    --This script studies the power consumption for different voltage traces
-    at different hazard thresholds, for a given DNN architecture.
-    --It was used to validate the power consumption model.
+    This script studies the power consumption for different voltage traces
+    at different hazard thresholds, for a 4-layer DNN architecture.
+    
+    It was used to validate the power consumption model.
+    
 """
-
-
 
 import analysis_vt as vt_lib
 import matplotlib.pyplot as plt
 import re
+import os
 
 def compute_pwr_cmpt_breakdown(sim_result, hzrd_threshold_index, num_hidden_layers):
     """
@@ -24,7 +25,7 @@ def compute_pwr_cmpt_breakdown(sim_result, hzrd_threshold_index, num_hidden_laye
     Parameters
     ----------
     sim_results : TYPE
-        This contain the simulation results for different hazard thresholds
+        This contains the simulation results for different hazard thresholds
         sim_result should already contain the power consumption values
 
     Returns
@@ -65,6 +66,10 @@ if __name__ == "__main__":
     #STUDY OF POWER CONSUMPTION FOR DIFFERENT DELAYS
     #I plot it for the original simulation I carried
     #They are performed on voltage trace 2 for different NV_REG_DELAY_FACTORS
+    try:
+        os.mkdir("./plots/pwr_cmpt_plots/")
+    except:
+        pass
     NV_REG_DELAY_FACTORS = [2, 5, 11]#, 8, 11]
     num_hidden_layers = 4
     voltage_tracename = "voltage_trace2"
@@ -130,7 +135,7 @@ if __name__ == "__main__":
     plt.grid(True)
     plt.legend()
     ax.set_title("Power Consumption - Voltage Trace 2 - 4-layer DNN")
-    plt.savefig("pwr_cmpt", dpi=1080)
+    plt.savefig("./plots/pwr_cmpt_plots/pwr_cmpt", dpi=1080)
     plt.show()
     
     
@@ -147,8 +152,9 @@ if __name__ == "__main__":
     plt.grid(True)
     plt.legend()
     ax.set_title("DNN Efficiency")
-    plt.savefig("Throughput_per_pwr", dpi=1080)
+    plt.savefig("./plots/pwr_cmpt_plots/Throughput_per_pwr", dpi=1080)
     plt.show()
+    
     #Efficiency for given hazard threshold
     # hzrd_value = 3900
     # indexes_DELAYS = []
@@ -175,8 +181,6 @@ if __name__ == "__main__":
     #Here we are gonna plot power consumption bar charts for a given hazard threshold,
     #and a given voltage trace.
     #From here I should show the fulfillment of criteria 3
-        
-    
     
     #Power consumption Breakdown
     sim_result = sim_results_DELAYS["NV_REG_FACTOR2"]
@@ -192,13 +196,13 @@ if __name__ == "__main__":
         ax.bar(i, pwr_cmpt_breakdown[i], color = colors[i], label=labels[i], hatch=patterns[i])
     ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.35), ncol=3)
     ax.tick_params(axis='x', which='both', bottom=False, labelbottom=False)
-    ax.set_title("Power Consumption Breakdown", pad=15)
+    ax.set_title("Power Consumption Breakdown for hazard threshold of "+str(threshold)+" mV", pad=15)
     ax.set_ylabel("Power Consumption [mW]")
     ax.set_xlabel("Breakdown")
     ax.set_yscale("log")
     ax.grid(True)
     #plt.ylim(10**(-1),10**1)
-    fig.savefig("pwr_brkdwn", dpi=1080)
+    fig.savefig("./plots/pwr_cmpt_plots/pwr_brkdwn_hzth_"+str(threshold), dpi=1080)
     plt.show()
     
     #Study of power conusmption for different layers

@@ -45,12 +45,12 @@ port(
     mul_sel: out std_logic;                                         --mul_sel           :This signal decides weather to add up the product w_i*x_i or the bias b
     out_v: out std_logic;                                           --out_v             :This signal aknowledges the output is valid
     update_out: out std_logic;                                      --update_out        :This update the output of the neuron, since it is necessary to  
-    addr_in_gen_rst: out std_logic;                                 --addr_in_gen_rst   :This bit 
+    addr_in_gen_rst: out std_logic;                                 --addr_in_gen_rst   :This bit reset the layer_CNTR register usde to fetch the previous layer output 
     --ADDED PORTS
     --INPUTS
     out_v_set: in integer range 0 to 3;                             --out_v_set                 :Used to reset the validity bit of the layer. 1:It means that the output of the next layer has been computed, and this layer has to reset it out_v to '0' 2: Hold the out_v bit value(This is when the layer still has to be used, has already been used, it's being used by the next layer) 3:Set out_v to '1'. This is when the output has been recovered from the nv_reg, so this aknowledges that the layer is still being used.
     n_power_rst: in std_logic;                                      --n_power_rst               :Active-on-low power reset pin
-    data_rec_busy: in std_logic;                                    --data_rec_busy             :data_rec_busy pin 
+    data_rec_busy: in std_logic;                                    --data_rec_busy             :data_rec_busy pin, used to interface with the NORM framework
     fsm_nv_reg_state: in fsm_nv_reg_state_t;                        --fsm_nv_reg_state          :State of fsm of the nv_reg state. Contains the imperative command from the fsm_nv_rev.
     data_rec_recovered_offset: in integer range 0 to num_outputs+1; --data_rec_recovered_offset :This contains the offset reached (counting from the start address). It's used to access the volatile registers of the layer.
     data_rec_type: in data_backup_type_t;                           --data_rec_type             :It contains the type of recovery to perform. 'nothing', 'internal' or 'outputs'. This value must be held during the whole recovery/save process
@@ -59,7 +59,7 @@ port(
     --OUTPUT
     output_en_rec_vect: out std_logic_vector (0 to num_outputs+1);  --output_en_rec_vect        :Collection of pins to enable recovery by layer's neurons of their output. 
     internal_en_rec_vect: out std_logic_vector (0 to num_outputs+1);--internal_en_rec_vect      :Collection of pins to enable recover by layer's neurons of their internal registers.
-    addra: out integer range 0 to num_outputs+2;                    --addra                     :This address is used to fetch data from the volatile registers of the layer (which are supposed to be saved into the nv_reg)
+    addra: out integer range 0 to num_outputs+2;                    --addra                     :This address is used to redirect the nv_reg output into the internal/output volatile register
     fsm_state_save: out std_logic_vector(nv_reg_width-1 downto 0);  --fsm_state_save            :The encoded state of the fsm of the layer, it is also used to determine the type of save to perform
     fsm_pr_state: out fsm_layer_state_t;                            --fsm_pr_state              :It contains the present state of the fsm. it is used by the power_approzimation units 
     reg_en: out std_logic                                           --reg_en                    :This is used to enable/disable the register, ,including this fsm machine
@@ -87,8 +87,8 @@ begin
         fsm_state_save_internal <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
     else
         --Logic for saving.
-        --When saving the state, the state to be saved is the one that the layer is supposed to evolve to if there was no hazard.
-        --if rising_edge(clk) then
+        --When saving the state, the state to be saved is the one that the
+        --layer was supposed to evolve to if there was no hazard.
             if pr_state = idle then
                 fsm_state_save_internal <= std_logic_vector(to_unsigned(0,fsm_state_save'length));
                 state_backup_save <= idle;

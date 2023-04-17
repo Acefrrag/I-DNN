@@ -60,7 +60,7 @@ port(
     -----ORIGINARY PINS--
     --------INPUTS-------
     clk: in std_logic;                                                                  --clk               :
-    data_in: in sfixed(neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);                     --data_in           :
+    data_in: in sfixed(neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);         --data_in           :
     data_out_sel: in std_logic_vector(0 to natural(ceil(log2(real(num_outputs))))-1);   --data_out_sel      :
     start: in std_logic;                                                                --start             :       Signal to trigger the layer and start computation
     -------OUTPUTS-------
@@ -188,7 +188,7 @@ signal var_cntr_value, var_cntr_value_last,var_cntr_end_value: integer range 0 t
 component I_FSM_layer is
     generic (
         num_outputs: natural;
-        rom_depth: natural);--the number of summations in the weighted sum will be 16-1=15
+        rom_depth: natural );--the number of summations in the weighted sum will be 16-1=15
     port(
         clk: in std_logic; 
         addr_TC: in std_logic; 
@@ -355,7 +355,7 @@ I_neurons: for i in 0 to num_outputs-1 generate
         act_fun_type => act_fun_type,
 		sigmoid_inputdataWidth => sigmoid_inputdataWidth,
 		sigmoid_inputdataIntWidth => sigmoid_inputdataIntWidth,
-		Sigfilename => lyr_prms_path&"sigmoid/SigContent.mif")
+		Sigfilename => "../../../../../../"&lyr_prms_path&"sigContent.mif")
         port map(
         clk => clk,
         data_in =>data_in,
@@ -412,7 +412,11 @@ data_in_sel <= data_in_sel_internal;
 -----------------------------
 -----------------------------------------------------------------------------------------------------------
 --------------------------------ROUTING VOLATILE REGISTER CONTENTS LOGIC-----------------------------------
+
+----------------------------------------DATA SAVE LAYER---------------------------
+--Description: collection of entities implementing the data save layer of the I_layer
 -------------------------------------------ROUTING FOR SAVE PROCESS----------------------------------------
+--Description> This implements the collection of signal for recovery (OUT BACKUP VECT and STATE_BACKUP_VECT)
 ---------------------------------ROUTING NEURONS' OUTPUT REGISTERS-----------------------------------------
 --Description: After the layer has computed the output and it is being used by the next layer it is necessary to save the neurons' output
 -----------------------------------------------------------------------------------------------------------
@@ -447,99 +451,6 @@ else--simulating power failure
     data_backup_vect_internal_save <= (others => (others => '0'));
 end if;
 end process ROUTE_SAVE_STATE_SIG;
-------------------------------ROUTING FOR REC PROCESS-----------------------------------------------
---Description: When recovery data it is necessary to correctly route he data_rec_recovered_data recovered from the nv_reg into the correct layer's register
---Infact:
---1) When recovering the output it is necessary to put the recovered value inside neuron's output register (data_backup_vect_output_rec)
---2) When recovering the internal register it is necessary to put the recovered value inside neuron's internal register(data_backup_internal_register)
-----------------------------------------------------------------------------------------------------
-ROUTE_REC_SIG: process(clk) is
-begin
-if n_power_reset = '1' then
-    if rising_edge(clk) then
-        if data_rec_type = outputs then
-            data_backup_vect_output_rec(addra) <= data_rec_recovered_data;
-        else --state or nothing
-            data_backup_vect_internal_rec(addra) <= data_rec_recovered_data;    
-        end if;
-    end if;
-else--simulating power failure
-    data_backup_vect_output_rec <= (others => (others => '0'));
-    data_backup_vect_internal_rec <= (others => (others => '0'));
-end if;
-end process;
-
----------------------------------------LAYER_CNTR--------------------------------
---Description:
---This counter is used to access sequentially the layer's input as well as the corresponding layer neuron's weights when computing the weighted sum
-----------------------------------------------------------------------------------------------------------------------------------------------------
-rst <= addr_in_gen_rst or not(n_power_reset);
-data_in_sel_internal <= addr;
-addr_TC <= '0' when rst = '1' else
-     --data_backup_vect_internal_rec(num_outputs+1)(natural(nv_reg_width-1)) when internal_en_rec_vect(num_outputs) = '1' and data_rec_busy = '1' else
-     '1' when unsigned(addr) = num_inputs-1;
-LAYER_CNTR: process(clk,rst) is 
-begin
-   -- if rst = '1' then
-    --    addr <= '0';
-   -- else
-        if rst = '1' then
-            addr <= (others => '0');
-            --addr_TC <= '0'; --If before shutting down and addr = num_inputs-2, it is necessary to reset addr_TC as well, because it is not reset during the idle state because the rst bit to the addr generator has prioritt over the reg_en
-        else
-           if rising_edge(clk) then
-                if internal_en_rec_vect(num_outputs) = '1' and data_rec_busy = '1' then
-                    addr <= data_backup_vect_internal_rec(num_outputs+1)(natural(ceil(log2(real(num_inputs))))-1 downto 0);
-                    --addr_TC <= data_backup_vect_internal_rec(num_outputs+1)(natural(nv_reg_width-1));
-                elsif reg_en = '1' then
-                    addr <= std_logic_vector(unsigned(addr) + 1);
---                    if unsigned(addr) = num_inputs-2 then
---                        addr_TC <= '1';
---                    else
---                        addr_TC <= '0';
---                    end if;
-                    if unsigned(addr) = num_inputs-1 then
-                        addr <= (others=>'0');
-                    end if;
-                end if;
-            
-            end if;
-        end if;
-end process LAYER_CNTR;
--------------------------------------------------------------------LAYER_TYPE_ONREC------------------------------------------------------------------------------------
---Description:
---This process determines the type of recovery the layer has to perform to recover its state wheather to recover no data, neurons' output or neurons' internal register
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LAYER_TYPE_ONREC: process(all) is
-begin
-    --if rising_edge(clk) then
-        if data_rec_busy = '1' then
-            if nv_reg_we = '0' then
-                if addra = 0 then --We are recovering the first cell, which contains the data_rec_type.
-                    --1: nothing 2: outputs 3: internal 4:outputs(finished state)
-                    if to_integer(unsigned(nv_reg_dout)) = 2 then
-                        data_rec_offset <= num_outputs;
-                        data_rec_type <= outputs;
-                    elsif to_integer(unsigned(nv_reg_dout)) = 3 then
-                        data_rec_offset <= num_outputs+2;
-                        data_rec_type <= internal;
-                    elsif to_integer(unsigned(nv_reg_dout)) = 1 then
-                        data_rec_offset <= 1;
-                        data_rec_type <= nothing;
-                    elsif to_integer(unsigned(nv_reg_dout)) = 4 then--In this case it is necessary to recover the state of layer which is finished
-                        data_rec_offset <= num_outputs+2;
-                        data_rec_type <= outputs;
-                    else
-                        data_rec_offset <= data_rec_offset;
-                        data_rec_type <= data_rec_type;
-                    end if;
-                end if;
-            end if;
-        else
-             data_rec_type <= data_rec_type;
-        end if;
-    --end if;
-end process LAYER_TYPE_ONREC;
 -------------------------------------------------------------------LAYER_TYPE_ONSAVE------------------------------------------------------------------------------------
 --Description:
 --This process determines the type of save the layer has to perform to save its state. Wheather to recover no data, neurons' output or neurons' internal register
@@ -570,65 +481,9 @@ begin
         --In case it's nothing we only need to write to the first element of the nv_reg
     end if;
 end process;
-------------------------------------------------DATA_REC process-------------------------------------------------------------------
--- Doc:
---      this process and its brothers are concernd of data recovery from non volatile register. The recovered data and its amount 
---      can be defined by changing the constants in VOL_ARC CONSTANTS subsection of this code. The recovered data can be obtained 
---      by combining the information carried by: data_rec_recovered_data, data_rec_recovered_offset. This is necessary because
---      from request to offer there are delays expecially from NV_REG.
------------------------------------------------------------------------------------------------------------------------------------
-----------------------------------------------DATA_REC COMB LOGIC------------------------------------------------------------------
-    data_rec_var_cntr_ce <= data_rec_busy;
-    data_rec_var_cntr_init <= not data_rec_busy;
-    data_rec_nv_reg_en <= not var_cntr_tc; --the value is still gated by the mux, so if we are not in data_rec the nv_reg is not enabled
--------------------------------------------------------------------------------------------------
---Data Recovery entities
-DATA_REC: process(n_power_reset,clk) is
-    begin
-        if(n_power_reset = '0') then
-            data_rec_busy <= '0';
-           -- data_rec_nv_reg_en <= '0';
-            
-        elsif(rising_edge(clk)) then
-            if(fsm_nv_reg_state = start_data_recovery_s) then
-                data_rec_busy <= '1';
-               -- data_rec_nv_reg_en <= '1';  
-            elsif(var_cntr_tc = '1') then
-                data_rec_busy <= '0';
-                --data_rec_nv_reg_en <= '0';
-            --else we are doing normal operation and data_rec_busy is 0
-            end if; 
-        end if;
-end process DATA_REC;
-DATA_REC_NV_REG_SIG_CNTRL: process (data_rec_busy,var_cntr_value) is            
-begin 
-    if (data_rec_busy = '0') then 
-        data_rec_nv_reg_addr <= data_rec_nv_reg_start_addr; 
-    else
-        if(var_cntr_value<=data_rec_offset) then
-            data_rec_nv_reg_addr <= std_logic_vector(   unsigned(data_rec_nv_reg_start_addr) 
-                                                        + to_unsigned(var_cntr_value,nv_reg_addr_width_bit)
-                                                     ); 
-        end if; -- if the bound is not respected latch the last value, 
-                --> i.e. when the process starts it is "data_rec_nv_reg_start_addr", while
-                --> when it is over "data_rec_offset" it assumes "data_rec_nv_reg_start_addr + data_rec_offset"
-    end if;
-end process DATA_REC_NV_REG_SIG_CNTRL;
-DATA_REC_V_REG_SIG_CNTRL: process(clk,data_rec_busy) is
-begin
-   if (data_rec_busy = '0') then 
-       data_rec_recovered_offset <= 0;
-       data_rec_recovered_data <= (OTHERS => '0');
-   elsif (rising_edge(clk)) then
-       if(nv_reg_busy='0') then
-           if(var_cntr_value > 0 AND var_cntr_value <= data_rec_offset + 1 ) then -- the plus one is used because the data is moved into a shift register for siyncronization purposes
-               data_rec_recovered_data <= nv_reg_dout;
-               data_rec_recovered_offset <= var_cntr_value_last;
-           end if;
-       end if;
-   end if;
-end process DATA_REC_V_REG_SIG_CNTRL;
+
 --------------------------------------------------DATA_SAVE process-------------------------------------------------------------------
+--Description: This process is DATA SAVE PROCESS, which is part of the DATA SAVE LAYER
 --Additional comments:
 --When a hazard occurs, the architecture first samples the hazard, then at next clock cycle it initializes the data_save process.
 --------------------------------------------------------------------------------------------------------------------------------------
@@ -638,6 +493,7 @@ data_save_var_cntr_init <= not data_save_busy;
 data_save_nv_reg_en <= not var_cntr_tc; --the value is still gated by the mux, so if we are not in data_save the nv_reg is not enabled
 data_save_nv_reg_we <= '1' when data_save_busy ='1' and var_cntr_tc = '0' else '0';
 ---------------------------------------------------------------------------------------------------------------------------------------
+
 DATA_SAVE: process(n_power_reset,clk) is
 begin
     if(n_power_reset = '0') then
@@ -707,6 +563,164 @@ case data_save_type is
     data_save_v_reg_offset <= 0;
 end case;
 end process DATA_SAVE_OFFSET;
+------------------------------END DATA SAVE LAYER----------------------------------
+
+----------------------------DATA RECOVERY LAYER----------------------------------
+------------------------------ROUTING FOR REC PROCESS-----------------------------------------------
+--Description: When recovery data it is necessary to correctly route he data_rec_recovered_data recovered from the nv_reg into the correct layer's register
+--Infact:
+--1) When recovering the output it is necessary to put the recovered value inside neuron's output register (data_backup_vect_output_rec)
+--2) When recovering the internal register it is necessary to put the recovered value inside neuron's internal register(data_backup_internal_register)
+----------------------------------------------------------------------------------------------------
+ROUTE_REC_SIG: process(clk) is
+begin
+if n_power_reset = '1' then
+    if rising_edge(clk) then
+        if data_rec_type = outputs then
+            data_backup_vect_output_rec(addra) <= data_rec_recovered_data;
+        else --state or nothing
+            data_backup_vect_internal_rec(addra) <= data_rec_recovered_data;    
+        end if;
+    end if;
+else--simulating power failure
+    data_backup_vect_output_rec <= (others => (others => '0'));
+    data_backup_vect_internal_rec <= (others => (others => '0'));
+end if;
+end process;
+-------------------------------------------------------------------LAYER_TYPE_ONREC------------------------------------------------------------------------------------
+--Description: Part of the data recovery layer
+--This process determines the type of recovery the layer has to perform to recover its state wheather to recover no data, neurons' output or neurons' internal register
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+LAYER_TYPE_ONREC: process(all) is
+begin
+    --if rising_edge(clk) then
+        if data_rec_busy = '1' then
+            if nv_reg_we = '0' then
+                if addra = 0 then --We are recovering the first cell, which contains the data_rec_type.
+                    --1: nothing 2: outputs 3: internal 4:outputs(finished state)
+                    if to_integer(unsigned(nv_reg_dout)) = 2 then
+                        data_rec_offset <= num_outputs;
+                        data_rec_type <= outputs;
+                    elsif to_integer(unsigned(nv_reg_dout)) = 3 then
+                        data_rec_offset <= num_outputs+2;
+                        data_rec_type <= internal;
+                    elsif to_integer(unsigned(nv_reg_dout)) = 1 then
+                        data_rec_offset <= 1;
+                        data_rec_type <= nothing;
+                    elsif to_integer(unsigned(nv_reg_dout)) = 4 then--In this case it is necessary to recover the state of layer which is finished
+                        data_rec_offset <= num_outputs+2;
+                        data_rec_type <= outputs;
+                    else
+                        data_rec_offset <= data_rec_offset;
+                        data_rec_type <= data_rec_type;
+                    end if;
+                end if;
+            end if;
+        else
+             data_rec_type <= data_rec_type;
+        end if;
+    --end if;
+end process LAYER_TYPE_ONREC;
+------------------------------------------------DATA_REC process-------------------------------------------------------------------
+-- Description: Data Recovery Processes Collection. Part of Data Recovery Layer
+-- Doc:
+--      this process and its brothers are concernd of data recovery from non volatile register. The recovered data and its amount 
+--      can be defined by changing the constants in VOL_ARC CONSTANTS subsection of this code. The recovered data can be obtained 
+--      by combining the information carried by: data_rec_recovered_data, data_rec_recovered_offset. This is necessary because
+--      from request to offer there are delays expecially from NV_REG.
+-----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------DATA_REC COMB LOGIC------------------------------------------------------------------
+    data_rec_var_cntr_ce <= data_rec_busy;
+    data_rec_var_cntr_init <= not data_rec_busy;
+    data_rec_nv_reg_en <= not var_cntr_tc; --the value is still gated by the mux, so if we are not in data_rec the nv_reg is not enabled
+-------------------------------------------------------------------------------------------------
+--Data Recovery entities
+DATA_REC: process(n_power_reset,clk) is
+    begin
+        if(n_power_reset = '0') then
+            data_rec_busy <= '0';
+           -- data_rec_nv_reg_en <= '0';
+            
+        elsif(rising_edge(clk)) then
+            if(fsm_nv_reg_state = start_data_recovery_s) then
+                data_rec_busy <= '1';
+               -- data_rec_nv_reg_en <= '1';  
+            elsif(var_cntr_tc = '1') then
+                data_rec_busy <= '0';
+                --data_rec_nv_reg_en <= '0';
+            --else we are doing normal operation and data_rec_busy is 0
+            end if; 
+        end if;
+end process DATA_REC;
+DATA_REC_NV_REG_SIG_CNTRL: process (data_rec_busy,var_cntr_value) is            
+begin 
+    if (data_rec_busy = '0') then 
+        data_rec_nv_reg_addr <= data_rec_nv_reg_start_addr; 
+    else
+        if(var_cntr_value<=data_rec_offset) then
+            data_rec_nv_reg_addr <= std_logic_vector(   unsigned(data_rec_nv_reg_start_addr) 
+                                                        + to_unsigned(var_cntr_value,nv_reg_addr_width_bit)
+                                                     ); 
+        end if; -- if the bound is not respected latch the last value, 
+                --> i.e. when the process starts it is "data_rec_nv_reg_start_addr", while
+                --> when it is over "data_rec_offset" it assumes "data_rec_nv_reg_start_addr + data_rec_offset"
+    end if;
+end process DATA_REC_NV_REG_SIG_CNTRL;
+DATA_REC_V_REG_SIG_CNTRL: process(clk,data_rec_busy) is
+begin
+   if (data_rec_busy = '0') then 
+       data_rec_recovered_offset <= 0;
+       data_rec_recovered_data <= (OTHERS => '0');
+   elsif (rising_edge(clk)) then
+       if(nv_reg_busy='0') then
+           if(var_cntr_value > 0 AND var_cntr_value <= data_rec_offset + 1 ) then -- the plus one is used because the data is moved into a shift register for siyncronization purposes
+               data_rec_recovered_data <= nv_reg_dout;
+               data_rec_recovered_offset <= var_cntr_value_last;
+           end if;
+       end if;
+   end if;
+end process DATA_REC_V_REG_SIG_CNTRL;
+-------------------------------END DATA RECOVERY LAYER--------------------------------
+
+
+
+--------------------------------------LAYER_CNTR--------------------------------
+--Description:
+--This counter is used to access sequentially the layer's input as well as the corresponding layer neuron's weights when computing the weighted sum
+----------------------------------------------------------------------------------------------------------------------------------------------------
+rst <= addr_in_gen_rst or not(n_power_reset);
+data_in_sel_internal <= addr;
+addr_TC <= '0' when rst = '1' else
+     --data_backup_vect_internal_rec(num_outputs+1)(natural(nv_reg_width-1)) when internal_en_rec_vect(num_outputs) = '1' and data_rec_busy = '1' else
+     '1' when unsigned(addr) = num_inputs-1;
+LAYER_CNTR: process(clk,rst) is 
+begin
+   -- if rst = '1' then
+    --    addr <= '0';
+   -- else
+        if rst = '1' then
+            addr <= (others => '0');
+            --addr_TC <= '0'; --If before shutting down and addr = num_inputs-2, it is necessary to reset addr_TC as well, because it is not reset during the idle state because the rst bit to the addr generator has prioritt over the reg_en
+        else
+           if rising_edge(clk) then
+                if internal_en_rec_vect(num_outputs) = '1' and data_rec_busy = '1' then
+                    addr <= data_backup_vect_internal_rec(num_outputs+1)(natural(ceil(log2(real(num_inputs))))-1 downto 0);
+                    --addr_TC <= data_backup_vect_internal_rec(num_outputs+1)(natural(nv_reg_width-1));
+                elsif reg_en = '1' then
+                    addr <= std_logic_vector(unsigned(addr) + 1);
+--                    if unsigned(addr) = num_inputs-2 then
+--                        addr_TC <= '1';
+--                    else
+--                        addr_TC <= '0';
+--                    end if;
+                    if unsigned(addr) = num_inputs-1 then
+                        addr <= (others=>'0');
+                    end if;
+                end if;
+            
+            end if;
+        end if;
+end process LAYER_CNTR;
 
 
 

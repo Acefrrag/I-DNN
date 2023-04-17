@@ -23,12 +23,13 @@
 -- Therefore the fsm of the layer evolves for one more clock cycle before starting backing up the data.
 -- Testbench Parameters: Be sure that this has been set properly, in order to ensure
 -- Hazard and Power Off thresholds:
---      Hazard      : 155mV inside this vhd file
---      Power-off   : 135mV inside TEST_ARCHTECTURE_PACKAGE.vhd
+--      Hazard      : 155mV inside this vhd file                constant    hazard_threshold          
+--      Power-off   : 135mV inside TEST_ARCHTECTURE_PACKAGE.vhd constant    RST_EMU_THRESH_I_layer_tb
 -- Voltage Trace filename   : "I_layer_voltage_trace.txt"
 -- System Clock Frequency   : 25 MHz
 -- System Clock Period      : 40 ns 
--- INTERMITTENCY PRESCALER  : 8 Inside INTERMITTENCY_EMULATOR_package.vhd
+-- INTERMITTENCY PRESCALER  : 8                         Inside INTERMITTENCY_EMULATOR_package.vhd
+-- FRAM_MAX_DELAY_NS        : MASTER_CLK_PERIOD_NS*2    Inside NVME_FRAMEWORK_PACKAGE.vhd
 -- Simulation time          : 60000ns=60us
 -- Hazard scenarios:
 --      1) In the middle of w_sum;
@@ -274,7 +275,7 @@ generic map
 	neuron_weight_IntWidth => layer_tb_neuron_weight_IntWidth,
 	neuron_weight_FracWidth => layer_tb_neuron_weight_FracWidth,
     layer_no => 1,														--Layer number (identifier)
-    act_fun_type => "ReLU", 											-- Choose between "ReLU" and "Sig"
+    act_fun_type => act_fun_type, 											-- Choose between "ReLU" and "Sig"
     sigmoid_inputdataWidth => layer_tb_sigmoid_inputdata_Width,
 	sigmoid_inputdataIntWidth => layer_tb_sigmoid_inputdata_IntWidth,
 	lyr_prms_path => layer_parameters_path

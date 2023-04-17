@@ -4,19 +4,36 @@ Created on Tue Jan 17 10:02:52 2023
 
 Engineer: Michele Pio Fragasso
 
-
 Description:
-    --This file generates the voltage trace necessary files to perform the testbench analysis:
+    This script generates the voltage trace necessary files to perform the
+    testbench analysis.
+    Most likely, you will need to run this only once, since system clock period
+    and voltage trace timescale are set up only once.
+    
+    After running this generation script, the testbench should be run for
+    sim_time amount of time.
         
-        -trace files to perform a simulation time window
-        -packages to set up the parameters of the intermittency emulator.
-        
+Input:
+    - vt_ts         : Voltage trace timescale in ns.
+    - SC_P          : System clock period in ns.
+    - sim_time      : Simulation time in us.
+    - shtdw_value   : Shut Down value in mV.
+Output:
+    - Trace files       : Contaning VHDL compatible voltage profile
+                             to be reproduced with the IE, satisfying
+                             the voltage trace timescale and siimulation
+                             time
+                          They are placed in ../../src/NORM/voltage_traces
+                          and 
+    - IE_PACKAGE.vhd    : VHDL packages to set up the parameters of the
+                             intermittency emulator: num_elements_rom,
+                             prescaler value, IE_MAX_VALUE
+
 """
 
 import sys
 sys.path.insert(0, "../functions/")
 
-import matplotlib.pyplot as plt
 import numpy as np
 import misc
 
@@ -35,7 +52,6 @@ SC_P = 40           #System clock period
 sim_time = 3_000    #Simulation time in us
 vt_ts = 160         #Voltage Trace Timescale in ns
 w_len = int(sim_time/(vt_ts/1_000))
-
 
 #Traces neglecting the initial power off
 start_hzrd_value = shtdw_value + 200

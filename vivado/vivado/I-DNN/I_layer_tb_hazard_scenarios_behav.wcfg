@@ -15,15 +15,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="3435000fs"></ZoomStartTime>
-      <ZoomEndTime time="5127001fs"></ZoomEndTime>
-      <Cursor1Time time="7306000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="17820001fs"></ZoomEndTime>
+      <Cursor1Time time="2860000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="336"></NameColumnWidth>
-      <ValueColumnWidth column_width="140"></ValueColumnWidth>
+      <ValueColumnWidth column_width="95"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="26" />
+   <WVObjectSize size="35" />
    <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/I_fsm_layer_comp/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -43,6 +43,246 @@
    <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect" type="array">
       <obj_property name="ElementShortName">data_out_vect[0:29][15:-16]</obj_property>
       <obj_property name="ObjectShortName">data_out_vect[0:29][15:-16]</obj_property>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[0]" type="array">
+         <obj_property name="ElementShortName">[0][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[0][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[1]" type="array">
+         <obj_property name="ElementShortName">[1][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[1][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[2]" type="array">
+         <obj_property name="ElementShortName">[2][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[2][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[3]" type="array">
+         <obj_property name="ElementShortName">[3][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[3][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[4]" type="array">
+         <obj_property name="ElementShortName">[4][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[4][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[5]" type="array">
+         <obj_property name="ElementShortName">[5][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[5][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[6]" type="array">
+         <obj_property name="ElementShortName">[6][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[6][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[7]" type="array">
+         <obj_property name="ElementShortName">[7][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[7][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[8]" type="array">
+         <obj_property name="ElementShortName">[8][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[8][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[9]" type="array">
+         <obj_property name="ElementShortName">[9][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[9][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[10]" type="array">
+         <obj_property name="ElementShortName">[10][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[10][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[11]" type="array">
+         <obj_property name="ElementShortName">[11][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[11][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[12]" type="array">
+         <obj_property name="ElementShortName">[12][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[12][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[13]" type="array">
+         <obj_property name="ElementShortName">[13][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[13][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[14]" type="array">
+         <obj_property name="ElementShortName">[14][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[14][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[15]" type="array">
+         <obj_property name="ElementShortName">[15][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[15][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[16]" type="array">
+         <obj_property name="ElementShortName">[16][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[16][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[17]" type="array">
+         <obj_property name="ElementShortName">[17][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[17][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[18]" type="array">
+         <obj_property name="ElementShortName">[18][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[18][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[19]" type="array">
+         <obj_property name="ElementShortName">[19][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[19][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[20]" type="array">
+         <obj_property name="ElementShortName">[20][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[20][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[21]" type="array">
+         <obj_property name="ElementShortName">[21][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[21][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[22]" type="array">
+         <obj_property name="ElementShortName">[22][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[22][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[23]" type="array">
+         <obj_property name="ElementShortName">[23][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[23][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[24]" type="array">
+         <obj_property name="ElementShortName">[24][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[24][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[25]" type="array">
+         <obj_property name="ElementShortName">[25][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[25][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[26]" type="array">
+         <obj_property name="ElementShortName">[26][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[26][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[27]" type="array">
+         <obj_property name="ElementShortName">[27][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[27][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[28]" type="array">
+         <obj_property name="ElementShortName">[28][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[28][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect[29]" type="array">
+         <obj_property name="ElementShortName">[29][15:-16]</obj_property>
+         <obj_property name="ObjectShortName">[29][15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_in_sel" type="array">
       <obj_property name="ElementShortName">data_in_sel[0:4]</obj_property>
@@ -203,5 +443,75 @@
    <wvobject fp_name="/I_layer_tb_hazard_scenarios/fsm_nv_reg_db_comp/task_status" type="logic">
       <obj_property name="ElementShortName">task_status</obj_property>
       <obj_property name="ObjectShortName">task_status</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/I_fsm_layer_comp/pr_state" type="other">
+      <obj_property name="ElementShortName">pr_state</obj_property>
+      <obj_property name="ObjectShortName">pr_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="group1434" type="group">
+      <obj_property name="label">NEURON_W_SUMS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/\I_neurons(3)\/I_neuron_i/sum_reg_out" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">sum_reg_out[15:-16]</obj_property>
+         <obj_property name="ObjectShortName">sum_reg_out[15:-16]</obj_property>
+         <obj_property name="label">N3[15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/\I_neurons(4)\/I_neuron_i/sum_reg_out" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">sum_reg_out[15:-16]</obj_property>
+         <obj_property name="ObjectShortName">sum_reg_out[15:-16]</obj_property>
+         <obj_property name="label">N4[15:-16]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group1436" type="group">
+      <obj_property name="label">NEURON_OUTPUT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/\I_neurons(3)\/I_neuron_i/data_out" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">data_out[15:-16]</obj_property>
+         <obj_property name="ObjectShortName">data_out[15:-16]</obj_property>
+         <obj_property name="label">N3[15:-16]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/\I_neurons(4)\/I_neuron_i/data_out" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">data_out[15:-16]</obj_property>
+         <obj_property name="ObjectShortName">data_out[15:-16]</obj_property>
+         <obj_property name="label">N4[15:-16]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/I_fsm_layer_comp/state_backup_save" type="other">
+      <obj_property name="ElementShortName">state_backup_save</obj_property>
+      <obj_property name="ObjectShortName">state_backup_save</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_in_sel" type="array">
+      <obj_property name="ElementShortName">data_in_sel[0:4]</obj_property>
+      <obj_property name="ObjectShortName">data_in_sel[0:4]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/data_out_vect" type="array">
+      <obj_property name="ElementShortName">data_out_vect[0:29][15:-16]</obj_property>
+      <obj_property name="ObjectShortName">data_out_vect[0:29][15:-16]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/I_fsm_layer_comp/start" type="logic">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/I_fsm_layer_comp/fsm_nv_reg_state" type="other">
+      <obj_property name="ElementShortName">fsm_nv_reg_state</obj_property>
+      <obj_property name="ObjectShortName">fsm_nv_reg_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/I_layer_tb_hazard_scenarios/I_layer_comp/I_fsm_layer_comp/nx_state" type="other">
+      <obj_property name="ElementShortName">nx_state</obj_property>
+      <obj_property name="ObjectShortName">nx_state</obj_property>
    </wvobject>
 </wave_config>

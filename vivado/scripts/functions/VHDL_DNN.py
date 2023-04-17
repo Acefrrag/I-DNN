@@ -17,7 +17,6 @@ import sys
 import TestData as genData
 import re
 import os
-import random
 
 
 def extract_input(training_file):
@@ -149,9 +148,9 @@ def savelogfile(net, e_a, DNN_in_prms, path):
     date = DNN_in_prms["date"]
     
     f.write("TRAINING REPORT - "+ date + "\n \n")
-    f.write("Number of layers: "+str(net.num_layers)+"\n")
-    f.write("Neurons per layer: "+str(net.sizes)+"\n")
-    f.write("Activation function: "+str(net.act_fun_type))
+    f.write("Number of hidden layers : "+str(net.num_layers-1)+"\n")
+    f.write("Neurons per layer: "+str(net.sizes[1:])+"\n")
+    f.write("Activation function type: "+str(net.act_fun_type)+"\n")
     f.write("Training data size: "+str(len(training_data))+"\n")
     f.write("Training epochs: "+ str(epochs)+"\n")
     f.write("Training batch size:"+ str(batch_size)+"\n")
@@ -240,7 +239,7 @@ def mkpkg(DNN_in_prms, net, path):
     "	constant DNN_neuron_weight_IntWidth: natural := "+str(neuron_weight_IntWidth)+";\n"
     "	constant DNN_neuron_weight_FracWidth: natural := DNN_neuron_weight_Width-DNN_neuron_weight_IntWidth;\n"
     "   constant DNN_testbench_input_path: string :=\"./tb_files/DNN/single_image/"+DNN_in_prms["tbfoldername"]+"/test_dataset_0910/VHDL_dataset_0910.txt\";\n"
-    "   constant DNN_prms_path: string := \"../tb_files/DNN/single_image/"+DNN_in_prms["tbfoldername"]+"/\";\n"
+    "   constant DNN_prms_path: string := \"./tb_files/DNN/single_image/"+DNN_in_prms["tbfoldername"]+"/\";\n"
     "	constant act_fun_type: string  := \""+str(act_fun_type)+"\";\n"
     "   --TestBench for neuron entities and its subentities\n"
     "   -- Layers variables\n"
@@ -408,7 +407,7 @@ package I_DNN_MI_package is
 	constant MI_DNN_neuron_weight_IntWidth: natural := """+str(neuronweightIntSize)+""";
 	constant MI_DNN_neuron_weight_FracWidth: natural := MI_DNN_neuron_weight_Width-MI_DNN_neuron_weight_IntWidth;
 	constant MI_DNN_prms_path: string := "./tb_files/DNN/multiple_images/"""+DNN_in_prms["MItbfoldername"]+"""/";
-	constant MI_act_fun_type: string  := \" """+act_fun_type+"""\";
+	constant MI_act_fun_type: string  := \""""+act_fun_type+"""\";
    --TestBench for neuron entities and its subentities
    -- Layers variables
    -- Input Layer
@@ -448,7 +447,7 @@ def mkentity(DNN_in_prms, net, path):
     VHDL_architectures_path = path
     date = DNN_in_prms["date"]
     num_hidden_layers = net.num_hidden_layers
-    
+    act_fun_type = net.act_fun_type
     try:
         f = open(VHDL_architectures_path+"/I_DNN.vhd",'w')
         #VHDL File Descriptor
@@ -532,7 +531,7 @@ def mkentity(DNN_in_prms, net, path):
         "type out_v_set_vect_t is array(1 to num_hidden_layers) of integer range 0 to 3;\n"
         #Layer Signals
         "--LAYER SIGNALS-----------------------------------------\n"
-        "signal period_backup_clks: integer range 0 to 2**31 -1:=2**10;\n"
+        "--COLLECTION OF SIGNALS--\n"
         "signal out_v_set_vect: out_v_set_vect_t;\n"
         "signal data_out_vect, data_in_vect: data_vect_type;\n"
         "signal start_vect: std_logic_vector(1 to num_hidden_layers);\n"
@@ -555,6 +554,7 @@ def mkentity(DNN_in_prms, net, path):
         "signal resetN_emulator: std_logic;\n"
         #FSM Non-Volatile Register Signals
         "--FSM_NV_REG SIGNALS-------------------------------------\n"
+        "signal period_backup_clks: integer range 0 to 2**31 -1:=2**10;\n"
         "signal threshold_value      : intermittency_arr_int_type(INTERMITTENCY_NUM_THRESHOLDS - 1 downto 0);\n"
         "signal threshold_compared   : std_logic_vector(INTERMITTENCY_NUM_THRESHOLDS - 1 downto 0); \n"
         "signal select_threshold     : integer range 0 to INTERMITTENCY_NUM_THRESHOLDS -1; --This is used to select the threshold for power failure\n"
@@ -831,6 +831,7 @@ def mkentity(DNN_in_prms, net, path):
         "--out_v_set_vect(3) <= out_v_set;\n"
         "end process out_v_set_val;\n"
         "--COMPONENT INSTANTIATION\n"
+        "--##DB##Start\n"
         "--FMS_NV_REG_DB_COMP\n"
         "--fsm_nv_reg_db_comp: fsm_nv_reg_db\n"
         "--    port map(\n"
@@ -841,6 +842,7 @@ def mkentity(DNN_in_prms, net, path):
         "--        fsm_state       => fsm_nv_reg_state,\n"
         "--        fsm_state_sig   => fsm_state_sig\n"
         "--    );\n"
+        "--##DB##End\n"
         "--##CB##Start\n"
         "-----\n"
         "--fsm_nv_reg_cb_comp: fsm_nv_reg_cb\n"
@@ -890,9 +892,9 @@ def mkentity(DNN_in_prms, net, path):
             block.append("neuron_weight_IntWidth => neuron_weight_IntWidth,")
             block.append("neuron_weight_FracWidth => neuron_weight_FracWidth,")
             block.append("    layer_no => "+index+",")
-            block.append("    act_fun_type => \"ReLU\"," )
-            block.append("sigmoid_inputdataWidth=> 5,")
-            block.append("sigmoid_inputdataIntWidth=> 2,")
+            block.append("    act_fun_type => \""+str(act_fun_type)+"\" ,")
+            block.append("sigmoid_inputdataWidth => sigmoid_inputdataWidth,")
+            block.append("sigmoid_inputdataIntWidth => sigmoid_inputdataIntWidth,")
             block.append("lyr_prms_path => DNN_prms_path")
             block.append("    )")
             block.append("    port map(")

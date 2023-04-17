@@ -66,6 +66,7 @@ def genSigContent(dest_path,outputdataWidth, outputdataIntWidth, inputSize,input
     g.write("Sigmoid output size: "+str(outputdataWidth)+"\n")
     g.write("Sigmoid output fractional part size: " +str(outputdataWidth-outputdataIntWidth)+"\n")
     g.write("Sigmoid output integer part size: "+str(outputdataIntWidth)+"\n")
+    g.write("Smallest sigmoid input: " + str(-2**(inputIntWidth-1))+"\n")
     g.close()
 
    

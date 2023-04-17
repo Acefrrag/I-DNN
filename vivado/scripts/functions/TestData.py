@@ -3,12 +3,12 @@
 Author: Vipin Kizhepatt
 
 Revision: Michele Pio Fragasso
---Added description and comments. Made modifications to make it compatible
---with my VHDL DNN architecture
 
 Description:
-    --Collection of functions for generating fixed-point test dataset to be fed
+    Collection of functions for generating fixed-point test dataset to be fed
     to the testbench module of the DNN architecture.
+    
+    This package is used by VHDL_DNN for VHDL NORM compatible DNN reconfiguration.
 """
 
 import sys

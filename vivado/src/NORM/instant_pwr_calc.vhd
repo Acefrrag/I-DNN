@@ -16,6 +16,9 @@
 -- Revision 0.01 - File Created
 -- Additional Comments:
 -- 
+--Revision 0.02 - Power Model setup
+-- Comments: The power model has been set up in this module but it is
+--implemented offline inside the evaluation python scripts.
 ----------------------------------------------------------------------------------
 
 

@@ -57,5 +57,3 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_
 INFO: [VRFC 10-3107] analyzing entity 'I_DNN_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_layer_tb_hazard_scenarios.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_layer_tb_hazard_scenarios'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/mult_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'mult_tb'

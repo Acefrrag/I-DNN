@@ -72,7 +72,7 @@ variable dataset_content: datain_type;
     return dataset_content;
 end function;
 
-constant hazard_threshold : integer := 2600;
+constant hazard_threshold : integer := 2400;
 
 
 signal input_reg: datain_type := gen_datain("../"&DNN_testbench_input_path);

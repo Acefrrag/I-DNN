@@ -39,7 +39,7 @@ use work.I_DNN_package.all;
 entity I_neuron is
 
 generic(
-    constant rom_width: natural := 16;
+    constant rom_width: natural := 16;                          
     constant rom_depth: natural := 3;
 	constant neuron_inout_IntWidth: natural := 16;
 	constant neuron_inout_FracWidth: natural := 16;
@@ -62,7 +62,7 @@ port(
     sum_reg_rst: in std_logic;                                                  --sum_reg_rst:  Reset Bit to reset the cumulative sum register
     update_out: in std_logic;                                                   --update_out:   Update bit to update the output register of the neuron
     --OUTPUT
-    data_out: out sfixed (neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);          --data_out:     Serial Data Output Port
+    data_out: out sfixed (neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);          --data_out:     Serial Data Output Port. It overlaps with the out_data_save
     --ADDED PINS
     --INPUT
     n_power_reset: in std_logic;                                                --n_power_reset:To reset the volatile register of the neuron
@@ -74,7 +74,7 @@ port(
     data_v: in std_logic;
     --OUTPUT
     wsum_save: out std_logic_vector(neuron_inout_FracWidth+neuron_inout_IntWidth-1 downto 0); --wsum_save:    Save Port to save the currently computed weighted sum
-    act_log_save: out std_logic_vector(neuron_inout_FracWidth+neuron_inout_IntWidth-1 downto 0)  --ReLU_save:    Save Port to save the output of the activation function
+    act_log_save: out std_logic_vector(neuron_inout_FracWidth+neuron_inout_IntWidth-1 downto 0)  --DEPRECATED ReLU_save:    Save Port to save the output of the activation function
     );      
 end entity I_neuron;
 

@@ -6,63 +6,24 @@ Engineer: Michele Pio Fragasso
 
 
 Description:
-    --This script should generate DB results for a given DNN architecture,
+    This script generates CB policy results for a given DNN architecture,
     for different voltage trace at given NV_REG_DELAY_FACTOR.
     
+    The constant backup policy backups the DNN state after <backup_period_clks>
+    system clock cycles. For every simulation the DNN is tested for a given
+    backup period clk. The 
     
-    
-    The motivation of this script is first of all try to evaluate a given DNN for all voltage traces
-    but it has also been used to study different DNN for the same voltage trace.
-    
-    So far I identified some patterns:
-    1) The power consumption follows more or less the number of oscillation of 
-    the voltage trace around the hazard threshold vs hazard threshold.
-    How can I characterize this in one value I still have to find. But for sure I cannot
-    do any fitting of the curve.
-    
-    
-    2)The throuput depends on the voltage trace and most likely from the
-    DNN architecture. They exhibit an exponential decay wrt hazrd tghreshold
-    so that's very interesting to show. I can characterize the voltage trace wrt
-    the dacay factor
-    
-    1)POWER CONSUMPTION
-    To express the dependence correlation between power consumption and number
-    of oscillations was computed for different vts. Guesses were confirmied
-    
-    2) TROUGHPUT
-    1)I can bar chart the decay factor for different voltage trace and for
-    different NV_REG_DELAY_FACTOR. This is what I want to do next!
-    
-    2)Also I can plot the decay factor for different DNN architectures
-    (number of layers and sizes per layer)
-    This justifies this script!
+#INPUTS
 
-    So I need to perform more test with different DNNs
-    architectures. Mostly it depends on the number of layer and the size per layer
-    
-    
-    
-    #Input
-        DNN_architecture: Dictionary containing some info about the DNN architecture
-            keys:
-                num_hidden_layers: Contain the number of the hidden layers of the architecture
-                to be tested.
-        indexes: Contains the voltage trace indexes, they range between 0 and 9.
-        values: Vector of 10 values. Every refer to a voltage trace and is the mininum threshold to
-            allow correct backup with data corruption. Values are computed by running the script
-            "single_trace_preanalysis"
-        overall_final_value: Hazard threshold end value.
-        NV_REG_FACTOR:
-        num_sim:
-        step:
+#OUTPUTS
+
+
             
     
 """
 
 import os
 import sys
-import math
 
 ##---------------------------------------------------------------------- Functions
 def cleanup ():
@@ -397,12 +358,11 @@ def generate_results(sim_prms, NV_REG_FACTOR, DNN_architecture, voltage_trace_na
     comment_CB_DNN()
     
 if __name__=="__main__":
-    #Do not change this
+    #Do not change these
     voltage_trace_names = ["voltage_trace"+str(i) for i in range(1,11)] 
     DNN_architecture = {}
-    DNN_architecture["num_hidden_layers"] = 4
-    #indexes contains the index to the voltage traces that you want to be synthesized
-    indexes = [i for i in range(2,10)]
+    sim_prms = {}
+    
     #VALUES SETUP
     #12-LAYER test
     #VAUES for NV_REG_FACTOR=2
@@ -412,24 +372,30 @@ if __name__=="__main__":
     #values= [2800,2650,2650,2850,2900,2800,2950,2450,2700,2450]
     #values for NV_REG_DELAY = 8
     
+    #max DNN size 30
     #values for NV_REG_DELAY = 2
     values = [2450,2500,2500,2400,2400,2450,2350,2350,2450,2350]
+    
+    
     #8layer DNN scaled_up version. The sizes are
     #sizes = [120, 100, 60, 60, 50, 40, 30, 10]
     #values for NV_REG_DELAY = 2
     #values = [2500, 2500, 2650, 2500, 2500, 2500, 2550, 2400, 2550, 2400]#instead of 3412 there is 2500
     #values for NV_REG_DELAY = 5
     #values = [2550,2550,2650,2550,2600,2600,2400,2400,2600,2400]
-    sim_prms = {}
+    
     sim_prms["sim_time_us"] = 3_000
     sim_prms["system_clock_period_ns"] = 40
     sim_prms["backup_period_clks_end"] = sim_prms["sim_time_us"]*1_000/sim_prms["system_clock_period_ns"]
     sim_prms["backup_period_clks_start"] = 1024#2**10
+    DNN_architecture["num_hidden_layers"] = 4
+    indexes = [i for i in range(2,11)]
     overall_num_sim = 100
     # Define the starting and ending values of the interval
     start_val = sim_prms["backup_period_clks_start"]
     end_val = sim_prms["backup_period_clks_end"]
     backup_period_clks = []
+    #The backup_clk values increase 
     for i in range(overall_num_sim):
         dist = (end_val - start_val) * ((i+1)/overall_num_sim)**2
         backup_period_clk = int(start_val + dist)

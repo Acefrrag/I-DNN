@@ -12,9 +12,11 @@ easily modifiable.  It is not optimized, and omits many desirable
 features.
 
 Revision: Michele Pio Fragasso
-Added method to compute the minimum integer part size to compute
-the output of the DNN without overflow in the VHDL architecture.
+This script was part of the Zynet package developed by Vipin Kizhepatt.
 
+The ZyNet network class has been augmented with attrivubutes representing the
+DNN model in a VHDL environment. The class has new attributes like the DNN
+VHDL size for the representation of the VHDL architecture in a digital domain.
 """
 
 #### Libraries
@@ -432,20 +434,40 @@ class Network(object):
             self.neuronweightSize = 32
             self.neuronweightIntSize = 4
             self.neuronweightFracSize = self.neuronweightSize - self.neuronweightIntSize
-
+        
     def assignSigSize(self, sigmoid_inputSize, sigmoid_inputIntSize):
+        """
+        This function adds the sigmoid size parameters to the network
+        
+
+        Parameters
+        ----------
+        sigmoid_inputSize : integer
+            Size in number of bits of the input data to the sigmoid.
+            Bigger size are heavier for the VHDL implementation
+        sigmoid_inputIntSize : integer
+            Size of the integer size of the sigmoid.
+            
+
+        Returns
+        -------
+        None.
+
+        """
         self.sigmoidinputSize = sigmoid_inputSize
         self.sigmoidinputIntSize = sigmoid_inputIntSize
         self.sigmoidinputFracSize = self.sigmoidinputSize-self.sigmoidinputIntSize
 
     
     def generateSigmoid(self, path):
-        Sigmoid.genSigContent(dest_path="../files/sigmoid/",outputdataWidth=self.neuroninputSize,outputdataIntWidth=self.neuroninputIntSize,inputSize=self.sigmoidinputSize,inputIntWidth=self.sigmoidinputIntSize)
-        (sigmoid_inputSize, sigmoid_inputIntSize) = misc.sigmoid_extract_size("..\\\\files\sigmoid")
+        Sigmoid.genSigContent(dest_path=path,outputdataWidth=self.neuroninputSize,outputdataIntWidth=self.neuroninputIntSize,inputSize=self.sigmoidinputSize,inputIntWidth=self.sigmoidinputIntSize)
+        (sigmoid_inputSize, sigmoid_inputIntSize) = misc.sigmoid_extract_size(path)
         return
-#### Loading a Network
+    
+    
 def load(filename):
-    """Load a neural network from the file ``filename``.  Returns an
+    """
+    Loads a neural network from the file ``filename``.  Returns an
     instance of Network.
 
     """

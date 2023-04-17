@@ -4,60 +4,125 @@ Created on Fri Feb 17 18:10:49 2023
 
 Engineer: Michele Pio Fragasso
 
-
 Description:
-    --This script should generate DB results for a given DNN architecture,
-    for different voltage trace at given NV_REG_DELAY_FACTOR.
+    This script generates DB results for a given DNN architecture,
+    for different voltage traces at given NV_REG_DELAY_FACTOR.
     
+    I noticed that the simulation crashes if too many simulations are performed
+    without restarting the Vivado simulator. Therefore the number of simulations
+    in betwwen the initial hazard threshold (stored inside <values[i]>) and
+    the final hazard threhsold (<overall_final_value>) is split up in smaller
+    dimension batches of dimension <num_sim>.
     
+    MOTIVATION
+    The motivation of this script is:
+
+        1) VOLTAGE TRACE ANALYSIS:
+            Evaluate a given DNN for all voltage traces but it has also been used to study different DNN
+            for the same voltage trace. 
+
+        VOLTAGE TRACE ANALYSIS:
+            
+            I identified some patterns:
+            1) The power consumption follows more or less the number of oscillation of 
+            the voltage trace around the hazard threshold vs hazard threshold.
+            How can I characterize this in one value I still have to find. But for sure
+            I cannot do any fitting of the curve.
+                
+            2)The throughput depends on the voltage trace and most likely from the
+            DNN architecture. They exhibit an exponential decay wrt hazrd tghreshold
+            so that's very interesting to show. I can characterize the voltage trace wrt
+            the dacay factor
+            
+            1)POWER CONSUMPTION
+            To express the dependence correlation between power consumption and number
+            of oscillations was computed for different vts. Guesses were confirmied
+            
+            2) TROUGHPUT
+            1)I can bar chart the decay factor for different voltage trace and for
+            different NV_REG_DELAY_FACTOR. This is what I want to do next!
+        
+        2) DNN ANALYSIS
     
-    The motivation of this script is first of all try to evaluate a given DNN for all voltage traces
-    but it has also been used to study different DNN for the same voltage trace.
-    
-    So far I identified some patterns:
-    1) The power consumption follows more or less the number of oscillation of 
-    the voltage trace around the hazard threshold vs hazard threshold.
-    How can I characterize this in one value I still have to find. But for sure I cannot
-    do any fitting of the curve.
-    
-    
-    2)The throuput depends on the voltage trace and most likely from the
-    DNN architecture. They exhibit an exponential decay wrt hazrd tghreshold
-    so that's very interesting to show. I can characterize the voltage trace wrt
-    the dacay factor
-    
-    1)POWER CONSUMPTION
-    To express the dependence correlation between power consumption and number
-    of oscillations was computed for different vts. Guesses were confirmied
-    
-    2) TROUGHPUT
-    1)I can bar chart the decay factor for different voltage trace and for
-    different NV_REG_DELAY_FACTOR. This is what I want to do next!
-    
-    2)Also I can plot the decay factor for different DNN architectures
-    (number of layers and sizes per layer)
+            By running this script multiple times by setting a different DNN
+            architecture (see usage) I can do performance analysis for different 
+            DNN (number of layers and sizes per layer)
+            
     This justifies this script!
 
-    So I need to perform more test with different DNNs
-    architectures. Mostly it depends on the number of layer and the size per layer
+INPUTS
+    The inuts are located in the main section of this python script
+    
+    num_hidden_layers   : Contain the number of the hidden layers of the
+                            architecture to be tested. This data is taken from
+                            the training_file.txt maximum size
+    
+    indexes             : List voltage trace indexes, they range
+                            between 0 and 9. The script will run simulation
+                            for the voltage traces specified in this list.
+    
+    values              : Vector of 10 values. Every refer to a voltage trace
+                            and is the mininum threshold to allow correct
+                            backup with data corruption. Values are computed by
+                            running the script "preanalysis_single_vt.py"
+                            This list must be filled entirely even if some
+                            voltage traces are not analysied
+    
+    overall_final_value : Hazard threshold end value.
+   
+    NV_REG_FACTOR       : NV_REG_FACTOR to be tested
+    
+    num_sim             : batch size for number of consecutive simulations.
+    
+    step                : hazard threshold step.
+    
+OUTPUTS:
+    Set of results file.
+    
+    For every voltage trace there is a set of result files, each one referring
+    to a batch of simulation in between the initial and final threshold value.
+    
+USAGE:
+    
+    Before running the script ensure that the DB policy is commented,
+    especially after the testbench was run manually.
+    
+    Also endure 
+    
+    FAQS:
+    1) How can I test the DNN for different DNNs?
+    Answer:
+    You first set up training_file.txt. At that point you run trainNN.py and
+    the new DNN architecture is loaded into the vivado project. Under this 
+    scenario you most lkely want to run the architecture for only one voltage
+    trace, therefore the "index" variable should contain the voltage trace
+    index to be analyzed.
+    
+    2) How can I load a previously trained DNN and run the simulation with that
+    DNN?
+    Answer:
+    You can find all the DNN models in ../files/weights_n_biases/. All you
+    need to do is to copy and paste only the generated architectures inside
+    VHDL_output:
+        DNN.vhd, DNN_package.vhd and MI_DNN_package.vhd must be put inside
+        ../../src/DNN
+        NVME_framework.vhd has to be inside ../../src/NORM
+        
     
     
-    
-    #Input
-        DNN_architecture: Dictionary containing some info about the DNN architecture
-            keys:
-                num_hidden_layers: Contain the number of the hidden layers of the architecture
-                to be tested.
-        indexes: Contains the voltage trace indexes, they range between 0 and 9.
-        values: Vector of 10 values. Every refer to a voltage trace and is the mininum threshold to
-            allow correct backup with data corruption. Values are computed by running the script
-            "single_trace_preanalysis"
-        overall_final_value: Hazard threshold end value.
-        NV_REG_FACTOR:
-        num_sim:
-        step:
-            
-    
+IMPORTANT NOTES:
+    1)To stop simulating, in Spyder you should restart the kernel. Anyway, if you
+    do this,the dynamic backup policy within DNN.vhd file
+    is not commented back therefore producing 
+    an error when running again this simulating script (the result file will be
+    empty). In that case make sure you comment it manually!!!
+
+    2)A big DNN architecture, a high simulation time or a high number of
+    consecutive simulations (num_sim), can produce a crash during simulation.
+    You should start by setting num_sim to 1 and then gradually increasing
+    to check what is the crash limit for that particular DNN architecture.
+    Also a crash results in the missed commenting of the backup policy. So make
+    sure you comment it.
 """
 
 import os
@@ -88,6 +153,49 @@ def printnlterminal(string):
     print("puts \"" + string + "\"")
     print("flush stdout")
     ##------------------------------------------------------------
+    
+    
+def uncomment_DB_DNN():
+    DNN_path = "../../src/DNN/I_DNN.vhd"
+    DB_start_marker = "##DB##Start"
+    DB_end_marker = "##DB##End"
+    ctl = open(DNN_path, "r+")
+    DNN_VHDL_lines = ctl.readlines()
+    start_index = [index for index, code_line in enumerate(DNN_VHDL_lines) if DB_start_marker in code_line][0]
+    end_index = [index for index, code_line in enumerate(DNN_VHDL_lines) if DB_end_marker in code_line][0]
+
+    i = start_index+2
+    while i <= end_index-1:
+        line = DNN_VHDL_lines.pop(i)
+        line = line[2:]
+        DNN_VHDL_lines.insert(i, line)
+        i += 1
+    
+    ctl.seek(0)
+    ctl.truncate()
+    ctl.writelines(DNN_VHDL_lines)
+    ctl.close()
+    
+def comment_DB_DNN():
+    DNN_path = "../../src/DNN/I_DNN.vhd"
+    DB_start_marker = "##DB##Start"
+    DB_end_marker = "##DB##End"
+    ctl = open(DNN_path, "r+")
+    DNN_VHDL_lines = ctl.readlines()
+    start_index = [index for index, code_line in enumerate(DNN_VHDL_lines) if DB_start_marker in code_line][0]
+    end_index = [index for index, code_line in enumerate(DNN_VHDL_lines) if DB_end_marker in code_line][0]
+
+    i = start_index+2
+    while i <= end_index-1:
+        line = DNN_VHDL_lines.pop(i)
+        line = "--"+line
+        DNN_VHDL_lines.insert(i, line)
+        i += 1
+    
+    ctl.seek(0)
+    ctl.truncate()
+    ctl.writelines(DNN_VHDL_lines)
+    ctl.close()
 
 def update_CMNPKG(NV_REG_DELAY_FACTOR, sys_f):
     #COMMON_PACKAGE.vhd update
@@ -177,6 +285,8 @@ def generate_results(NV_REG_FACTOR, DNN_architecture, voltage_trace_name, start_
     #time_constant_us = 1
     #end_value_threshold = 4050
     threshold_step = int((end_value_threshold-start_value_threshold)/num_sim)
+    
+    uncomment_DB_DNN()
 
     update_CMNPKG(NV_REG_FACTOR,sys_f=system_clock_frequency)
     
@@ -241,13 +351,7 @@ def generate_results(NV_REG_FACTOR, DNN_architecture, voltage_trace_name, start_
         nv_reg_pwr_appr_poweron_state_key = "nv_reg"+str(i+1)+"_pwr_apprx_values_poweron_state"
         nv_reg_pwr_appr_rec_state_key = "nv_reg"+str(i+1)+"_pwr_apprx_values_rec_state"
         nv_reg_pwr_appr_save_state_key = "nv_reg"+str(i+1)+"_pwr_apprx_values_save_state"
-        # layer_inst_pwr_idle_state_key = "I_layer"+str(i+1)+"inst_pwr_idle_state"
-        # layer_inst_pwr_compute_state_key = "I_layer"+str(i+1)+"inst_pwr_compute_state"
-        # layer_inst_pwr_save_state_key = "I_layer"+str(i+1)+"inst_pwr_save_state"
-        # layer_inst_pwr_rec_state_key = "I_layer"+str(i+1)+"inst_pwr_rec_state"
-        # nv_reg_inst_pwr_poweron_key = "nv_reg"+str(i+1)+"inst_pwr_poweron_state"
-        # nv_reg_inst_pwr_rec_state_key = "nv_reg"+str(i+1)+"inst_pwr_rec_state"
-        # nv_reg_inst_pwr_save_state_key = "nv_reg"+str(i+1)+"inst_pwr_save_state"
+        
         db_fix_time_cmds[layer_pwr_appr_idle_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer"+str(i+1)+"/power_counter_val(0)]"
         db_fix_time_cmds[layer_pwr_appr_compute_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer"+str(i+1)+"/power_counter_val(1)]"
         db_fix_time_cmds[layer_pwr_appr_save_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer"+str(i+1)+"/power_counter_val(2)]"
@@ -255,13 +359,6 @@ def generate_results(NV_REG_FACTOR, DNN_architecture, voltage_trace_name, start_
         db_fix_time_cmds[nv_reg_pwr_appr_poweron_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg"+str(i+1)+"/power_counter_val(0)]"
         db_fix_time_cmds[nv_reg_pwr_appr_rec_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg"+str(i+1)+"/power_counter_val(1)]"
         db_fix_time_cmds[nv_reg_pwr_appr_save_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg"+str(i+1)+"/power_counter_val(2)]"
-        # db_fix_time_cmds[layer_inst_pwr_idle_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_layer"+str(i+1)+"/output_data(0)]"
-        # db_fix_time_cmds[layer_inst_pwr_compute_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_layer"+str(i+1)+"/output_data(1)]"
-        # db_fix_time_cmds[layer_inst_pwr_save_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_layer"+str(i+1)+"/output_data(2)]"
-        # db_fix_time_cmds[layer_inst_pwr_rec_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_layer"+str(i+1)+"/output_data(3)]"
-        # db_fix_time_cmds[nv_reg_inst_pwr_poweron_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_nvreg"+str(i+1)+"/output_data(0)]"
-        # db_fix_time_cmds[nv_reg_inst_pwr_rec_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_nvreg"+str(i+1)+"/output_data(1)]"
-        # db_fix_time_cmds[nv_reg_inst_pwr_save_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_nvreg"+str(i+1)+"/output_data(2)]"
 
     number_objects = len(db_fix_time_cmds)
     DB_log_path = "./results/DB_result_log.txt"
@@ -289,13 +386,7 @@ def generate_results(NV_REG_FACTOR, DNN_architecture, voltage_trace_name, start_
         nv_reg_pwr_appr_poweron_state_key = "nv_reg"+str(i+1)+"_pwr_apprx_values_poweron_state"
         nv_reg_pwr_appr_rec_state_key = "nv_reg"+str(i+1)+"_pwr_apprx_values_rec_state"
         nv_reg_pwr_appr_save_state_key = "nv_reg"+str(i+1)+"_pwr_apprx_values_save_state"
-        # layer_inst_pwr_idle_state_key = "I_layer"+str(i+1)+"inst_pwr_idle_state"
-        # layer_inst_pwr_compute_state_key = "I_layer"+str(i+1)+"inst_pwr_compute_state"
-        # layer_inst_pwr_save_state_key = "I_layer"+str(i+1)+"inst_pwr_save_state"
-        # layer_inst_pwr_rec_state_key = "I_layer"+str(i+1)+"inst_pwr_rec_state"
-        # nv_reg_inst_pwr_poweron_key = "nv_reg"+str(i+1)+"inst_pwr_poweron_state"
-        # nv_reg_inst_pwr_rec_state_key = "nv_reg"+str(i+1)+"inst_pwr_rec_state"
-        # nv_reg_inst_pwr_save_state_key = "nv_reg"+str(i+1)+"inst_pwr_save_state"
+
 
         db_fix_val_cmds[layer_pwr_appr_idle_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer"+str(i+1)+"/power_counter_val(0)]"
         db_fix_val_cmds[layer_pwr_appr_compute_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer"+str(i+1)+"/power_counter_val(1)]"
@@ -304,13 +395,6 @@ def generate_results(NV_REG_FACTOR, DNN_architecture, voltage_trace_name, start_
         db_fix_val_cmds[nv_reg_pwr_appr_poweron_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg"+str(i+1)+"/power_counter_val(0)]"
         db_fix_val_cmds[nv_reg_pwr_appr_rec_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg"+str(i+1)+"/power_counter_val(1)]"
         db_fix_val_cmds[nv_reg_pwr_appr_save_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg"+str(i+1)+"/power_counter_val(2)]"
-        # db_fix_val_cmds[layer_inst_pwr_idle_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_layer"+str(i+1)+"/output_data(0)]"
-        # db_fix_val_cmds[layer_inst_pwr_compute_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_layer"+str(i+1)+"/output_data(1)]"
-        # db_fix_val_cmds[layer_inst_pwr_save_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_layer"+str(i+1)+"/output_data(2)]"
-        # db_fix_val_cmds[layer_inst_pwr_rec_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_layer"+str(i+1)+"/output_data(3)]"
-        # db_fix_val_cmds[nv_reg_inst_pwr_poweron_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_nvreg"+str(i+1)+"/output_data(0)]"
-        # db_fix_val_cmds[nv_reg_inst_pwr_rec_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_nvreg"+str(i+1)+"/output_data(1)]"
-        # db_fix_val_cmds[nv_reg_inst_pwr_save_state_key] = "[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/inst_pwr_calc_comp_nvreg"+str(i+1)+"/output_data(2)]"
 
     ## Create script tcl script file (later removed)
     tcl_script_file = open(tcl_script_path, 'w')
@@ -369,7 +453,7 @@ def generate_results(NV_REG_FACTOR, DNN_architecture, voltage_trace_name, start_
         printlnres( "".join( 
                 list(str(value)+";" for value in list(db_fix_time_cmds.values()))
             ) 
-        )
+        ) 
         
         printnlterminal("Simulation number $number ended")
         print("set number [expr $number + 1]")
@@ -386,52 +470,64 @@ def generate_results(NV_REG_FACTOR, DNN_architecture, voltage_trace_name, start_
     tcl_script_file.close()
     ##-------------------------------------------------------------Remove vivado files
     cleanup()
-    ##--------------------------------------------------------------------------------
-
-    ##################################################################################
     ########################## RUN GENERATED BATCH FIlE###############################
-        ## parameters to pass to vivado
     run_line = vivado_path + " -mode batch -source " + tcl_script_path
 
-    # ##run_line = "export LC_ALL=C \n" + run_line    ## <- eventually remove this
     print("Executing: " + str(run_line))
-    # sys.stdout.flush()
-    # ##subprocess.run([vivado_path, "-mode", "batch", "-source", tcl_script_path])
-
     os.system(run_line)
     
     print("Simulation Ended!!")
+    
+    comment_DB_DNN()
     
 if __name__=="__main__":
     #Do not change this
     voltage_trace_names = ["voltage_trace"+str(i) for i in range(1,11)] 
     DNN_architecture = {}
-    DNN_architecture["num_hidden_layers"] = 4
-    #indexes contains the index to the voltage traces that you want to be synthesized
-    indexes = [i for i in range(5,6)]
+    
+    
+    #####################################INPUTS###############################
     #VALUES SETUP
-    #12 layer test
-    #VAUES for NV_REG_FACTOR=2
-    #values = [2600,2550,2650,2650,2650,2650,2750,2400,2600,2450]
-    #4 layer test
-    #VALUES for NV_REG_FACTOR = 11
-    values= [2800,2650,2650,2850,2900,2800,2950,2450,2700,2450]
+    """DNN_max_size = 30"""
+    #values for NV_REG_DELAY = 2
+    values = [2450, 2500, 2500, 2400, 2400, 2450, 2500, 2400, 2450, 2400]
+    #values for NV_REG_DELAY = 4
+    #values = [2450, 2500, 2500, 2400, 2400, 2450, 2500, 2500, 2450, 2400]
     #values for NV_REG_DELAY = 8
     #values = [2450, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    #8layer DNN scaled_up version. The sizes are
+    #VALUES for NV_REG_FACTOR = 11
+    #values= [2800,2650,2650,2850,2900,2800,2950,2450,2700,2450]
+    """DNN_max_size = 120"""
+    #The DNN layer sizes are:
     #sizes = [120, 100, 60, 60, 50, 40, 30, 10]
     #values for NV_REG_DELAY = 2
-    #values = [2500, 2500, 2650, 2500, 2500, 2500, 2550, 2400, 2550, 2400]#instead of 3412 there is 2500
+    #values = [2500, 2500, 2650, 2500, 2500, 2500, 2550, 2400, 2550, 2400]
     #values for NV_REG_DELAY = 5
     #values = [2550,2550,2650,2550,2600,2600,2400,2400,2600,2400]
-    overall_final_value = 4000
-    NV_REG_FACTOR = 5
-    step = 40
-    num_sim = 20
+    """DNN_max_size = 50"""
+    #sizes
+    #(50,40,30,25,10)
+    #NVREG_FACTOR = 2
+    #values = [2450, 2600, 2600, 2500, 2500, 2550, 2550, 2450, 2550, 2450]
+    #NVREG_FACTOR = 3
+    #values = [2550, 2650, 2650, 2550, 2550, 2650, 2700, 2450, 2650, 2450]
+    #OTHER INPUTS
+    DNN_architecture["num_hidden_layers"] = 4
+    NV_REG_FACTOR = 2
+    indexes = [i for i in range(1)]
+    overall_final_value = 2750
+    step = 400
+    num_sim = 1
+    #################################END_INPUTS################################
+    
+
     for k in indexes:
         start_value = values[k]
         voltage_trace_name = voltage_trace_names[k]
         while start_value < overall_final_value:
             end_value = start_value+num_sim*step
+            #Generate results for num_sim simulations
             generate_results(NV_REG_FACTOR=NV_REG_FACTOR, DNN_architecture=DNN_architecture, voltage_trace_name=voltage_trace_name, start_value_threshold=start_value, end_value_threshold=end_value,num_sim=num_sim)
+            #Upload start_value
             start_value = end_value
+            

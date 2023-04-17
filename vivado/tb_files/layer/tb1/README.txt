@@ -1,1 +1,0 @@
-This folder contains the data to test the I-layer under different scenario. It doesn't test the capability of supporting different Integer and Fractional Sizes.

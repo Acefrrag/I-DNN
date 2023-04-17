@@ -2,7 +2,7 @@
 -- Company: 
 -- Engineer: Michele Pio Fragasso
 -- 
--- Create Date: 04-03-23_09-03-13 
+-- Create Date: 04-16-23_22-35-53 
 -- Design Name: 
 -- Module Name: DNN - Behavioral
 -- Project Name: 
@@ -71,7 +71,7 @@ architecture Behavioral of I_DNN is
 type data_vect_type is array(1 to num_hidden_layers) of sfixed(neuron_inout_IntWidth-1 downto -neuron_inout_FracWidth);
 type out_v_set_vect_t is array(1 to num_hidden_layers) of integer range 0 to 3;
 --LAYER SIGNALS-----------------------------------------
-signal period_backup_clks: integer range 0 to 2**31 -1:=2**10;
+--COLLECTION OF SIGNALS--
 signal out_v_set_vect: out_v_set_vect_t;
 signal data_out_vect, data_in_vect: data_vect_type;
 signal start_vect: std_logic_vector(1 to num_hidden_layers);
@@ -96,6 +96,7 @@ signal softmax_state: softmax_state_t:=power_off;
 --INTERMITTENCY EMULATOR---------------------------------
 signal resetN_emulator: std_logic;
 --FSM_NV_REG SIGNALS-------------------------------------
+signal period_backup_clks: integer range 0 to 2**31 -1:=2**10;
 signal threshold_value      : intermittency_arr_int_type(INTERMITTENCY_NUM_THRESHOLDS - 1 downto 0);
 signal threshold_compared   : std_logic_vector(INTERMITTENCY_NUM_THRESHOLDS - 1 downto 0); 
 signal select_threshold     : integer range 0 to INTERMITTENCY_NUM_THRESHOLDS -1; --This is used to select the threshold for power failure
@@ -439,28 +440,30 @@ end if;
 --out_v_set_vect(3) <= out_v_set;
 end process out_v_set_val;
 --COMPONENT INSTANTIATION
+--##DB##Start
 --FMS_NV_REG_DB_COMP
-fsm_nv_reg_db_comp: fsm_nv_reg_db
-    port map(
-        clk             => clk,
-        resetN          => resetN_emulator,
-        thresh_stats    => thresh_stats,
-        task_status     => task_status,
-        fsm_state       => fsm_nv_reg_state,
-        fsm_state_sig   => fsm_state_sig
-    );
+--fsm_nv_reg_db_comp: fsm_nv_reg_db
+--  port map(
+--      clk             => clk,
+--      resetN          => resetN_emulator,
+--      thresh_stats    => thresh_stats,
+--      task_status     => task_status,
+--      fsm_state       => fsm_nv_reg_state,
+--      fsm_state_sig   => fsm_state_sig
+--  );
+--##DB##End
 --##CB##Start
 -----
---fsm_nv_reg_cb_comp: fsm_nv_reg_cb
---port map(
---        clk                     => clk,
---        resetN                  => resetN_emulator,
---        task_status             => task_status,
---        thresh_stats            => thresh_stats,
---        period_backup_clks      => period_backup_clks,
---        fsm_state               => fsm_nv_reg_state,
---        fsm_state_sig           => fsm_state_sig 
---);
+fsm_nv_reg_cb_comp: fsm_nv_reg_cb
+port map(
+        clk                     => clk,
+        resetN                  => resetN_emulator,
+        task_status             => task_status,
+        thresh_stats            => thresh_stats,
+        period_backup_clks      => period_backup_clks,
+        fsm_state               => fsm_nv_reg_state,
+        fsm_state_sig           => fsm_state_sig 
+);
 --##CB##End
 --LAYER1
 --NVREG
@@ -494,9 +497,9 @@ neuron_inout_FracWidth => neuron_inout_FracWidth,
 neuron_weight_IntWidth => neuron_weight_IntWidth,
 neuron_weight_FracWidth => neuron_weight_FracWidth,
     layer_no => 1,
-    act_fun_type => "ReLU",
-sigmoid_inputdataWidth=> 5,
-sigmoid_inputdataIntWidth=> 2,
+    act_fun_type => "ReLU" ,
+sigmoid_inputdataWidth => sigmoid_inputdataWidth,
+sigmoid_inputdataIntWidth => sigmoid_inputdataIntWidth,
 lyr_prms_path => DNN_prms_path
     )
     port map(
@@ -559,9 +562,9 @@ neuron_inout_FracWidth => neuron_inout_FracWidth,
 neuron_weight_IntWidth => neuron_weight_IntWidth,
 neuron_weight_FracWidth => neuron_weight_FracWidth,
     layer_no => 2,
-    act_fun_type => "ReLU",
-sigmoid_inputdataWidth=> 5,
-sigmoid_inputdataIntWidth=> 2,
+    act_fun_type => "ReLU" ,
+sigmoid_inputdataWidth => sigmoid_inputdataWidth,
+sigmoid_inputdataIntWidth => sigmoid_inputdataIntWidth,
 lyr_prms_path => DNN_prms_path
     )
     port map(
@@ -624,9 +627,9 @@ neuron_inout_FracWidth => neuron_inout_FracWidth,
 neuron_weight_IntWidth => neuron_weight_IntWidth,
 neuron_weight_FracWidth => neuron_weight_FracWidth,
     layer_no => 3,
-    act_fun_type => "ReLU",
-sigmoid_inputdataWidth=> 5,
-sigmoid_inputdataIntWidth=> 2,
+    act_fun_type => "ReLU" ,
+sigmoid_inputdataWidth => sigmoid_inputdataWidth,
+sigmoid_inputdataIntWidth => sigmoid_inputdataIntWidth,
 lyr_prms_path => DNN_prms_path
     )
     port map(
@@ -689,9 +692,9 @@ neuron_inout_FracWidth => neuron_inout_FracWidth,
 neuron_weight_IntWidth => neuron_weight_IntWidth,
 neuron_weight_FracWidth => neuron_weight_FracWidth,
     layer_no => 4,
-    act_fun_type => "ReLU",
-sigmoid_inputdataWidth=> 5,
-sigmoid_inputdataIntWidth=> 2,
+    act_fun_type => "ReLU" ,
+sigmoid_inputdataWidth => sigmoid_inputdataWidth,
+sigmoid_inputdataIntWidth => sigmoid_inputdataIntWidth,
 lyr_prms_path => DNN_prms_path
     )
     port map(

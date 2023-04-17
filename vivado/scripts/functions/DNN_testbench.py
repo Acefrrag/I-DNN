@@ -6,8 +6,8 @@ Engineer: Michele Pio Fragasso
 
 
 Description:
-    --Collection of function to test my DNN VHDL architecture and make
-    comparisons with the testbench results
+    --Collection of function to test generated DNN VHDL architecture and make
+    comparisons with the testbench results.
 """
 
 import numpy as np

@@ -1,0 +1,26 @@
+Minimum Hazard for different NV_REG_DELAY_FACTORS: 
+
+DNN Max Layer Size: 100
+
+Voltage Trace number 1
+
+NV_REG_DELAY_FACTOR = 2 Minimum Hazard: 2600
+
+NV_REG_DELAY_FACTOR = 3 Minimum Hazard: 2750
+
+NV_REG_DELAY_FACTOR = 4 Minimum Hazard: 2900
+
+NV_REG_DELAY_FACTOR = 5 Minimum Hazard: 3000
+
+NV_REG_DELAY_FACTOR = 6 Minimum Hazard: 3150
+
+NV_REG_DELAY_FACTOR = 7 Minimum Hazard: 3200
+
+NV_REG_DELAY_FACTOR = 8 Minimum Hazard: 3450
+
+NV_REG_DELAY_FACTOR = 9 Minimum Hazard: 3650
+
+NV_REG_DELAY_FACTOR = 10 Minimum Hazard: 3900
+
+NV_REG_DELAY_FACTOR = 11 Minimum Hazard: 4100
+

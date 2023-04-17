@@ -1,7 +1,7 @@
 """
 Author: Vipin Kizhepatt
 
-Revision April 04 21:36:56 2022: Michele Pio Fragasso
+Revision April 04 21:36:56 2023 Michele Pio Fragasso
 
 Description:
     All the paths are relative paths to this file folder.
@@ -24,7 +24,6 @@ Usage:
     INPUT:
     1) MNIST DATA SET, the loading is assigned to the mnist_loader
     2) "training_file.txt", located at the relative path ../files/input_file
-    3) Number of MNIST samples to test with the testbench.
     OUTPUT:
     1) VHDL I-DNN architecture and packages:
         The architecture generated is:
@@ -45,23 +44,31 @@ Usage:
         Every DNN is characterized by a certain DATA FORMAT. The MNIST samples
         the testbench is tested with must be compatible data format
         -For the testbench I_DNN_tb.vhd, there is only one MNIST sample
-        -For the testbench I_DNN_multiple_images_tb.vhd, the number of
+        -For the testbench I_DNN_multiple_images_tb.vhd, the number of MNIST
+        sample is 8 (it cannot be changed)
         
 FAQs:
-1)  How do I set up  the training_file.txt?
-    The training file of the input DNN parameters has this format
+1)  How do I set up the training_file.txt?
+    The training file of the input DNN parameters has this format:
     <field>, <field_value>
     fields:
         num_hidden_layers:      number of hidden layers, it does not include the
-                                input and output layer
+                                input and output layer. Remember: the last hidden
+                                layer has always 10 neurons.
         act_fun_type:           activation function type: ReLU or Sig
         epochs:                 number of training epochs
-        eta:                    learning rate
+        eta:                    learning rate. Rate of change along the gradient
         batch_size:             mini batch size, that is the batch size the training
                                 is performed over.
-        lmbda:                  regularitazion parameter
-        sigmoid_inputSize:      Size in bit of the input to the sigmoid
-        sigmoid_inputIntSize:   Size in bit of the integer part
+        lmbda:                  regularitazion parameter. Used to avoid overfitting
+        sigmoid_inputSize:      Size in bit of the input to the sigmoid.
+                                If the number of hidden_layer_layers gets to high,
+                                you may need to increase the sigmoid size so that
+                                the loss of precision between the input and output
+                                is not too much. For example for a 12 layer DNN
+                                a 10 bit input works fine.
+        sigmoid_inputIntSize:   Size in bit of the integer part. Probably this
+                                can stay to 2
 2)  
 """
 
@@ -72,7 +79,7 @@ import mnist_loader
 
 import os
 import datetime
-import misc
+import misc             #Library for miscellaneous functions
 import VHDL_DNN as VDNN #Library to train and generate the VHDL DNN files
 
 #Directories Path
@@ -86,9 +93,9 @@ training_ID = "training_"+date
 #Backup Directory Path: This folder contains the backup to all file generated during training
 backup_dir_path = "../files/weights_n_biases/"+training_ID+"/"
 #Backup VHDL architectures
-VHDL_architectures_path = "../files/weights_n_biases/"+training_ID+"/VHDL_output/"
-#Backup Sigmoid Content
-backup_sigmoid_path="../files/sigmoid/"
+backup_VHDL_architectures_path = backup_dir_path+"/VHDL_output/"
+backup_VHDL_dataset = backup_dir_path+"/datasets"
+
 
 #OUTPUT DIRECTORY PATHS
 #src paths
@@ -107,8 +114,7 @@ DNN_input_training_filepath = "../files/input_file/training_file.txt"
 #DNN INPUT TRAINING PARAMETERS
 DNN_in_prms = VDNN.extract_input(DNN_input_training_filepath)
 DNN_in_prms["date"] = date
-DNN_in_prms["architecturepath"] = VHDL_architectures_path
-DNN_in_prms["num_images"] = 8
+DNN_in_prms["architecturepath"] = backup_VHDL_architectures_path
 DNN_in_prms["MItbfoldername"] = "tb_"+training_ID
 DNN_in_prms["tbfoldername"] = "tb_"+training_ID
 
@@ -128,7 +134,12 @@ except:
 
 
 try:
-    os.mkdir(VHDL_architectures_path)
+    os.mkdir(backup_VHDL_architectures_path)
+except:
+    pass
+
+try:
+    os.mkdir(backup_VHDL_dataset)
 except:
     pass
 
@@ -142,7 +153,7 @@ print("\nCurrently Training... \n")
 net, e_a = VDNN.train(DNN_in_prms)
 print("\nTraining Done. \n")
 
-#BACKING UP DNN MODEL
+###############################BACKING UP DNN MODEL##############################
 print("Backing up DNN MODEL and files in script folder. \n")
 wb_filename = "WeightsAndBiases.txt"
 path = backup_dir_path+wb_filename
@@ -159,30 +170,34 @@ print("Computing Done!\n")
 #Creating sigmoid Content
 print("\nCreating Sigmoid Content...")
 net.assignSigSize(sigmoid_inputSize=DNN_in_prms["sigmoid_inputSize"], sigmoid_inputIntSize=DNN_in_prms["sigmoid_inputIntSize"])
-net.generateSigmoid(path=backup_sigmoid_path)
+net.generateSigmoid(path=backup_dir_path)
 print("Sigmoid Content Created!\n")
 #Generating VHDL Weights and Bias files
 print("\nGenerating VHDL compatible weights and biases...")
 misc.genWeightsAndBias(dir_path=backup_dir_path, dataWidth=net.neuroninputSize, weightIntWidth=net.neuronweightIntSize, inputIntWidth=net.neuroninputIntSize)
 print("Done!\n")
+
+
 #GENERATING Intermittent DNN VHDL ARCHITECTURE
 print("\nGenerating VHDL entities and packages...")
+
 #Generating I_DNN_package.vhd
-VDNN.mkpkg(DNN_in_prms, net,VHDL_architectures_path)
+VDNN.mkpkg(DNN_in_prms, net,backup_VHDL_architectures_path)
 #Generatining I_DNN_MI_package.vhd
-VDNN.mkMIpkg(DNN_in_prms, net,VHDL_architectures_path)
-VDNN.mkentity(DNN_in_prms, net,VHDL_architectures_path)
-VDNN.mkNVME_pkg(DNN_in_prms, VHDL_architectures_path)
+VDNN.mkMIpkg(DNN_in_prms, net,backup_VHDL_architectures_path)
+VDNN.mkentity(DNN_in_prms, net,backup_VHDL_architectures_path)
+VDNN.mkNVME_pkg(DNN_in_prms, backup_VHDL_architectures_path)
+
 #Generating VHDL compatible MNIST SAMPLE
 print("Done!\n")
 print("\n Generating VHDL compatible MNIST samples")
-outputpath = "../files/datasets/testData/automated/"
-VDNN.mk_MI_datasets(DNN_in_prms, net, outputpath)
+VDNN.mk_MI_datasets(DNN_in_prms, net, backup_VHDL_dataset)
 print("Done.")
 print("Backup Complete.\n")
+##############################END BACKUP DNN MODEL###############################
 
-#################### GENERATING OUTPUT FILES ############################
 
+####################GENERATING OUTPUT FILES############################
 print("Updating Vivado project by uploading newly generated DNN model and files inside...\n")
 print("Uploading VHDL entities and packages into the vivado src folder...")
 outputpath = vivadosrcDNNpath
@@ -214,7 +229,6 @@ VDNN.savelogfile(net, e_a, DNN_in_prms, outputpath+report_filename)
 print("Multiple images files uploaded!\n")
 
 
-#Loading single image DNN testbench parameters into folder
 print("Uploading single image files...\n")
 outputpath = DNN_tb_folderpath
 VDNN.savenet(net, outputpath+wb_filename)
@@ -230,4 +244,4 @@ misc.genWeightsAndBias(dir_path=outputpath,dataWidth=net.neuroninputSize, weight
 print("VHDL compatible Weights and Biases Generated!\n")
 print("Single image files uploaded!")
 
-################## END OUTPUT FILES GENERATION ######################
+##################END OUTPUT FILES GENERATION ################################

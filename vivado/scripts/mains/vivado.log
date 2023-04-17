@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Sat Mar 11 09:13:21 2023
-# Process ID: 4844
+# Start of session at: Mon Apr 17 16:41:54 2023
+# Process ID: 8588
 # Current directory: C:/Users/miche/git/I-DNN/vivado/scripts/mains
 # Command line: vivado.exe -mode batch -source ./tcl/DB_fixed_time_NVREG_DELAY_2_simulation_batch.tcl
 # Log file: C:/Users/miche/git/I-DNN/vivado/scripts/mains/vivado.log
@@ -18,9 +18,9 @@ Finished scanning sources
 # set_property top I_DNN_multiple_images_tb [get_filesets sim_1]
 # set_property top_lib xil_defaultlib [get_filesets sim_1]
 # update_compile_order -fileset sim_1
-update_compile_order: Time (s): cpu = 00:00:01 ; elapsed = 00:00:14 . Memory (MB): peak = 1014.652 ; gain = 0.000
+update_compile_order: Time (s): cpu = 00:00:00 ; elapsed = 00:00:19 . Memory (MB): peak = 1004.348 ; gain = 0.000
 # set_property -name {xsim.simulate.runtime} -value {0us} -objects [get_filesets sim_1]
-# set fp [open ./results/CB_results/CB_results_fixedtime_NVREG_DELAY_FACTOR2_voltage_trace10_4_2350_32278_73527.txt w]
+# set fp [open ./results/CB_results/CB_results_fixedtime_NVREG_DELAY_FACTOR2_voltage_trace3_4_2500_1031_3983.txt w]
 # puts "Launching simulation..."
 Launching simulation...
 # flush stdout
@@ -64,8 +64,6 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NOR
 INFO: [VRFC 10-3107] analyzing entity 'scaler'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/counter.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'counter'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/test_sfixed.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'test_sfixed'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/instant_pwr_calc.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'instant_pwr_calc'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/power_approximation.vhd" into library xil_defaultlib
@@ -78,28 +76,248 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NOR
 INFO: [VRFC 10-3107] analyzing entity 'rams_sp_rf'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/ReLU.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'ReLU'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/VAR_CNTR_PROCESS.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'VAR_CNTR_PROCESS'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/unary_or.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'unary_OR'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/Sigmoid.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'Sigmoid'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/I_DNN.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_DNN'
-ERROR: [VRFC 10-4982] syntax error near 'rt' [C:/Users/miche/git/I-DNN/vivado/src/DNN/I_DNN.vhd:455]
-ERROR: [VRFC 10-4982] syntax error near 'nv_reg_comp1' [C:/Users/miche/git/I-DNN/vivado/src/DNN/I_DNN.vhd:467]
-ERROR: [VRFC 10-4982] syntax error near 'Port' [C:/Users/miche/git/I-DNN/vivado/src/DNN/I_DNN.vhd:473]
-ERROR: [VRFC 10-4982] syntax error near ';' [C:/Users/miche/git/I-DNN/vivado/src/DNN/I_DNN.vhd:486]
-ERROR: [VRFC 10-3782] unit 'behavioral' ignored due to previous errors [C:/Users/miche/git/I-DNN/vivado/src/DNN/I_DNN.vhd:69]
-INFO: [VRFC 10-3070] VHDL file 'C:/Users/miche/git/I-DNN/vivado/src/DNN/I_DNN.vhd' ignored due to errors
-INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
-INFO: [USF-XSim-99] Step results log file:'C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/xvhdl.log'
-ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/xvhdl.log' file for more information.
-ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
-launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 1014.652 ; gain = 0.000
-ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
-
-    while executing
-"launch_simulation"
-    (file "./tcl/DB_fixed_time_NVREG_DELAY_2_simulation_batch.tcl" line 11)
-INFO: [Common 17-206] Exiting Vivado at Sat Mar 11 09:13:46 2023...
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/DNN/SOFT_MAX.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'SOFT_MAX'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/fsm_nv_reg_db.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'fsm_nv_reg_db'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/src/NORM/fsm_nv_reg_cb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'fsm_nv_reg_cb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_DNN_multiple_images_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_DNN_multiple_images_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_DNN_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_DNN_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_layer_tb_hazard_scenarios.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'I_layer_tb_hazard_scenarios'
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 1004.348 ; gain = 0.000
+INFO: [USF-XSim-69] 'compile' step finished in '5' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim'
+"xelab -wto 63630931c3274f1193fa45ad0cc3506d --debug typical --relax --mt 4 -L xil_defaultlib -L ieee_proposed -L secureip --snapshot I_DNN_multiple_images_tb_behav xil_defaultlib.I_DNN_multiple_images_tb -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 63630931c3274f1193fa45ad0cc3506d --debug typical --relax --mt 4 -L xil_defaultlib -L ieee_proposed -L secureip --snapshot I_DNN_multiple_images_tb_behav xil_defaultlib.I_DNN_multiple_images_tb -log elaborate.log 
+Using 4 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.math_real
+Compiling package ieee_proposed.fixed_pkg
+Compiling package ieee.std_logic_textio
+Compiling package xil_defaultlib.i_dnn_package
+Compiling package xil_defaultlib.i_dnn_mi_package
+Compiling package xil_defaultlib.nvme_framework_package
+Compiling package xil_defaultlib.test_architecture_package
+Compiling package xil_defaultlib.common_package
+Compiling package xil_defaultlib.intermittency_emulator_package
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling architecture behavioral of entity xil_defaultlib.trace_ROM [\trace_ROM(num_elemnts_rom=14165...]
+Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=1,init_value=0,incr...]
+Compiling architecture behavioral of entity xil_defaultlib.scaler [\scaler(prescaler=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=14164,init_value=0,...]
+Compiling architecture behavioral of entity xil_defaultlib.intermittency_emulator [\intermittency_emulator(voltage_...]
+Compiling architecture behavioral of entity xil_defaultlib.var_counter [\var_counter(max=2147483647,init...]
+Compiling architecture behavioral of entity xil_defaultlib.fsm_nv_reg_cb [fsm_nv_reg_cb_default]
+Compiling architecture syn of entity xil_defaultlib.rams_sp_rf [\rams_sp_rf(ram_depth=35,ram_wid...]
+Compiling architecture behavioral of entity xil_defaultlib.nv_reg_emu [\nv_reg_emu(max_delay_ns=80)\]
+Compiling architecture behavioral of entity xil_defaultlib.nv_reg [\nv_reg(max_delay_ns=80,nv_reg_w...]
+Compiling architecture unary_or of entity xil_defaultlib.unary_OR [\unary_OR(n=1)\]
+Compiling architecture behavioral of entity xil_defaultlib.ReLU [\ReLU(data_width=32,relu_in_intw...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=784,rom...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.var_counter [\var_counter(max=32,init_value=0...]
+Compiling architecture behavioral of entity xil_defaultlib.I_FSM_layer [\I_FSM_layer(rom_depth=784)\]
+Compiling architecture behavioral of entity xil_defaultlib.I_layer [\I_layer(num_inputs=784,neuron_i...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=30,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.var_counter [\var_counter(max=27,init_value=0...]
+Compiling architecture behavioral of entity xil_defaultlib.I_FSM_layer [\I_FSM_layer(num_outputs=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_layer [\I_layer(num_outputs=25,neuron_i...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=25,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.var_counter [\var_counter(max=17,init_value=0...]
+Compiling architecture behavioral of entity xil_defaultlib.I_FSM_layer [\I_FSM_layer(num_outputs=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_layer [\I_layer(num_inputs=25,num_outpu...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.weight_memory [\weight_memory(rom_depth=15,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_neuron [\I_neuron(rom_width=32,rom_depth...]
+Compiling architecture behavioral of entity xil_defaultlib.var_counter [\var_counter(max=12,init_value=0...]
+Compiling architecture behavioral of entity xil_defaultlib.I_FSM_layer [\I_FSM_layer(num_outputs=10,rom_...]
+Compiling architecture behavioral of entity xil_defaultlib.I_layer [\I_layer(num_inputs=15,num_outpu...]
+Compiling architecture behavioral of entity xil_defaultlib.SOFT_MAX [soft_max_default]
+Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=2147483647,init_val...]
+Compiling architecture behavioral of entity xil_defaultlib.power_approximation [\power_approximation(pwr_states_...]
+Compiling architecture behavioral of entity xil_defaultlib.power_approximation [power_approximation_default]
+Compiling architecture behavioral of entity xil_defaultlib.power_approximation [\power_approximation(pwr_states_...]
+Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_ROM [\pwr_consumption_val_ROM(num_ele...]
+Compiling architecture behavioral of entity xil_defaultlib.mult [mult_default]
+Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(pwr_states_num...]
+Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_ROM [\pwr_consumption_val_ROM(num_ele...]
+Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(type_device="n...]
+Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_ROM [\pwr_consumption_val_ROM(num_ele...]
+Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(pwr_states_num...]
+Compiling architecture behavioral of entity xil_defaultlib.I_DNN [\I_DNN(neuron_inout_intwidth=11,...]
+Compiling architecture behavioral of entity xil_defaultlib.i_dnn_multiple_images_tb

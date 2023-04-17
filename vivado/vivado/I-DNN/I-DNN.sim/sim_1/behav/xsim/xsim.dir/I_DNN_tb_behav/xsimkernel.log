@@ -1,7 +1,0 @@
-Running: xsim.dir/I_DNN_tb_behav/xsimk.exe -simmode gui -wdb I_DNN_tb_behav.wdb -simrunnum 0 -socket 61190
-Design successfully loaded
-Design Loading Memory Usage: 9100 KB (Peak: 9100 KB)
-Design Loading CPU Usage: 46 ms
-Simulation completed
-Simulation Memory Usage: 20012 KB (Peak: 20012 KB)
-Simulation CPU Usage: 280 ms

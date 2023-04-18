@@ -22,7 +22,7 @@ Each layer is assigned with a `NVR` from the NORM framework.
 
 The layer interface is extended to interface with the `NVR` as well as the `BACKUP_LOGIC` to receive the imperative commands. Depending on the state of the layer different data is backed up into the `NVR` (either the internal state, the output of `I-layer` or nothing in case the layer is idle).
 
-The `POWER APPROXIMATION UNITS` compute the power cycles for every `I-DNN` component for every `POWER_STATE`.
+The `POWER APPROXIMATION UNITS` compute the power cycles for every `I-DNN` component (`I-layer` or `NVR`) for every `POWER_STATE`.
 
 When a `I-layer` computes its output, the `Validating Logic` invalidates the previous layer output to avoid useless backup when a save command arises from the `BACKUP_LOGIC`.
 

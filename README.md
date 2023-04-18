@@ -69,7 +69,10 @@ In this case the system blindly keep on executing. There is no backup, so if dur
 Reconfiguration is possible thanks to using **IZyneT (Intermittent Zynet Toolchain)** based on the [Zynet package](https://github.com/dsdnu/zynet) for reconfiguration of intermittent feed forward fully connected deep neural network. The reconfiguration flow takes the MNIST dataset and the input parameters (DNN input parameters such as `num_hidden_layers`, `size` per laye etc... and the training hyperparameters such as `learning rate`, `regularization parameters` etc..) to generate the DNN model. It then generate the VHDL NORM compatible entities and VHDL compatible data (fixed point representation) and upload the vivado project.
 
 
+## Software tools used
 
+Python: Python 3.8.10
+Vivado: Vivado 2020.2
 
 
 

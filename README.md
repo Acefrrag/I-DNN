@@ -72,6 +72,7 @@ Reconfiguration is possible thanks to using **IZyneT (Intermittent Zynet Toolcha
 ## Software tools used
 
 Python: Python 3.8.10
+
 Vivado: Vivado 2020.2
 
 

@@ -8,7 +8,7 @@ This repository contains the implementation of an emulated hardware-based reconf
 
 This emulated hardware-based intermittent inference device is meant to prove NORM capabilities to enable the prototyping of user-defined architectures under different backup policies. The evaluation culminated with a performance-based characterization (DNN throughput and Power Consumption) of the harvesting scenarios (the voltage traces) in a RF energy environment.
 
-The design of hardware-based intermittent devices takes place in the codesign place of architecture backup policy. The research of the right combination architecture backup policy is the main challenge in the design of hardware-based intermittent devices.
+The design of hardware-based intermittent devices takes place in the codesign place of architecture backup policy. The research of the right combination architecture/backup policy is the main challenge in the design of hardware-based intermittent devices.
 
 ## Architecture
 

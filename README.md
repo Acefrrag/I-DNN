@@ -26,18 +26,17 @@ The backup policies share the behavior summarized by this high level FSM:
   <img width="45%" height="45%" src="https://user-images.githubusercontent.com/59066474/232573766-2e358564-02b8-404f-9b5a-020f985bd3f0.png">
 </p>
 
-### Save
+#### Save
 
 During normal operation the backup policy may issue a backup command to the DNN architecture. If after backup the system is still under hazard condition the system is put to sleep. If no power off occurs and the voltage return to normal level the DNN perform normal operation.
 
 Resuming normal operation means that the system will resume the inference from the layer it was being computed.
 
-### Recovery
+#### Recovery
 
 After power-up the system goes to `SLEEP` mode. If the voltage goes above safety levels (above the hazard threshold) the architecture resumes the recovered inference state. 
 
 ### Dynamic Backup Policy (DB)
-
 
 The dynamic backup policy sends a backup command to the I-layer every time the input voltage goes below the hazard threshold. If the voltage is still below the hazard threshold the system is put asleep to avoid performing useless progress. 
 

@@ -135,8 +135,7 @@ begin
                 if(CB_count_TC = '1') then --Counter is full
                     if thresh_stats = hazard then
                     --If the system is in hazard it is not possible to save the state
-                    --without risking data corruption. So we keep on executing, we will
-                    --save data as soon voltage goes back to normal level
+                    --without risking data corruption. So we put the system in sleep mode
                         CB_count_CE <= '0'; -- The counter must be disabled to preserve the count terminal
                         CB_count_init <= '0';
                         future_state <= sleep_s; 

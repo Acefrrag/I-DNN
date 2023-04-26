@@ -2,7 +2,7 @@
 -- Company: 
 -- Engineer: Michele Pio Fragasso
 -- 
--- Create Date: 04-16-23_22-35-53 
+-- Create Date: 04-20-23_14-50-41 
 -- Design Name: 
 -- Module Name: DNN - Behavioral
 -- Project Name: 
@@ -443,27 +443,27 @@ end process out_v_set_val;
 --##DB##Start
 --FMS_NV_REG_DB_COMP
 --fsm_nv_reg_db_comp: fsm_nv_reg_db
---  port map(
---      clk             => clk,
---      resetN          => resetN_emulator,
---      thresh_stats    => thresh_stats,
---      task_status     => task_status,
---      fsm_state       => fsm_nv_reg_state,
---      fsm_state_sig   => fsm_state_sig
---  );
+--    port map(
+--        clk             => clk,
+--        resetN          => resetN_emulator,
+--        thresh_stats    => thresh_stats,
+--        task_status     => task_status, 
+--        fsm_state       => fsm_nv_reg_state,
+--        fsm_state_sig   => fsm_state_sig
+--    );
 --##DB##End
 --##CB##Start
 -----
-fsm_nv_reg_cb_comp: fsm_nv_reg_cb
-port map(
-        clk                     => clk,
-        resetN                  => resetN_emulator,
-        task_status             => task_status,
-        thresh_stats            => thresh_stats,
-        period_backup_clks      => period_backup_clks,
-        fsm_state               => fsm_nv_reg_state,
-        fsm_state_sig           => fsm_state_sig 
-);
+--fsm_nv_reg_cb_comp: fsm_nv_reg_cb
+--port map(
+--        clk                     => clk,
+--        resetN                  => resetN_emulator,
+--        task_status             => task_status,
+--        thresh_stats            => thresh_stats,
+--        period_backup_clks      => period_backup_clks,
+--        fsm_state               => fsm_nv_reg_state,
+--        fsm_state_sig           => fsm_state_sig 
+--);
 --##CB##End
 --LAYER1
 --NVREG

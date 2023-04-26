@@ -47,7 +47,7 @@ result_figures_list = []
 end_data_fixed_time_simulations = []
 #Computing the numebr of hidden layers, it is used to determine the number of
 #hidden layers.
-net = network2.load("../files/weights_n_biases/training_02-14-23_09-39-56/WeightsAndBiases.txt")
+net = network2.load("../files/weights_n_biases/training_04-20-23_14-50-41/WeightsAndBiases.txt")
 number_neurons = net.sizes[1:]
 num_hidden_layers = len(number_neurons)
 

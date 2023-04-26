@@ -427,6 +427,7 @@ if n_power_reset = '1' then
         data_backup_vect_output_save(i) <= to_slv(data_out_vect(i-1));
     end loop;
     data_backup_vect_output_save(0) <= std_logic_vector(to_unsigned(data_save_type_marker, 32));
+    --This two are used if the layer is saving the finished state of the layer, which is the last step.
     data_backup_vect_output_save(num_outputs+1) <= addr_compl & addr;
     data_backup_vect_output_save(num_outputs+2) <= fsm_state_save;
 else
@@ -573,6 +574,12 @@ end process DATA_SAVE_OFFSET;
 --2) When recovering the internal register it is necessary to put the recovered value inside neuron's internal register(data_backup_internal_register)
 ----------------------------------------------------------------------------------------------------
 ROUTE_REC_SIG: process(clk) is
+--Description: This implements the demultiplexer collecting the destination collection.
+
+--Bug           :This is meant to be a demultiplexer therefore a combinational logic block
+--                  Unfortunally for some reason I could not implement this as a combinational block
+--                  because of a runtime error. Therefore I needed to syncronize the process with
+--                  the system clock, making this a sequential block.
 begin
 if n_power_reset = '1' then
     if rising_edge(clk) then

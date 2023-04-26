@@ -50,7 +50,7 @@ Usage:
 FAQs:
 1)  How do I set up the training_file.txt?
     The training file of the input DNN parameters has this format:
-    <field>, <field_value>
+    <field>,<field_value> (there is no space before and after commas)
     fields:
         num_hidden_layers:      number of hidden layers, it does not include the
                                 input and output layer. Remember: the last hidden

@@ -1,0 +1,22 @@
+TRAINING REPORT - 04-20-23_11-24-10
+ 
+Number of hidden layers : 4
+Neurons per layer: [30, 25, 15, 10]
+Activation function type: Sig
+Training data size: 50000
+Training epochs: 10
+Training batch size:100
+Training learning rate: eta =10
+Training regularitation value: lambda =0
+Evaluation data size: 10000
+Evaluation Accuracies per epoch: 
+Epoch:0 Accuracy: 1090/10000
+Epoch:1 Accuracy: 1009/10000
+Epoch:2 Accuracy: 983/10000
+Epoch:3 Accuracy: 2769/10000
+Epoch:4 Accuracy: 6409/10000
+Epoch:5 Accuracy: 8107/10000
+Epoch:6 Accuracy: 8984/10000
+Epoch:7 Accuracy: 8932/10000
+Epoch:8 Accuracy: 9098/10000
+Epoch:9 Accuracy: 9115/10000

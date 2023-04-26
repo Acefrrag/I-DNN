@@ -50,7 +50,7 @@ port(
     --INPUTS
     out_v_set: in integer range 0 to 3;                             --out_v_set                 :Used to reset the validity bit of the layer. 1:It means that the output of the next layer has been computed, and this layer has to reset it out_v to '0' 2: Hold the out_v bit value(This is when the layer still has to be used, has already been used, it's being used by the next layer) 3:Set out_v to '1'. This is when the output has been recovered from the nv_reg, so this aknowledges that the layer is still being used.
     n_power_rst: in std_logic;                                      --n_power_rst               :Active-on-low power reset pin
-    data_rec_busy: in std_logic;                                    --data_rec_busy             :data_rec_busy pin, used to interface with the NORM framework
+    data_rec_busy: in std_logic;                                    --data_rec_busy             :data_rec_busy pin, used to interface with the NORM framework. Used to trigger the recovery trigger pins.
     fsm_nv_reg_state: in fsm_nv_reg_state_t;                        --fsm_nv_reg_state          :State of fsm of the nv_reg state. Contains the imperative command from the fsm_nv_rev.
     data_rec_recovered_offset: in integer range 0 to num_outputs+1; --data_rec_recovered_offset :This contains the offset reached (counting from the start address). It's used to access the volatile registers of the layer.
     data_rec_type: in data_backup_type_t;                           --data_rec_type             :It contains the type of recovery to perform. 'nothing', 'internal' or 'outputs'. This value must be held during the whole recovery/save process
@@ -122,6 +122,7 @@ begin
        --     end if;
             --Logic for recovery
             --fsm_state_rec
+            --
             if data_rec_busy = '1' then
                 if fsm_state_en_rec = '1' then
                     if unsigned(fsm_state_rec) = 0 then

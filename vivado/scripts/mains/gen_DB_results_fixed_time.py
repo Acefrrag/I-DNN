@@ -306,11 +306,12 @@ def generate_results(NV_REG_FACTOR, DNN_architecture, voltage_trace_name, start_
 
     ## Default parameters
     project_path = "../../vivado/I-DNN/I-DNN.xpr" 
-    db_results_path = "./results/"
+    db_results_path = "./results/DB_results/"
     try:
         sys.mkdir(db_results_path)
     except:
-        print("Folder ./results/ already exists")
+        print("Folder ./results/DB_results already exists")
+        
         
     
     
@@ -490,7 +491,7 @@ if __name__=="__main__":
     #VALUES SETUP
     """DNN_max_size = 30"""
     #values for NV_REG_DELAY = 2
-    values = [2450, 2500, 2500, 2400, 2400, 2450, 2500, 2400, 2450, 2400]
+    #values = [2450, 2500, 2500, 2400, 2400, 2450, 2500, 2400, 2450, 2400]
     #values for NV_REG_DELAY = 4
     #values = [2450, 2500, 2500, 2400, 2400, 2450, 2500, 2500, 2450, 2400]
     #values for NV_REG_DELAY = 8
@@ -512,12 +513,14 @@ if __name__=="__main__":
     #NVREG_FACTOR = 3
     #values = [2550, 2650, 2650, 2550, 2550, 2650, 2700, 2450, 2650, 2450]
     #OTHER INPUTS
+    """DNN_max_size = 40"""
+    values = [0,2500,0,0,0,0,0,0,0,0]
     DNN_architecture["num_hidden_layers"] = 4
     NV_REG_FACTOR = 2
-    indexes = [i for i in range(1)]
-    overall_final_value = 2750
-    step = 400
-    num_sim = 1
+    indexes = [1]
+    overall_final_value = 2950
+    step = 30
+    num_sim = 5
     #################################END_INPUTS################################
     
 

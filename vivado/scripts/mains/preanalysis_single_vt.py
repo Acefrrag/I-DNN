@@ -65,14 +65,14 @@ import os
 #INPUTS
 #Voltage trace parameters
 vt_ts = 160
-trace_number=9#They range from 0 to 9
+trace_number=0#They range from 0 to 9
 sim_time = 3_000
 shtdw_value = 2300
 #Analsysis parameters
 wrng_start = 2_300
 wrng_final = 4_500
 wrng_step = 50
-DNN_max_size = 30
+DNN_max_size = 40
 #Plot Options
 enable_plots_save = False
 plt_show = False

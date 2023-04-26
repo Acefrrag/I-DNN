@@ -37,9 +37,9 @@ vhdl2008 xil_defaultlib  \
 
 vhdl xil_defaultlib  \
 "../../../../../../src/NORM/fsm_nv_reg_db.vhd" \
+"../../../../../../src/NORM/fsm_nv_reg_cb.vhd" \
 
 vhdl2008 xil_defaultlib  \
-"../../../../../../src/NORM/fsm_nv_reg_cb.vhd" \
 "../../../../../../test/I_DNN_multiple_images_tb.vhd" \
 "../../../../../../test/I_DNN_tb.vhd" \
 "../../../../../../test/I_layer_tb_hazard_scenarios.vhd" \

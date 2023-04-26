@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Mon Apr 17 16:41:54 2023
-# Process ID: 8588
+# Start of session at: Mon Apr 24 23:29:31 2023
+# Process ID: 9076
 # Current directory: C:/Users/miche/git/I-DNN/vivado/scripts/mains
 # Command line: vivado.exe -mode batch -source ./tcl/DB_fixed_time_NVREG_DELAY_2_simulation_batch.tcl
 # Log file: C:/Users/miche/git/I-DNN/vivado/scripts/mains/vivado.log
@@ -18,9 +18,9 @@ Finished scanning sources
 # set_property top I_DNN_multiple_images_tb [get_filesets sim_1]
 # set_property top_lib xil_defaultlib [get_filesets sim_1]
 # update_compile_order -fileset sim_1
-update_compile_order: Time (s): cpu = 00:00:00 ; elapsed = 00:00:19 . Memory (MB): peak = 1004.348 ; gain = 0.000
+update_compile_order: Time (s): cpu = 00:00:01 ; elapsed = 00:00:16 . Memory (MB): peak = 1020.727 ; gain = 0.000
 # set_property -name {xsim.simulate.runtime} -value {0us} -objects [get_filesets sim_1]
-# set fp [open ./results/CB_results/CB_results_fixedtime_NVREG_DELAY_FACTOR2_voltage_trace3_4_2500_1031_3983.txt w]
+# set fp [open ./results/DB_results/DB_results_fixedtime_NVREG_DELAY_FACTOR2_voltage_trace2_4_2800_2950.txt w]
 # puts "Launching simulation..."
 Launching simulation...
 # flush stdout
@@ -94,8 +94,7 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_
 INFO: [VRFC 10-3107] analyzing entity 'I_DNN_tb'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/miche/git/I-DNN/vivado/test/I_layer_tb_hazard_scenarios.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'I_layer_tb_hazard_scenarios'
-run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 1004.348 ; gain = 0.000
-INFO: [USF-XSim-69] 'compile' step finished in '5' seconds
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
 INFO: [USF-XSim-3] XSim::Elaborate design
 INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim'
 "xelab -wto 63630931c3274f1193fa45ad0cc3506d --debug typical --relax --mt 4 -L xil_defaultlib -L ieee_proposed -L secureip --snapshot I_DNN_multiple_images_tb_behav xil_defaultlib.I_DNN_multiple_images_tb -log elaborate.log"
@@ -123,13 +122,12 @@ Compiling package xil_defaultlib.common_package
 Compiling package xil_defaultlib.intermittency_emulator_package
 Compiling package synopsys.attributes
 Compiling package ieee.std_logic_misc
-Compiling architecture behavioral of entity xil_defaultlib.trace_ROM [\trace_ROM(num_elemnts_rom=14165...]
+Compiling architecture behavioral of entity xil_defaultlib.trace_ROM [\trace_ROM(num_elemnts_rom=18750...]
 Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=1,init_value=0,incr...]
 Compiling architecture behavioral of entity xil_defaultlib.scaler [\scaler(prescaler=4)\]
-Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=14164,init_value=0,...]
+Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=18749,init_value=0,...]
 Compiling architecture behavioral of entity xil_defaultlib.intermittency_emulator [\intermittency_emulator(voltage_...]
-Compiling architecture behavioral of entity xil_defaultlib.var_counter [\var_counter(max=2147483647,init...]
-Compiling architecture behavioral of entity xil_defaultlib.fsm_nv_reg_cb [fsm_nv_reg_cb_default]
+Compiling architecture behavioral of entity xil_defaultlib.fsm_nv_reg_db [fsm_nv_reg_db_default]
 Compiling architecture syn of entity xil_defaultlib.rams_sp_rf [\rams_sp_rf(ram_depth=35,ram_wid...]
 Compiling architecture behavioral of entity xil_defaultlib.nv_reg_emu [\nv_reg_emu(max_delay_ns=80)\]
 Compiling architecture behavioral of entity xil_defaultlib.nv_reg [\nv_reg(max_delay_ns=80,nv_reg_w...]
@@ -319,5 +317,91 @@ Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_R
 Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(type_device="n...]
 Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_ROM [\pwr_consumption_val_ROM(num_ele...]
 Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(pwr_states_num...]
-Compiling architecture behavioral of entity xil_defaultlib.I_DNN [\I_DNN(neuron_inout_intwidth=11,...]
+Compiling architecture behavioral of entity xil_defaultlib.I_DNN [\I_DNN(neuron_inout_intwidth=18,...]
 Compiling architecture behavioral of entity xil_defaultlib.i_dnn_multiple_images_tb
+Built simulation snapshot I_DNN_multiple_images_tb_behav
+
+****** Webtalk v2020.2 (64-bit)
+  **** SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+  **** IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/xsim.dir/I_DNN_multiple_images_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-186] 'C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim/xsim.dir/I_DNN_multiple_images_tb_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Mon Apr 24 23:31:01 2023. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/2020.2/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Mon Apr 24 23:31:01 2023...
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:01:01 . Memory (MB): peak = 1020.727 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '61' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/miche/git/I-DNN/vivado/vivado/I-DNN/I-DNN.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "I_DNN_multiple_images_tb_behav -key {Behavioral:sim_1:Functional:I_DNN_multiple_images_tb} -tclbatch {I_DNN_multiple_images_tb.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source I_DNN_multiple_images_tb.tcl
+## current_wave_config
+WARNING: [Wavedata 42-489] Can't add object "/I_DNN_multiple_images_tb/images" to the wave window because it has 200704 bits, which exceeds the display limit of 65536 bits.  To change the display limit, use the command "set_property display_limit <new limit> [current_wave_config]".
+WARNING: [Simtcl 6-197] One or more HDL objects could not be logged because of object type or size limitations.  To see details please rerun the command with -verbose (-v).
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'I_DNN_multiple_images_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 0us
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:01:09 . Memory (MB): peak = 1020.727 ; gain = 0.000
+# puts "Simulation launced. Performing tests."
+Simulation launced. Performing tests.
+# flush stdout
+# puts $fp "voltage_trace: voltage_traces/voltage_trace2.txt"
+# puts $fp "Fixed time simulation start ######################################"
+# puts $fp "hazard_threshold_val;time;shtdwn_counter;clk_counter;trace_rom_addr;executed_batches;I_layer1_pwr_apprx_values_idle_state;I_layer1_pwr_apprx_compute_state;I_layer1_pwr_apprx_values_save_state;I_layer1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_poweron_state;nv_reg1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_idle_state;I_layer2_pwr_apprx_compute_state;I_layer2_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_poweron_state;nv_reg2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_idle_state;I_layer3_pwr_apprx_compute_state;I_layer3_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_poweron_state;nv_reg3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_idle_state;I_layer4_pwr_apprx_compute_state;I_layer4_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_poweron_state;nv_reg4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_save_state;"
+# set number 1
+# set_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold 2800
+# run 3000 us
+run: Time (s): cpu = 00:00:28 ; elapsed = 00:03:44 . Memory (MB): peak = 1020.727 ; gain = 0.000
+# puts $fp "[get_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold];[current_time];[get_value -radix unsigned /I_DNN_multiple_images_tb/shtdwn_counter];[get_value -radix unsigned /I_DNN_multiple_images_tb/clk_counter];[get_value -radix unsigned /I_DNN_multiple_images_tb/intermittency_emulator_cmp/ROM_addr];[get_value -radix unsigned /I_DNN_multiple_images_tb/executed_batches];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(2)];"
+# puts "Simulation number $number ended"
+Simulation number 1 ended
+# flush stdout
+# set number [expr $number + 1]
+# restart
+INFO: [Simtcl 6-17] Simulation restarted
+# set_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold 2830
+# run 3000 us
+run: Time (s): cpu = 00:00:26 ; elapsed = 00:03:42 . Memory (MB): peak = 1020.727 ; gain = 0.000
+# puts $fp "[get_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold];[current_time];[get_value -radix unsigned /I_DNN_multiple_images_tb/shtdwn_counter];[get_value -radix unsigned /I_DNN_multiple_images_tb/clk_counter];[get_value -radix unsigned /I_DNN_multiple_images_tb/intermittency_emulator_cmp/ROM_addr];[get_value -radix unsigned /I_DNN_multiple_images_tb/executed_batches];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(2)];"
+# puts "Simulation number $number ended"
+Simulation number 2 ended
+# flush stdout
+# set number [expr $number + 1]
+# restart
+INFO: [Simtcl 6-17] Simulation restarted
+# set_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold 2860
+# run 3000 us
+run: Time (s): cpu = 00:00:23 ; elapsed = 00:03:30 . Memory (MB): peak = 1020.727 ; gain = 0.000
+# puts $fp "[get_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold];[current_time];[get_value -radix unsigned /I_DNN_multiple_images_tb/shtdwn_counter];[get_value -radix unsigned /I_DNN_multiple_images_tb/clk_counter];[get_value -radix unsigned /I_DNN_multiple_images_tb/intermittency_emulator_cmp/ROM_addr];[get_value -radix unsigned /I_DNN_multiple_images_tb/executed_batches];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(2)];"
+# puts "Simulation number $number ended"
+Simulation number 3 ended
+# flush stdout
+# set number [expr $number + 1]
+# restart
+INFO: [Simtcl 6-17] Simulation restarted
+# set_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold 2890
+# run 3000 us
+run: Time (s): cpu = 00:00:21 ; elapsed = 00:03:21 . Memory (MB): peak = 1020.727 ; gain = 0.000
+# puts $fp "[get_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold];[current_time];[get_value -radix unsigned /I_DNN_multiple_images_tb/shtdwn_counter];[get_value -radix unsigned /I_DNN_multiple_images_tb/clk_counter];[get_value -radix unsigned /I_DNN_multiple_images_tb/intermittency_emulator_cmp/ROM_addr];[get_value -radix unsigned /I_DNN_multiple_images_tb/executed_batches];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(2)];"
+# puts "Simulation number $number ended"
+Simulation number 4 ended
+# flush stdout
+# set number [expr $number + 1]
+# restart
+INFO: [Simtcl 6-17] Simulation restarted
+# set_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold 2920
+# run 3000 us
+run: Time (s): cpu = 00:00:22 ; elapsed = 00:02:49 . Memory (MB): peak = 1020.727 ; gain = 0.000
+# puts $fp "[get_value -radix unsigned /I_DNN_multiple_images_tb/hazard_threshold];[current_time];[get_value -radix unsigned /I_DNN_multiple_images_tb/shtdwn_counter];[get_value -radix unsigned /I_DNN_multiple_images_tb/clk_counter];[get_value -radix unsigned /I_DNN_multiple_images_tb/intermittency_emulator_cmp/ROM_addr];[get_value -radix unsigned /I_DNN_multiple_images_tb/executed_batches];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer1/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg1/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer2/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg2/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer3/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg3/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(2)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_layer4/power_counter_val(3)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(0)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(1)];[get_value -radix unsigned /I_DNN_multiple_images_tb/I_DNN_cmp/pwr_appr_comp_nvreg4/power_counter_val(2)];"
+# puts "Simulation number $number ended"
+Simulation number 5 ended
+# flush stdout
+# set number [expr $number + 1]
+# restart
+INFO: [Simtcl 6-17] Simulation restarted
+# puts $fp "Fixed time simulation end ########################################
+# "
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 24 23:48:19 2023...

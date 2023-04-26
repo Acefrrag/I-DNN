@@ -386,25 +386,31 @@ if __name__=="__main__":
     
     sim_prms["sim_time_us"] = 3_000
     sim_prms["system_clock_period_ns"] = 40
-    sim_prms["backup_period_clks_end"] = sim_prms["sim_time_us"]*1_000/sim_prms["system_clock_period_ns"]
+    sim_prms["backup_period_clks_end"] = 2048#(sim_prms["sim_time_us"]*1_000/sim_prms["system_clock_period_ns"])/10
     sim_prms["backup_period_clks_start"] = 1024#2**10
-    DNN_architecture["num_hidden_layers"] = 4
-    indexes = [i for i in range(2,11)]
-    overall_num_sim = 100
+    DNN_architecture["num_hidden_layers"] = 5
+    indexes = [i for i in range(7,8)]
+    #Total number of simulations
+    overall_num_sim = 2#35
     # Define the starting and ending values of the interval
     start_val = sim_prms["backup_period_clks_start"]
     end_val = sim_prms["backup_period_clks_end"]
     backup_period_clks = []
-    #The backup_clk values increase 
+    #The backup_clk values increase
+    #The backup period of clk increases as a function
+    #Since the CB policy shows variations of simulation results in the beginning
+    #of the backup_period_clks interval we generate the samples with increasing
+    #distance. Most of the backup_period_clks will be focused in the beginning
+    #of the interval.
     for i in range(overall_num_sim):
         dist = (end_val - start_val) * ((i+1)/overall_num_sim)**2
         backup_period_clk = int(start_val + dist)
         backup_period_clks.append(backup_period_clk)
         
 
-# Generate the samples with increasing distance
+    
     NV_REG_FACTOR = 2
-    num_sims = 21
+    num_sims = 2
     
     
     for k in indexes:

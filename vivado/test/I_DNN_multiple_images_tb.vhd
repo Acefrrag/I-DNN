@@ -112,7 +112,7 @@ return(digits_content);
 end function;
 
       
-signal hazard_threshold : integer := 3000;
+signal hazard_threshold : integer := 2500;
 signal input_reg: datain_type := (others => (others => '0'));
 signal images: set_images_type := load_images(full_path_images);
 signal digits: set_digits_type := load_digits(full_path_digits);
@@ -133,7 +133,7 @@ signal thresh_stats         : threshold_t;
 signal data_sampled         : std_logic:='0';
 --signal voltage_trace_path   : string := "voltage_traces/I_layer_trace_complete.txt";
 --signal voltage_trace_path   : string(1 to 47) := "voltage_traces/I_DNN_trace_complete_4layers.txt";
-constant voltage_trace_path: string(1 to 33) := "voltage_traces/voltage_trace3.txt";
+constant voltage_trace_path: string(1 to 33) := "voltage_traces/voltage_trace2.txt";
 signal image_no: integer := 0;
 signal shtdwn_counter, clk_counter: integer := 0;
 signal executed_batches: integer := 0;

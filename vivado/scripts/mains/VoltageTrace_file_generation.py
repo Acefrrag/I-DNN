@@ -16,7 +16,10 @@ Description:
 Input:
     - vt_ts         : Voltage trace timescale in ns.
     - SC_P          : System clock period in ns.
-    - sim_time      : Simulation time in us.
+    - sim_time      : Simulation time in us. If this value is biggere than the 
+                        voltage trace time duration, it will produce a cut off
+                        profile. As a result, during simulation the IE will
+                        wrap around the voltage trace values.
     - shtdw_value   : Shut Down value in mV.
 Output:
     - Trace files       : Contaning VHDL compatible voltage profile

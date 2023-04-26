@@ -3,9 +3,9 @@ package INTERMITTENCY_EMULATOR_package is
 
 type INTERMITTENCY_ARR_INT_TYPE is array (integer range <>) of INTEGER;
 
-constant INTERMITTENCY_MAX_VAL_ROM_TRACE: integer := 3238;
+constant INTERMITTENCY_MAX_VAL_ROM_TRACE: integer := 5282;
 constant INTERMITTENCY_PRESCALER: integer := 4;
-constant INTERMITTENCY_NUM_ELEMNTS_ROM: integer :=  14165;
+constant INTERMITTENCY_NUM_ELEMNTS_ROM: integer :=  18750;
 
 
 

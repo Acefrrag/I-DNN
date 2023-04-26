@@ -25,8 +25,6 @@ Description: This script is used to validate the DNN testbench. It is meant to
                     architecture. Check the date in the training folder name,
                     they should coincide.
                 test_data_sample: the sample index within the MNIST database
-                act_fun: "ReLU" or "Sig". It must coincide with the activation
-                logic implemented in VHDL generated DNN
             #Output:
                 test_data[test_data_sample][1]: target value of MNIST sample
                 out: output of the last hidden layer (size 10) of the DNN
@@ -47,14 +45,17 @@ import numpy as np
 #Loading the data and dividind the dataset between training and validation data.
 training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
 #Loading weights and biases
-net = network2.load("../files/weights_n_biases/training_04-12-23_22-55-57/WeightsAndBiases.txt")
+net = network2.load("../files/weights_n_biases/training_04-20-23_14-50-41/WeightsAndBiases.txt")
 validation_data = list(validation_data)
 training_data = list(training_data)
 test_data = list(test_data)
-test_data_sample=910
+test_data_sample=1549
 i = test_data_sample
 out_0 = net.feedforward(test_data[i][0])#The target for this input is 8.
 print("The resulting number for the input with target "+ str(test_data[i][1]) +" is " + str(np.argmax(out_0)) + "\n")
+
+
+########################OTHER VARIABLES TO TEST DNN############################
 w_sum_first_layer = np.dot(net.weights[0],test_data[i][0])+net.biases[0]
 if net.act_fun_type == "ReLU":
     out_first_layer = network2.relu(np.dot(net.weights[0],test_data[i][0])+net.biases[0])

@@ -1,0 +1,52 @@
+TRAINING REPORT - 05-04-23_10-36-55
+ 
+Number of hidden layers : 12
+Neurons per layer: [100, 40, 40, 35, 35, 30, 30, 25, 20, 15, 15, 10]
+Activation function type: ReLU
+Training data size: 50000
+Training epochs: 40
+Training batch size:100
+Training learning rate: eta =20
+Training regularitation value: lambda =0
+Evaluation data size: 10000
+Evaluation Accuracies per epoch: 
+Epoch:0 Accuracy: 991/10000
+Epoch:1 Accuracy: 991/10000
+Epoch:2 Accuracy: 991/10000
+Epoch:3 Accuracy: 991/10000
+Epoch:4 Accuracy: 991/10000
+Epoch:5 Accuracy: 991/10000
+Epoch:6 Accuracy: 991/10000
+Epoch:7 Accuracy: 991/10000
+Epoch:8 Accuracy: 991/10000
+Epoch:9 Accuracy: 991/10000
+Epoch:10 Accuracy: 991/10000
+Epoch:11 Accuracy: 991/10000
+Epoch:12 Accuracy: 991/10000
+Epoch:13 Accuracy: 991/10000
+Epoch:14 Accuracy: 991/10000
+Epoch:15 Accuracy: 991/10000
+Epoch:16 Accuracy: 991/10000
+Epoch:17 Accuracy: 991/10000
+Epoch:18 Accuracy: 991/10000
+Epoch:19 Accuracy: 991/10000
+Epoch:20 Accuracy: 991/10000
+Epoch:21 Accuracy: 991/10000
+Epoch:22 Accuracy: 1064/10000
+Epoch:23 Accuracy: 991/10000
+Epoch:24 Accuracy: 991/10000
+Epoch:25 Accuracy: 991/10000
+Epoch:26 Accuracy: 991/10000
+Epoch:27 Accuracy: 991/10000
+Epoch:28 Accuracy: 991/10000
+Epoch:29 Accuracy: 991/10000
+Epoch:30 Accuracy: 991/10000
+Epoch:31 Accuracy: 991/10000
+Epoch:32 Accuracy: 991/10000
+Epoch:33 Accuracy: 991/10000
+Epoch:34 Accuracy: 991/10000
+Epoch:35 Accuracy: 991/10000
+Epoch:36 Accuracy: 991/10000
+Epoch:37 Accuracy: 991/10000
+Epoch:38 Accuracy: 991/10000
+Epoch:39 Accuracy: 991/10000

@@ -1,0 +1,15 @@
+voltage_trace: voltage_traces/voltage_trace5.txt
+Fixed time simulation start ######################################
+hazard_threshold_val;backup_period_clks;time;shtdwn_counter;clk_counter;trace_rom_addr;executed_batches;I_layer1_pwr_apprx_values_idle_state;I_layer1_pwr_apprx_compute_state;I_layer1_pwr_apprx_values_save_state;I_layer1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_poweron_state;nv_reg1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_idle_state;I_layer2_pwr_apprx_compute_state;I_layer2_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_poweron_state;nv_reg2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_idle_state;I_layer3_pwr_apprx_compute_state;I_layer3_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_poweron_state;nv_reg3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_idle_state;I_layer4_pwr_apprx_compute_state;I_layer4_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_poweron_state;nv_reg4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_save_state;
+2400;9230;3 ms;12;24019;0;29;1028;22619;72;288;24007;346;68;22690;957;72;288;24007;34;4;22835;812;72;288;24007;34;4;23125;522;72;288;24007;34;4;
+2400;9407;3 ms;12;24019;0;29;1028;22619;72;288;24007;346;68;22690;957;72;288;24007;34;4;22835;812;72;288;24007;34;4;23125;522;72;288;24007;34;4;
+2400;9593;3 ms;12;24019;0;26;1026;22621;72;288;24007;346;68;22756;891;72;288;24007;34;4;22907;740;72;288;24007;34;4;23179;468;72;288;24007;34;4;
+2400;9788;3 ms;12;24019;0;27;1026;22621;72;288;24007;346;68;22756;891;72;288;24007;34;4;22891;756;72;288;24007;34;4;23161;486;72;288;24007;34;4;
+2400;9991;3 ms;12;24019;0;29;1028;22619;72;288;24007;346;68;22690;957;72;288;24007;34;4;22835;812;72;288;24007;34;4;23125;522;72;288;24007;34;4;
+2400;10203;3 ms;12;24019;0;25;1029;22926;5;47;24007;30;0;23104;851;5;47;24007;30;0;23255;700;5;47;24007;30;0;23505;450;5;47;24007;30;0;
+2400;10423;3 ms;12;24019;0;25;1027;22933;0;47;24007;30;0;23109;851;0;47;24007;30;0;23260;700;0;47;24007;30;0;23510;450;0;47;24007;30;0;
+2400;10653;3 ms;12;24019;0;25;1027;22933;0;47;24007;30;0;23109;851;0;47;24007;30;0;23260;700;0;47;24007;30;0;23510;450;0;47;24007;30;0;
+2400;10891;3 ms;12;24019;0;25;1027;22933;0;47;24007;30;0;23109;851;0;47;24007;30;0;23260;700;0;47;24007;30;0;23510;450;0;47;24007;30;0;
+2400;11137;3 ms;12;24019;0;25;1027;22933;0;47;24007;30;0;23109;851;0;47;24007;30;0;23260;700;0;47;24007;30;0;23510;450;0;47;24007;30;0;
+Fixed time simulation end ########################################
+

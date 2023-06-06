@@ -49,7 +49,7 @@ net = network2.load("../files/weights_n_biases/training_04-20-23_14-50-41/Weight
 validation_data = list(validation_data)
 training_data = list(training_data)
 test_data = list(test_data)
-test_data_sample=1549
+test_data_sample=1570
 i = test_data_sample
 out_0 = net.feedforward(test_data[i][0])#The target for this input is 8.
 print("The resulting number for the input with target "+ str(test_data[i][1]) +" is " + str(np.argmax(out_0)) + "\n")

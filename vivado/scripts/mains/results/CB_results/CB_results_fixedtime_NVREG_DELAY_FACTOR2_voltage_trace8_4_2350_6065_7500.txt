@@ -1,0 +1,10 @@
+voltage_trace: voltage_traces/voltage_trace8.txt
+Fixed time simulation start ######################################
+hazard_threshold_val;backup_period_clks;time;shtdwn_counter;clk_counter;trace_rom_addr;executed_batches;I_layer1_pwr_apprx_values_idle_state;I_layer1_pwr_apprx_compute_state;I_layer1_pwr_apprx_values_save_state;I_layer1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_poweron_state;nv_reg1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_idle_state;I_layer2_pwr_apprx_compute_state;I_layer2_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_poweron_state;nv_reg2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_idle_state;I_layer3_pwr_apprx_compute_state;I_layer3_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_poweron_state;nv_reg3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_idle_state;I_layer4_pwr_apprx_compute_state;I_layer4_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_poweron_state;nv_reg4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_save_state;
+2350;6065;3 ms;9;19800;0;22;180;19501;72;39;19792;92;68;18941;740;72;39;19792;28;4;19065;616;72;39;19792;28;4;19285;396;72;39;19792;28;4;
+2350;6407;3 ms;9;19800;0;22;178;19503;72;39;19792;92;68;18941;740;72;39;19792;28;4;19065;616;72;39;19792;28;4;19285;396;72;39;19792;28;4;
+2350;6760;3 ms;9;19800;0;22;178;19503;72;39;19792;92;68;18941;740;72;39;19792;28;4;19065;616;72;39;19792;28;4;19285;396;72;39;19792;28;4;
+2350;7124;3 ms;9;19800;0;22;178;19503;72;39;19792;92;68;18941;740;72;39;19792;78;54;19065;616;72;39;19792;62;38;19285;396;72;39;19792;28;4;
+2350;7500;3 ms;9;19800;0;22;178;19503;72;39;19792;92;68;18941;740;72;39;19792;28;4;19065;616;72;39;19792;28;4;19285;396;72;39;19792;28;4;
+Fixed time simulation end ########################################
+

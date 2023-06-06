@@ -168,7 +168,8 @@ if __name__ == "__main__":
     #     print(hzrds[p][index])
                
                
-    #POWER CONSUMPTION FOR SINGLE HAZARD THERSHOLD
+    #POWER CONSUMPTION BREAKDOWN FOR SINGLE HAZARD THRESHOLD
+    #Selecting specific hazard threshold
     available_thresholds = sim_results_DELAYS["NV_REG_FACTOR2"]["hazard_threshold_val"]
     print("The available threshold are:\n")
     print(available_thresholds)
@@ -176,11 +177,10 @@ if __name__ == "__main__":
     threshold = int(input())
     indexes = [index if available_thresholds[index] == threshold else -1 for index in range(len(available_thresholds))]
     index = max(indexes)
-    
-    #Study of the power consumption per DNN components
     #Here we are gonna plot power consumption bar charts for a given hazard threshold,
     #and a given voltage trace.
     #From here I should show the fulfillment of criteria 3
+    
     
     #Power consumption Breakdown
     sim_result = sim_results_DELAYS["NV_REG_FACTOR2"]
@@ -194,15 +194,17 @@ if __name__ == "__main__":
     colors = ['red', 'green', 'blue', 'yellow', 'purple', "pink"]
     for i in range(len(labels)):
         ax.bar(i, pwr_cmpt_breakdown[i], color = colors[i], label=labels[i], hatch=patterns[i])
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.35), ncol=3)
-    ax.tick_params(axis='x', which='both', bottom=False, labelbottom=False)
-    ax.set_title("Power Consumption Breakdown for hazard threshold of "+str(threshold)+" mV", pad=15)
+        ax.tick_params(axis='x', which='both', bottom=False, labelbottom=False)
+    #ax.set_title("Power Consumption Breakdown for hazard threshold of "+str(threshold)+" mV", pad=15)
+    ax.set_title("Power Consumption Breakdown", pad=15)
     ax.set_ylabel("Power Consumption [mW]")
     ax.set_xlabel("Breakdown")
     ax.set_yscale("log")
     ax.grid(True)
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.35), ncol=3)
+
     #plt.ylim(10**(-1),10**1)
-    fig.savefig("./plots/pwr_cmpt_plots/pwr_brkdwn_hzth_"+str(threshold), dpi=1080)
+    fig.savefig("./plots/pwr_cmpt_plots/pwr_brkdwn_hzth_"+str(threshold), bbox_inches="tight",dpi=1080)
     plt.show()
     
     #Study of power conusmption for different layers

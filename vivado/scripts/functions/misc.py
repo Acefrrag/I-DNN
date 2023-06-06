@@ -109,7 +109,8 @@ def genWeightsAndBias(dir_path, dataWidth, weightIntWidth, inputIntWidth):
     """
     
     #The bias is added to the cumulative sum. In principle, the cumulative sum
-    #size is the sum of the sizes of the weight and input. But since we are sure
+    #size is the sum of the sizes of the weight and input.
+    #Since we are sure
     #that the chosen precision will allow us to efficiently represent the neuron's
     #weighted sums, we can cut everything to the input size. This is to save
     #the data within the NV_REG cells (32 bit width).
@@ -130,13 +131,13 @@ def genWeightsAndBias(dir_path, dataWidth, weightIntWidth, inputIntWidth):
     except:
         print("Folder already exists. No folder created.")
     myDataFile = open(dir_path+"WeightsAndBiases.txt","r")
-    weightHeaderFile = open(dir_path+"weightValues.h","w")
+    #weightHeaderFile = open(dir_path+"weightValues.h","w")
     myData = myDataFile.read()
     myDict = json.loads(myData)
     myWeights = myDict['weights']
     myBiases = myDict['biases']
     #Generating weights
-    weightHeaderFile.write("int weightValues[]={")
+    # weightHeaderFile.write("int weightValues[]={")
     for layer in range(0,len(myWeights)):
         for neuron in range(0,len(myWeights[layer])):
             weight_filename = 'w_'+str(layer+1)+'_'+str(neuron)+'.mif'
@@ -145,14 +146,14 @@ def genWeightsAndBias(dir_path, dataWidth, weightIntWidth, inputIntWidth):
                 weight_fp_int = float_to_fp_10(myWeights[layer][neuron][weight],dataWidth,weightFracWidth)#conversion in corresponding integer.
                 weight_fp_bin = weight_fp_int.__format__('0'+str(weightWidth)+'b')#Used for zero padding to reach DataWidth bits
                 f.write(weight_fp_bin+'\n')
-                weightHeaderFile.write(str(weight_fp_int)+',')
-        f.close()
+    #           weightHeaderFile.write(str(weight_fp_int)+',')
+            f.close()
             
-    weightHeaderFile.write("0};\n")
-    weightHeaderFile.close()
+    # weightHeaderFile.write("0};\n")
+    # weightHeaderFile.close()
 
-    biasHeaderFile = open(dir_path+"biasValues.h","w")
-    biasHeaderFile.write("int biasValues[]={")
+    # biasHeaderFile = open(dir_path+"biasValues.h","w")
+    # biasHeaderFile.write("int biasValues[]={")
     for layer in range(0,len(myBiases)):
         for neuron in range(0,len(myBiases[layer])):
              bias_filename = 'b_'+str(layer+1)+'_'+str(neuron)+'.mif'
@@ -161,11 +162,11 @@ def genWeightsAndBias(dir_path, dataWidth, weightIntWidth, inputIntWidth):
              bias_fp_int = float_to_fp_10(p,biasWidth,biasFracWidth)
              bias_fp_bin = bias_fp_int.__format__('0'+str(biasWidth)+'b')
              f.write(bias_fp_bin+"\n")
-             biasHeaderFile.write(str(bias_fp_int)+',')
+             #biasHeaderFile.write(str(bias_fp_int)+',')
              f.close()
              
-    biasHeaderFile.write('0};\n')
-    biasHeaderFile.close()
+    # biasHeaderFile.write('0};\n')
+    # biasHeaderFile.close()
 
     dataFormatFile = open(dir_path+"dataFormatFile.txt","w")
     dataFormatFile.write("DATA FORMAT BIASES AND WEIGHTS\n\n")

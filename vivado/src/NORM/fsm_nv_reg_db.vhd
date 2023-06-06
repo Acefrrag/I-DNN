@@ -85,15 +85,21 @@ begin
             end if;
         when recovery_s =>
             if (task_status = '0') then
-                if thresh_stats = hazard then
-                    future_state <= sleep_s;
-                else
-                    future_state <= data_recovered_s;
-                end if;
+                future_state <= data_recovered_s;
+--                if thresh_stats = hazard then
+--                    future_state <= sleep_s;
+--                else
+--                    future_state <= data_recovered_s;
+--                end if;
             end if;
         when data_recovered_s =>
             --edited Michele Fragasso. To avoid nv_reg corrusption
-            future_state <= do_operation_s;
+            --future_state <= do_operation_s;
+            if thresh_stats = hazard then
+                future_state <= sleep_s;
+            else
+                future_state <= do_operation_s;
+            end if;
         when sleep_s =>
             if (thresh_stats = hazard) then
                 future_state <= sleep_s;

@@ -1,0 +1,10 @@
+voltage_trace: voltage_traces/voltage_trace5.txt
+Fixed time simulation start ######################################
+hazard_threshold_val;backup_period_clks;time;shtdwn_counter;clk_counter;trace_rom_addr;executed_batches;I_layer1_pwr_apprx_values_idle_state;I_layer1_pwr_apprx_compute_state;I_layer1_pwr_apprx_values_save_state;I_layer1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_poweron_state;nv_reg1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_idle_state;I_layer2_pwr_apprx_compute_state;I_layer2_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_poweron_state;nv_reg2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_idle_state;I_layer3_pwr_apprx_compute_state;I_layer3_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_poweron_state;nv_reg3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_idle_state;I_layer4_pwr_apprx_compute_state;I_layer4_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_poweron_state;nv_reg4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_save_state;
+2400;6065;3 ms;12;24019;0;29;1030;22545;144;288;24007;414;136;22618;957;144;288;24007;38;8;22763;812;144;288;24007;38;8;23053;522;144;288;24007;38;8;
+2400;6407;3 ms;12;24019;0;27;1028;22547;144;288;24007;414;136;22684;891;144;288;24007;38;8;22819;756;144;288;24007;38;8;23089;486;144;288;24007;38;8;
+2400;6760;3 ms;12;24019;0;26;1030;22545;144;288;24007;414;136;22618;957;144;288;24007;38;8;22832;743;144;288;24007;38;8;23107;468;144;288;24007;38;8;
+2400;7124;3 ms;12;24019;0;29;1027;22548;144;288;24007;414;136;22717;858;144;288;24007;184;58;22815;760;144;288;24007;222;72;23067;508;144;288;24007;106;32;
+2400;7500;3 ms;12;24019;0;27;1029;22583;107;288;24007;346;68;22689;923;107;288;24007;34;4;22856;756;107;288;24007;34;4;23126;486;107;288;24007;34;4;
+Fixed time simulation end ########################################
+

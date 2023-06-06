@@ -15,7 +15,6 @@ Revision: Michele Pio Fragasso
 This script was part of the Zynet package developed by Vipin Kizhepatt.
 
 The ZyNet network class has been augmented with attrivubutes representing the
-DNN model in a VHDL environment. The class has new attributes like the DNN
 VHDL size for the representation of the VHDL architecture in a digital domain.
 """
 
@@ -166,7 +165,6 @@ class Network(object):
                 a = sigmoid(np.dot(w, a)+b)
         return a
         
-
     def SGD(self, training_data, epochs, mini_batch_size, eta,
             lmbda = 0.0,
             evaluation_data=None,

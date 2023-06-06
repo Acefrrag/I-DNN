@@ -384,50 +384,62 @@ if __name__=="__main__":
     #values for NV_REG_DELAY = 5
     #values = [2550,2550,2650,2550,2600,2600,2400,2400,2600,2400]
     
+    #Simulation Time
     sim_prms["sim_time_us"] = 3_000
+    #sim_prms["sim_time_us"] = 100
     sim_prms["system_clock_period_ns"] = 40
-    sim_prms["backup_period_clks_end"] = 2048#(sim_prms["sim_time_us"]*1_000/sim_prms["system_clock_period_ns"])/10
-    sim_prms["backup_period_clks_start"] = 1024#2**10
-    DNN_architecture["num_hidden_layers"] = 5
-    indexes = [i for i in range(7,8)]
+    #backup_period_clks_end
+    sim_prms["backup_period_clks_end"] = (sim_prms["sim_time_us"]*1_000/sim_prms["system_clock_period_ns"])/6
+    #sim_prms["backup_period_clks_end"] = (sim_prms["sim_time_us"]*1_000/sim_prms["system_clock_period_ns"])/10
+    #sim_prms["backup_period_clks_end"] = 10611
+    #sim_prms["backup_period_clks_start"] = 1024#1024#2**10
+    sim_prms["backup_period_clks_start"] = (sim_prms["sim_time_us"]*1_000/sim_prms["system_clock_period_ns"])/10
+    DNN_architecture["num_hidden_layers"] = 4
+    indexes = [i for i in range(11)]
     #Total number of simulations
-    overall_num_sim = 2#35
+    overall_num_sim = 35
+    overall_num_sim_gen = overall_num_sim - 1 #Variable
+    #overall_num_sim = 35
     # Define the starting and ending values of the interval
     start_val = sim_prms["backup_period_clks_start"]
     end_val = sim_prms["backup_period_clks_end"]
     backup_period_clks = []
-    #The backup_clk values increase
-    #The backup period of clk increases as a function
     #Since the CB policy shows variations of simulation results in the beginning
     #of the backup_period_clks interval we generate the samples with increasing
     #distance. Most of the backup_period_clks will be focused in the beginning
     #of the interval.
-    for i in range(overall_num_sim):
-        dist = (end_val - start_val) * ((i+1)/overall_num_sim)**2
-        backup_period_clk = int(start_val + dist)
+    backup_period_clk = start_val
+    for i in range(overall_num_sim_gen):
         backup_period_clks.append(backup_period_clk)
+        dist = (end_val - start_val) * ((i+1)/overall_num_sim_gen)**2
+        backup_period_clk = int(start_val + dist)
+    backup_period_clks.append(backup_period_clk)
+        
         
 
     
     NV_REG_FACTOR = 2
-    num_sims = 2
+    num_sims = 10        #Number of consecutive simulations
     
     
     for k in indexes:
         threshold = values[k]
         voltage_trace_name = voltage_trace_names[k]
         done_sims = 0
+        #counter counting number of simulation chunks completed
         p_chunk = 0 
         while done_sims < overall_num_sim:
             remaining = overall_num_sim - done_sims
             if remaining > num_sims:
-                done_sims += num_sims  #number of simulation done overall
-                num_sim = num_sims     #number of simulation done at this step
-                backup_period_clks_chunk = backup_period_clks[p_chunk*num_sim:(p_chunk+1)*num_sim-1] #chunk of the backup_period_clks to test
+                done_sims += num_sims       #number of simulation done overall
+                num_sim_now = num_sims      #Consecutive simulations that will be done at this step
+                #chunk of the backup_period_clks to test
+                backup_period_clks_chunk = backup_period_clks[p_chunk*num_sim_now:(p_chunk+1)*num_sim_now] 
                 generate_results(sim_prms = sim_prms, NV_REG_FACTOR=NV_REG_FACTOR, DNN_architecture=DNN_architecture, voltage_trace_name=voltage_trace_name, threshold=threshold, backup_period_clks_chunk=backup_period_clks_chunk)
-            else:
+            else: #remaining <= num_sims
                 done_sims += remaining
-                num_sim = remaining
-                backup_period_clks_chunk = backup_period_clks[p_chunk*num_sim:-1]
+                num_sim_now = remaining     #Consecutive simulations that will be done at this step
+                backup_period_clks_chunk = backup_period_clks[p_chunk*num_sims:]
                 generate_results(sim_prms = sim_prms, NV_REG_FACTOR=NV_REG_FACTOR, DNN_architecture=DNN_architecture, voltage_trace_name=voltage_trace_name, threshold=threshold, backup_period_clks_chunk=backup_period_clks_chunk)
             p_chunk += 1
+        remaining = 0

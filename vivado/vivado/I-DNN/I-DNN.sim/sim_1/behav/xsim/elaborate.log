@@ -22,10 +22,10 @@ Compiling package xil_defaultlib.common_package
 Compiling package xil_defaultlib.intermittency_emulator_package
 Compiling package synopsys.attributes
 Compiling package ieee.std_logic_misc
-Compiling architecture behavioral of entity xil_defaultlib.trace_ROM [\trace_ROM(num_elemnts_rom=18750...]
+Compiling architecture behavioral of entity xil_defaultlib.trace_ROM [\trace_ROM(num_elemnts_rom=14165...]
 Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=1,init_value=0,incr...]
 Compiling architecture behavioral of entity xil_defaultlib.scaler [\scaler(prescaler=4)\]
-Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=18749,init_value=0,...]
+Compiling architecture behavioral of entity xil_defaultlib.counter [\counter(max=14164,init_value=0,...]
 Compiling architecture behavioral of entity xil_defaultlib.intermittency_emulator [\intermittency_emulator(voltage_...]
 Compiling architecture behavioral of entity xil_defaultlib.fsm_nv_reg_db [fsm_nv_reg_db_default]
 Compiling architecture syn of entity xil_defaultlib.rams_sp_rf [\rams_sp_rf(ram_depth=35,ram_wid...]
@@ -217,6 +217,6 @@ Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_R
 Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(type_device="n...]
 Compiling architecture behavioral of entity xil_defaultlib.pwr_consumption_val_ROM [\pwr_consumption_val_ROM(num_ele...]
 Compiling architecture behavioral of entity xil_defaultlib.instant_pwr_calc [\instant_pwr_calc(pwr_states_num...]
-Compiling architecture behavioral of entity xil_defaultlib.I_DNN [\I_DNN(neuron_inout_intwidth=18,...]
+Compiling architecture behavioral of entity xil_defaultlib.I_DNN [\I_DNN(neuron_inout_intwidth=16,...]
 Compiling architecture behavioral of entity xil_defaultlib.i_dnn_multiple_images_tb
 Built simulation snapshot I_DNN_multiple_images_tb_behav

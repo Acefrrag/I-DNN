@@ -1,0 +1,2 @@
+These results were produced during the making of the power point presentation. The results are correct but they refer to a slightly different architecture.
+The patterns are still the same. I submitted these results to the thesis because I did not have enough time to produce new ones

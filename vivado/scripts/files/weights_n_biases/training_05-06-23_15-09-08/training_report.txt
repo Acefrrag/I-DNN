@@ -1,0 +1,13 @@
+TRAINING REPORT - 05-06-23_15-09-08
+ 
+Number of hidden layers : 10
+Neurons per layer: [90, 65, 50, 35, 30, 25, 20, 15, 15, 10]
+Activation function type: ReLU
+Training data size: 50000
+Training epochs: 1
+Training batch size:100
+Training learning rate: eta =10
+Training regularitation value: lambda =0
+Evaluation data size: 10000
+Evaluation Accuracies per epoch: 
+Epoch:0 Accuracy: 983/10000

@@ -1,0 +1,10 @@
+voltage_trace: voltage_traces/voltage_trace2.txt
+Fixed time simulation start ######################################
+hazard_threshold_val;backup_period_clks;time;shtdwn_counter;clk_counter;trace_rom_addr;executed_batches;I_layer1_pwr_apprx_values_idle_state;I_layer1_pwr_apprx_compute_state;I_layer1_pwr_apprx_values_save_state;I_layer1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_poweron_state;nv_reg1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_idle_state;I_layer2_pwr_apprx_compute_state;I_layer2_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_poweron_state;nv_reg2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_idle_state;I_layer3_pwr_apprx_compute_state;I_layer3_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_poweron_state;nv_reg3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_idle_state;I_layer4_pwr_apprx_compute_state;I_layer4_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_poweron_state;nv_reg4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_save_state;
+2500;6065;3 ms;97;48271;0;51;3625;43615;216;718;48174;790;204;45656;1584;216;718;48174;102;12;45905;1335;216;718;48174;272;42;46380;860;216;718;48174;236;36;
+2500;6407;3 ms;97;48271;0;49;3628;43612;216;718;48174;790;204;45566;1674;216;718;48174;102;12;45840;1400;216;718;48174;102;12;46346;894;216;718;48174;102;12;
+2500;6760;3 ms;97;48271;0;51;3629;43611;216;718;48174;790;204;45524;1716;216;718;48174;102;12;45784;1456;216;718;48174;102;12;46310;930;216;718;48174;102;12;
+2500;7124;3 ms;97;48271;0;54;3625;43670;161;718;48174;722;136;45711;1584;161;718;48174;148;58;45968;1327;161;718;48174;386;72;46359;936;161;718;48174;298;32;
+2500;7500;3 ms;97;48271;0;54;3625;43678;153;718;48174;722;136;45728;1575;153;718;48174;568;62;45763;1540;153;718;48174;98;8;46319;984;153;718;48174;98;8;
+Fixed time simulation end ########################################
+

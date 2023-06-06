@@ -9,10 +9,10 @@ Engineer: Michele Pio Fragasso
 Description:
     This script is used to perform a single voltage profile analysis.
     
-    It computes the minimum hazard threshold for a given DNN architecture for
+    It computes the minimum hazard threshold for a given I-DNN size for
     different NV_REG_DELAY factors (ranging from 2 to 11). In this way the
-    simulation for different hazard thresholds can be done, by setting up
-    correct hazard threshold.
+    simulation for different hazard thresholds can be done, ensuring I-DNN
+    can perform correct backup.
     
     This scripts scans through hazard threshold ranging between wrng_start and
     wrng_end, looking for the minimum hazard threshold that can guarantee no
@@ -20,7 +20,6 @@ Description:
     
 INPUTS:
     #Voltage trace parameters
-    
     i           : voltage trace number. A number between 0 and 9 to select
                     voltage traces between 1 and 10.
     vt_ts       : voltage trace timescale in us.
@@ -47,10 +46,15 @@ INPUTS:
     
 OUTPUTS:
     min_hzrds           : list of minimum hazards for different NV_REG_DELAYS
-    Minimum Hazards File: file containing the the minimum hazard threshodl
+    Minimum Hazards File: file containing the the minimum hazard threshold
     the format is:
         "vt-analysis-report_vt-<id>_sim-time-<sim_time>_vt-ts-<vt_ts>_size-<size>"
 """
+
+import matplotlib.lines as lines
+import matplotlib.patches as ptch
+import matplotlib.path as path
+
 
 import sys
 sys.path.insert(0, "../functions/")
@@ -64,18 +68,18 @@ import os
 
 #INPUTS
 #Voltage trace parameters
-vt_ts = 160
+vt_ts = 320
 trace_number=0#They range from 0 to 9
-sim_time = 3_000
+sim_time = 6_000
 shtdw_value = 2300
 #Analsysis parameters
-wrng_start = 2_300
-wrng_final = 4_500
+wrng_start = 2_400
+wrng_final = 4_000
 wrng_step = 50
-DNN_max_size = 40
+DNN_max_size = 30
 #Plot Options
-enable_plots_save = False
-plt_show = False
+enable_plots_save = True
+plt_show = True
 
 #SECONDARY INPUTS (not really necessary)
 #Hazazrd threshold to visualize it on plot
@@ -159,12 +163,12 @@ if plt_show == True:
     plt.show()
     
 """
-MAXIMUM DNN LAYER SIZE VS. HAZARD THRESHOLDS FOR DIFFERENT NV_REG_DELAY
+DNN maximum size VS. HAZARD THRESHOLDS FOR DIFFERENT NV_REG_DELAYs
 Description: In this section the maximum DNN layer size is computed versus
 the hazard threshold for different NV_REG_DELAY_FACTOR
 
 #Notes: It uses the function misc.compute_max_neuron_number which
-extract the sim_time window from the voltage trace
+extracts the sim_time window from the voltage trace
 """
 wrng_values = [x for x in range(wrng_start, wrng_final, wrng_step)]
 trace["neurons"] = {}
@@ -174,9 +178,9 @@ for NV_REG_DELAY_FACTOR in range(2, 12):
 #PLOTTING NEURONS VS. HAZARD TH AND SAVING DATA
 if plt_show == True: 
     plt.figure()
-    plt.title("Maximum number of neurons vs. hazard threshold. - Trace no. "+str(trace["trace_ID"]))
+    plt.title("DNN maximum size vs. hazard threshold. - Trace no. "+str(trace["trace_ID"]))
     plt.xlabel("Hazard threshold [mV]")
-    plt.ylabel("Maximum number of admissible neurons")
+    plt.ylabel("DNN maximum size")
     i = 2
     for key in trace["neurons"].keys():
         label = "DELAY_FACTOR = " + str(i)
@@ -197,6 +201,7 @@ DELAYS = range(2,12)
 keys = ["NV_REG_DELAY_FACTOR_"+str(DELAY) for DELAY in DELAYS]
 min_hzrds= []
 rnd_neurons = []
+#Compute
 for key in keys:
     #A target neuron number is selected
     neuron_target = DNN_max_size
@@ -206,21 +211,74 @@ for key in keys:
     hazard_target = wrng_values[index]
     neuron_target_rounded = neurons[index]
     min_hzrds.append(hazard_target)
-    #list of rounded neurons
+    #List of rounded neurons
     rnd_neurons.append(neuron_target_rounded)
 trace["min_hazards"] = min_hzrds
 #PLOTTING MINIMUM HAZARD VS HZ_TH AND SAVING DATA
 if plt_show == True:
     plt.figure()
-    plt.title("Hazard thresholds vs Maximum number of neurons - Trace no. "+str(trace["trace_ID"]))
-    plt.xlabel("Maximum number of neurons within the DNN")
-    plt.ylabel("Hazard threshold [mV]")
-    #plt.text(neuron_target,hazard_target,'Neuron Target value'+str(neuron_target))
-    [plt.plot(rnd_neurons[k], min_hzrds[k], marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green") for k in range(4)]
-    plt.axvline(neuron_target)
-    # arrowstyle = ptch.ArrowStyle.CurveA()
-    # arrowprops = dict(facecolor='black', arrowstyle=arrowstyle)
-    # [plt.annotate("Target: ("+str(rnd_neurons[k])+" ,"+ str(min_hzrds[k])+" mV )",xy = (rnd_neurons[k], min_hzrds[k]),xytext=(neuron_target_rounded+100, hazard_target+k*100) , arrowprops=arrowprops, bbox=dict(facecolor='blue', alpha=0.5)) for k in range(4)]
+    plt.title("Minimum Hazard thresholds vs DNN maximum size - Trace no. "+str(trace["trace_ID"]))
+    plt.xlabel("DNN maximum size")
+    plt.ylabel("Minimum Hazard threshold [mV]")
+    #Plotting 1 target value
+    plt.plot(rnd_neurons[0], min_hzrds[0],
+             marker="o",
+             markersize=5,
+             markeredgecolor="#bf2222",
+             markerfacecolor="#bf2222")
+    #Plotting 4 target values
+    """[plt.plot(rnd_neurons[k], min_hzrds[k], marker="o", markersize=5, markeredgecolor="red", markerfacecolor="green") for k in range(4)]"""
+    #Vertical Line
+    vline = plt.axvline(neuron_target)
+    vline.set_dashes([4,2])
+    vline.set_color("#bf2222")
+    #Adding 1 target value corresponding to NV_REG_FACTOR=2
+    xy_coord = [rnd_neurons[0], min_hzrds[0]]
+    mid_coord = [rnd_neurons[0]+100, min_hzrds[0]]
+    label_coord = [xy_coord[0]+150, xy_coord[1]+200]
+
+    delta1x = mid_coord[0]-xy_coord[0]
+    delta1y = mid_coord[1]-xy_coord[1]
+    
+    delta2x = label_coord[0]-mid_coord[0]
+    delta2y = label_coord[1]-mid_coord[1]
+        
+    arrowstyle_end = "->"
+    arrowprops_end = dict(color='#bf2222', arrowstyle=arrowstyle_end)
+    label_box = dict(facecolor='#bf2222', alpha=0.5,edgecolor='#bf2222', boxstyle='square', color="#bf2222")
+    fontsize =16  
+    xlabel=str(rnd_neurons[0])
+    ylabel=str(min_hzrds[0])
+
+    plt.arrow(xy_coord[0],
+              xy_coord[1],
+              delta1x,
+              delta1y,
+              color="black",
+              width=0.1,
+              head_width=0,
+              length_includes_head=True)
+    
+    plt.arrow(mid_coord[0],
+              mid_coord[1],
+              delta2x,
+              delta2y,
+              color="black",
+              width=0.1,
+              head_width=10,
+              length_includes_head=True)
+    
+    plt.annotate(
+        "Requirement:\n ("+xlabel+" ,"+ ylabel+" mV )",
+        fontsize=fontsize,
+        xy = label_coord,
+        xytext=label_coord,
+        #arrowprops=arrowprops_end,
+        arrowprops=None,
+        bbox=label_box)
+    #Adding 4 target values
+    """[plt.annotate("Requirement:\n("+str(rnd_neurons[k])+" ,"+ str(min_hzrds[k])+" mV )",xy = (rnd_neurons[k], min_hzrds[k]),xytext=(neuron_target_rounded+100, hazard_target+k*100) , arrowprops=arrowprops, bbox=dict(facecolor='blue', alpha=0.5)) for k in range(4)]"""
+    #Plotting the size-threshold curves
     i = 2
     for key in trace["neurons"].keys():
         label = "DELAY_FACTOR = " + str(i)

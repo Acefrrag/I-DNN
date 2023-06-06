@@ -474,7 +474,7 @@ def generate_results(NV_REG_FACTOR, DNN_architecture, voltage_trace_name, start_
     ########################## RUN GENERATED BATCH FIlE###############################
     run_line = vivado_path + " -mode batch -source " + tcl_script_path
 
-    print("Executing: " + str(run_line))
+    print("Executing: " + str(run_line))    
     os.system(run_line)
     
     print("Simulation Ended!!")
@@ -491,36 +491,42 @@ if __name__=="__main__":
     #VALUES SETUP
     """DNN_max_size = 30"""
     #values for NV_REG_DELAY = 2
-    #values = [2450, 2500, 2500, 2400, 2400, 2450, 2500, 2400, 2450, 2400]
+    values = [2450, 2500, 2500, 2400, 2400, 2450, 2500, 2400, 2450, 2400]
     #values for NV_REG_DELAY = 4
     #values = [2450, 2500, 2500, 2400, 2400, 2450, 2500, 2500, 2450, 2400]
+    #values for NV_REG_DELAY = 5
+    #values = [2550, 2610, 2550, 2600, 2650, 2650, 2700, 2450, 2650, 2450]
     #values for NV_REG_DELAY = 8
     #values = [2450, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     #VALUES for NV_REG_FACTOR = 11
     #values= [2800,2650,2650,2850,2900,2800,2950,2450,2700,2450]
     """DNN_max_size = 120"""
-    #The DNN layer sizes are:
-    #sizes = [120, 100, 60, 60, 50, 40, 30, 10]
     #values for NV_REG_DELAY = 2
     #values = [2500, 2500, 2650, 2500, 2500, 2500, 2550, 2400, 2550, 2400]
     #values for NV_REG_DELAY = 5
     #values = [2550,2550,2650,2550,2600,2600,2400,2400,2600,2400]
+    """DNN_max_size = 100"""
+    #values for NV_REG_DELAY = 2
+    #values = [2600, 2650, 2650, 2650, 2650, 2750, 2800, 2500, 2750, 2500]
     """DNN_max_size = 50"""
-    #sizes
-    #(50,40,30,25,10)
     #NVREG_FACTOR = 2
-    #values = [2450, 2600, 2600, 2500, 2500, 2550, 2550, 2450, 2550, 2450]
+    #values = [2450, 2650, 2600, 2500, 2500, 2550, 2550, 2450, 2550, 2450]
     #NVREG_FACTOR = 3
     #values = [2550, 2650, 2650, 2550, 2550, 2650, 2700, 2450, 2650, 2450]
-    #OTHER INPUTS
     """DNN_max_size = 40"""
-    values = [0,2500,0,0,0,0,0,0,0,0]
+    #values = [0,2500,0,0,0,0,0,0,0,0]
+    """Custom Values: You uncomment this for setting a custom start hz_th"""
+    #values = [3350, 2800, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000]
+    #OTHER INPUTS    
     DNN_architecture["num_hidden_layers"] = 4
     NV_REG_FACTOR = 2
-    indexes = [1]
-    overall_final_value = 2950
-    step = 30
-    num_sim = 5
+    #indexes = [0]          #voltage_trace1.txt
+    #indexes = [1]           #voltage_trace2.txt
+    indexes = [2]
+    #indexes = range(10)    #All voltage traces will be tested
+    overall_final_value = 4700
+    step = 5
+    num_sim = 15
     #################################END_INPUTS################################
     
 

@@ -1,0 +1,10 @@
+voltage_trace: voltage_traces/voltage_trace2.txt
+Fixed time simulation start ######################################
+hazard_threshold_val;time;shtdwn_counter;clk_counter;trace_rom_addr;executed_batches;I_layer1_pwr_apprx_values_idle_state;I_layer1_pwr_apprx_compute_state;I_layer1_pwr_apprx_values_save_state;I_layer1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_poweron_state;nv_reg1_pwr_apprx_values_rec_state;nv_reg1_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_idle_state;I_layer2_pwr_apprx_compute_state;I_layer2_pwr_apprx_values_save_state;I_layer2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_poweron_state;nv_reg2_pwr_apprx_values_rec_state;nv_reg2_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_idle_state;I_layer3_pwr_apprx_compute_state;I_layer3_pwr_apprx_values_save_state;I_layer3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_poweron_state;nv_reg3_pwr_apprx_values_rec_state;nv_reg3_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_idle_state;I_layer4_pwr_apprx_compute_state;I_layer4_pwr_apprx_values_save_state;I_layer4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_poweron_state;nv_reg4_pwr_apprx_values_rec_state;nv_reg4_pwr_apprx_values_save_state;
+2910;3 ms;97;48271;0;27;8813;22112;11760;5489;48174;4945;3570;30001;924;11760;5489;48174;715;460;30141;784;11760;5489;48174;890;605;30423;502;11760;5489;48174;580;390;
+2940;3 ms;97;48271;0;27;9615;21857;11970;4732;48174;4605;3400;30581;891;11970;4732;48174;700;460;30716;756;11970;4732;48174;485;285;30986;486;11970;4732;48174;320;200;
+2970;3 ms;97;48271;0;26;9656;21230;12556;4732;48174;4435;3230;30028;858;12556;4732;48174;575;325;30158;728;12556;4732;48174;385;265;30418;468;12556;4732;48174;370;250;
+3000;3 ms;97;48271;0;26;13392;20569;12992;1221;48174;4095;2890;33103;858;12992;1221;48174;425;305;33233;728;12992;1221;48174;290;170;33493;468;12992;1221;48174;290;170;
+3030;3 ms;97;48271;0;25;13443;19950;13560;1221;48174;4095;2890;32568;825;13560;1221;48174;290;170;32693;700;13560;1221;48174;290;170;32943;450;13560;1221;48174;290;170;
+Fixed time simulation end ########################################
+

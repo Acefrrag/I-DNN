@@ -1,0 +1,14 @@
+DATA FORMAT 
+
+INPUT DATA FORMAT 
+
+Sigmoid input size: 5
+Sigmoid input integer part size: 2
+Sigmoid input fractional part size: 3
+
+OUTPUT DATA FORMAT 
+
+Sigmoid output size: 32
+Sigmoid output fractional part size: 16
+Sigmoid output integer part size: 16
+Smallest sigmoid input: -2

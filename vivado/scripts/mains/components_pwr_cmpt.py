@@ -23,8 +23,97 @@ import re
 import os
 import network2
 
+#---------------------------Helper Functions-----------------------------------
+def render_key(key):
+    """
+    This function renders the key to be displayed on plot, for plotting
+    neat title for thesis submission.
+
+    Parameters
+    ----------
+    key : string
+        This is the signal name inside VHDL. It's formatted for code usability,
+        but it's not rendered for readibility.
+        
+        Examples:
+            nv_reg4_inst_pwr_save_state
+            nv_reg4_pwr_apprx_save_state
+            layer4_inst_pwr_save_state
+            layer4_pwr_apprx_save_state
+    Returns
+    -------
+    rendered_key : string
+        This is the rendered version of key. It is used to present readable
+        signal description for thesis submission
+        
+        Rendering Cases:
+            The key "nv_reg4_inst_pwr_save_state" will be rendered to
+            "Power Consumption SAVE STATE NVR4"
+            
+            The key "nv_reg4_pwr_apprx_save_state" will be rendered to
+            "PA Value SAVE STATE NVR4"
+            
+            The key "layer4_pwr_apprx_save_state" will be rendered to
+            "PA Valye SAVE STATE layer4"
+            
+            The key "layer4_inst_pwr_save_state" will be rendered to
+            "Power Consumption SAVE STATE layer4"
+            
+            The key "total_power_consumption" is rendered as
+            "Total Power Consumption"
+            
+            The key "throughput" is rendered as
+            Throughput
+            
+            The key throughput_pwr_csmpt_W is rendered as
+            Efficiency
+            
+            T
+
+    """
+    #To implement the rendering the sequence of rendered key parts need to be
+    #extracted and concatenated at the end.
+    #1) The sequence of strings is determined.
+    #2) Next they are concatenated and the rendered key is determined.
+       
+    #SEQUENCE OF KEY RENDERED PARTS
+    #Layer Number    
+    layer_no_match = (re.search(r"\d+", key))
+    layer_no = layer_no_match.group() if layer_no_match!=None else " "
+    #Type of components
+    cmpt_part = "NVR" if "nv_reg" in key else \
+                "layer" if "layer" in key else \
+                "None"
+    #Type of power state
+    pwr_state_part =    "SAVE STATE" if "save_state" in key else \
+                        "REC STATE" if "rec_state" in key else \
+                        "COMPUTE STATE" if "compute_state" in key else \
+                        "IDLE STATE" if "idle_state" in key else \
+                        "POWER ON" if "poweron" in key else \
+                        "None"
+    #Type of signal (PA value or Power Consumption)
+    type_part = "Power Consumption" if "inst_pwr" in key else \
+                "PA Value" if "pwr_apprx" in key else \
+                "None"
+    #Overall performance index
+    overall_perf_string =   "Total Power Consumption" if "total_power_consumption"\
+                                in key else \
+                            "Efficiency" if "throughput_pwr_csmpt_W" in key else \
+                            "Throughput" if "throughput" in key else \
+                            "None"
+    #Hazard Threshold
+    hzrd_th_string =    "Hazard Threshold" if "hazard_threshold_val" in key else\
+                         "None"   
+    #Rendering for components
+    rendered_key =  (type_part + " " + pwr_state_part + " " + cmpt_part + layer_no) \
+                        if cmpt_part != "None" else \
+                    overall_perf_string if overall_perf_string != "None" else \
+                    hzrd_th_string if hzrd_th_string != "None" else \
+                    key
+    return (rendered_key)
+
 enable_plot_save = True
-NV_REG_FACTORS = [2,5,11]
+NV_REG_FACTORS = [2,5,8,11]
 
 results_plots_path = "./plots/DB_components_pwr_cmpt/"
 DB_result_log_path = "./results/DB_result_log.txt"
@@ -37,9 +126,11 @@ except:
 
 #Generating list of DB result paths. There is a result per NV_REG_DELAY_FACTOR
 #We have to generate results for every NV_REG_FACTOR.
+#foldername = "4layer_80"
+foldername = "4layer_80_powerpoint"
 results_path_list = []
 for NV_REG_FACTOR in NV_REG_FACTORS:
-    results_path_list.append("./results/DB_results/4layer_80/"+voltage_trace_namefile+"/DB_results_fixedtime_NVREG_DELAY_FACTOR"+str(NV_REG_FACTOR)+".txt")
+    results_path_list.append("./results/DB_results/"+foldername+"/"+voltage_trace_namefile+"/DB_results_fixedtime_NVREG_DELAY_FACTOR"+str(NV_REG_FACTOR)+".txt")
 results_name = "DB"
 result_figures_list = []
 #end_data_fixed_time_simulations is a list where every entry refers to a
@@ -105,7 +196,7 @@ for results_path in results_path_list:
 
 """PERFORMANCE INDEXES"""
 #Instant Power Calculation
-#   1) For every layer
+#   1) For every I-layer
 #   2) For every nv_reg
 test_no = 0
 for NV_REG_FACTOR in NV_REG_FACTORS:
@@ -159,10 +250,10 @@ for NV_REG_FACTOR in NV_REG_FACTORS:
     test_no += 1
 
 """OVERALL PERFORMANCE INDEXES"""
-#-Total power consumption
-#-Executed Batches
-#-Throughput (Executed batches/sim_time)
-#-Efficiency (Throughput/Total Power Consumption)
+#1)Total power consumption
+#2)Executed Batches
+#3)Throughput (Executed batches/sim_time)
+#4)Efficiency (Throughput/Total Power Consumption)
 test_no = 0
 for NV_REG_FACTOR in NV_REG_FACTORS:
     pwr_csmpt = [0 for c in range(len(end_data_fixed_time_simulations[test_no]["hazard_threshold_val"]))]
@@ -192,7 +283,7 @@ for NV_REG_FACTOR in NV_REG_FACTORS:
     end_data_fixed_time_simulations[test_no]["throughput"] = [end_data_fixed_time_simulations[test_no]["executed_batches"][k]/end_data_fixed_time_simulations[test_no]["time"][k] for k in range(len(end_data_fixed_time_simulations[test_no]["time"]))]
     end_data_fixed_time_simulations[test_no]["throughput_pwr_csmpt_W"] = [end_data_fixed_time_simulations[test_no]["throughput"][k]/end_data_fixed_time_simulations[test_no]["total_power_consumption"][k]*1000 for k in range(len(end_data_fixed_time_simulations[test_no]["hazard_threshold_val"]))]
     test_no += 1
-    #Computing Throughput
+
 
 #Uploading the signal names, they now include the performance indexes
 #Uploading the total number of simulation objects as well
@@ -203,7 +294,12 @@ for NV_REG_FACTOR in NV_REG_FACTORS:
 number_objects = len(end_data_fixed_time_simulations[0])
 
 
-"""Plotting all the signals at end-of-sim"""
+"""PLOTTING END-OF-SIMULATION SIGNALS"""
+#In this section the END-OF-SIMULATION signals are produced.
+#They include:
+    #1) Power Approximation Values
+    #2) Instant Power Consumption Values
+    #3) Performance Indexes Values
 for i in range(number_objects):
     result_figures_list.append(plt.figure())
 test_no = 0
@@ -213,21 +309,38 @@ for NV_REG_FACTOR in NV_REG_FACTORS:
     for i in range(number_objects):
         key_xaxis = "hazard_threshold_val"
         key_yaxis = names_fixed_time[i]
+        rendered_key_xaxis = "Hazard Threshold [mV]"
+        rendered_key_yaxis = render_key(names_fixed_time[i])
         #ax.append(result_figures_list[i].gca())
         ax = result_figures_list[i].gca()
-        title = "Fixed Time Results - Hazard Threshold vs."+names_fixed_time[i]
+        
+        
         xlabel = "Hazard Threshold [mV]"
-        ylabel = names_fixed_time[i]
-        if "inst_pwr" in title:
-            ylabel += " [mW]"
-        if "apprx_values" in title:
-            ylabel += " [No. Cycles]"
-        if "total" in title:
-            ylabel += " [mW]"
-        if "throughput" in title and "throughput_pwr" not in title:
-            ylabel += "[Op/s]"
-        if "throughput_pwr"  in title:
-            ylabel += "[Op/s/mW]"
+        ytitle = rendered_key_yaxis
+        if "Power" in ytitle:
+            unit_string = " [mW]"
+            ylabel = "Power Consumption"
+        else:
+            if "PA" in ytitle:
+                unit_string = " [No. Cycles]"
+                ylabel = "PA Value"
+            else:
+                if "Total" in ytitle:
+                    unit_string = " [mW]"
+                    ylabel = rendered_key_yaxis
+                else:
+                    if "Throughput" in ytitle and "throughput_pwr" not in ytitle:
+                        unit_string = "[Op/s]"
+                        ylabel = rendered_key_yaxis
+                    else:
+                        if "Efficiency"  in ytitle:
+                            unit_string += "[Op/s/mW]"
+                            ylabel = rendered_key_yaxis
+                        else:
+                            unit_string = "" 
+                            ylabel = rendered_key_yaxis
+        ylabel += unit_string
+        title = ytitle + " vs. Hazard Threshold"
         ax.set_title(title)
         ax.set_xlabel(xlabel)
         ax.set_ylabel(ylabel)

@@ -7,6 +7,9 @@ Engineer: Michele Pio Fragasso
 
 Description:
     
+    This script computes the relevant indexed performances for all voltage traces
+    
+    
     This script compares the results for all different voltage traces
     for different DELAY_FACTOR, for a 4 layer DNN. Also, this script contains
     the POWER MODEL used by pwr_cmpt_validation.py in order to validate it.
@@ -80,6 +83,7 @@ from scipy.optimize import curve_fit
 from scipy.stats import pearsonr
 import numpy as np
 import os
+import time
 
 #POWER STATE CONSUMPTIONS
 """LAYER"""
@@ -266,6 +270,9 @@ def compute_fit_param(voltage_trace_name, sim_results, plt_show=False,NV_REG_FAC
         Correlation and p-value for Person correlation coefficent
     """
     
+    titlesize = 18
+    xy_labelsize = 16
+    xy_tickssize = 14
     #Loading voltage trace values
     #Loading voltage trace
     vt_path = "../../src/NORM/voltage_traces/"+voltage_trace_name+".txt"
@@ -300,67 +307,78 @@ def compute_fit_param(voltage_trace_name, sim_results, plt_show=False,NV_REG_FAC
     
     #Plot power consumption versus hazard threshold
     if plt_show == True:
-        fig = plt.figure()
+        fig = plt.figure(figsize=(10,6))
         ax1 = fig.gca()
-        ax1.set_title("Total Power Consumption - Voltage Trace" + (re.search(r"\d+",voltage_trace_name).group()))
+        ax1.set_title("Total Power Consumption - Voltage Trace" + (re.search(r"\d+",voltage_trace_name).group()), fontsize=titlesize)
         #ax1.set_title("Voltage Trace"+(re.search(r"\d",voltage_trace_name).group()))
         ax1.plot(hzrd_th, pwr_cmpt, color = "blue")
-        ax1.set_ylabel('Total Power Consumption[mW]', color='blue')
-        ax1.set_xlabel("Hazard Threshold [mV]")
+        ax1.set_ylabel('Total Power Consumption[mW]', color='blue', fontsize=xy_labelsize)
+        ax1.set_xlabel("Hazard Threshold [mV]", fontsize=xy_labelsize)
+        ax1.tick_params(axis='x', labelsize=xy_tickssize)
+        ax1.tick_params(axis='y', labelsize=xy_tickssize)
         ax2 = ax1.twinx()
+        ax2.tick_params(axis='y', labelsize=xy_tickssize)
         ax2.plot(hzrd_th, oscs, color = "red") #The power consumption follows the oscillations of the voltage traces around the hazard threshold
-        ax2.set_ylabel('Number of oscillations', color='red')
+        ax2.set_ylabel('Number of oscillations', color='red', fontsize=xy_labelsize)
         ax2.grid(True)
         
                 
         if enable_plot_save == True:
+            fig.savefig(sngl_plots_path+"TOTAL_POWER_CONSUMPTION_"+voltage_trace_name+".svg", dpi=1080)
             fig.savefig(sngl_plots_path+"TOTAL_POWER_CONSUMPTION_"+voltage_trace_name, dpi=1080)
+
         plt.show()
                 
     #Fitting Throughput
     p0 = [throughput[0],0.005,hzrd_th[0]]
-    print(voltage_trace_name)
+    print(voltage_trace_name.upper())
+    print()
     #The method "trf" uses a Moore-Penrose pseudoinverse to compute the covariance matrix. (source: scipy.optimize_curve_fit documentation)
     #If the Jacobian matrix at the solution doesn’t have a full rank,
     #then ‘lm’ method returns a matrix filled with np.inf, on the
     #other hand ‘trf’ and ‘dogbox’ methods use Moore-Penrose
     #pseudoinverse to compute the covariance matrix.
     parameters, covariance = curve_fit(exp, hzrd_th, throughput,p0=p0,maxfev=100000,method='trf')
-    print("The covariance matrix is:\n")
-    print(covariance)
-    print("\n")
-    print("The fitted parameters (throughtput initial value, decay factor and initial hazard threshold) are:\n")
+    print("The FITTED PARAMETERS  are:\n")
+    print("(throughtput initial value, decay factor and initial hazard threshold)")
     print(parameters[0],parameters[1],parameters[2])
+    print()
     A, lmbda,x0 = parameters
     throughput_fit = [exp(v,A,lmbda,x0) for v in hzrd_th]
     max_throughput = max(throughput)
-    
+    print("The COVARIANCE MATRIX is:\n")
+    print(covariance)
+    print()
     
     if plt_show == True:
-        fig = plt.figure()
+        fig = plt.figure(figsize=(10,6))
         ax = fig.gca()
         ax.grid(True)
-        ax.set_title("Throughput - Voltage Trace"+(re.search(r"\d+",voltage_trace_name).group()))
-        ax.set_xlabel("Hazard Threshold [mV]")
-        ax.set_ylabel("Throughput [Op/s]")
+        ax.tick_params(axis='x', labelsize=xy_tickssize)
+        ax.tick_params(axis='y', labelsize=xy_tickssize)
+        ax.set_title("Throughput - Voltage Trace"+(re.search(r"\d+",voltage_trace_name).group()), fontsize=titlesize)
+        ax.set_xlabel("Hazard Threshold [mV]", fontsize=xy_labelsize)
+        ax.set_ylabel("Throughput [Op/s]", fontsize=xy_labelsize)
         ax.plot(hzrd_th, throughput, label="Experimental Throughput")
-        ax.plot(hzrd_th, throughput_fit, label="Throughout Fit")
+        ax.plot(hzrd_th, throughput_fit, label="Throughput Fit")
         ax.legend()
         if enable_plot_save == True:
                 fig.savefig(sngl_plots_path+"./THROUGHPUT_"+voltage_trace_name, dpi=1080, bbox_inches="tight")
         plt.show()
     
     if plt_show == True:
-        fig = plt.figure()
+        fig = plt.figure(figsize=(10,6))
         ax1 = fig.gca()
-        ax1.set_title(r"Efficiency - Voltage Trace" + (re.search(r"\d+",voltage_trace_name).group()))
+        ax1.set_title(r"Efficiency - Voltage Trace" + (re.search(r"\d+",voltage_trace_name).group()),fontsize=titlesize)
         #ax1.set_title("Voltage Trace"+(re.search(r"\d",voltage_trace_name).group()))
         ax1.plot(hzrd_th, efficiency, color = "blue")
-        ax1.set_ylabel(r'$\frac{Throughput}{Power Consumption} [\frac{Op/s}{mW}$', color='blue')
-        ax1.set_xlabel("Hazard Threshold [mV]")
+        ax1.tick_params(axis='x', labelsize=xy_tickssize)
+        ax1.tick_params(axis='y', labelsize=xy_tickssize)
+        ax1.set_ylabel(r'$\frac{Throughput}{Power Consumption} [\frac{Op/s}{mW}]$', color='blue',fontsize=int(xy_labelsize*1.7))
+        ax1.set_xlabel("Hazard Threshold [mV]",fontsize=xy_labelsize)
         plt.grid(True)
         if enable_plot_save == True:
-                fig.savefig(sngl_plots_path+"./EFFICIENCY_"+voltage_trace_name+"_NVREG_FACTOR", dpi=2080, bbox_inches="tight")
+                fig.savefig(sngl_plots_path+"./EFFICIENCY_"+voltage_trace_name+"_NVREG_FACTOR", dpi=1080, bbox_inches="tight")
         plt.show()
    
     
@@ -369,9 +387,11 @@ def compute_fit_param(voltage_trace_name, sim_results, plt_show=False,NV_REG_FAC
     pwr_cmpt_corr, pwr_cmpt_pvalue = pearsonr(oscs, pwr_cmpt)
     
     prson_pwr_cmpt = pwr_cmpt_corr, pwr_cmpt_pvalue
+    print("CORRELATION POWER CONSUMPTION - VOLTAGE TRACE OSCILLATIONS")
     print("Pearson correlation coefficient:", pwr_cmpt_corr)
     print("p-value:", pwr_cmpt_pvalue)
-    
+    print("__________________________________________")
+    print()
     return(lmbda, max_throughput, prson_pwr_cmpt)
 
 
@@ -397,7 +417,8 @@ if __name__ == "__main__":
     [overall_data(sim_results[sim_result],NV_REG_FACTOR=2) for sim_result in sim_results]
     
     #Computing fit parameters
-    print("NVR_FACTOR:"+str(NV_REG_FACTOR))
+    print("#################START NVR_FACTOR"+str(NV_REG_FACTOR)+"##########################")
+    time.sleep(1)
     sngl_plots_path = SINGLE_performance_index_outputpath+"NV_REG_FACTOR_"+str(NV_REG_FACTOR)+"/"
     try:
         os.mkdir(sngl_plots_path)
@@ -406,41 +427,53 @@ if __name__ == "__main__":
     vt_ps = [compute_fit_param(voltage_trace_name, sim_results,plt_show=enable_sngl_plot_show,NV_REG_FACTOR=NV_REG_FACTOR) for voltage_trace_name in voltage_trace_names]
     
     trace_names = ["trace"+re.search(r"\d+",voltage_trace_name).group() for voltage_trace_name in voltage_trace_names]
-    decays = [p[0] for p in vt_ps]
-    As = [p[1] for p in vt_ps]
-    prson_pwr_cmpt =[p[2][0] for p in vt_ps]
+    decays_2 = [p[0] for p in vt_ps]
+    As_2 = [p[1] for p in vt_ps]
+    prson_pwr_cmpt_2 =[p[2][0] for p in vt_ps]
     
+    print("#################END NVR_FACTOR"+str(NV_REG_FACTOR)+"##########################")
+    print("Press Enter to continue..")
+    input()
+    
+    figsize = (14,4)
+    fontsize = 16
     if enable_sngl_plot_show == False:
         bar_width = 0.25
-        plt.figure(1)
-        plt.bar(trace_names, decays, label="NV_REG_FACTOR=2",width=bar_width)
-        plt.title("Decay Factor of THROUGHPUT")
-        plt.xlabel("Trace")
-        plt.ylabel("Decay factor $\lambda$")
+        plt.figure(1, figsize=figsize)
+        plt.xticks([i for i in range(len(trace_names))], trace_names, fontsize=fontsize)
+        plt.yticks(fontsize=fontsize)
+        plt.bar([i-1*bar_width for i in range(len(trace_names))], decays_2, label="NVM LATENCY FACTOR=2",width=bar_width)
+        plt.title("Decay Factor of THROUGHPUT", fontsize=fontsize)
+        plt.xlabel("Trace", fontsize=fontsize)
+        plt.ylabel("Decay factor $\lambda$", fontsize=fontsize)
         #if enable_plot_save==True:
         #     fig.savefig("./DECAY_FACTOR", dpi=1080)
          #plt.xticks(fontsize=10)
     
     
-        plt.figure(2)
-        plt.bar(trace_names, As, label="NVREG_FACTOR2",width=bar_width)
-        plt.title("Throughput Amplitude A")
-        plt.xlabel("Trace")
-        plt.ylabel("Maximum THROUGHPUT [Op/s]")
+        plt.figure(2, figsize=figsize)
+        plt.xticks([i for i in range(len(trace_names))], trace_names, fontsize=fontsize)
+        plt.yticks(fontsize=fontsize)
+        plt.bar([i-1*bar_width for i in range(len(trace_names))], As_2, label="NVM LATENCY FACTOR=2",width=bar_width)
+        plt.title("Amplitude A of Throughput Curve", fontsize=fontsize)
+        plt.xlabel("Harvesting Scenario", fontsize=fontsize)
+        plt.ylabel("Throughput [Op/s]", fontsize=fontsize)
         #plt.xticks(fontsize=10)
         # if enable_plot_save==True:
         #     fig_tp.savefig("./MAX_THROUGHPUT", dpi=1080)
     
     
-        plt.figure(3)
-        plt.bar(trace_names, prson_pwr_cmpt, label="NV_REG_FACTOR=2",width=bar_width)
-        plt.title("Correlation Voltage Trace Oscillations and Power Consumption")
+        plt.figure(3, figsize=figsize)
+        plt.xticks([i for i in range(len(trace_names))], trace_names, fontsize=fontsize)
+        plt.yticks(fontsize=fontsize)
+        plt.bar([i-1*bar_width for i in range(len(trace_names))], prson_pwr_cmpt_2, label="NVM LATENCY FACTOR=2",width=bar_width)
+        plt.title("Correlation Voltage Trace Oscillations and Power Consumption", fontsize=fontsize)
         #plt.xticks(fontsize=10)
-        plt.xlabel("Trace")
-        plt.ylabel("Correlation coefficient")
+        plt.xlabel("Harvesting Scenario", fontsize=fontsize)
+        plt.ylabel("Correlation coefficient", fontsize=fontsize)
         # if enable_plot_save==True:
         #     fig_corr.savefig("./CORRELATION", dpi=1080)
-        
+    
     
     "NV_REG_FACTOR = 5"
     NV_REG_FACTOR = 5
@@ -462,7 +495,9 @@ if __name__ == "__main__":
     [file.close() for file in DB_results_files]
     
     [overall_data(sim_results[sim_result],NV_REG_FACTOR=NV_REG_FACTOR) for sim_result in sim_results]
-    print("NVR_FACTOR:"+str(NV_REG_FACTOR))
+    
+    print("#################START NVR_FACTOR"+str(NV_REG_FACTOR)+"##########################")
+    time.sleep(1)
     sngl_plots_path = SINGLE_performance_index_outputpath+"NV_REG_FACTOR_"+str(NV_REG_FACTOR)+"/"
     try:
         os.mkdir(sngl_plots_path)
@@ -473,15 +508,15 @@ if __name__ == "__main__":
     
     trace_names = ["trace"+re.search(r"\d+",voltage_trace_name).group() for voltage_trace_name in voltage_trace_names]
     #vt_ps = [vt1_p, vt2_p, vt8_p]
-    decays = [p[0] for p in vt_ps]
-    As = [p[1] for p in vt_ps]
-    prson_pwr_cmpt =[p[2][0] for p in vt_ps]
+    decays_5 = [p[0] for p in vt_ps]
+    As_5 = [p[1] for p in vt_ps]
+    prson_pwr_cmpt_5 =[p[2][0] for p in vt_ps]
     #•cs = [p[4] for p in vt_ps]
     
     if enable_sngl_plot_show == False:
         
         plt.figure(1)
-        plt.bar([i + bar_width for i in range(len(trace_names))], decays, label="NV_REG_FACTOR=5",width=bar_width)
+        plt.bar([i for i in range(len(trace_names))], decays_5, label="NVM LATENCY FACTOR=5",width=bar_width)
         # if enable_plot_save==True:
         #     fig_decay.savefig("./DECAY_FACTOR", dpi=1080)
         # #plt.xticks(fontsize=10)
@@ -489,7 +524,7 @@ if __name__ == "__main__":
 
     
         plt.figure(2)
-        plt.bar([i + bar_width for i in range(len(trace_names))], As, label="NV_REG_FACTOR=5",width=bar_width)
+        plt.bar([i for i in range(len(trace_names))], As_5, label="NVM LATENCY FACTOR=5",width=bar_width)
         #plt.xticks(fontsize=10)
         # if enable_plot_save==True:
         #     fig_tp.savefig("./MAX_THROUGHPUT", dpi=1080)
@@ -498,13 +533,15 @@ if __name__ == "__main__":
     
         
         plt.figure(3)
-        plt.bar([i + bar_width for i in range(len(trace_names))], prson_pwr_cmpt, label="NV_REG_FACTOR=5",width=bar_width)
+        plt.bar([i for i in range(len(trace_names))], prson_pwr_cmpt_5, label="NVM LATENCY FACTOR=5",width=bar_width)
         
         # if enable_plot_save==True:
         #     fig_corr.savefig("./CORRELATION", dpi=1080)
+        
+    print("#################END NVR_FACTOR"+str(NV_REG_FACTOR)+"##########################")
+    print("Press Enter to continue..")
+    input()
 
-   
-    
     
     NV_REG_FACTOR = 11
     num_hidden_layers = 4
@@ -525,51 +562,64 @@ if __name__ == "__main__":
     [file.close() for file in DB_results_files]
     
     [overall_data(sim_results[sim_result],NV_REG_FACTOR=NV_REG_FACTOR) for sim_result in sim_results]
-    print("NVR_FACTOR:"+str(NV_REG_FACTOR))
+    print("#################START NVR_FACTOR"+str(NV_REG_FACTOR)+"##########################")
+    time.sleep(1)
     sngl_plots_path = SINGLE_performance_index_outputpath+"NV_REG_FACTOR_"+str(NV_REG_FACTOR)+"/"
     try:
         os.mkdir(sngl_plots_path)
     except:
         pass
-    
+    print("__________________________________________")
     vt_ps = [compute_fit_param(voltage_trace_name, sim_results, plt_show=enable_sngl_plot_show,NV_REG_FACTOR=NV_REG_FACTOR) for voltage_trace_name in voltage_trace_names]
     
     trace_names = ["trace"+re.search(r"\d+",voltage_trace_name).group() for voltage_trace_name in voltage_trace_names]
     #vt_ps = [vt1_p, vt2_p, vt8_p]
-    decays = [p[0] for p in vt_ps]
-    As = [p[1] for p in vt_ps]
-    prson_pwr_cmpt =[p[2][0] for p in vt_ps]
+    decays_11 = [p[0] for p in vt_ps]
+    As_11 = [p[1] for p in vt_ps]
+    prson_pwr_cmpt_11 =[p[2][0] for p in vt_ps]
     #•cs = [p[4] for p in vt_ps]
+    prson_pwr_cmpt = prson_pwr_cmpt_2+prson_pwr_cmpt_5+prson_pwr_cmpt_11
+    prson_mean = np.mean(prson_pwr_cmpt)
+    prson_var = np.var(prson_pwr_cmpt)
+    prson_rel_perc_var = prson_var/prson_mean*100
+    print("#################END NVR_FACTOR"+str(NV_REG_FACTOR)+"##########################")
     
-    
+    print("Press Enter to continue..")
+    input()
     
     if enable_sngl_plot_show == False:
-        
+        legendsize=14
         plt.figure(1)
-        plt.bar([i + 2*bar_width for i in range(len(trace_names))], decays, label="NV_REG_FACTOR=11",width=bar_width)
+        plt.bar([i + 1*bar_width for i in range(len(trace_names))], decays_11, label="NVM LATENCY FACTOR=11",width=bar_width)
         # if enable_plot_save==True:
         #     fig_decay.savefig("./DECAY_FACTOR", dpi=1080)
         # #plt.xticks(fontsize=10)
         plt.legend()
         plt.grid(True)
-        plt.savefig(OVERALL_performance_index_outputpath+"DECAY_FACTOR", dpi=1080)
+        plt.savefig(OVERALL_performance_index_outputpath+"DECAY_FACTOR", dpi=1080,bbox_inches="tight")
     
         plt.figure(2)
-        plt.bar([i + 2*bar_width for i in range(len(trace_names))], As, label="NV_REG_FACTOR=11",width=bar_width)
+        plt.bar([i + 1*bar_width for i in range(len(trace_names))], As_11, label="NVM LATENCY FACTOR=11",width=bar_width)
         #plt.xticks(fontsize=10)
         # if enable_plot_save==True:
         #     fig_tp.savefig("./MAX_THROUGHPUT", dpi=1080)
-        plt.legend()
+        plt.legend(fontsize=legendsize)
         plt.grid(True)
-        plt.savefig(OVERALL_performance_index_outputpath+"MAX_THROUGHPUT", dpi=1080)
+        plt.savefig(OVERALL_performance_index_outputpath+"MAX_THROUGHPUT", dpi=1080,bbox_inches="tight")
     
     
         plt.figure(3)
-        plt.bar([i + 2*bar_width for i in range(len(trace_names))], prson_pwr_cmpt, label="NV_REG_FACTOR=11",width=bar_width)
+        plt.bar([i + 1*bar_width for i in range(len(trace_names))], prson_pwr_cmpt_11, label="NVM LATENCY FACTOR=L11",width=bar_width)
+
+        plt.annotate(r"Correlation Relative Variance: $\sigma_{\lambda} \%$="+str(round(prson_rel_perc_var,5))+"%",xy = (1-bar_width/2,1.40*max(prson_pwr_cmpt)),weight="bold")
+        plt.annotate(r"Correlation Variance: $\sigma_{\lambda}$="+str(round(prson_var,8)),xy = (1-bar_width/2,1.30*max(prson_pwr_cmpt)),weight="bold")
+        plt.annotate(r"Correlation Mean Value $\bar{\sigma}$="+str(round(prson_mean,5)),xy = (1-bar_width/2,1.2*max(prson_pwr_cmpt)),weight="bold")
+
         plt.grid(True)
-        plt.legend()
-        plt.savefig(OVERALL_performance_index_outputpath+"CORRELATION", dpi=1080)
-    
+        plt.legend()  
+
+        plt.savefig(OVERALL_performance_index_outputpath+"CORRELATION.svg", dpi=1080,bbox_inches="tight")
+        plt.savefig(OVERALL_performance_index_outputpath+"CORRELATION", dpi=1080,bbox_inches="tight")
     # if enable_plot_save==True:
     #     fig_corr.savefig("./CORRELATION", dpi=1080)
 

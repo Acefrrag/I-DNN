@@ -14,7 +14,7 @@ Description:
     sim_time amount of time.
         
 Input:
-    - vt_ts         : Voltage trace timescale in ns.
+    - vt_ts         : Voltage trace timescale in ns. It's the sampling time'
     - SC_P          : System clock period in ns.
     - sim_time      : Simulation time in us. If this value is biggere than the 
                         voltage trace time duration, it will produce a cut off
@@ -53,7 +53,7 @@ shtdw_value = 2300
 wrng_value = 2500
 SC_P = 40           #System clock period
 sim_time = 3_000    #Simulation time in us
-vt_ts = 160         #Voltage Trace Timescale in ns
+vt_ts = 160         #Voltage Trace Timescale in ns 
 w_len = int(sim_time/(vt_ts/1_000))
 
 #Traces neglecting the initial power off

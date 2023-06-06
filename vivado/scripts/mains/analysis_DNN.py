@@ -17,13 +17,11 @@ Description:
     You can find the plots @ "./plots/DNN_analysis_plots"
     
     This script is intended to be used for a given set of DNN architectures.
-    The user should not really modify this file.
-    
-   
 """
 
 import re
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 from scipy.optimize import curve_fit
 from scipy.stats import pearsonr
 import numpy as np
@@ -51,11 +49,28 @@ def compute_noMAC_layer(input_size, output_size):
     return(no_MACs)
 
 def compute_noMACs_DNN(DNN_architecture_filename):
+    """
+    This functin produces the number of MACs for a given DNN. It measures how
+    many arithmetic operations are carried out by the DNN. The more MACs, the
+    more operations a DNN needs to perform for an inference, the less the
+    throughput.
+
+    Parameters
+    ----------
+    DNN_architecture_filename : complete path to the DNN architecture descriptor.
+        DESCRIPTION.
+
+    Returns
+    -------
+    None.
+
+    """
     
     f = open(DNN_architecture_filename, "r")
     allLines = f.readlines()
     f.close()
-    sizes_str = allLines[0][1:-1].split(";")#The parathesis are elimnated
+    #The parathesis are eliminated and contents split and inserted in an array
+    sizes_str = allLines[0][1:-1].split(";")
     sizes = [int(x) for x in sizes_str]
     
     #Computing MAC operation given the sizes
@@ -68,6 +83,20 @@ def compute_noMACs_DNN(DNN_architecture_filename):
     return(no_MACs)
 
 def data_from_lines(allLines):
+    """
+    This function returns a dictionary of the end-of-simulation values given the
+    lines read from the results files
+
+    Parameters
+    ----------
+    allLines : list
+        list of strings
+
+    Returns
+    -------
+    end_data_fixed_time: dictionary
+        dictionary of end-of-simulation values
+    """
     data_fix_time_tmp = []
     start_fix_time = 0
     for i, line in enumerate(allLines):
@@ -111,6 +140,22 @@ def data_from_lines(allLines):
     return(end_data_fixed_time)
     
 def overall_data(end_data_fixed_time, NV_REG_FACTOR):
+    """
+    This function makes a completion of the end-of-simulation data with the 
+    power consumption values, including efficiency.
+
+    Parameters
+    ----------
+    end_data_fixed_time : TYPE
+        DESCRIPTION.
+    NV_REG_FACTOR : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    None.
+
+    """
     
     PWR_STATE_LAYER_COMP =  [neurons*PWR_STATE_LAYER_COMP_DEF/BASE_NEURONS for neurons in sizes]
 
@@ -253,7 +298,7 @@ def compute_fit_param(voltage_trace_name, test, sim_results, plt_show=False):
         
     #Fitting Throughput
     p0 = [throughput[0],0.001,hzrd_th[0]]
-    parameters, covariance = curve_fit(exp, hzrd_th, throughput,p0=p0,maxfev=100000)
+    parameters, covariance = curve_fit(exp, hzrd_th, throughput,p0=p0,maxfev=100000, method='trf')
     A, lmbda,x0 = parameters
     throughput_fit = [exp(v,A,lmbda,x0) for v in hzrd_th]
     print("Covariance Matrix:")
@@ -285,7 +330,7 @@ def compute_fit_param(voltage_trace_name, test, sim_results, plt_show=False):
     print("Pearson correlation coefficient:", pwr_cmpt_corr)
     print("p-value:", pwr_cmpt_pvalue)
     
-    return(lmbda, A, prson_pwr_cmpt)
+    return(lmbda, throughput[0], prson_pwr_cmpt)
 
 
 if __name__ == "__main__":
@@ -296,19 +341,24 @@ if __name__ == "__main__":
     except:
         pass
     
-    tests=["4layer_80", "8layer_240", "12layer_395", "8layer_470"]
+    #tests=["4layer_80", "8layer_240", "12layer_395", "8layer_470"]
+    tests=["4_layer_140", "6_layer_150", "8_layer_240", "8_layer_290", "10_layer_355", "12_layer_395", "12_layer_435", "8_layer_470"]
+    #These files include the dimensions of every neuron inside 
     DNN_architecture_filenames = ["./DNN_architectures/architecture_"+tests[i]+".txt" for i in range(len(tests))]
     nos_MACs=[compute_noMACs_DNN(DNN_architecture_filename) for DNN_architecture_filename in DNN_architecture_filenames]
-    labels=["4 layer \n80 neurons", "8-layer\n240 neurons","12-layer\n395 neurons","8-layer \n470 neurons"]#Contains the labels to put on bar charts
-    x_labels=[str(nos_MACs[i]) +" MACs" for i in range(len(nos_MACs))]
-    colors=["red", "blue", "green", "yellow"]
+    #labels=["4-layer DNN", "8-layer DNN","12-layer DNN","8-layer DNN"]#Contains the labels to put on bar charts
+    labels=["4-layer DNN", "6-layer DNN", "8-layer DNN", "8-layer DNN", "10-layer DNN", "12-layer DNN", "12-layer DNN", "8-layer DNN"]
+    x_labels=[str(nos_MACs[i]) for i in range(len(nos_MACs))]
+    #colors=["red", "blue", "green", "yellow"]
+    colors = ["red", "blue", "green", "yellow", "purple", "magenta", "orange", "grey"]
     pattern=["+","*","|","O"]
     voltage_tracename = "voltage_trace2"
     print("DNN analysis. Voltage trace: "+voltage_tracename)
     NV_REG_FACTOR = 2
-    
+    #tests=["4layer_80_powerpoint", "8layer_240", "12layer_395", "8layer_470"]
+    tests=[tests[i]+"_thesisdefence" for i in range(len(tests))]
     results_filename = "DB_results_fixedtime_NVREG_DELAY_FACTOR"+str(NV_REG_FACTOR)+".txt"
-    DB_resultspaths = ["./results/DB_results/"+tests[i]+"/"+voltage_tracename+"/"+results_filename for i in range(4)]    
+    DB_resultspaths = ["./results/DB_results/"+tests[i]+"/"+voltage_tracename+"/"+results_filename for i in range(len(tests))]    
     DB_results_files = [open(path,"r") for path in DB_resultspaths]
     DB_results_allLines = [file.readlines() for file in DB_results_files]
     sim_results = {}
@@ -328,44 +378,105 @@ if __name__ == "__main__":
     As = [p[1] for p in DNNtest_ps]
     prson_pwr_cmpt =[p[2][0] for p in DNNtest_ps]
     
+    decay_var = np.var(decays)
+    decay_mean = np.mean(decays)
+    decay_rel_var_perc = decay_var/decay_mean*100
+    
+    
+    #PLOTTING DECAY FACTOR THROUGHPUT
+    #figsize = None#(10,4)
+    figsize = (14,4)
+    titlesize = 18
+    fontsize = 16
+    legendfontsize = 11.5
     bar_width = 0.35
-    fig = plt.figure(1)
+    #Rectangle for 4 DNNs simulations
+    rect = Rectangle(xy=(-bar_width/2,1.19*max(decays)), width=2.85, height=0.00035, edgecolor='black', facecolor='none')
+    #Rectangle for 8 DNNs simulations
+    #rect = Rectangle(xy=(-bar_width/2,1.19*max(prson_pwr_cmpt)), width=2.85, height=0.3, edgecolor='black', facecolor='none')
+    fig = plt.figure(1, figsize=figsize)
     ax = fig.gca()
+    #The set_xticks method is used for a 4 DNNs test
+    #ax.set_xticks([i for i in range(len(x_labels))], x_labels, fontsize=fontsize)
+    #This one below is used for a set of 8 DNNs
+    ax.set_xticks([i for i in range(len(x_labels))], x_labels, fontsize=fontsize/1.2)
     for i in range(len(labels)):
-        ax.bar(x_labels[i], decays[i], label=labels[i], color = colors[i],width=bar_width)
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.45), ncol=3)
-    ax.set_title("Decay Factor of THROUGHPUT",pad=15)
-    ax.set_xlabel("DNN")
-    ax.set_ylabel("Decay factor $\lambda$")
+        ax.bar(i, decays[i], label=labels[i], color = colors[i],width=bar_width)
+    #Legend for 4 DNNs test
+    #ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.40), ncol=3, fontsize=legendfontsize)
+    #Legend for 8 DNN test
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.50), ncol=3, fontsize=legendfontsize)
+    ax.set_title("Decay Factor of THROUGHPUT",pad=15, fontsize=fontsize)
+    ax.set_xlabel("DNN no. of MACs", fontsize=fontsize)
+    ax.set_ylabel("Decay factor $\lambda$", fontsize=fontsize)
+    [ax.annotate(str(round(decays[i],4)), xy=(i-bar_width/2,1.03*decays[i]),weight="bold") for i in range(len(x_labels))]
+    ax.annotate(r"Decay Mean Value $\bar{\sigma}$="+str(round(decay_mean,5)),xy = (-bar_width/2,1.2*max(decays)),weight="bold")
+    ax.annotate(r"Decay Variance: $\sigma_{\lambda}$="+str(round(decay_var,10)),xy = (-bar_width/2,1.30*max(decays)),weight="bold")
+    ax.annotate(r"Decay Relative Variance: $\sigma_{\lambda} \%$="+str(round(decay_rel_var_perc,5))+"%",xy = (-bar_width/2,1.40*max(decays)),weight="bold")
+    ax.add_patch(rect)
+    ax.margins(y=55*max(decays))
     ax.grid(True)
+    plt.savefig(output_path+"DNNs_DECAY_FACTOR", dpi=1080, bbox_inches="tight")
     
-    plt.savefig(output_path+"DNN_DECAY_FACTOR", dpi=1080)
-    
-    fig = plt.figure(2)
+    xy_tickssize=14
+    #PLOTTING INITIAL THROUGHPUT
+    fig = plt.figure(2, figsize = figsize)
     ax = fig.gca()
-    for i in range(len(labels)):
-        ax.bar(x_labels[i], As[i], label=labels[i],width=bar_width,color=colors[i])
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.45), ncol=3)
-    ax.set_title("Throughput Amplitude A",pad=15)
-    ax.set_xlabel("DNN")
-    ax.set_ylabel("Maximum THROUGHPUT [Op/s]")
+    #ax.set_xticks([i for i in range(len(x_labels))], x_labels, fontsize=fontsize)
+    # for i in range(len(labels)):
+    #     #ax.bar(i, As[i], label=labels[i],width=bar_width,color=colors[i])
+    #     ax.plot(nos_MAC[i], As[i])
+    ax.scatter(nos_MACs, As)
+    ax.plot(nos_MACs, As, linestyle="--")
+    #ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.40), ncol=3, fontsize=legendfontsize)
+    ax.set_title("Amplitude A of Throghput curve",pad=15, fontsize=titlesize)
+    ax.set_xlabel("DNN no. of MACs", fontsize=fontsize)
+    ax.set_ylabel("Throughput [Op/s]", fontsize=fontsize)
+    ax.tick_params(axis='x',labelsize=xy_tickssize)
+    ax.tick_params(axis='y',labelsize=xy_tickssize)
+    #Annotate for 4 DNNs tests
+    #[ax.annotate(str(int(As[i]))+"\n"+ labels[i], xy = (nos_MACs[i]+1000,As[i]+1000), weight="bold") for i in range(len(x_labels)-1)]
+    #Annotate for 8 DNNs tests
+    [ax.annotate(str(int(As[i])), xy = (nos_MACs[i],As[i]), weight="bold") for i in range(len(x_labels)-1)]
+    #Annotate for 4 DNNs tests
+    #ax.annotate(str(int(As[-1]))+"\n"+ labels[-1], xy = (nos_MACs[-1]-20000,As[-1]+1000), weight="bold")
+    #Annotate for 8 DNNs tests
+    ax.annotate(str(int(As[-1])), xy = (nos_MACs[-1]-4000,As[-1]+250), weight="bold")
+    ax.margins(y=0.18)
     ax.grid(True)
-    plt.savefig(output_path+"MAX_THROUGHPUT", dpi=1080)
+    plt.savefig(output_path+"DNNs_MAX_THROUGHPUT", dpi=1080, bbox_inches="tight")
     
     
-    fig = plt.figure(3)
+    
+    #PLOTTING CORRELATION POWER CONSUMPTION VT OSCILLATIONS
+    corr_var = np.var(prson_pwr_cmpt)
+    corr_mean = np.mean(prson_pwr_cmpt)
+    corr_rel_perc_var = corr_var/corr_mean*100
+    #Rectangle for 4 DNNs simulations
+    #rect = Rectangle(xy=(-bar_width/2,1.19*max(prson_pwr_cmpt)), width=2.85, height=0.3, edgecolor='black', facecolor='none')
+    #Rectangle for 8 DNNs simulations
+    rect = Rectangle(xy=(-bar_width/2,1.19*max(prson_pwr_cmpt)), width=2.85, height=0.3, edgecolor='black', facecolor='none')
+    fig = plt.figure(3, figsize = figsize)
     ax = fig.gca()
+    ax.set_xticks([i for i in range(len(x_labels))], x_labels, fontsize=fontsize/1.2)
     for i in range(len(labels)):
-        ax.bar(x_labels[i], prson_pwr_cmpt[i], label=labels[i],width=bar_width,color=colors[i])
-    ax.set_title("Correlation Voltage Trace Oscillations and Power Consumption")
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.45), ncol=3)
-    #plt.xticks(fontsize=10)
-    ax.set_xlabel("DNN")
-    ax.set_ylabel("Correlation coefficient")
+        ax.bar(i, prson_pwr_cmpt[i], label=labels[i],width=bar_width,color=colors[i])
+    ax.set_title("Correlation Voltage Trace Oscillations and Power Consumption", pad=15,fontsize=fontsize)
+    #Legend for 4 DNNs test
+    #ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.40), ncol=3, fontsize=legendfontsize)
+    #Legend for 8 DNN test
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.50), ncol=3, fontsize=legendfontsize)
+    [ax.annotate(str(int(prson_pwr_cmpt[i])), xy = (i-bar_width/2,prson_pwr_cmpt[i]+1000), weight="bold") for i in range(len(x_labels))]
+    ax.margins(y=0.05)
+    ax.annotate(r"Correlation Relative Variance: $\sigma_{\lambda} \%$="+str(round(corr_rel_perc_var,5))+"%",xy = (-bar_width/2,1.40*max(prson_pwr_cmpt)),weight="bold")
+    ax.annotate(r"Correlation Variance: $\sigma_{\lambda}$="+str(round(corr_var,8)),xy = (-bar_width/2,1.30*max(prson_pwr_cmpt)),weight="bold")
+    ax.annotate(r"Correlation Mean Value $\bar{\sigma}$="+str(round(corr_mean,5)),xy = (-bar_width/2,1.2*max(prson_pwr_cmpt)),weight="bold")
+    ax.set_xlabel("DNN no. of MACs", fontsize=fontsize)
+    ax.set_ylabel("Correlation coefficient", fontsize=fontsize)
     ax.grid(True)
+    ax.add_patch(rect)
     
-    
-    #     fig_corr.savefig("./CORRELATION", dpi=1080)
-    plt.savefig(output_path+"CORRELATION", dpi=1080)
+    #fig_corr.savefig("./CORRELATION", dpi=1080)
+    plt.savefig(output_path+"DNNs_CORRELATION", dpi=1080, bbox_inches="tight")
     plt.show()
     

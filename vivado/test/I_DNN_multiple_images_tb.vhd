@@ -112,7 +112,7 @@ return(digits_content);
 end function;
 
       
-signal hazard_threshold : integer := 2500;
+signal hazard_threshold : integer := 3030;
 signal input_reg: datain_type := (others => (others => '0'));
 signal images: set_images_type := load_images(full_path_images);
 signal digits: set_digits_type := load_digits(full_path_digits);
@@ -133,13 +133,18 @@ signal thresh_stats         : threshold_t;
 signal data_sampled         : std_logic:='0';
 --signal voltage_trace_path   : string := "voltage_traces/I_layer_trace_complete.txt";
 --signal voltage_trace_path   : string(1 to 47) := "voltage_traces/I_DNN_trace_complete_4layers.txt";
-constant voltage_trace_path: string(1 to 33) := "voltage_traces/voltage_trace2.txt";
+constant voltage_trace_path: string(1 to 33) := "voltage_traces/voltage_trace3.txt";
 signal image_no: integer := 0;
 signal shtdwn_counter, clk_counter: integer := 0;
 signal executed_batches: integer := 0;
 signal corruption_backup_counter: integer := 0;
 signal correct_backup_counter: integer := 0;
 signal digit_out: integer := 0;
+--
+--Debug Signal These are used to evaluate the CB backup policy
+signal fsm_nv_reg_state_debug:  fsm_nv_reg_state_t;
+signal sudden_poweroff, sudden_poweroff_flag: std_logic;
+
 
 component I_DNN is
 generic(
@@ -164,6 +169,7 @@ digit_out: out integer;
 --Augumented Pins
 n_power_reset: in std_logic;
 thresh_stats: in threshold_t
+--backup_logic_state: out fsm_nv_reg_t --used for testing the CB policy
 );
 end component;
 
@@ -286,6 +292,13 @@ end process;
 
 
 start_gen: process(clk) is
+--Description: This generates the start condition to trigger I-DNN
+--              inference.
+--              Since the I-DNN is not designed to run multiple inferences
+--              at a time, the start bit must be set to '1' only if the
+--              inference has been completed* (data_v = '1')
+--Warning: Setting start='1' continuously is wrong because this would trigger
+--              multiple inferences
 begin
 if rising_edge(clk) then
     if data_v = '1' then
@@ -296,6 +309,37 @@ if rising_edge(clk) then
 end if;
 end process start_gen;
 
+--sudden_poweroff_pr: process(all) is
+--The process is used to detect if there was a sudden power off happened or not.
+--A sudden power happens when the system goes from normal operation to poweroff.
+
+--I'm sorry for adding this to the code, but I couldn't do otherwise to produce the CB policy results
+--since the 
+
+--Note: If you want to delete this, you can, the architecture will still function, but the testbenching
+----of the CB policy will not run properly.
+--begin
+--if fsm_nv_reg_state_debug'event and fsm_nv_reg_state_debug = shutdown_s then --When there is a power off
+--    if sudden_poweroff_flag='1' then --If the system is powering off from a do_operation state
+--        sudden_poweroff <= '1';
+--    else
+--        sudden_poweroff <= '0';
+--    end if;
+--end if;
+
+--end process;
+
+--sudden_poweroff_flag_pr: process(all) is
+----This process connect the flag signal to '1' as long as the backup logic is commanding a backup
+----Is used to understand from which state the system is coming after a poweroff.
+--begin
+--if fsm_nv_reg_state_debug = do_operation_s then
+--    sudden_poweroff_flag <= '1';
+--else
+--    sudden_poweroff_flag <= '0';
+--end if;
+
+--end process;
 
 
 end Behavioral;

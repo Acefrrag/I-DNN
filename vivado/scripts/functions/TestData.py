@@ -152,8 +152,8 @@ def genTestData(dataWidth,IntSize,testDataNum,te_d,outputpath,net_test):
     logFile.write("Integer Part Width: "+str(IntSize)+"\n")
     logFile.write("Fractional Part Widht: "+str(dataWidth-IntSize)+"\n")
     logFile.close()
-    dataHeaderFile = open(folderpath+"/"+"dataValues.h","w")
-    dataHeaderFile.write("int dataValues[]={")
+    #dataHeaderFile = open(folderpath+"/"+"dataValues.h","w")
+    #dataHeaderFile.write("int dataValues[]={")
     fileName = "VHDL_dataset_"+ext+".txt"
     f = open(folderpath+"/"+fileName,'w')
     fileName = 'visual_data'+str(te_d[1][testDataNum])+'.txt'
@@ -167,7 +167,7 @@ def genTestData(dataWidth,IntSize,testDataNum,te_d,outputpath,net_test):
         #Filling up dataValues.h
         #Converting floating-point pixel into fixed-point integer representation
         fp_pixel_int = float_to_fp_int(test_inputs[testDataNum][0][i],dataWidth,FracSize)
-        dataHeaderFile.write(str(fp_pixel_int)+',')
+        #dataHeaderFile.write(str(fp_pixel_int)+',')
         
         #Filling up test_data.txt
         #Zero Padding the MSb
@@ -183,13 +183,13 @@ def genTestData(dataWidth,IntSize,testDataNum,te_d,outputpath,net_test):
         if count%28 == 0:
             g.write('\n')
     #Footer dataValues.h
-    dataHeaderFile.write('0};\n')
-    dataHeaderFile.write('int result='+str(te_d[1][testDataNum])+';\n')
+    #dataHeaderFile.write('0};\n')
+    #dataHeaderFile.write('int result='+str(te_d[1][testDataNum])+';\n')
     #Closing files
     k.close()
     g.close()
     f.close()
-    dataHeaderFile.close()
+    #dataHeaderFile.close()
     
     filename = "dataset_"+ext+"_digitout.txt"
     a = open(folderpath+"/"+filename,"w")

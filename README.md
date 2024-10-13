@@ -12,9 +12,8 @@ The design of hardware-based intermittent devices takes place in the **codesign 
 
 ## Architecture
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/59066474/232531939-2735f492-c7c6-401d-8aeb-63f4db2d42e6.png">
-</p>
+![I-DNN](https://github.com/user-attachments/assets/b98f6f7b-95ea-4a19-b31c-bad994a44423)
+
 
 `I-DNN` is composed of `I-layers` connected in cascade in the same fashion of DNN.
 
@@ -25,6 +24,7 @@ The layer interface is extended to interface with the `NVR` as well as the `BACK
 The `POWER APPROXIMATION UNITS` compute the power cycles for every `I-DNN` component (`I-layer` or `NVR`) for every `POWER_STATE`.
 
 When a `I-layer` computes its output, the `Validating Logic` invalidates the previous layer output to avoid useless backup when a save command arises from the `BACKUP_LOGIC`.
+
 
 ## Backup Policies
 
